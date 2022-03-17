@@ -1,4 +1,4 @@
-import 'package:docmate/modules/loginScreen.dart';
+import 'package:docmate/patient route/loginScreen.dart';
 import 'package:docmate/selectUser.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_spinkit/flutter_spinkit.dart';
