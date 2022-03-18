@@ -1,3 +1,4 @@
+import 'package:docmate/doctor%20route/loginscreendoctor.dart';
 import 'package:docmate/patient route/loginScreen.dart';
 import 'package:docmate/selectUser.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
     {
       SelectUser.id: (context) => const SelectUser(),
       LoginScreen.id: (context) => const LoginScreen(),
+      DocLoginScreen.id: (context) => const DocLoginScreen(),
+
+
 
     }
     );

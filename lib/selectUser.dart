@@ -1,3 +1,4 @@
+import 'package:docmate/doctor%20route/loginscreendoctor.dart';
 import 'package:docmate/patient route/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'constant.dart';
@@ -22,7 +23,9 @@ class SelectUser extends StatelessWidget {
                   text: "Doctor",
                   Backgroundcolur: whiteColor,
                   textColor: blueColor,
-                  onpressed:(){}
+                  onpressed:(){
+                    Navigator.pushNamed(context, DocLoginScreen.id);
+                  }
                ),
             const SizedBox(height: 24.0),
             defaultBottonTologin(
