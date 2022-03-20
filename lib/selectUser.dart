@@ -18,8 +18,10 @@ class SelectUser extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
            logoImage(),
-            const SizedBox(height: 31.0),
+            SizedBox(height:MediaQuery.of(context).size.height/20),
             defaultBottonTologin(
+                height : MediaQuery.of(context).size.height/14,
+                width : MediaQuery.of(context).size.width/1.4,
                   text: "Doctor",
                   Backgroundcolur: whiteColor,
                   textColor: blueColor,
@@ -29,6 +31,8 @@ class SelectUser extends StatelessWidget {
                ),
             const SizedBox(height: 24.0),
             defaultBottonTologin(
+                height : MediaQuery.of(context).size.height/14,
+                width : MediaQuery.of(context).size.width/1.4,
                 text: "Patient",
                 Backgroundcolur: whiteColor,
                 textColor: blueColor,

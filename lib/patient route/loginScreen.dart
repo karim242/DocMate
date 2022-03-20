@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:docmate/constant.dart';
+import 'package:flutter/rendering.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -24,128 +25,130 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       backgroundColor: blueColor,
       body: Form(
-      key:formKey,
-      child:ListView(
+        key: formKey,
+        child: Column(
           children: [
-            logoImage(),
-            const SizedBox(
-              height: 70.0,
+          Expanded(flex: 1, child: logoImage(),),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 15,
             ),
-            Flexible(
-              flex:1,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: whiteColor,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(70.0),
-                      topRight: Radius.circular(70.0)),
-                ),
-                child: Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          left: 90.0,
-                          top: 22.0,
-                          bottom: 74.0,
-                          right: 90.0,
-                        ),
-                        child: Row(children: [
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                const LoginScreen();
-                              });
-                            },
+          Expanded(
+            flex: 3,
+            child: Container(
+              decoration: BoxDecoration(
+                color: whiteColor,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(84.0),
+                    topRight: Radius.circular(84.0)),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: MediaQuery.of(context).size.width/6,
+                        top:MediaQuery.of(context).size.height/60,
+                        bottom: MediaQuery.of(context).size.height/25,
+                        right: MediaQuery.of(context).size.width/6,
+                      ),
+                      child: Row(children: [
+                        MaterialButton(
+                          onPressed: () {},
                             child: Text(
-                              "Log in",
-                              style: TextStyle(
-                                color: blueColor,
-                                fontSize: 20.0,
-                              ),
+                            "Log in",
+                            style: TextStyle(
+                              color: blueColor,
+                              fontSize: 20.0,
                             ),
-                          ), //Log In
-                          const SizedBox(
-                            width: 69.0,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              setState(() {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => SelectUser()),
-                                // );
-                              });
-                            },
-                            child: Text(
-                              "Sign up",
-                              style: TextStyle(
-                                color: blueColor,
-                                fontSize: 20.0,
-                              ),
-                            ),
-                          ),//Sign Up
-                        ]),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      textFieldForm(
-                          text: 'E-mail',
-                          ontap: () {},
-                          controller: emailController),
-                      const SizedBox(
-                        height: 24,
-                      ),
-                      textFieldForm(
-                          text: 'Password',
-                          ontap: () {},
-                          controller: passwordController),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.only(
-                            left: 214,
-                            right: 39,
-                            top: 4,
-                          ),
+                        ), //Log In
+                         SizedBox(
+                          width: MediaQuery.of(context).size.width/10
                         ),
+                        MaterialButton(
+                          onPressed: () {
+                            setState(() {
+                            });
+                          },
+                          child: Text(
+                            "Sign up",
+                            style: TextStyle(
+                              color: blueColor,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ), //Sign Up
+                      ]),
+                    ),
+                     SizedBox(
+                      height: MediaQuery.of(context).size.height/20
+                    ),
+                    textFieldForm(
+                        text: 'E-mail',
+                        ontap: () {},
+                        controller: emailController,
+                      height: MediaQuery.of(context).size.height/14,
+                      width: MediaQuery.of(context).size.width/1.16,
+                    ),
+                     SizedBox(
+                      height: MediaQuery.of(context).size.height/30,
+                    ),
+                    textFieldForm(
+                        text: 'Password',
+                        ontap: () {},
+                        controller: passwordController,
+                      height: MediaQuery.of(context).size.height/14,
+                      width: MediaQuery.of(context).size.width/1.16,
+
+          ),
+                    Container(
+                      margin: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width/1.8,
+                        bottom: 0.0,top: 0.0,
+
+                      ),
+                      child: MaterialButton(
+
                         child: const Text(
                           'Forgot Password?',
                           style: TextStyle(
                               color: Colors.red,
                               fontSize: 12.0,
                               fontWeight: FontWeight.bold
-                              // fontFamily: 'MPLUSRounded1c',
-                              // fontWeight: MPLUSRounded1c-Regular,
                               ),
                         ),
                         onPressed: () {},
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 208,top: 38,),
-                        child: defaultBottonTologin(
-                            text: "Log In",
-                            Backgroundcolur: blueColor,
-                            textColor: whiteColor,
-                            onpressed: () {
-                              if(formKey.currentState!.validate()) {
-                                setState(() {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => SelectUser()));
-                                });
-                              }
-                            }),
+                     ),
+                    Padding(
+                      padding:  EdgeInsets.only(
+                        bottom:MediaQuery.of(context).size.height/5,
+                        top: MediaQuery.of(context).size.height/200,
                       ),
-                    ],
-                  ),
+                      child: defaultBottonTologin(
+                          text: "Log In",
+                          Backgroundcolur: blueColor,
+                          textColor: whiteColor,
+                          height: MediaQuery.of(context).size.height/14,
+                          width: MediaQuery.of(context).size.width/1.5,
+                          onpressed: () {
+                            if (formKey.currentState!.validate()) {
+                              setState(() {
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) => SelectUser()));
+                              });
+                            }
+                          }),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ]),
+          ),
+        ]),
       ),
     );
   }

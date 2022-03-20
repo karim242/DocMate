@@ -1,8 +1,10 @@
 import 'package:docmate/doctor%20route/loginscreendoctor.dart';
 import 'package:docmate/patient route/loginScreen.dart';
 import 'package:docmate/selectUser.dart';
+import 'package:docmate/splashScreen.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+
 
 
 void main() {
@@ -15,8 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'MplUSRounded1c',
+
+    ),
+
+
+
       debugShowCheckedModeBanner: false,
-      home: const SelectUser(),
+      home: const SplashScreen(),
     routes:
     {
       SelectUser.id: (context) => const SelectUser(),
