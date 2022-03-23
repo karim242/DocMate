@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:docmate/constant.dart';
-import 'package:docmate/selectUser.dart';
+import 'package:docmate/selectUser/selectUser.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,13 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: blueColor,
       body: Center(
-        child: Container(
-         margin: const EdgeInsets.only(right: 12.0),
-          width: MediaQuery.of(context).size.width,
-            child: const Image(
-            image: AssetImage('images/logoImage.png'),
-            ),
-        ),
+        child: logoImage(),
+
       ),
     );
   }

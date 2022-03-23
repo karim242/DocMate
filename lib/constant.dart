@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color blueColor = const Color(0xff01B9c8);
-Color whiteColor = const Color(0xfffdf8ff);
-var textStyle = const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0);
-
+Color whiteColor = Color(0xffFDF8FF);
 
 Widget textFieldForm({
   String? text,
@@ -11,15 +9,15 @@ Widget textFieldForm({
   controller,
   double? height,
   double? width,
+  required bool secure,
 }) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
-    child: Container(
+  return Container(
       width: width,
       height: height,
       child: TextFormField(
         onTap: text == "date" ? ontap : () {},
         controller: controller,
+          obscureText:secure,
         validator: (value){
           if (value!.isEmpty)
             {
@@ -28,14 +26,16 @@ Widget textFieldForm({
           return null;
         },
         decoration: InputDecoration(
-          labelText: "$text",
-          fillColor: Colors.white,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(14.0),
-          ),
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(14.0),),
+          labelText: "$text",
+           fillColor: whiteColor,
+          filled: true,
+          errorStyle: const TextStyle(height: .8, color: Colors.red),
         ),
       ),
-    ),
+
   );
 }
 
@@ -97,5 +97,27 @@ Widget logoImage() {
         fit: BoxFit.fitWidth,
       ),
     ),
+  );
+}
+Widget indicatorOn() {
+  return Container(
+    width: 11,
+    height: 11,
+    decoration: BoxDecoration(
+        color: blueColor,
+        borderRadius: BorderRadius.circular(11),
+        border: Border.all(color: whiteColor)),
+  );
+}
+
+Widget indicatorOff() {
+  return Container(
+    width: 11,
+    height: 11,
+    decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(11),
+        border: Border.all(color: blueColor)),
+
   );
 }
