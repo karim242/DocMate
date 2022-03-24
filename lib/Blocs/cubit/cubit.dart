@@ -8,7 +8,7 @@ class UserCubit extends Cubit<UserStates> {
   static UserCubit get(context){
     return BlocProvider.of(context);
   }  //object from him self
-  var user=true;
+
 
 
 

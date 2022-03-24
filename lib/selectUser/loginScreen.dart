@@ -4,7 +4,8 @@ import 'package:docmate/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Blocs/login/login_cubit.dart';
 import '../Blocs/login/login_states.dart';
-import '../doctor route/signUpDoctor.dart';
+import '../doctor route/signUpDoctor1.dart';
+import '../patient route/signUp/signUpScreen2.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -70,12 +71,15 @@ final String value;
                                       MediaQuery.of(context).size.width / 10),
                               MaterialButton(
                                 onPressed: () {
-                                  if(!cubit.isuser){
+                                  if(cubit.isuser) {
                                     Navigator.pushNamed(
-                                        context, SignUpScreen1.id1);
-                                  }else
-                                    {Navigator.pushNamed(
-                                        context, SignUpScreenDoctor.id);}
+                                        context, SignUpScreenDoctor1.doctorId1);
+                                  }
+                                 else
+                                    {
+                                      Navigator.pushNamed(
+                                          context,SignUpPatientScreen.id1);
+                                    }
                                 },
                                 child: Text(
                                   "Sign up",

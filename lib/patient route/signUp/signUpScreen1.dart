@@ -5,16 +5,16 @@ import '../../Blocs/register/register_cubit.dart';
 import '../../Blocs/register/register_states.dart';
 import '../../constant.dart';
 
-class SignUpScreen1 extends StatelessWidget {
-  const SignUpScreen1({Key? key}) : super(key: key);
-  static String id1="SignUpScreen";
+class SignUpPatientScreen extends StatelessWidget {
+  const SignUpPatientScreen({Key? key}) : super(key: key);
+  static String id1="SignUpScreen1";
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterCubit, RegisterStates>(
+    return BlocConsumer<RegisterPatientCubit, RegisterStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          var cubit = RegisterCubit.get(context);
+          var cubit = RegisterPatientCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               elevation: 0,
@@ -35,15 +35,15 @@ class SignUpScreen1 extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 15,
                     ),
                     Expanded(
-                      flex: 3,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(84.0),
-                              topRight: Radius.circular(84.0)),
-                        ),
-                        child: SingleChildScrollView(
+                      flex: 5,
+                      child: SingleChildScrollView(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Color(0xffFFFFFF),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(84.0),
+                                topRight: Radius.circular(84.0)),
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
@@ -77,6 +77,7 @@ class SignUpScreen1 extends StatelessWidget {
                                         decoration: TextDecoration.underline,
                                         color: blueColor,
                                         fontSize: 20.0,
+                                        fontWeight: FontWeight.bold
                                       ),
                                     ),
                                   ), //Sign Up
@@ -127,9 +128,9 @@ class SignUpScreen1 extends StatelessWidget {
                               SizedBox(height: MediaQuery.of(context).size.height / 35,),
                               textFieldForm(
                                 secure: false,
-                                text: 'Location',
+                                text: 'Phone number',
                                 ontap: () {},
-                                controller: cubit.locationcontroller,
+                                controller: cubit.phonecontroller,
                                 height: MediaQuery.of(context).size.height / 14,
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
@@ -149,7 +150,7 @@ class SignUpScreen1 extends StatelessWidget {
                                       {
                                         if(cubit.passwordregistercontroller.value==cubit.passwordconfirmcontroller.value)
                                           {
-                                            Navigator.pushNamed(context,SignUpScreen2.id2);
+                                            Navigator.pushNamed(context,SignUpPatientScreen2.id2);
                                           }
                                         else
                                           {}

@@ -15,7 +15,7 @@ Widget textFieldForm({
       width: width,
       height: height,
       child: TextFormField(
-        onTap: text == "date" ? ontap : () {},
+       // onTap: text == "date" ? ontap : () {},
         controller: controller,
           obscureText:secure,
         validator: (value){
@@ -30,6 +30,7 @@ Widget textFieldForm({
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(14.0),),
           labelText: "$text",
+
            fillColor: whiteColor,
           filled: true,
           errorStyle: const TextStyle(height: .8, color: Colors.red),
