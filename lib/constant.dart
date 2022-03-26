@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 Color blueColor = const Color(0xff01B9c8);
-Color whiteColor = Color(0xffFDF8FF);
+Color whiteColor = const Color(0xffFDF8FF);
+TextStyle textTitleStyle=const TextStyle(
+    fontSize: 22.0,
+    fontWeight: FontWeight.bold,
+    color: Color(0xff000000)
+);
 
 Widget textFieldForm({
   String? text,

@@ -1,6 +1,9 @@
 import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/Blocs/doctor_register/doctorRegisterStates.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
+import 'package:docmate/patient%20route/homePage/homePage.dart';
+import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
+import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:docmate/patient%20route/signUp/confirm4digitScreen.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen2.dart';
@@ -43,14 +46,19 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
+          home:  HomePageScreen(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),
             SignUpPatientScreen2.id2: (context) => const SignUpPatientScreen2(),
-            SignUpScreenDoctor1.doctorId1: (context) => SignUpScreenDoctor1(),
+            SignUpScreenDoctor1.doctorId1: (context) => const SignUpScreenDoctor1(),
             SignUpScreenDoctor2.doctorId2: (context) => const SignUpScreenDoctor2(),
             ConfirmScreen.id: (context) => const ConfirmScreen(),
+            HomePageScreen.homePageID : (context) =>  HomePageScreen(),
+            LatestNews.latestNewsID : (context) =>  LatestNews(),
+            MedicalAdvices.medicalAdvicesId : (context) =>  MedicalAdvices(),
+
+
 
 
           }),
