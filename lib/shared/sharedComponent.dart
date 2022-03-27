@@ -14,17 +14,20 @@ class buildBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Colors.grey[300],
+      elevation: 20,
+      iconSize: 30,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.home,size: 30,),
+          icon: Icon(Icons.home,),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.note_add_outlined,size: 30,),
+          icon: Icon(Icons.note_add_outlined,),
           label: 'Medical Profile',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person_sharp,size: 30,),
+          icon: Icon(Icons.person_sharp,),
           label: 'Profile',
         ),
       ],
@@ -37,16 +40,11 @@ class buildBottomNavigationBar extends StatelessWidget {
 
 
 
-MaterialButton latestNewsSilder(context,
-     {
-      required String text,
-      required String imageroute,
-      required VoidCallback onpressed,
-    }) {
+MaterialButton latestNewsSilder(context, articles) {
   return MaterialButton(
     elevation: 1,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    onPressed:onpressed,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    onPressed:(){},
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -55,24 +53,28 @@ MaterialButton latestNewsSilder(context,
           width: MediaQuery.of(context).size.width/1.25,
           height: MediaQuery.of(context).size.height/4,
           decoration: BoxDecoration(
-            image: DecorationImage(
+            image:   DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(imageroute)),
+                image: NetworkImage('${articles['urlToImage']}')
+            ),
             borderRadius: BorderRadius.circular(16.0),
           ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width/2 ,
-          height: MediaQuery.of(context).size.height/16,
-          child:  Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              backgroundColor: whiteColor,
+           width: MediaQuery.of(context).size.width/1.2 ,
+           height: MediaQuery.of(context).size.height/16,
+          child: Center(
 
+            child:  Text(
+              '${articles['title']}' ,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                backgroundColor: whiteColor,
+
+              ),
             ),
           ),
         )
@@ -85,42 +87,48 @@ MaterialButton latestNewsSilder(context,
 
 
 MaterialButton medicalAdvices(
-    context,
-    {
-      required String text,
-      required String imageroute,
+    context,{
+     required dynamic articles,
       required VoidCallback onpressed,
     })
 {
   return MaterialButton(
-
     elevation: 1,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    onPressed:onpressed,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    onPressed:(){},
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width/2,
+          width: MediaQuery.of(context).size.width/2.5,
           height: MediaQuery.of(context).size.height/5,
           decoration: BoxDecoration(
-            image: DecorationImage(
+            image:   DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(imageroute)),
+                image: NetworkImage('${articles['urlToImage']}')
+            ),
             borderRadius: BorderRadius.circular(16.0),
           ),
         ),
-            Text(
-              text,
+        Container(
+          width: MediaQuery.of(context).size.width/2.5 ,
+          height: MediaQuery.of(context).size.height/20,
+          child: Center(
+
+            child:  Text(
+              '${articles['title']}' ,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 18,
                 fontWeight: FontWeight.w500,
-               )
+                backgroundColor: whiteColor,
+
+              ),
+            ),
           ),
-       
+        )
       ],
     ),
   );
@@ -128,7 +136,7 @@ MaterialButton medicalAdvices(
 
 
 Widget titleAndSeeAll(
-    context,{
+    context, {
     required String titletext,
     required VoidCallback onpressed,
         required int sizedWidth,

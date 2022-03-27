@@ -1,8 +1,10 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/network_helper/cubit/networkCubit.dart';
+import 'package:docmate/network_helper/cubit/networlStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../Blocs/register/register_cubit.dart';
-import '../../../Blocs/register/register_states.dart';
+
 import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
 
@@ -13,10 +15,13 @@ class LatestNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterPatientCubit, RegisterStates>(
+    return  BlocProvider(create: (BuildContext context)=>NetworkCubit()..getLatestNews(),
+        child : BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          RegisterPatientCubit cubit = RegisterPatientCubit.get(context);
+
+           var cubit = NetworkCubit.get(context);
+          dynamic data = cubit.latestNew;
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -39,46 +44,22 @@ class LatestNews extends StatelessWidget {
             ),
             ),
 
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 18.0,top: 10.0),
-                child: Column(
-                  children: [
-                    latestNewsSilder(
-                      context,
-                      onpressed: () { },
-                      imageroute: 'images/covidImage.png',
-                      text: "New vaccine revealed for covid-19",),
-                    latestNewsSilder(
-                      context,
-                      onpressed: () { },
-                      imageroute: 'images/CovidImage1.png',
-                      text: "New vaccine revealed for covid-19",),
-                    latestNewsSilder(
-                      context,
-                      onpressed: () { },
-                      imageroute: 'images/covidImage.png',
-                      text: "New vaccine revealed for covid-19",),
-                    latestNewsSilder(
-                      context,
-                      onpressed: () { },
-                      imageroute: 'images/covidImage.png',
-                      text: "New vaccine revealed for covid-19",),
-                    latestNewsSilder(
-                      context,
-                      onpressed: () { },
-                      imageroute: 'images/CovidImage1.png',
-                      text: "New vaccine revealed for covid-19",),
-                    latestNewsSilder(
-                      context,
-                      onpressed: () { },
-                      imageroute: 'images/CovidImage1.png',
-                      text: "New vaccine revealed for covid-19",),
-                  ],
+            body: ConditionalBuilder(
+              condition: states is ! NetworkLoadingStates,
+              builder: (context)=>ListView.builder(
+                    itemBuilder: (context,x) =>
+                    latestNewsSilder(context,data[x]) ,
+                itemCount: 10,
                 ),
-              ),
+                fallback: (BuildContext context) {
+                return const Center(child: CircularProgressIndicator(),) ;
+              },
             ),
+
+
           );
-        });
+        }
+        )
+        );
   }
 }

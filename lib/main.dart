@@ -1,6 +1,8 @@
 import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/Blocs/doctor_register/doctorRegisterStates.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
+import 'package:docmate/network_helper/cubit/networkCubit.dart';
+import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
@@ -19,6 +21,8 @@ import 'doctor route/signUpDoctor2.dart';
 
 void main() {
   runApp(const MyApp());
+
+  DioHelper.init();
 }
 
 class MyApp extends StatelessWidget {
@@ -28,6 +32,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) {
+      return NetworkCubit();
+        }),
         BlocProvider(create: (context) {
           return LoginCubit();
         }),

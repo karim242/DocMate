@@ -2,6 +2,8 @@ import 'package:docmate/Blocs/register/register_states.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../network_helper/dioHelper.dart';
+
 class RegisterPatientCubit extends Cubit<RegisterStates>{
   RegisterPatientCubit() : super(InitRegisterStates());
   static RegisterPatientCubit get(context){
@@ -35,4 +37,10 @@ class RegisterPatientCubit extends Cubit<RegisterStates>{
     isuser =false;
     emit(ChangeIsPatient());
   }
-}
+
+
+  
+  
+  
+  
+  }

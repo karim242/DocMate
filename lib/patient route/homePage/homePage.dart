@@ -1,27 +1,34 @@
+
+
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Blocs/register/register_cubit.dart';
-import '../../Blocs/register/register_states.dart';
 import '../../constant.dart';
+import '../../network_helper/cubit/networkCubit.dart';
+import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+
 
 class HomePageScreen extends StatelessWidget {
   HomePageScreen({Key? key}) : super(key: key);
   static String homePageID = "IdOfHomePage";
 
-  final int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
+
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterPatientCubit, RegisterStates>(
-        listener: (contex, states) {},
+
+    return BlocProvider(create: (BuildContext context)=>NetworkCubit()..getLatestNews(),
+      child :BlocConsumer<NetworkCubit, NetworkStates>(
+        listener: (context, states) {},
         builder: (context, states) {
-          RegisterPatientCubit cubit = RegisterPatientCubit.get(context);
+
+          // dynamic list= NetworkCubit.get(context).latestNew;
+          NetworkCubit cubit = NetworkCubit.get(context);
+       dynamic data= cubit.latestNew;
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -41,125 +48,108 @@ class HomePageScreen extends StatelessWidget {
                 )
               ],
             ),
-            body:  Container(
-             // physics: NeverScrollableScrollPhysics(),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                       titleAndSeeAll(
-                        context,
+            body: ConditionalBuilder(
+              condition:true,
+              builder: (BuildContext context) {
+               return Container(
+
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        titleAndSeeAll(
+                          context,
                           onpressed: () {
-                          Navigator.pushNamed(context,LatestNews.latestNewsID);
+                            Navigator.pushNamed(context,LatestNews.latestNewsID);
+                            print(data[0]['title']);
                           },
-                          titletext:"Latest News",sizedWidth:3
+                          titletext:"Latest News",sizedWidth:3,
 
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                      children:[
-                        latestNewsSilder(
+
+                          // latestNewsSilder(context,list)
+
+                        ),
+
+                        SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child : Row(
+                                children :[
+                                  latestNewsSilder(context,data[0]) ,
+                                  latestNewsSilder(context,data[1]),
+                                  latestNewsSilder(context,data[2]) ,
+                                  latestNewsSilder(context,data[3]),
+                                  latestNewsSilder(context,data[4]),
+                                ]
+                            )
+                        ),
+
+
+                        titleAndSeeAll(
                             context,
-                            onpressed: () { },
-                            imageroute: 'images/covidImage.png',
-                            text: "New vaccine revealed for covid-19",),
-                        latestNewsSilder(
-                          context,
-                          onpressed: () { },
-                          imageroute: 'images/CovidImage1.png',
-                          text: "New vaccine revealed for covid-19",),
-                        latestNewsSilder(
-                          context,
-                          onpressed: () { },
-                          imageroute: 'images/covidImage.png',
-                          text: "New vaccine revealed for covid-19",),
-                        latestNewsSilder(
-                          context,
-                          onpressed: () { },
-                          imageroute: 'images/covidImage.png',
-                          text: "New vaccine revealed for covid-19",),
-
-                       ]
-                      ),
-                    ),
-
-                    titleAndSeeAll(
+                            titletext: "Medical Advices",
+                            onpressed: (){
+                              Navigator.pushNamed(context,
+                                  MedicalAdvices.medicalAdvicesId);
+                            }, sizedWidth: 4
+                        ),
+                        Expanded(
+                          child: GridView.count(
+                            physics: const BouncingScrollPhysics(),
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 1,
+                            children: [
+                              medicalAdvices(
                                 context,
-                               titletext: "Medical Advices",
-                               onpressed: (){
-                                  Navigator.pushNamed(context,
-                                      MedicalAdvices.medicalAdvicesId);
-                               }, sizedWidth: 4
-                            ),
-                    Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 1,
-                        children: [
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/covidImage.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/CovidImage1.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/CovidImage1.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/covidImage.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/covidImage.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/CovidImage1.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/CovidImage1.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/covidImage.png',
-                            text: "  covid-19",
-                          ),
-                          medicalAdvices(
-                            context, onpressed: () {  },
-                            imageroute: 'images/CovidImage1.png',
-                            text: "  covid-19",
-                          )
-                        ],
-                      ),
-                    )
+                                articles:data[11],
+                                onpressed: () {  },
+                              ),
+                              medicalAdvices(
+                                context,
+                                articles:data[12],
+                                onpressed: () {  },
 
-                  ]
-              ),
+                              ),
+                              medicalAdvices(
+                                context,
+                                articles:data[12],
+                                onpressed: () {  },
+
+                              ),
+                              medicalAdvices(
+                                context,
+                                articles:data[14],
+                                onpressed: () {  },
+                              ),
+                              medicalAdvices(
+                                context,
+                                articles:data[15],
+                                onpressed: () {  },
+
+                              ),
+                              medicalAdvices(
+                                context,
+                                articles:data[16],
+                                onpressed: () {  },
+
+                              ),
+                            ],
+                          ),
+                        )
+
+                      ]
+                  ),
+                );
+              },
+              fallback: (BuildContext context) {
+                return const Center(child: CircularProgressIndicator(),) ;
+                },
             ),
             bottomNavigationBar:
-                buildBottomNavigationBar(selectedIndex: _selectedIndex),
+                buildBottomNavigationBar(selectedIndex: cubit.selectedIndex),
           );
-        });
+        }
+      ),
+    );
   }
-
-
-
-
 }
-
-
-
