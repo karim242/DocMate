@@ -179,9 +179,8 @@ Widget titleAndSeeAll(
   );
 }
 
-CarouselSlider carouselSlider(context, articles) {
+CarouselSlider carouselSlider(context, articles,) {
   return CarouselSlider.builder(
-
       itemCount: 8,
       itemBuilder: (BuildContext context, int index, int realIndex) {
         return
@@ -220,6 +219,7 @@ CarouselSlider carouselSlider(context, articles) {
            );
       },
       options: CarouselOptions(
+
           height: MediaQuery.of(context).size.height / 4,
           enlargeCenterPage: true,
           autoPlay: false,

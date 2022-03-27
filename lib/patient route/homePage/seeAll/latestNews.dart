@@ -49,7 +49,7 @@ class LatestNews extends StatelessWidget {
               builder: (context)=>ListView.builder(
                     itemBuilder: (context,x) =>
                     latestNewsSilder(context,data[x]) ,
-                itemCount: 10,
+                itemCount: 19,
                 ),
                 fallback: (BuildContext context) {
                 return const Center(child: CircularProgressIndicator(),) ;

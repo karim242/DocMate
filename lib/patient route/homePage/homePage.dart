@@ -96,7 +96,7 @@ class HomePageScreen extends StatelessWidget {
                             titletext: "Latest News",
                             sizedWidth: 3,
                           ),
-                          carouselSlider(context, data),
+                          carouselSlider(context, data,),
 
                           titleAndSeeAll(context, titletext: "Medical Advices",
                               onpressed: () {
