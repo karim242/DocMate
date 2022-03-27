@@ -41,47 +41,64 @@ class buildBottomNavigationBar extends StatelessWidget {
       selectedItemColor: blueColor,
     );
   }
+
+
+
 }
 
 MaterialButton latestNewsSilder(context, articles) {
-  return MaterialButton(
-    elevation: 1,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-    onPressed: () {},
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width / 1.25,
-          height: MediaQuery.of(context).size.height / 4,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                fit: BoxFit.fill,
-                image: NetworkImage('${articles['urlToImage']}')),
-            borderRadius: BorderRadius.circular(16.0),
-          ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width / 1.2,
-          height: MediaQuery.of(context).size.height / 16,
-          child: Center(
-            child: Text(
-              '${articles['title']}',
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                backgroundColor: whiteColor,
-              ),
+
+    return MaterialButton(
+      elevation: 1,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      onPressed: () {},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width / 1.25,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 4,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage('${articles['urlToImage']}')),
+              borderRadius: BorderRadius.circular(16.0),
             ),
           ),
-        )
-      ],
-    ),
-  );
-}
+          Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width / 1.2,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height / 16,
+            child: Center(
+              child: Text(
+                '${articles['title']}',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  backgroundColor: whiteColor,
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
 
 MaterialButton medicalAdvices(
   context, {
@@ -135,7 +152,7 @@ Widget titleAndSeeAll(
 }) {
   return Padding(
     padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.of(context).size.height / 100,
+        vertical: MediaQuery.of(context).size.height / 250,
         horizontal: MediaQuery.of(context).size.width / 25),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -164,42 +181,64 @@ Widget titleAndSeeAll(
 
 CarouselSlider carouselSlider(context, articles) {
   return CarouselSlider.builder(
-      itemCount: articles.length,
+
+      itemCount: 8,
       itemBuilder: (BuildContext context, int index, int realIndex) {
-        return Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width / 1.25,
-              height: MediaQuery.of(context).size.height / 6.5,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: NetworkImage('${articles[index]['urlToImage']}')),
-                borderRadius: BorderRadius.circular(16.0),
-              ),
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.2,
-              height: MediaQuery.of(context).size.height / 18,
-              child: Center(
-                child: Text(
-                  '${articles[index]['title']}',
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    backgroundColor: whiteColor,
+        return
+          ListView(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width / 1.25,
+                  height: MediaQuery.of(context).size.height /4.6,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage('${articles[index]['urlToImage']}')),
+                    borderRadius: BorderRadius.circular(16.0),
                   ),
                 ),
-              ),
-            )
-          ],
-        );
+                // Container(
+                //   width: MediaQuery.of(context).size.width / 1.2,
+                //   height: MediaQuery.of(context).size.height / 16,
+
+                   // child:
+                Text(
+                      '${articles[index]['title']}',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        backgroundColor: whiteColor,
+                      ),
+                    ),
+                 // ),//
+
+              ],
+          // ),
+
+           );
       },
       options: CarouselOptions(
           height: MediaQuery.of(context).size.height / 4,
           enlargeCenterPage: true,
-          autoPlay: true,
+          autoPlay: false,
           ),);
+}
+
+
+ListTile TitleInDrawer(
+    {
+      required IconData icons,
+      required String text,
+      required VoidCallback ontap,
+    }
+    ) {
+  return ListTile(
+    leading:  Icon(icons,size: 32,),
+    title:  Text(text,
+      style: const TextStyle(fontSize: 18,
+          fontWeight: FontWeight.w500,),),
+    onTap: ontap,
+  );
 }

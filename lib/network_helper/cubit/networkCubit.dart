@@ -5,12 +5,12 @@
 // apiKey=6b2ca68a49124812826713ba28b669e
 //
 
-
 import 'package:bloc/bloc.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../shared/sharedComponent.dart';
 import '../dioHelper.dart';
 
 
@@ -21,6 +21,7 @@ class NetworkCubit extends Cubit<NetworkStates> {
   static  NetworkCubit get(context) {
     return BlocProvider.of(context);
   }
+
   final int selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
