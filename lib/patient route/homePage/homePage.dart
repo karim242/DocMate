@@ -28,7 +28,7 @@ class HomePageScreen extends StatelessWidget {
 
           // dynamic list= NetworkCubit.get(context).latestNew;
           NetworkCubit cubit = NetworkCubit.get(context);
-       dynamic data= cubit.latestNew;
+          List<dynamic> data= cubit.latestNew;
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -69,18 +69,7 @@ class HomePageScreen extends StatelessWidget {
 
                         ),
 
-                        SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child : Row(
-                                children :[
-                                  latestNewsSilder(context,data[0]) ,
-                                  latestNewsSilder(context,data[1]),
-                                  latestNewsSilder(context,data[2]) ,
-                                  latestNewsSilder(context,data[3]),
-                                  latestNewsSilder(context,data[4]),
-                                ]
-                            )
-                        ),
+                        carouselSlider(context, data),
 
 
                         titleAndSeeAll(
