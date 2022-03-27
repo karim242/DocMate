@@ -49,7 +49,7 @@ class HomePageScreen extends StatelessWidget {
               ],
             ),
             body: ConditionalBuilder(
-              condition:true,
+              condition:states is ! NetworkLoadingStates,
               builder: (BuildContext context) {
                return Container(
 

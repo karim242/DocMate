@@ -14,7 +14,7 @@ class buildBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.grey[300],
+      backgroundColor: Colors.grey[100],
       elevation: 20,
       iconSize: 30,
       items: const <BottomNavigationBarItem>[

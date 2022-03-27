@@ -46,17 +46,14 @@ class MedicalAdvices extends StatelessWidget {
                     children: [
                       Expanded(
                         child: GridView.count(
-                          physics: BouncingScrollPhysics(),
+                          physics: const BouncingScrollPhysics(),
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 10,
                           childAspectRatio: 1,
                           children: [
-                            medicalAdvices(
-                              context,
-                              onpressed: () {},
-                              articles: data[11],
-                            ),
+                            medicalAdvices(context,
+                              onpressed: () {}, articles: data[11],),
                             medicalAdvices(context,
                                 onpressed: () {}, articles: data[12]),
                             medicalAdvices(context,
