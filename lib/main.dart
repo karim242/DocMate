@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
             HomePageScreen.homePageID : (context) =>  HomePageScreen(),
             LatestNews.latestNewsID : (context) =>  LatestNews(),
             MedicalAdvices.medicalAdvicesId : (context) =>  MedicalAdvices(),
+            MedicalProfileScreen.medicalProfileID : (context) => MedicalProfileScreen(),
 
 
 

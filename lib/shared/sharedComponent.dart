@@ -1,3 +1,5 @@
+import 'package:docmate/patient%20route/homePage/homePage.dart';
+import 'package:docmate/patient%20route/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../constant.dart';
@@ -242,4 +244,59 @@ ListTile TitleInDrawer(
           fontWeight: FontWeight.w500,),),
     onTap: ontap,
   );
+}
+
+class MyBottomNavBar extends StatefulWidget {
+  @override
+  State<MyBottomNavBar> createState() => _MyBottomNavBarState();
+}
+
+class _MyBottomNavBarState extends State<MyBottomNavBar> {
+  Color iconColor = const Color(0xff707070);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color(0xFFFDF8FF),
+      height: MediaQuery.of(context).size.height / 9,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Column(
+            children: <Widget> [
+              IconButton(onPressed: (){
+                setState(() {
+                  Navigator.pushReplacementNamed(context, HomePageScreen.homePageID);
+                });
+              }, icon: Icon(Icons.home,size: 30,color: iconColor,)),
+              const Text('Home',style: TextStyle(fontSize: 13),),
+
+            ],
+          ),
+          Column(
+            children: <Widget> [
+              IconButton(onPressed: (){
+                setState(() {
+                  Navigator.pushNamed(context, MedicalProfileScreen.medicalProfileID);
+                });
+              }, icon: Icon(Icons.note_add_outlined,size: 30,color: iconColor,)),
+              const Text('Medical Profile',style: TextStyle(fontSize: 13),),
+
+            ],
+          ),
+          Column(
+            children: <Widget> [
+              IconButton(onPressed: (){
+                setState(() {
+                  Navigator.pushReplacementNamed(context, HomePageScreen.homePageID);
+                });
+              }, icon: Icon(Icons.person_sharp,size: 30,color: iconColor,)),
+              const Text('Profile',style: TextStyle(fontSize: 13),),
+
+            ],
+          )
+        ],
+      ),
+    );
+  }
 }

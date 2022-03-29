@@ -179,8 +179,7 @@ class HomePageScreen extends StatelessWidget {
                   );
                 },
               ),
-              bottomNavigationBar:
-                  buildBottomNavigationBar(selectedIndex: cubit.selectedIndex),
+              bottomNavigationBar: MyBottomNavBar(),
             );
           }),
     );
