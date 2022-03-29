@@ -1,7 +1,6 @@
 
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constant.dart';
@@ -63,7 +62,7 @@ class HomePageScreen extends StatelessWidget {
                       ontap: () {},
                     ),
                     TitleInDrawer(
-                      icons: Icons.menu_book_sharp,
+                      icons: Icons.local_library,
                       text: "About Us",
                       ontap: () {},
                     ),
@@ -73,7 +72,7 @@ class HomePageScreen extends StatelessWidget {
                       ontap: () {},
                     ),
                     TitleInDrawer(
-                      icons: Icons.logout,
+                      icons: Icons.reply_sharp ,
                       text: "Log Out",
                       ontap: () {},
                     ),

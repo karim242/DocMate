@@ -11,6 +11,7 @@ class buildBottomNavigationBar extends StatelessWidget {
 
   final int _selectedIndex;
 
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(

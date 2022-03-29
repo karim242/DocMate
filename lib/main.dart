@@ -6,6 +6,7 @@ import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
+import 'package:docmate/patient%20route/medicalProfile.dart';
 import 'package:docmate/patient%20route/signUp/confirm4digitScreen.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen2.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home:  HomePageScreen(),
+          home: MedicalProfileScreen(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),
