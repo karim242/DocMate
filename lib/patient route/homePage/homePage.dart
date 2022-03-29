@@ -8,6 +8,7 @@ import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/constant.dart';
 
 class HomePageScreen extends StatelessWidget {
   HomePageScreen({Key? key}) : super(key: key);
@@ -51,11 +52,32 @@ class HomePageScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.only(top: 60),
                   children: [
-                    TitleInDrawer(
-                      icons: Icons.settings,
-                      text: "Setting",
-                      ontap: () {},
-                    ),
+                    ExpansionTile(leading: const Icon(Icons.settings),title: const Text('Settings',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                    children: [
+
+                      Column(
+                        children: [
+                          TextButton(
+                            onPressed: (){},
+                            child: const Text('Edit Profile',style: TextStyle(color: Colors.black,
+                                fontSize: 16),),
+                          ),
+                          const Divider(color: Colors.grey,),
+                          TextButton(
+                            onPressed: (){},
+                            child: const Text('Change password',style: TextStyle(color: Colors.black,
+                                fontSize: 16),),
+                          ),
+                          const Divider(color: Colors.grey,),
+                          TextButton(
+                            onPressed: (){},
+                            child: const Text('Language option',style: TextStyle(color: Colors.black,
+                                fontSize: 16),),
+                          ),
+                        ],
+                      ),
+
+                    ],),
                     TitleInDrawer(
                       icons: Icons.phone,
                       text: "Contact",
