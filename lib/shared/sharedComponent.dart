@@ -1,5 +1,5 @@
 import 'package:docmate/patient%20route/homePage/homePage.dart';
-import 'package:docmate/patient%20route/medicalProfile.dart';
+import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../constant.dart';

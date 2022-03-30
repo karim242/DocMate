@@ -9,7 +9,7 @@ import 'package:bloc/bloc.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
-import 'package:docmate/patient%20route/medicalProfile.dart';
+import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
