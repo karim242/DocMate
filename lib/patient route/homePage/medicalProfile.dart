@@ -42,18 +42,25 @@ class MedicalProfileScreen extends StatelessWidget {
                         children: [
 
                           FeatureCard(
+                            photoIconName :"medical_history",
                               text: "Medical History",color: const Color(0xffDFC8FC)),
                           FeatureCard(
+                              photoIconName :"medical_Visit",
                               text: "Medical Visit",color: const Color(0xffFFAAC0)),
                           FeatureCard(
+                              photoIconName :"vacssin",
                               text: "Vaccines ",color: const Color(0xffBBEAFE)),
                           FeatureCard(
+                              photoIconName :"radiology",
                               text: "Radiology",color: const Color(0xffADFFDF)),
                           FeatureCard(
+                              photoIconName :"labtest",
                               text: "Lab Test",color: const Color(0xffDEE0DF)),
                           FeatureCard(
+                              photoIconName :"4",
                               text:"Blood&Glucose",color: const Color(0xffFFB5B5)),
                           FeatureCard(
+                              photoIconName :"surgery",
                               text: "Surgery",color: const Color(0xffBAFFB5)),
                         ],
                       ),
@@ -76,7 +83,8 @@ class MedicalProfileScreen extends StatelessWidget {
 
   Padding FeatureCard({
     required String text,
-    required Color color
+    required Color color,
+    required var photoIconName,
   }) {
     return Padding(
       padding: const EdgeInsets.all(13.0),
@@ -90,8 +98,8 @@ class MedicalProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Image(
-              image: AssetImage('images/family.png',),
+           Image(
+              image: AssetImage('images/$photoIconName.png'),
               fit: BoxFit.fill,
               width:70.5,height: 70.0,
             ),

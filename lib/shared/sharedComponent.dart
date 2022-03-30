@@ -246,7 +246,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             children: <Widget> [
               IconButton(onPressed: (){
                 setState(() {
-                  Navigator.pushReplacementNamed(context, PatientProfileScreen.patientProfileID);
+                  Navigator.pushReplacementNamed(context, PatientProfileScreen.profileID);
                 });
               }, icon: Icon(Icons.person_sharp,size: 30,color: iconColor,)),
               const Text('Profile',style: TextStyle(fontSize: 13),),

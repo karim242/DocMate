@@ -61,10 +61,10 @@ class MyApp extends StatelessWidget {
             SignUpScreenDoctor2.doctorId2: (context) => const SignUpScreenDoctor2(),
             ConfirmScreen.id: (context) => const ConfirmScreen(),
             HomePageScreen.homePageID : (context) =>  HomePageScreen(),
-            LatestNews.latestNewsID : (context) =>  LatestNews(),
-            MedicalAdvices.medicalAdvicesId : (context) =>  MedicalAdvices(),
-            MedicalProfileScreen.medicalProfileID : (context) => MedicalProfileScreen(),
-            PatientProfileScreen.patientProfileID: (context)=> PatientProfileScreen(),
+            LatestNews.latestNewsID : (context) =>  const LatestNews(),
+            MedicalAdvices.medicalAdvicesId : (context) =>  const MedicalAdvices(),
+            MedicalProfileScreen.medicalProfileID : (context) => const MedicalProfileScreen(),
+            PatientProfileScreen.profileID: (context)=> const PatientProfileScreen(),
 
 
 

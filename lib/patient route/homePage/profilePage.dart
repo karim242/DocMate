@@ -10,7 +10,7 @@ import '../../network_helper/cubit/networlStates.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   const PatientProfileScreen({Key? key}) : super(key: key);
-  static String patientProfileID = "IdOfMedicalProfile";
+  static String profileID = "IDPatientProfile";
 
   @override
   Widget build(BuildContext context) {
@@ -119,9 +119,9 @@ class MyInfoWidget extends StatelessWidget {
             ),) ,
 
 
-            decoration:BoxDecoration(
-              color: const Color(0xffFDF8FF),
-                borderRadius: BorderRadius.all(const Radius.circular(40)),
+            decoration: BoxDecoration(
+              color: whiteColor,
+                borderRadius: BorderRadius.all(Radius.circular(40)),
             )
 
 
