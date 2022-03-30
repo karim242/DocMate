@@ -3,6 +3,7 @@ import 'package:docmate/doctor%20route/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
+import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
@@ -63,6 +64,8 @@ class MyApp extends StatelessWidget {
             LatestNews.latestNewsID : (context) =>  LatestNews(),
             MedicalAdvices.medicalAdvicesId : (context) =>  MedicalAdvices(),
             MedicalProfileScreen.medicalProfileID : (context) => MedicalProfileScreen(),
+            PatientProfileScreen.patientProfileID: (context)=> PatientProfileScreen(),
+
 
 
 

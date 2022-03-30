@@ -1,5 +1,6 @@
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
+import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../constant.dart';
@@ -245,7 +246,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
             children: <Widget> [
               IconButton(onPressed: (){
                 setState(() {
-                  Navigator.pushReplacementNamed(context, HomePageScreen.homePageID);
+                  Navigator.pushReplacementNamed(context, PatientProfileScreen.patientProfileID);
                 });
               }, icon: Icon(Icons.person_sharp,size: 30,color: iconColor,)),
               const Text('Profile',style: TextStyle(fontSize: 13),),
