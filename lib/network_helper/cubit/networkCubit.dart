@@ -7,6 +7,9 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
+import 'package:docmate/patient%20route/homePage/homePage.dart';
+import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
+import 'package:docmate/patient%20route/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +25,42 @@ class NetworkCubit extends Cubit<NetworkStates> {
     return BlocProvider.of(context);
   }
 
-  final int selectedIndex = 0;
+int selectedIndex = 0;
+
+
+  List<BottomNavigationBarItem> navList=[
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.home,
+      ),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.note_add_outlined,
+      ),
+      label: 'Medical Profile',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(
+        Icons.person_sharp,
+      ),
+      label: 'Profile',
+    ),
+  ];
+  void changenav(index){
+    selectedIndex=index;
+    emit(ChangeBottomNavState());
+  }
+
+  List<Widget> screens=[
+   HomePageScreen(),
+    MedicalProfileScreen(),
+   MedicalAdvices(),
+  ];
+
+
+
   static const TextStyle optionStyle =
   TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
   List<dynamic> latestNew=[];

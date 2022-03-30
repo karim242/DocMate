@@ -8,6 +8,7 @@ import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/constant.dart';
 
 class HomePageScreen extends StatelessWidget {
   HomePageScreen({Key? key}) : super(key: key);
@@ -16,14 +17,13 @@ class HomePageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => NetworkCubit()..getLatestNews(),
-      child: BlocConsumer<NetworkCubit, NetworkStates>(
+    return  BlocConsumer<NetworkCubit, NetworkStates>(
           listener: (context, states) {},
           builder: (context, states) {
             // dynamic list= NetworkCubit.get(context).latestNew;
             NetworkCubit cubit = NetworkCubit.get(context);
             List<dynamic> data = cubit.latestNew;
+            cubit.screens[cubit.selectedIndex];
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -51,11 +51,32 @@ class HomePageScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.only(top: 60),
                   children: [
-                    TitleInDrawer(
-                      icons: Icons.settings,
-                      text: "Setting",
-                      ontap: () {},
-                    ),
+                    ExpansionTile(leading: const Icon(Icons.settings),title: const Text('Settings',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                      children: [
+
+                        Column(
+                          children: [
+                            TextButton(
+                              onPressed: (){},
+                              child: const Text('Edit Profile',style: TextStyle(color: Colors.black,
+                                  fontSize: 16),),
+                            ),
+                            const Divider(color: Colors.grey,),
+                            TextButton(
+                              onPressed: (){},
+                              child: const Text('Change password',style: TextStyle(color: Colors.black,
+                                  fontSize: 16),),
+                            ),
+                            const Divider(color: Colors.grey,),
+                            TextButton(
+                              onPressed: (){},
+                              child: const Text('Language option',style: TextStyle(color: Colors.black,
+                                  fontSize: 16),),
+                            ),
+                          ],
+                        ),
+
+                      ],),
                     TitleInDrawer(
                       icons: Icons.phone,
                       text: "Contact",
@@ -99,9 +120,9 @@ class HomePageScreen extends StatelessWidget {
 
                           titleAndSeeAll(context, titletext: "Medical Advices",
                               onpressed: () {
-                            Navigator.pushNamed(
-                                context, MedicalAdvices.medicalAdvicesId);
-                          }, sizedWidth: 4),
+                                Navigator.pushNamed(
+                                    context, MedicalAdvices.medicalAdvicesId);
+                              }, sizedWidth: 4),
                           Expanded(
                             child: GridView.count(
                               physics: const BouncingScrollPhysics(),
@@ -115,11 +136,11 @@ class HomePageScreen extends StatelessWidget {
                                   articles: data[19],
                                   onpressed: () {},
                                 ),
-                                  medicalAdvices(
-                                    context,
-                                    articles: data[18],
-                                    onpressed: () {},
-                                  ),
+                                medicalAdvices(
+                                  context,
+                                  articles: data[18],
+                                  onpressed: () {},
+                                ),
                                 medicalAdvices(
                                   context,
                                   articles: data[12],
@@ -157,10 +178,16 @@ class HomePageScreen extends StatelessWidget {
                   );
                 },
               ),
-              bottomNavigationBar:
-                  buildBottomNavigationBar(selectedIndex: cubit.selectedIndex),
+              bottomNavigationBar:MyBottomNavBar()
+              // BottomNavigationBar(
+              //  currentIndex: cubit.selectedIndex,
+              //         items: cubit.navList,
+              //          onTap: (index) {
+              //        cubit.changenav(index);
+              //  }
+              //        ),
             );
-          }),
-    );
+          }
+          );
   }
 }

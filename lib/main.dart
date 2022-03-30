@@ -1,5 +1,4 @@
 import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
-import 'package:docmate/Blocs/doctor_register/doctorRegisterStates.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
@@ -11,8 +10,6 @@ import 'package:docmate/patient%20route/signUp/confirm4digitScreen.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen2.dart';
 import 'package:docmate/selectUser/selectUser.dart';
-import 'package:docmate/selectUser/splashScreen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Blocs/cubit/cubit.dart';
@@ -34,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) {
-      return NetworkCubit();
+      return NetworkCubit()..getLatestNews();
         }),
         BlocProvider(create: (context) {
           return LoginCubit();
@@ -54,7 +51,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home: MedicalProfileScreen(),
+          home: HomePageScreen(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),
@@ -65,6 +62,7 @@ class MyApp extends StatelessWidget {
             HomePageScreen.homePageID : (context) =>  HomePageScreen(),
             LatestNews.latestNewsID : (context) =>  LatestNews(),
             MedicalAdvices.medicalAdvicesId : (context) =>  MedicalAdvices(),
+            MedicalProfileScreen.medicalProfileID : (context) => MedicalProfileScreen(),
 
 
 

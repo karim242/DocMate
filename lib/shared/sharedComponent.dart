@@ -1,51 +1,9 @@
+import 'package:docmate/patient%20route/homePage/homePage.dart';
+import 'package:docmate/patient%20route/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../constant.dart';
 
-class buildBottomNavigationBar extends StatelessWidget {
-  const buildBottomNavigationBar({
-    Key? key,
-    required int selectedIndex,
-  })  : _selectedIndex = selectedIndex,
-        super(key: key);
-
-  final int _selectedIndex;
-
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.grey[100],
-      elevation: 20,
-      iconSize: 30,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.home,
-          ),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.note_add_outlined,
-          ),
-          label: 'Medical Profile',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            Icons.person_sharp,
-          ),
-          label: 'Profile',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: blueColor,
-    );
-  }
-
-
-
-}
 
 MaterialButton latestNewsSilder(context, articles) {
 
@@ -241,5 +199,105 @@ ListTile TitleInDrawer(
       style: const TextStyle(fontSize: 18,
           fontWeight: FontWeight.w500,),),
     onTap: ontap,
+  );
+}
+
+class MyBottomNavBar extends StatefulWidget {
+  @override
+  State<MyBottomNavBar> createState() => _MyBottomNavBarState();
+}
+
+class _MyBottomNavBarState extends State<MyBottomNavBar> {
+  Color iconColor =  Color(0xff707070);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color(0xFFFDF8FF),
+      height: MediaQuery.of(context).size.height / 9,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Column(
+            children: <Widget> [
+              IconButton(onPressed: (){
+                setState(() {
+                  Navigator.pushReplacementNamed(context, HomePageScreen.homePageID);
+                  iconColor=Colors.blue;
+                });
+              }, icon: Icon(Icons.home,size: 30,color: iconColor,)),
+              const Text('Home',style: TextStyle(fontSize: 13),),
+
+            ],
+          ),
+          Column(
+            children: <Widget> [
+              IconButton(onPressed: (){
+                setState(() {
+                  Navigator.pushNamed(context, MedicalProfileScreen.medicalProfileID);
+                });
+              }, icon: Icon(Icons.note_add_outlined,size: 30,color: iconColor,)),
+              const Text('Medical Profile',style: TextStyle(fontSize: 13),),
+
+            ],
+          ),
+          Column(
+            children: <Widget> [
+              IconButton(onPressed: (){
+                setState(() {
+                  Navigator.pushReplacementNamed(context, HomePageScreen.homePageID);
+                });
+              }, icon: Icon(Icons.person_sharp,size: 30,color: iconColor,)),
+              const Text('Profile',style: TextStyle(fontSize: 13),),
+
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+Padding FeatureCard({
+ // required IconData icon,
+  required String text,
+  required Color color
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(13.0),
+    child: MaterialButton(
+      onPressed: () {},
+      elevation: 10,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      color: color,
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 10,
+          ),
+
+          const Image(
+
+
+            image: AssetImage('images/family.png',),
+            fit: BoxFit.fill,
+            width:30.5,height: 70.0,
+          ),
+
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            text,
+            // maxLines: 1,
+            style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w300),
+          )
+        ],
+      ),
+    ),
   );
 }
