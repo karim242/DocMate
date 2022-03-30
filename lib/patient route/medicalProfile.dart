@@ -1,9 +1,12 @@
 
+import 'package:docmate/shared/sharedComponent.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../constant.dart';
 import '../network_helper/cubit/networkCubit.dart';
 import '../network_helper/cubit/networlStates.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MedicalProfileScreen extends StatelessWidget {
   MedicalProfileScreen({Key? key}) : super(key: key);
@@ -20,6 +23,7 @@ class MedicalProfileScreen extends StatelessWidget {
             NetworkCubit cubit = NetworkCubit.get(context);
             List<dynamic> data = cubit.latestNew;
             return Scaffold(
+              bottomNavigationBar: MyBottomNavBar(),
                 appBar: AppBar(
                   backgroundColor: Colors.white,
                   elevation: 0,
@@ -30,87 +34,56 @@ class MedicalProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                body: Column(
+                body: ListView(
                   children: [
-                    Expanded(
-                      child: GridView.count(
-                        physics: const BouncingScrollPhysics(),
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 8,
-                        mainAxisSpacing: 8,
-                        childAspectRatio: 1.04,
-                        children: [
+                    Row(
+                      children: [
+                        AboelftohCard(cardColor: const Color(0xffDFC8FC), iconText: 'medical history', svgName: 'Radiology.svg',ontap: (){},),
 
-                          FeatureCard(icon: Icons.content_paste_outlined ,
-                              text: "Medical History",color: const Color(0xffDFC8FC)),
-                          FeatureCard(icon: Icons.list_alt_outlined ,
-                             text: "Medical Visit",color: const Color(0xffFFAAC0)),
-                          FeatureCard(icon: Icons.vaccines_sharp,
-                            text: "Vaccines ",color: const Color(0xffBBEAFE)),
-                          FeatureCard(icon: Icons.event_note_outlined,
-                              text: "Radiology",color: const Color(0xffADFFDF)),
-                          FeatureCard(icon: Icons.biotech_outlined,
-                              text: "Lab Test",color: const Color(0xffDEE0DF)),
-                          FeatureCard(icon: Icons.view_array_sharp,
-                              text:"Blood&Glucose",color: const Color(0xffFFB5B5)),
-                          FeatureCard(icon: Icons.airline_seat_flat_angled,
-                              text: "Surgery",color: const Color(0xffBAFFB5)),
-                        ],
-                      ),
-                    ),
+                      ],
+                    )
                   ],
-                ));
+                )
+            );
           }),
     );
   }
 
-  Padding FeatureCard({
-   required IconData icon,
-    required String text,
-    required Color color
-  }) {
-    return Padding(
-      padding: const EdgeInsets.all(13.0),
-      child: MaterialButton(
-        onPressed: () {},
-        elevation: 20,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        color: color,
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
+}
+
+class AboelftohCard extends StatelessWidget {
+  const AboelftohCard({Key? key,required this.cardColor,required this.iconText,required this.svgName,this.ontap}) : super(key: key);
+  final cardColor;
+  final String iconText;
+  final String svgName;
+  final ontap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        margin: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height / 5,
+        child: Card(
+          color: cardColor,
+          child: SizedBox(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 40,
+                    width: 40,
+                    child: SvgPicture.asset(svgName)),
+                const SizedBox(height: 10,),
+                Text(iconText,style: const TextStyle(color: Colors.white,fontSize: 16,),)
+              ],
             ),
-
-                const Image(
-
-
-               image: AssetImage('images/img.png',),
-                       fit: BoxFit.fill,
-                  width:30.5,height: 70.0,
-                           ),
-
-
-
-         //  Icon(
-         //      icon,
-         //      size: 60,
-         //     color: Colors.black38
-         //     ,
-         //     ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              text,
-             // maxLines: 1,
-              style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300),
-            )
-          ],
+          ),
         ),
       ),
     );
   }
 }
+
+ //                  AboelftohCard(cardColor: const Color(0xffDFC8FC), iconText: 'medical history', svgName: 'medical_history.svg',ontap: (){},),
