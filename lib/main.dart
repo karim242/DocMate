@@ -2,6 +2,9 @@ import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
+import 'package:docmate/patient%20route/homePage/features/medicalHistory/allergies.dart';
+import 'package:docmate/patient%20route/homePage/features/medicalHistory/family_histoty.dart';
+import 'package:docmate/patient%20route/homePage/features/medicalHistory/medicalHistory.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
@@ -65,7 +68,9 @@ class MyApp extends StatelessWidget {
             MedicalAdvices.medicalAdvicesId : (context) =>  const MedicalAdvices(),
             MedicalProfileScreen.medicalProfileID : (context) => const MedicalProfileScreen(),
             PatientProfileScreen.profileID: (context)=> const PatientProfileScreen(),
-
+            MedicalHistoryScreen.idMedicalHistory : (context)=> const MedicalHistoryScreen(),
+            FamilyHistoryScreen.idFamilyHistory : (context)=> const FamilyHistoryScreen(),
+            AllergyScreen.idAllergyScreen : (context)=> const AllergyScreen(),
 
 
 

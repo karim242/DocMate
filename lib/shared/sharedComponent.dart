@@ -261,44 +261,50 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
 
 
 
-Padding FeatureCard({
- // required IconData icon,
+MaterialButton FeatureCard({
   required String text,
-  required Color color
+  required Color color,
+  required var photoIconName,
+required VoidCallback ontap,
+   double width=50,
+   double height=60,
+  double textSize = 16,
+  double icoWidth=70,
+  double iconHeight=70,
+  Color textcolor= Colors.white
+
 }) {
-  return Padding(
-    padding: const EdgeInsets.all(13.0),
-    child: MaterialButton(
-      onPressed: () {},
-      elevation: 10,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: color,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 10,
+  return MaterialButton(
+    minWidth: width,
+    height: height,
+    onPressed: ontap,
+    elevation: 6,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    color: color,
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Image(
+          image: AssetImage('images/$photoIconName.png'),
+          fit: BoxFit.fill,
+          width: icoWidth,
+          height: iconHeight,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          text,
+           maxLines: 1,
+          style:   TextStyle(
+              fontSize: textSize,
+              color : textcolor,
+            fontWeight: FontWeight.bold,
           ),
-
-          const Image(
-
-
-            image: AssetImage('images/family.png',),
-            fit: BoxFit.fill,
-            width:30.5,height: 70.0,
-          ),
-
-          const SizedBox(
-            height: 8,
-          ),
-          Text(
-            text,
-            // maxLines: 1,
-            style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w300),
-          )
-        ],
-      ),
+        )
+      ],
     ),
   );
 }
