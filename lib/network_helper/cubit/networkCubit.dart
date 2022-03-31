@@ -29,7 +29,9 @@ class NetworkCubit extends Cubit<NetworkStates> {
   var relationFamilyController= TextEditingController();
 int selectedIndex = 0;
 
-
+void getUpdata(){
+  emit(NetworkLoadingStates());
+}
   List<BottomNavigationBarItem> navList=[
     const BottomNavigationBarItem(
       icon: Icon(

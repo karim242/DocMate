@@ -47,9 +47,9 @@ class ADDAllergyScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         defaultBotton(
-                            text: "Save", colour: blueColor, onpressed: () {
-
-                        }),
+                            text: "Save", colour: blueColor,
+                            onpressed: () {}
+                        ),
                         const SizedBox(
                           width: 16.0,
                         ),
