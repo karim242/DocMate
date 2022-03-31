@@ -27,7 +27,7 @@ class MedicalHistoryScreen extends StatelessWidget {
               title:  Center(
                 child: Text(
                     " Medical History",
-                    style: textTitleStyle,
+                    style: textTitle22Style,
 
                 ),
               ),

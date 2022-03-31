@@ -27,7 +27,7 @@ class MedicalProfileScreen extends StatelessWidget {
               title: Center(
                 child: Text(
                   "Medical Profile",
-                  style: textTitleStyle,
+                  style: textTitle22Style,
                 ),
               ),
             ),

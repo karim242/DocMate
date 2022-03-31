@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 
 Color blueColor = const Color(0xff01B9c8);
 Color whiteColor = const Color(0xffFDF8FF);
-TextStyle textTitleStyle=const TextStyle(
+
+TextStyle text20ForNameAdd=const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+         color: Colors.black
+        );
+
+TextStyle textTitle22Style=const TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.bold,
     color: Color(0xff000000)
@@ -31,7 +38,9 @@ Widget textFieldForm({
           return null;
         },
         decoration: InputDecoration(
+
           border: OutlineInputBorder(
+
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(14.0),),
           labelText: "$text",

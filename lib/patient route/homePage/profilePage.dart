@@ -49,7 +49,7 @@ class PatientProfileScreen extends StatelessWidget {
                               backgroundImage: NetworkImage(
                                   'https://via.placeholder.com/140x100')
                           ),
-                          Text('profile name', style: TextStyle(fontSize: 22),),
+                          Text('profile name', style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                           Text('email', style: TextStyle(fontSize: 12),)
                         ],
                       ),
@@ -110,9 +110,9 @@ class MyInfoWidget extends StatelessWidget {
           fontSize: 20,
           fontWeight: FontWeight.bold
         ),),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
 
             child:Text(info,style: const TextStyle(
               fontSize: 18
@@ -121,7 +121,7 @@ class MyInfoWidget extends StatelessWidget {
 
             decoration: BoxDecoration(
               color: whiteColor,
-                borderRadius: BorderRadius.all(Radius.circular(40)),
+                borderRadius: const BorderRadius.all(Radius.circular(40)),
             )
 
 

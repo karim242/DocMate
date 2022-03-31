@@ -5,6 +5,7 @@ import '../../../../constant.dart';
 import '../../../../network_helper/cubit/networkCubit.dart';
 import '../../../../network_helper/cubit/networlStates.dart';
 import '../../../../shared/sharedComponent.dart';
+import 'addFamilyHistory.dart';
 
 class FamilyHistoryScreen extends StatelessWidget {
   const FamilyHistoryScreen({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class FamilyHistoryScreen extends StatelessWidget {
                 title: Center(
                   child: Text(
                     " Family History",
-                    style: textTitleStyle,
+                    style: textTitle22Style,
                   ),
                 ),
                 leading: IconButton(
@@ -38,7 +39,9 @@ class FamilyHistoryScreen extends StatelessWidget {
               ),
               floatingActionButton: FloatingActionButton(
 
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context, ADDFamilyHistoryScreen.idADDFamilyHistory);
+                },
                 backgroundColor:blueColor,
                child: Icon(Icons.add,
                  color: whiteColor,),

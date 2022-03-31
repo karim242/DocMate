@@ -24,25 +24,27 @@ class NetworkCubit extends Cubit<NetworkStates> {
   static  NetworkCubit get(context) {
     return BlocProvider.of(context);
   }
-
+  var allergyController= TextEditingController();
+  var diseaseFamilyController= TextEditingController();
+  var relationFamilyController= TextEditingController();
 int selectedIndex = 0;
 
 
   List<BottomNavigationBarItem> navList=[
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(
         Icons.home,
       ),
       label: 'Home',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(
         Icons.note_add_outlined,
       ),
       label: 'Medical Profile',
     ),
-    BottomNavigationBarItem(
-      icon: Icon(
+    const BottomNavigationBarItem(
+      icon:  Icon(
         Icons.person_sharp,
       ),
       label: 'Profile',
@@ -55,8 +57,8 @@ int selectedIndex = 0;
 
   List<Widget> screens=[
    HomePageScreen(),
-    MedicalProfileScreen(),
-   MedicalAdvices(),
+    const MedicalProfileScreen(),
+   const MedicalAdvices(),
   ];
 
 

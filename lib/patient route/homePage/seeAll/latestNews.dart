@@ -28,7 +28,7 @@ class LatestNews extends StatelessWidget {
               elevation: 0,
               title: Text(
                 " Latest News",
-                style: textTitleStyle,
+                style: textTitle22Style,
 
               ),
               leading:IconButton(

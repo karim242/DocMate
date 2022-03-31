@@ -308,3 +308,46 @@ required VoidCallback ontap,
     ),
   );
 }
+
+
+
+Widget TextAndField(
+    {
+      required String text,
+      required controller,
+    }
+    ) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      Text(
+        text,
+        style: text20ForNameAdd,
+      ),
+      const SizedBox(height: 5),
+      TextFormField(
+          cursorHeight: 35,
+          controller: controller,
+          cursorColor: Colors.black,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return "please add $text";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(16.0),),
+            fillColor: Colors.grey[100],
+            filled: true,
+            errorStyle: const TextStyle(height: .8, color: Colors.red),
+
+          )
+      )
+
+    ],
+  );
+}

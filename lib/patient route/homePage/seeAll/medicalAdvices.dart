@@ -25,7 +25,7 @@ class MedicalAdvices extends StatelessWidget {
                 elevation: 0,
                 title: Text(
                   "Medical Advices",
-                  style: textTitleStyle,
+                  style: textTitle22Style,
                 ),
                 leading: IconButton(
                   onPressed: () {

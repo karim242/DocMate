@@ -5,6 +5,7 @@ import '../../../../constant.dart';
 import '../../../../network_helper/cubit/networkCubit.dart';
 import '../../../../network_helper/cubit/networlStates.dart';
 import '../../../../shared/sharedComponent.dart';
+import 'addAllergy.dart';
 
 class AllergyScreen extends StatelessWidget {
   const AllergyScreen({Key? key}) : super(key: key);
@@ -24,8 +25,8 @@ class AllergyScreen extends StatelessWidget {
                 elevation: 0,
                 title: Center(
                   child: Text(
-                    " Family History",
-                    style: textTitleStyle,
+                    "Allergy",
+                    style: textTitle22Style,
                   ),
                 ),
                 leading: IconButton(
@@ -38,7 +39,9 @@ class AllergyScreen extends StatelessWidget {
               ),
               floatingActionButton: FloatingActionButton(
 
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.pushNamed(context,ADDAllergyScreen.idADDAllergy);
+                },
                 backgroundColor:blueColor,
                 child: Icon(Icons.add,
                   color: whiteColor,),

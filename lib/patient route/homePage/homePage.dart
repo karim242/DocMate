@@ -30,7 +30,7 @@ class HomePageScreen extends StatelessWidget {
                 elevation: 0,
                 title: Text(
                   "Welcome, Karim",
-                  style: textTitleStyle,
+                  style: textTitle22Style,
                 ),
                 leading: Builder(
                   builder: (BuildContext context) {
