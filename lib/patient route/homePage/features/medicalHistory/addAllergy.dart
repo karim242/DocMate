@@ -30,7 +30,9 @@ class ADDAllergyScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            body: SingleChildScrollView(
+            body:Form(
+                key: cubit.formkey,
+            child :SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Column(
@@ -48,7 +50,14 @@ class ADDAllergyScreen extends StatelessWidget {
                       children: [
                         defaultBotton(
                             text: "Save", colour: blueColor,
-                            onpressed: () {}
+                            onpressed: () {
+                              if (cubit.formkey.currentState!.validate()) {
+                                cubit.AddAllergyValue(
+                                    cubit.allergyController.value.text);
+                                Navigator.pop(context);
+                                cubit.allergyController.clear();
+                              }
+                            }
                         ),
                         const SizedBox(
                           width: 16.0,
@@ -64,8 +73,7 @@ class ADDAllergyScreen extends StatelessWidget {
                 ),
               ),
             ),
-
-
+            ),
           );
         }
     );

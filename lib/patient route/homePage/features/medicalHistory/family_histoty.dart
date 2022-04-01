@@ -50,28 +50,27 @@ class FamilyHistoryScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(13.0),
                 child: Column(children: [
                   Expanded(
-                    child: GridView.count(
-                        physics: const BouncingScrollPhysics(),
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        childAspectRatio: 1,
-                        children: [
-                          FeatureCard(
+                    child:GridView.builder(
+                      padding: EdgeInsets.all(5),
+                      shrinkWrap :true,
+                      physics: const BouncingScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.04,
+                          crossAxisSpacing:10.0,
+                          mainAxisSpacing: 10.0
+                      ),
+                      itemCount:cubit.listOfDiseaseValue.length ,
+                      itemBuilder: (context, int index){
+                        return  FeatureCard(
                             textcolor :blueColor,
-
-
-                              ontap: () {},
-                              photoIconName: "virus",
-                              text: " Haemophilia",
-                              color: const Color(0xffFDF8FF)),
-                          FeatureCard(
-                              textcolor :blueColor,
-                              ontap: () {},
-                              photoIconName: "virus",
-                              text: "  Haemophilia ",
-                              color: const Color(0xffFDF8FF)),
-                        ]),
+                            ontap: () {},
+                            photoIconName: "virus",
+                            text: " ${cubit.listOfDiseaseValue[index].toString().toUpperCase()}",
+                            color: const Color(0xffFDF8FF)
+                        );
+                      },
+                    ),
                   ),
                 ]),
               ));

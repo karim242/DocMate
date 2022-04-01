@@ -47,7 +47,7 @@ class HomePageScreen extends StatelessWidget {
                   },
                 ),
               ),
-              drawer: Drawer(
+             drawer: Drawer(
                 child: ListView(
                   padding: const EdgeInsets.only(top: 60),
                   children: [
@@ -178,14 +178,6 @@ class HomePageScreen extends StatelessWidget {
                   );
                 },
               ),
-              bottomNavigationBar:MyBottomNavBar()
-              // BottomNavigationBar(
-              //  currentIndex: cubit.selectedIndex,
-              //         items: cubit.navList,
-              //          onTap: (index) {
-              //        cubit.changenav(index);
-              //  }
-              //        ),
             );
           }
           );

@@ -7,6 +7,7 @@ import '../../constant.dart';
 import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
+import 'features/Vaccines/vaccines.dart';
 
 class MedicalProfileScreen extends StatelessWidget {
   const MedicalProfileScreen({Key? key}) : super(key: key);
@@ -58,8 +59,10 @@ class MedicalProfileScreen extends StatelessWidget {
                             text: "Medical Visit",
                             color: const Color(0xffFFCCA0)),
                         FeatureCard(
-                            ontap: (){},
-                            photoIconName: "vacssin",
+                            ontap: (){
+                              Navigator.pushNamed(context, VaccineScreen.idVaccine);
+                            },
+                            photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
                         FeatureCard(
                             ontap: (){},
@@ -84,14 +87,6 @@ class MedicalProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // bottomNavigationBar:BottomNavigationBar(
-            //     currentIndex: cubit.selectedIndex,
-            //     items: cubit.navList,
-            //     onTap: (index) {
-            //       cubit.changenav(index);
-            //     }
-            // ),
-            bottomNavigationBar: MyBottomNavBar(),
           );
         }
 

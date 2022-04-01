@@ -8,17 +8,14 @@ import '../../../../shared/sharedComponent.dart';
 import 'addAllergy.dart';
 
 class AllergyScreen extends StatelessWidget {
-  const AllergyScreen({Key? key}) : super(key: key);
+   AllergyScreen({Key? key}) : super(key: key);
   static String idAllergyScreen = "IDAllergyScreen";
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          // dynamic list= NetworkCubit.get(context).latestNew;
           NetworkCubit cubit = NetworkCubit.get(context);
-          List<dynamic> data = cubit.latestNew;
           return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -46,33 +43,32 @@ class AllergyScreen extends StatelessWidget {
                 child: Icon(Icons.add,
                   color: whiteColor,),
               ),
-              body: Padding(
-                padding: const EdgeInsets.all(13.0),
-                child: Column(children: [
+              body:  Column(children: [
                   Expanded(
-                    child: GridView.count(
+                    child: GridView.builder(
+                      padding: const EdgeInsets.all(13),
+                      shrinkWrap :true,
                         physics: const BouncingScrollPhysics(),
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        childAspectRatio: 1,
-                        children: [
-                          FeatureCard(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.04,
+                          crossAxisSpacing:10.0,
+                          mainAxisSpacing: 10.0
+                        ),
+                        itemCount:cubit.listOfallergyValue.length ,
+                        itemBuilder: (context, int index){
+                          return  FeatureCard(
                               textcolor :blueColor,
                               ontap: () {},
                               photoIconName: "allergy",
-                              text: "* Nuts",
-                              color: const Color(0xffFDF8FF)),
-                          FeatureCard(
-                              textcolor :blueColor,
-                              ontap: () {},
-                              photoIconName: "allergy",
-                              text: "* Wheat  ",
-                              color: const Color(0xffFDF8FF)),
-                        ]),
+                              text: "* ${cubit.listOfallergyValue[index].toString()}",
+                              color: const Color(0xffFDF8FF)
+                          );
+                        },
+                    ),
                   ),
                 ]),
-              ));
+              );
         });
   }
 }

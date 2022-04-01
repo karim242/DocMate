@@ -29,7 +29,9 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                 ),
               ),
             ),
-            body: SingleChildScrollView(
+            body: Form(
+              key: cubit.formkey,
+            child :SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: Column(
@@ -50,9 +52,15 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         defaultBotton(
-                            text: "Save", colour: blueColor, onpressed: () {
-
-                        }),
+                            text: "Save", colour: blueColor,
+                            onpressed: () {
+                              if(cubit.formkey.currentState!.validate()){
+                              cubit.AddDiseaseValue(cubit.diseaseFamilyController.value.text);
+                              Navigator.pop(context);
+                              cubit.diseaseFamilyController.clear();
+                              }
+                            }
+                        ),
                         const SizedBox(
                           width: 16.0,
                         ),
@@ -66,6 +74,7 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
             ),
           );
         }

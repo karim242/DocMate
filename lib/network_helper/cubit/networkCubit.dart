@@ -8,12 +8,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
+import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../shared/sharedComponent.dart';
 import '../dioHelper.dart';
 
 
@@ -24,14 +24,25 @@ class NetworkCubit extends Cubit<NetworkStates> {
   static  NetworkCubit get(context) {
     return BlocProvider.of(context);
   }
+  var formkey  =GlobalKey<FormState>();
+  List listOfallergyValue=[];
+  void AddAllergyValue(value){
+    listOfallergyValue.add(value.toString());
+    emit(LoadingValueStates());
+  }
+  List listOfDiseaseValue=[];
+  void AddDiseaseValue(value){
+    listOfDiseaseValue.add(value.toString());
+    emit(LoadingValueStates());
+  }
+
   var allergyController= TextEditingController();
   var diseaseFamilyController= TextEditingController();
   var relationFamilyController= TextEditingController();
-int selectedIndex = 0;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
 
-void getUpdata(){
-  emit(NetworkLoadingStates());
-}
+int selectedIndex = 0;
   List<BottomNavigationBarItem> navList=[
     const BottomNavigationBarItem(
       icon: Icon(
@@ -60,13 +71,9 @@ void getUpdata(){
   List<Widget> screens=[
    HomePageScreen(),
     const MedicalProfileScreen(),
-   const MedicalAdvices(),
+   const PatientProfileScreen(),
   ];
 
-
-
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
   List<dynamic> latestNew=[];
   void getLatestNews()
   {
