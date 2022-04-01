@@ -203,63 +203,6 @@ ListTile TitleInDrawer(
   );
 }
 
-class MyBottomNavBar extends StatefulWidget {
-  @override
-  State<MyBottomNavBar> createState() => _MyBottomNavBarState();
-}
-
-class _MyBottomNavBarState extends State<MyBottomNavBar> {
-  Color iconColor =  Color(0xff707070);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xFFFDF8FF),
-      height: MediaQuery.of(context).size.height / 9,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          Column(
-            children: <Widget> [
-              IconButton(onPressed: (){
-                setState(() {
-                  Navigator.pushReplacementNamed(context, HomePageScreen.homePageID);
-                  iconColor=Colors.blue;
-                });
-              }, icon: Icon(Icons.home,size: 30,color: iconColor,)),
-              const Text('Home',style: TextStyle(fontSize: 13),),
-
-            ],
-          ),
-          Column(
-            children: <Widget> [
-              IconButton(onPressed: (){
-                setState(() {
-                  Navigator.pushNamed(context, MedicalProfileScreen.medicalProfileID);
-                });
-              }, icon: Icon(Icons.note_add_outlined,size: 30,color: iconColor,)),
-              const Text('Medical Profile',style: TextStyle(fontSize: 13),),
-
-            ],
-          ),
-          Column(
-            children: <Widget> [
-              IconButton(onPressed: (){
-                setState(() {
-                  Navigator.pushReplacementNamed(context, PatientProfileScreen.profileID);
-                });
-              }, icon: Icon(Icons.person_sharp,size: 30,color: iconColor,)),
-              const Text('Profile',style: TextStyle(fontSize: 13),),
-
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-
 
 MaterialButton FeatureCard({
   required String text,
@@ -315,6 +258,7 @@ Widget TextAndField(
     {
       required String text,
       required controller,
+     required VoidCallback ontap,
     }
     ) {
   return Column(
@@ -327,6 +271,7 @@ Widget TextAndField(
       ),
       const SizedBox(height: 5),
       TextFormField(
+          onTap: text == "Date" ? ontap : () {},
           cursorHeight: 35,
           controller: controller,
           cursorColor: Colors.black,
@@ -351,3 +296,88 @@ Widget TextAndField(
     ],
   );
 }
+
+Widget VaccineCard(context,
+    {
+      required String vaccineName,
+      required String type,
+      required String location,
+      required String date,
+      required ImageProvider vaccineImage}) {
+  return Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: Container(
+      padding: EdgeInsets.all(5),
+      height: 150,
+//width: MediaQuery.of(context).size.width/1.5,
+      decoration: BoxDecoration(
+        color: whiteColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                vaccineName,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: blueColor,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                " Type : $type",
+                style: const TextStyle(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 14,
+                    color: Color(0xff707070)),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                "Location :$location",
+                maxLines: 1,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w100,
+                  fontSize: 14,
+                  color: Color(0xff707070),
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Text(
+                "Date : $date",
+                style: const TextStyle(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 14,
+                    color: Color(0xff707070)),
+              )
+            ],
+          ),
+          Container(
+            width: 120,
+            height: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: vaccineImage,
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+

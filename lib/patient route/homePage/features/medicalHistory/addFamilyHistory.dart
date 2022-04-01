@@ -37,10 +37,13 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TextAndField(
+                      ontap: (){},
+
                       text: "Disease",
                       controller: cubit.diseaseFamilyController,
                     ),
                     TextAndField(
+                      ontap: (){},
                       text: "Relation",
                       controller: cubit.relationFamilyController,
                     ),

@@ -38,6 +38,7 @@ class ADDAllergyScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TextAndField(
+                      ontap: (){},
                       text: "Allergy",
                       controller: cubit.allergyController,
                     ),

@@ -31,10 +31,29 @@ class NetworkCubit extends Cubit<NetworkStates> {
     emit(LoadingValueStates());
   }
   List listOfDiseaseValue=[];
-  void AddDiseaseValue(value){
+    void AddDiseaseValue(value){
     listOfDiseaseValue.add(value.toString());
     emit(LoadingValueStates());
   }
+
+
+  List listOfVaccineNameValue=[];
+  List listOfVaccineTypeValue=[];
+  List listOfVaccineLocationValue=[];
+  List listOfVaccineDateValue=[];
+  void AddVaccineValue({name,type,location,date}){
+    listOfVaccineNameValue.add(name.toString());
+    listOfVaccineTypeValue.add(type.toString());
+    listOfVaccineLocationValue.add(location.toString());
+    listOfVaccineDateValue.add(date.toString());
+    emit(LoadingValueStates());
+  }
+  var vaccineNameController= TextEditingController();
+  var typeController= TextEditingController();
+  var locationController= TextEditingController();
+  var dateController= TextEditingController();
+  var vaccineImageController= TextEditingController();
+
 
   var allergyController= TextEditingController();
   var diseaseFamilyController= TextEditingController();
