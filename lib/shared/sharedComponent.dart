@@ -416,3 +416,14 @@ FloatingActionButton buildFloatingActionButton(
     ),
   );
 }
+
+Widget line(context) {
+  return Container(
+    color: Colors.grey,
+    height: 1,
+    width: MediaQuery
+        .of(context)
+        .size
+        .width / 3.1,
+  );
+}

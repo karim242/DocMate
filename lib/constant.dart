@@ -3,13 +3,21 @@ import 'package:flutter/material.dart';
 Color blueColor = const Color(0xff01B9c8);
 Color whiteColor = const Color(0xffFDF8FF);
 
-TextStyle text20ForNameAdd=const TextStyle(
+TextStyle text15forDateandTime = const
+TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w100,color: Color(0xff707070)
+);
+
+TextStyle text20ForNameAdd=const
+TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.bold,
          color: Colors.black
         );
 
-TextStyle textTitle22Style=const TextStyle(
+TextStyle textTitle22Style=const
+TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.bold,
     color: Color(0xff000000)

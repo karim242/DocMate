@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../constant.dart';
-import '../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../network_helper/cubit/networlStates.dart';
-import '../../../../shared/sharedComponent.dart';
+import '../../../../../constant.dart';
+import '../../../../../network_helper/cubit/networkCubit.dart';
+import '../../../../../network_helper/cubit/networlStates.dart';
+import '../../../../../shared/sharedComponent.dart';
 import 'addAllergy.dart';
 
 class AllergyScreen extends StatelessWidget {

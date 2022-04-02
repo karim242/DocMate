@@ -1,5 +1,3 @@
-
-
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/medicalHistory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +6,7 @@ import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
 import 'features/Vaccines/vaccines.dart';
+import 'features/blood&glucose/blood&glucose.dart';
 
 class MedicalProfileScreen extends StatelessWidget {
   const MedicalProfileScreen({Key? key}) : super(key: key);
@@ -18,9 +17,7 @@ class MedicalProfileScreen extends StatelessWidget {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          // dynamic list= NetworkCubit.get(context).latestNew;
-          NetworkCubit cubit = NetworkCubit.get(context);
-          List<dynamic> data = cubit.latestNew;
+         // NetworkCubit cubit = NetworkCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -60,7 +57,8 @@ class MedicalProfileScreen extends StatelessWidget {
                             color: const Color(0xffFFCCA0)),
                         FeatureCard(
                             ontap: (){
-                              Navigator.pushNamed(context, VaccineScreen.idVaccine);
+                              Navigator.pushNamed(
+                                  context, VaccineScreen.idVaccine);
                             },
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
@@ -73,7 +71,10 @@ class MedicalProfileScreen extends StatelessWidget {
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(
-                            ontap: (){},
+                            ontap: (){
+                              Navigator.pushNamed(
+                                  context, BloodGlucoseScreen.idBloodGlucose);
+                            },
                             photoIconName: "4",
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),
