@@ -253,6 +253,26 @@ required VoidCallback ontap,
 }
 
 
+AppBar themeAppBar(context,{required String value})
+{
+  return AppBar(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    title: Center(
+      child: Text(
+        value,
+        style: textTitle22Style,
+      ),
+    ),
+    leading: IconButton(
+      color: Colors.black,
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: const Icon(Icons.arrow_back_ios),
+    ),
+  );
+}
 
 Widget TextAndField(
     {
@@ -297,7 +317,7 @@ Widget TextAndField(
   );
 }
 
-Widget VaccineCard(context,
+Widget ThemeCard(context,
     {
       required String vaccineName,
       required String type,
@@ -381,3 +401,18 @@ Widget VaccineCard(context,
   );
 }
 
+
+FloatingActionButton buildFloatingActionButton(
+    context,{required String routeName})
+{
+  return FloatingActionButton(
+    onPressed: () {
+      Navigator.pushNamed(context, routeName);
+    },
+    backgroundColor: blueColor,
+    child: Icon(
+      Icons.add,
+      color: whiteColor,
+    ),
+  );
+}

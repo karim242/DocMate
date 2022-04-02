@@ -17,32 +17,12 @@ class AllergyScreen extends StatelessWidget {
         builder: (context, states) {
           NetworkCubit cubit = NetworkCubit.get(context);
           return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                title: Center(
-                  child: Text(
-                    "Allergy",
-                    style: textTitle22Style,
-                  ),
-                ),
-                leading: IconButton(
-                  color: Colors.black,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-              ),
-              floatingActionButton: FloatingActionButton(
+              appBar: themeAppBar(context,value: "Allergies"),
 
-                onPressed: (){
-                  Navigator.pushNamed(context,ADDAllergyScreen.idADDAllergy);
-                },
-                backgroundColor:blueColor,
-                child: Icon(Icons.add,
-                  color: whiteColor,),
-              ),
+              floatingActionButton:  buildFloatingActionButton(
+                  context,
+                  routeName:ADDAllergyScreen.idADDAllergy),
+
               body:  Column(children: [
                   Expanded(
                     child: GridView.builder(

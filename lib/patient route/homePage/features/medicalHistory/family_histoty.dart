@@ -20,31 +20,11 @@ class FamilyHistoryScreen extends StatelessWidget {
           NetworkCubit cubit = NetworkCubit.get(context);
           List<dynamic> data = cubit.latestNew;
           return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                title: Center(
-                  child: Text(
-                    " Family History",
-                    style: textTitle22Style,
-                  ),
-                ),
-                leading: IconButton(
-                  color: Colors.black,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios),
-                ),
-              ),
-              floatingActionButton: FloatingActionButton(
+              appBar: themeAppBar(context, value: "Family History"),
 
-                onPressed: (){
-                  Navigator.pushNamed(context, ADDFamilyHistoryScreen.idADDFamilyHistory);
-                },
-                backgroundColor:blueColor,
-               child: Icon(Icons.add,
-                 color: whiteColor,),
+              floatingActionButton:  buildFloatingActionButton(
+                  context,
+                  routeName: ADDFamilyHistoryScreen.idADDFamilyHistory
               ),
               body: Padding(
                 padding: const EdgeInsets.all(13.0),
