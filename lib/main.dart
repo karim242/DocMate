@@ -7,6 +7,7 @@ import 'package:docmate/patient%20route/homePage/features/Vaccines/vaccines.dart
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/blood&glucose.dart';
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/bloodPressure/addBloodPressure.dart';
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/bloodPressure/bloodpressure.dart';
+import 'package:docmate/patient%20route/homePage/features/blood&glucose/glucose/addGlucose.dart';
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/glucose/glucose.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/allergy/addAllergy.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/familyHistory/addFamilyHistory.dart';
@@ -88,7 +89,7 @@ class MyApp extends StatelessWidget {
             BloodPressureScreen.idBloodPressure : (context)=>const BloodPressureScreen(),
             ADDBloodPressureScreen.idADDBloodPressure :(context) => const ADDBloodPressureScreen(),
             GlucoseScreen.idGlucose :(context) => const GlucoseScreen(),
-
+            ADDGlucoseScreen.idADDGlucose : (context)=>const ADDGlucoseScreen(),
 
           }),
     );

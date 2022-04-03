@@ -291,6 +291,7 @@ Widget TextAndField(
       ),
       const SizedBox(height: 5),
       TextFormField(
+
           onTap: text == "Date" ? ontap : () {},
           cursorHeight: 35,
           controller: controller,
@@ -329,7 +330,7 @@ Widget ThemeCard(context,
     child: Container(
       padding: EdgeInsets.all(5),
       height: 150,
-//width: MediaQuery.of(context).size.width/1.5,
+
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.circular(20),
@@ -425,5 +426,32 @@ Widget line(context) {
         .of(context)
         .size
         .width / 3.1,
+  );
+}
+
+
+Container fieldForMeasurement({required controller,}) {
+  return Container(
+    width: 48,height: 44,
+    child: TextFormField(
+      cursorHeight: 20,
+      controller: controller,
+      cursorColor: Colors.black,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "please add Measurement ";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(16.0),),
+        fillColor: Colors.grey[100],
+        filled: true,
+        errorStyle: const TextStyle(height: .8, color: Colors.red),
+      )
+      ,),
   );
 }

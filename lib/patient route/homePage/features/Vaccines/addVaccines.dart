@@ -81,14 +81,14 @@ class AddVaccineScreen extends StatelessWidget {
                           showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
-                            firstDate: DateTime.now(),
+                            firstDate: DateTime.utc(2020),
                             lastDate: DateTime.utc(2025),
                           ).then((value) {
-                            cubit.dateController.text=DateFormat.yMd().format(value!);
+                            cubit.dateVaccineController.text=DateFormat.yMd().format(value!);
                           });
                         },
                         text : "Date",
-                        controller: cubit.dateController,
+                        controller: cubit.dateVaccineController,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -102,13 +102,13 @@ class AddVaccineScreen extends StatelessWidget {
                                     name : cubit.vaccineNameController.value.text,
                                     type : cubit.typeController.value.text,
                                     location : cubit.locationController.value.text,
-                                    date : cubit.dateController.value.text,
+                                    date : cubit.dateVaccineController.value.text,
                                   );
                                   Navigator.pop(context);
                                   cubit.vaccineNameController.clear();
                                   cubit.typeController.clear();
                                   cubit.locationController.clear();
-                                  cubit.dateController.clear();
+                                  cubit.dateVaccineController.clear();
 
                                 }
                               }

@@ -64,10 +64,7 @@ class BloodPressureScreen extends StatelessWidget {
                                   color: blueColor
                               ),),
                             const SizedBox(height: 5,),
-                            Text(
-                                "Time: 8:30 AM ",
-                                style: text15forDateandTime
-                            ),
+
                           ]
 
                       ),

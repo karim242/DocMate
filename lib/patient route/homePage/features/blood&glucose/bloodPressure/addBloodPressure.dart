@@ -1,11 +1,13 @@
 
+import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../constant.dart';
 import '../../../../../network_helper/cubit/networkCubit.dart';
 import '../../../../../network_helper/cubit/networlStates.dart';
-import '../../../../../shared/sharedComponent.dart';
+
 
 class ADDBloodPressureScreen extends StatelessWidget {
   const ADDBloodPressureScreen({Key? key}) : super(key: key);
@@ -23,7 +25,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
               elevation: 0,
               title: Center(
                 child: Text(
-                  "ADD Blood Pressure",
+                  "Add Blood Pressure",
                   style: textTitle22Style,
                 ),
               ),
@@ -34,10 +36,48 @@ class ADDBloodPressureScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
+                   // mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        "Measurement",
+                        style: text20ForNameAdd,
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          fieldForMeasurement(
+                            controller: cubit.measurementController1,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
 
+                            child: Text("/",style: text20ForNameAdd,),
+                          ),
+                          fieldForMeasurement(
+                            controller: cubit.measurementController2,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+
+                      const SizedBox(height: 10),
+                      TextAndField(text: "Date",
+                          controller: cubit.datePressureController,
+                          ontap: (){
+                            showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.utc(2020),
+                              lastDate: DateTime.utc(2025),
+                            ).then((value) {
+                              cubit.datePressureController.text=
+                                  DateFormat.yMd().format(value!);
+                            });
+                          }
+                      ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height/1.8,
+                        height: MediaQuery.of(context).size.height/2.5,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,4 +112,9 @@ class ADDBloodPressureScreen extends StatelessWidget {
         }
     );
   }
+
+
 }
+
+
+

@@ -51,7 +51,11 @@ class HomePageScreen extends StatelessWidget {
                 child: ListView(
                   padding: const EdgeInsets.only(top: 60),
                   children: [
-                    ExpansionTile(leading: const Icon(Icons.settings),title: const Text('Settings',style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),),
+                    ExpansionTile(
+                      leading: const Icon(Icons.settings),
+                      title: const Text('Settings',
+                        style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                      ),
                       children: [
 
                         Column(

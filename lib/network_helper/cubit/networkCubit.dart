@@ -48,10 +48,17 @@ class NetworkCubit extends Cubit<NetworkStates> {
     listOfVaccineDateValue.add(date.toString());
     emit(LoadingValueStates());
   }
+  var measurementController1= TextEditingController();
+  var measurementController2= TextEditingController();
+  List<String> types = ['Random','Fasting','HbA1c'];
+  String? selectedType;
+  var datePressureController= TextEditingController();
+
+
   var vaccineNameController= TextEditingController();
   var typeController= TextEditingController();
   var locationController= TextEditingController();
-  var dateController= TextEditingController();
+  var dateVaccineController= TextEditingController();
   var vaccineImageController= TextEditingController();
 
 

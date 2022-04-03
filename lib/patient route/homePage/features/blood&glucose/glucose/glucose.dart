@@ -6,6 +6,7 @@ import '../../../../../constant.dart';
 import '../../../../../network_helper/cubit/networkCubit.dart';
 import '../../../../../network_helper/cubit/networlStates.dart';
 import '../../../../../shared/sharedComponent.dart';
+import 'addGlucose.dart';
 
 class GlucoseScreen extends StatelessWidget {
   const GlucoseScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class GlucoseScreen extends StatelessWidget {
             appBar: themeAppBar(context, value: " Glucose"),
             floatingActionButton: buildFloatingActionButton(
                 context,
-                routeName: ""),
+                routeName: ADDGlucoseScreen.idADDGlucose),
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
@@ -68,10 +69,6 @@ class GlucoseScreen extends StatelessWidget {
                                   style: text15forDateandTime
                               ),
                               const SizedBox(height: 5,),
-                              Text(
-                                  "Time: 8:30 AM ",
-                                  style: text15forDateandTime
-                              ),
                             ]
 
                         ),
