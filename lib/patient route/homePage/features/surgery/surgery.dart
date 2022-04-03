@@ -1,15 +1,13 @@
-import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../../../../network_helper/cubit/networkCubit.dart';
 import '../../../../network_helper/cubit/networlStates.dart';
-import 'addVaccines.dart';
+import '../../../../shared/sharedComponent.dart';
 
-class VaccineScreen extends StatelessWidget {
-  const VaccineScreen({Key? key}) : super(key: key);
-  static String idVaccine = "IdVaccineScreen";
+class SurgeryScreen extends StatelessWidget {
+  const SurgeryScreen({Key? key}) : super(key: key);
+  static String idSurgery = "IdSurgeryScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -21,32 +19,26 @@ class VaccineScreen extends StatelessWidget {
           List<dynamic> data = cubit.latestNew;
           return Scaffold(
               appBar: themeAppBar(context, value: "Vaccines"),
-
-              floatingActionButton: buildFloatingActionButton(
-                  context,
-                  routeName: AddVaccineScreen.idAddVaccine
-              ),
-
               body: ListView.separated(
                 itemBuilder: (context, index) =>
                     ThemeCard(context,
-                        vaccineName:
-                        " ${cubit.listOfVaccineNameValue[index].toString()}",
-                        type: " ${cubit.listOfVaccineTypeValue[index]
-                            .toString()}",
-                        location:
-                        " ${cubit.listOfVaccineLocationValue[index]
-                            .toString()}",
-                        date: " ${cubit.listOfVaccineDateValue[index]
-                            .toString()}",
+                        vaccineName:"BackBone",
+                        type: " CT ",
+                        location: "MU ",
+                        date: "2021-4-28",
                         vaccineImage: const NetworkImage(
-                            "https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg")),
+                            "https://www.researchgate."
+                                "net/profile/Sylvia-Asa/publication/319357366/"
+                                "figure/fig2/AS:613886776573952@1523373421045/"
+                                "The-consolidated-theranostic-report-surgical-"
+                                "pathology-An-example-deidentified-to.png"),
+                    ),
                 separatorBuilder: (context, index) =>
                     Container(
                       width: double.infinity,
                       height: 5,
                     ),
-                itemCount: cubit.listOfVaccineNameValue.length,
+                itemCount: 1,
               ));
         });
   }

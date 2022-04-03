@@ -385,14 +385,18 @@ Widget ThemeCard(context,
               )
             ],
           ),
-          Container(
-            width: 120,
-            height: 150,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.0),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: vaccineImage,
+          SizedBox(width: 40,),
+          Expanded(
+flex: 2
+            ,            child: Container(
+              width: 120,
+              height: 150,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: vaccineImage,
+                ),
               ),
             ),
           ),

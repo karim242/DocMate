@@ -14,6 +14,7 @@ import 'package:docmate/patient%20route/homePage/features/medicalHistory/familyH
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/allergy/allergies.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/familyHistory/family_history.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/medicalHistory.dart';
+import 'package:docmate/patient%20route/homePage/features/surgery/surgery.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
             ADDBloodPressureScreen.idADDBloodPressure :(context) => const ADDBloodPressureScreen(),
             GlucoseScreen.idGlucose :(context) => const GlucoseScreen(),
             ADDGlucoseScreen.idADDGlucose : (context)=>const ADDGlucoseScreen(),
+            SurgeryScreen.idSurgery :(context) => const SurgeryScreen(),
 
           }),
     );

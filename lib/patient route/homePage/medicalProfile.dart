@@ -7,6 +7,7 @@ import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
 import 'features/Vaccines/vaccines.dart';
 import 'features/blood&glucose/blood&glucose.dart';
+import 'features/surgery/surgery.dart';
 
 class MedicalProfileScreen extends StatelessWidget {
   const MedicalProfileScreen({Key? key}) : super(key: key);
@@ -79,7 +80,9 @@ class MedicalProfileScreen extends StatelessWidget {
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),
                         FeatureCard(
-                            ontap: (){},
+                            ontap: (){
+                              Navigator.pushNamed(context, SurgeryScreen.idSurgery );
+                            },
                             photoIconName: "surgery",
                             text: "Surgery", color: const Color(0xffBAFFB5)),
                       ],
