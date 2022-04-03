@@ -27,25 +27,28 @@ class LabTestScreen extends StatelessWidget {
               buildFloatingActionButton(context,
                   routeName:  AddLabTestScreen.idAddLabTest),
 
-              body: ListView.separated(
-                itemBuilder: (context, index) =>
-                    ThemeCard(context,
-                      vaccineName:"Sugar",
-                      type: " X-rays ",
-                      location: "MU ",
-                      date: "2021-4-28",
-                      vaccineImage: const NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?"
-                              "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
-                              "iX8N9HBZYAEPQ&usqp=CAU"
+              body: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ListView.separated(
+                  itemBuilder: (context, index) =>
+                      ThemeCard(context,
+                        vaccineName:"Sugar",
+                        type: " X-rays ",
+                        location: "MU ",
+                        date: "2021-4-28",
+                        vaccineImage: const NetworkImage(
+                            "https://encrypted-tbn0.gstatic.com/images?"
+                                "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
+                                "iX8N9HBZYAEPQ&usqp=CAU"
+                        ),
                       ),
-                    ),
-                separatorBuilder: (context, index) =>
-                    Container(
-                      width: double.infinity,
-                      height: 5,
-                    ),
-                itemCount: 1,
+                  separatorBuilder: (context, index) =>
+                      Container(
+                        width: double.infinity,
+                        height: 5,
+                      ),
+                  itemCount: 1,
+                ),
               ));
         });
   }

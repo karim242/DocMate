@@ -16,9 +16,7 @@ class FamilyHistoryScreen extends StatelessWidget {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          // dynamic list= NetworkCubit.get(context).latestNew;
           NetworkCubit cubit = NetworkCubit.get(context);
-          List<dynamic> data = cubit.latestNew;
           return Scaffold(
               appBar: themeAppBar(context, value: "Family History"),
 
@@ -27,7 +25,7 @@ class FamilyHistoryScreen extends StatelessWidget {
                   routeName: ADDFamilyHistoryScreen.idADDFamilyHistory
               ),
               body: Padding(
-                padding: const EdgeInsets.all(13.0),
+                padding: const EdgeInsets.all(18.0),
                 child: Column(children: [
                   Expanded(
                     child:GridView.builder(

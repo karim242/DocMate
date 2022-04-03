@@ -33,7 +33,7 @@ class MedicalProfileScreen extends StatelessWidget {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.all(13.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: [
                   Expanded(

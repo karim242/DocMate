@@ -25,26 +25,29 @@ class VaccineScreen extends StatelessWidget {
                   routeName: AddVaccineScreen.idAddVaccine
               ),
 
-              body: ListView.separated(
-                itemBuilder: (context, index) =>
-                    ThemeCard(context,
-                        vaccineName:
-                        " ${cubit.listOfVaccineNameValue[index].toString()}",
-                        type: " ${cubit.listOfVaccineTypeValue[index]
-                            .toString()}",
-                        location:
-                        " ${cubit.listOfVaccineLocationValue[index]
-                            .toString()}",
-                        date: " ${cubit.listOfVaccineDateValue[index]
-                            .toString()}",
-                        vaccineImage: const NetworkImage(
-                            "https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg")),
-                separatorBuilder: (context, index) =>
-                    Container(
-                      width: double.infinity,
-                      height: 5,
-                    ),
-                itemCount: cubit.listOfVaccineNameValue.length,
+              body: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ListView.separated(
+                  itemBuilder: (context, index) =>
+                      ThemeCard(context,
+                          vaccineName:
+                          " ${cubit.listOfVaccineNameValue[index].toString()}",
+                          type: " ${cubit.listOfVaccineTypeValue[index]
+                              .toString()}",
+                          location:
+                          " ${cubit.listOfVaccineLocationValue[index]
+                              .toString()}",
+                          date: " ${cubit.listOfVaccineDateValue[index]
+                              .toString()}",
+                          vaccineImage: const NetworkImage(
+                              "https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg")),
+                  separatorBuilder: (context, index) =>
+                      Container(
+                        width: double.infinity,
+                        height: 5,
+                      ),
+                  itemCount: cubit.listOfVaccineNameValue.length,
+                ),
               ));
         });
   }

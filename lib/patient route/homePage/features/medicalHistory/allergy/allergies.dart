@@ -26,7 +26,7 @@ class AllergyScreen extends StatelessWidget {
               body:  Column(children: [
                   Expanded(
                     child: GridView.builder(
-                      padding: const EdgeInsets.all(13),
+                      padding: const EdgeInsets.all(18),
                       shrinkWrap :true,
                         physics: const BouncingScrollPhysics(),
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -17,7 +17,6 @@ class GlucoseScreen extends StatelessWidget {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          // NetworkCubit cubit = NetworkCubit.get(context);
 
           return Scaffold(
             appBar: themeAppBar(context, value: " Glucose"),

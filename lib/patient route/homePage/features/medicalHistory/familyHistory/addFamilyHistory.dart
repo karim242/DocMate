@@ -15,9 +15,7 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          // dynamic list= NetworkCubit.get(context).latestNew;
           NetworkCubit cubit = NetworkCubit.get(context);
-          List<dynamic> data = cubit.latestNew;
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,

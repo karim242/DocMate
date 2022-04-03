@@ -23,25 +23,28 @@ class RadiologyScreen extends StatelessWidget {
               floatingActionButton:
               buildFloatingActionButton(context,
                   routeName: AddRadiologyScreen.idAddRadiology),
-              body: ListView.separated(
-                itemBuilder: (context, index) =>
-                    ThemeCard(context,
-                      vaccineName:"Normal X-ray",
-                      type: " X-rays ",
-                      location: "MU ",
-                      date: "2021-4-28",
-                      vaccineImage: const NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?"
-                              "q=tbn:ANd9GcTfMDrgJ0RwpvOOi6b2qxMODpMXHdUOCIdL7g"
-                              "&usqp=CAU"
+              body: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: ListView.separated(
+                  itemBuilder: (context, index) =>
+                      ThemeCard(context,
+                        vaccineName:"Normal X-ray",
+                        type: " X-rays ",
+                        location: "MU ",
+                        date: "2021-4-28",
+                        vaccineImage: const NetworkImage(
+                            "https://encrypted-tbn0.gstatic.com/images?"
+                                "q=tbn:ANd9GcTfMDrgJ0RwpvOOi6b2qxMODpMXHdUOCIdL7g"
+                                "&usqp=CAU"
+                        ),
                       ),
-                    ),
-                separatorBuilder: (context, index) =>
-                    Container(
-                      width: double.infinity,
-                      height: 5,
-                    ),
-                itemCount: 1,
+                  separatorBuilder: (context, index) =>
+                      Container(
+                        width: double.infinity,
+                        height: 5,
+                      ),
+                  itemCount: 1,
+                ),
               ));
         });
   }
