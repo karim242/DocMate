@@ -9,11 +9,15 @@ import 'package:docmate/patient%20route/homePage/features/blood&glucose/bloodPre
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/bloodPressure/bloodpressure.dart';
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/glucose/addGlucose.dart';
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/glucose/glucose.dart';
+import 'package:docmate/patient%20route/homePage/features/labtest/addlabtest.dart';
+import 'package:docmate/patient%20route/homePage/features/labtest/labTest.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/allergy/addAllergy.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/familyHistory/addFamilyHistory.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/allergy/allergies.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/familyHistory/family_history.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/medicalHistory.dart';
+import 'package:docmate/patient%20route/homePage/features/radiology/addRadiology.dart';
+import 'package:docmate/patient%20route/homePage/features/radiology/radiology.dart';
 import 'package:docmate/patient%20route/homePage/features/surgery/surgery.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
@@ -92,6 +96,10 @@ class MyApp extends StatelessWidget {
             GlucoseScreen.idGlucose :(context) => const GlucoseScreen(),
             ADDGlucoseScreen.idADDGlucose : (context)=>const ADDGlucoseScreen(),
             SurgeryScreen.idSurgery :(context) => const SurgeryScreen(),
+            LabTestScreen.idLabTest : (context) => const LabTestScreen(),
+            RadiologyScreen.idRadiology :(context) => const RadiologyScreen(),
+            AddLabTestScreen.idAddLabTest :(context) => const AddLabTestScreen(),
+            AddRadiologyScreen.idAddRadiology :(context)=> const AddRadiologyScreen(),
 
           }),
     );

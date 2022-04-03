@@ -1,13 +1,17 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../network_helper/cubit/networkCubit.dart';
 import '../../../../network_helper/cubit/networlStates.dart';
 import '../../../../shared/sharedComponent.dart';
+import 'addlabtest.dart';
 
-class SurgeryScreen extends StatelessWidget {
-  const SurgeryScreen({Key? key}) : super(key: key);
-  static String idSurgery = "IdSurgeryScreen";
+class LabTestScreen extends StatelessWidget {
+  const LabTestScreen({Key? key}) : super(key: key);
+  static String idLabTest = "IdLabTestScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -16,21 +20,25 @@ class SurgeryScreen extends StatelessWidget {
         builder: (context, states) {
 
           NetworkCubit cubit = NetworkCubit.get(context);
+
           return Scaffold(
-              appBar: themeAppBar(context, value: "Vaccines"),
+              appBar: themeAppBar(context, value: "Lab Test"),
+              floatingActionButton:
+              buildFloatingActionButton(context,
+                  routeName:  AddLabTestScreen.idAddLabTest),
+
               body: ListView.separated(
                 itemBuilder: (context, index) =>
                     ThemeCard(context,
-                        vaccineName:"BackBone",
-                        type: " CT ",
-                        location: "MU ",
-                        date: "2021-4-28",
-                        vaccineImage: const NetworkImage(
-                            "https://www.researchgate."
-                                "net/profile/Sylvia-Asa/publication/319357366/"
-                                "figure/fig2/AS:613886776573952@1523373421045/"
-                                "The-consolidated-theranostic-report-surgical-"
-                                "pathology-An-example-deidentified-to.png"),
+                      vaccineName:"Sugar",
+                      type: " X-rays ",
+                      location: "MU ",
+                      date: "2021-4-28",
+                      vaccineImage: const NetworkImage(
+                          "https://encrypted-tbn0.gstatic.com/images?"
+                              "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
+                              "iX8N9HBZYAEPQ&usqp=CAU"
+                      ),
                     ),
                 separatorBuilder: (context, index) =>
                     Container(

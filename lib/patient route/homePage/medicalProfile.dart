@@ -1,3 +1,4 @@
+import 'package:docmate/patient%20route/homePage/features/labtest/labTest.dart';
 import 'package:docmate/patient%20route/homePage/features/medicalHistory/medicalHistory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +8,7 @@ import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
 import 'features/Vaccines/vaccines.dart';
 import 'features/blood&glucose/blood&glucose.dart';
+import 'features/radiology/radiology.dart';
 import 'features/surgery/surgery.dart';
 
 class MedicalProfileScreen extends StatelessWidget {
@@ -64,11 +66,15 @@ class MedicalProfileScreen extends StatelessWidget {
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
                         FeatureCard(
-                            ontap: (){},
+                            ontap: (){
+                              Navigator.pushNamed(context, RadiologyScreen.idRadiology);
+                            },
                             photoIconName: "radiology",
                             text: "Radiology", color: const Color(0xffADFFDF)),
                         FeatureCard(
-                            ontap: (){},
+                            ontap: (){
+                              Navigator.pushNamed(context, LabTestScreen.idLabTest);
+                            },
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(

@@ -61,6 +61,18 @@ class NetworkCubit extends Cubit<NetworkStates> {
   var dateVaccineController= TextEditingController();
   var vaccineImageController= TextEditingController();
 
+  var labTestNameController= TextEditingController();
+  var labTestTypeController= TextEditingController();
+  var labTestLocationController= TextEditingController();
+  var dateLabTestController= TextEditingController();
+  var labTestImageController= TextEditingController();
+
+  var radiologyNameController= TextEditingController();
+  var radiologyTypeController= TextEditingController();
+  var radiologyLocationController= TextEditingController();
+  var dateRadiologyController= TextEditingController();
+  var radiologyImageController= TextEditingController();
+
 
   var allergyController= TextEditingController();
   var diseaseFamilyController= TextEditingController();

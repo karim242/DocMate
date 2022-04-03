@@ -29,13 +29,6 @@ class AddVaccineScreen extends StatelessWidget {
                   style: textTitle22Style,
                 ),
               ),
-              leading: IconButton(
-                color: Colors.black,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(Icons.arrow_back_ios),
-              ),
             ),
             body: Form(
               key: cubit.formkey,
