@@ -177,11 +177,15 @@ class _BottomSheetState extends State<BottomSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton.icon(onPressed: (){
+              TextButton.icon(onPressed: (){setState(() {
                 takePhoto(ImageSource.camera);
+              });
+
               }, icon: const Icon(Icons.camera), label: const Text('camera'),),
               TextButton.icon(onPressed: (){
-                takePhoto(ImageSource.gallery);
+                setState(() {
+                  takePhoto(ImageSource.gallery);
+                });
               }, icon: const Icon(Icons.browse_gallery), label: const Text('gallery'),),
             ],
           ),
