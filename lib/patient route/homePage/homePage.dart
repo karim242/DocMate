@@ -1,4 +1,5 @@
 
+import 'package:docmate/patient%20route/homePage/drawe_items/editprofile.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,9 @@ class HomePageScreen extends StatelessWidget {
                         Column(
                           children: [
                             TextButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.pushNamed(context, EditProfile.editProfileID);
+                              },
                               child: const Text('Edit Profile',style: TextStyle(color: Colors.black,
                                   fontSize: 16),),
                             ),

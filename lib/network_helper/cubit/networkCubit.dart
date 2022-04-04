@@ -80,6 +80,15 @@ class NetworkCubit extends Cubit<NetworkStates> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
 
+
+  //Edit Profile Text Field Controller
+  var editNameController = TextEditingController();
+  var editEmailController = TextEditingController();
+  var editDateOfBirthController = TextEditingController();
+  var editHeightController = TextEditingController();
+  var editWeightController = TextEditingController();
+  var editBloodTypeController = TextEditingController();
+  var editLocationController = TextEditingController();
 int selectedIndex = 0;
   List<BottomNavigationBarItem> navList=[
     const BottomNavigationBarItem(

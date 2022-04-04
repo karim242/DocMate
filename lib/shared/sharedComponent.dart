@@ -1,9 +1,11 @@
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../constant.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 MaterialButton latestNewsSilder(context, articles) {
@@ -328,7 +330,7 @@ Widget ThemeCard(context,
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Container(
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       height: 150,
 
       decoration: BoxDecoration(
@@ -459,3 +461,6 @@ Container fieldForMeasurement({required controller,}) {
       ,),
   );
 }
+
+
+
