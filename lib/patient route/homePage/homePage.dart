@@ -24,7 +24,7 @@ class HomePageScreen extends StatelessWidget {
             // dynamic list= NetworkCubit.get(context).latestNew;
             NetworkCubit cubit = NetworkCubit.get(context);
             List<dynamic> data = cubit.latestNew;
-            cubit.screens[cubit.selectedIndex];
+            // cubit.screens[cubit.selectedIndex];
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -140,38 +140,40 @@ class HomePageScreen extends StatelessWidget {
                               children: [
                                 medicalAdvices(
                                   context,
-                                  articles: data[19],
-                                  onpressed: () {},
+                                  articles: data,
+                                  index: 19
+
                                 ),
                                 medicalAdvices(
                                   context,
-                                  articles: data[18],
-                                  onpressed: () {},
+                                  articles: data,
+                                  index: 18
+
                                 ),
                                 medicalAdvices(
                                   context,
-                                  articles: data[12],
-                                  onpressed: () {},
+                                  articles: data,
+                                    index: 12
                                 ),
                                 medicalAdvices(
                                   context,
-                                  articles: data[14],
-                                  onpressed: () {},
+                                  articles: data,
+                                    index: 14
                                 ),
                                 medicalAdvices(
                                   context,
-                                  articles: data[15],
-                                  onpressed: () {},
+                                  articles: data,
+                                    index: 15
                                 ),
                                 medicalAdvices(
                                   context,
-                                  articles: data[16],
-                                  onpressed: () {},
+                                  articles: data,
+                                    index: 16
                                 ),
                                 medicalAdvices(
                                   context,
-                                  articles: data[11],
-                                  onpressed: () {},
+                                  articles: data,
+                                    index: 11
                                 ),
                               ],
                             ),

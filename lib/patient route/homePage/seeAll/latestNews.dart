@@ -47,8 +47,8 @@ class LatestNews extends StatelessWidget {
             body: ConditionalBuilder(
               condition: states is ! NetworkLoadingStates,
               builder: (context)=>ListView.builder(
-                    itemBuilder: (context,x) =>
-                    latestNewsSilder(context,data[x]) ,
+                    itemBuilder: (context,int x) =>
+                    latestNewsSilder(context,data,index: x) ,
                 itemCount: 19,
                 ),
                 fallback: (BuildContext context) {

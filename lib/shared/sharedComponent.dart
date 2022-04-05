@@ -7,13 +7,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../constant.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../patient route/homePage/descriptionApi.dart';
 
-MaterialButton latestNewsSilder(context, articles) {
+
+MaterialButton latestNewsSilder(context, articles,{required int index}) {
 
     return MaterialButton(
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(context ,
+          MaterialPageRoute(builder: (context) =>DescriptionScreen(index)),);
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -30,7 +35,7 @@ MaterialButton latestNewsSilder(context, articles) {
             decoration: BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.fill,
-                  image: NetworkImage('${articles['urlToImage']}')),
+                  image: NetworkImage('${articles[index]['urlToImage']}')),
               borderRadius: BorderRadius.circular(16.0),
             ),
           ),
@@ -45,7 +50,7 @@ MaterialButton latestNewsSilder(context, articles) {
                 .height / 16,
             child: Center(
               child: Text(
-                '${articles['title']}',
+                '${articles[index]['title']}',
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
                 style: TextStyle(
@@ -65,12 +70,16 @@ MaterialButton latestNewsSilder(context, articles) {
 MaterialButton medicalAdvices(
   context, {
   required dynamic articles,
-  required VoidCallback onpressed,
+      required int index,
+
 }) {
   return MaterialButton(
     elevation: 1,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(context ,
+        MaterialPageRoute(builder: (context) =>DescriptionScreen(index)),);
+    },
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -81,7 +90,7 @@ MaterialButton medicalAdvices(
           decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fill,
-                image: NetworkImage('${articles['urlToImage']}')),
+                image: NetworkImage('${articles[index]['urlToImage']}')),
             borderRadius: BorderRadius.circular(16.0),
           ),
         ),
@@ -90,7 +99,7 @@ MaterialButton medicalAdvices(
           height: MediaQuery.of(context).size.height / 20,
           child: Center(
             child: Text(
-              '${articles['title']}',
+              '${articles[index]['title']}',
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(
@@ -148,21 +157,25 @@ CarouselSlider carouselSlider(context, articles,) {
         return
           ListView(
               children: [
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.25,
-                  height: MediaQuery.of(context).size.height /4.6,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage('${articles[index]['urlToImage']}')),
-                    borderRadius: BorderRadius.circular(16.0),
+               MaterialButton(
+                  onPressed: () {
+                    Navigator.push(context ,
+                      MaterialPageRoute(builder: (context) =>DescriptionScreen(index)),);
+                  },
+                  child: Container(
+
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    height: MediaQuery.of(context).size.height /4.6,
+                    decoration: BoxDecoration(
+
+                      image: DecorationImage(
+
+                          fit: BoxFit.cover,
+                          image: NetworkImage('${articles[index]['urlToImage']}')),
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
                   ),
                 ),
-                // Container(
-                //   width: MediaQuery.of(context).size.width / 1.2,
-                //   height: MediaQuery.of(context).size.height / 16,
-
-                   // child:
                 Text(
                       '${articles[index]['title']}',
                       overflow: TextOverflow.ellipsis,
