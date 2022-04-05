@@ -1,4 +1,5 @@
 
+import 'package:docmate/patient%20route/homePage/drawe_items/changepassword.dart';
 import 'package:docmate/patient%20route/homePage/drawe_items/editprofile.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
@@ -70,7 +71,9 @@ class HomePageScreen extends StatelessWidget {
                             ),
                             const Divider(color: Colors.grey,),
                             TextButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.pushNamed(context, ChangePassword.idChangePassword);
+                              },
                               child: const Text('Change password',style: TextStyle(color: Colors.black,
                                   fontSize: 16),),
                             ),

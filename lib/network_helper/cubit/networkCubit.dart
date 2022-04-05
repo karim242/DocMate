@@ -89,6 +89,11 @@ class NetworkCubit extends Cubit<NetworkStates> {
   var editWeightController = TextEditingController();
   var editBloodTypeController = TextEditingController();
   var editLocationController = TextEditingController();
+
+  //change password controllers
+  var currentPassword = TextEditingController();
+  var newPassword = TextEditingController();
+  var confirmPassword = TextEditingController();
 int selectedIndex = 0;
   List<BottomNavigationBarItem> navList=[
     const BottomNavigationBarItem(

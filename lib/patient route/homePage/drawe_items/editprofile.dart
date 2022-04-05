@@ -120,22 +120,29 @@ class _EditProfileState extends State<EditProfile> {
 }
 
 class EditProfileTextField extends StatelessWidget {
-  const EditProfileTextField({Key? key,required this.label , this.type,this.controller}) : super(key: key);
+  const EditProfileTextField({Key? key,required this.label , this.type,this.controller,this.validator}) : super(key: key);
   final String label;
   final TextInputType? type;
   final controller;
+  final validator;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(15),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
         controller: controller,
         keyboardType: type,
         decoration: InputDecoration(
           border: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25))
+            borderRadius: BorderRadius.all(Radius.circular(25)),
+            borderSide: BorderSide.none,
+
           ),
+          fillColor: Colors.grey[100],
+          filled: true,
+          errorStyle: const TextStyle(height: .8, color: Colors.red),
           labelText: label,
           labelStyle: const TextStyle(
               fontSize: 20,
