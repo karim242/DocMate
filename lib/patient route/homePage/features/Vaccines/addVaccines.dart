@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../../Blocs/featureBloc/featureStates.dart';
+import '../../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../../constant.dart';
-import '../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../network_helper/cubit/networlStates.dart';
+
 import '../../../../shared/sharedComponent.dart';
 import 'package:intl/intl.dart';
 
@@ -13,12 +15,10 @@ class AddVaccineScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
-        builder: (context, states) {
-          // dynamic list= NetworkCubit.get(context).latestNew;
-          NetworkCubit cubit = NetworkCubit.get(context);
-          List<dynamic> data = cubit.latestNew;
+        builder: (context, states){
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -47,7 +47,10 @@ class AddVaccineScreen extends StatelessWidget {
                               IconButton(
                                 icon: Icon(Icons.camera_alt_outlined),
                                 iconSize: 35.0,
-                                onPressed: () {},
+                                onPressed: () {
+
+                                     cubit.takePhoto(ImageSource.gallery);
+                                },
                               ),
                               const Text("Upload Image"),
                             ],
@@ -83,11 +86,12 @@ class AddVaccineScreen extends StatelessWidget {
                         text : "Date",
                         controller: cubit.dateVaccineController,
                       ),
+                      SizedBox(height: 50,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          defaultBotton(
-                              text: "Save", colour: blueColor,
+                          saveBotton(
+
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
 
@@ -109,8 +113,7 @@ class AddVaccineScreen extends StatelessWidget {
                           const SizedBox(
                             width: 16.0,
                           ),
-                          defaultBotton(
-                              text: "Cancel", colour: Colors.grey[100],
+                          cancelBotton(
                               onpressed: () {
                                 Navigator.pop(context);
                               })

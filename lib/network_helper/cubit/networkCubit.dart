@@ -25,58 +25,7 @@ class NetworkCubit extends Cubit<NetworkStates> {
     return BlocProvider.of(context);
   }
   var formkey  =GlobalKey<FormState>();
-  List listOfallergyValue=[];
-  void AddAllergyValue(value){
-    listOfallergyValue.add(value.toString());
-    emit(LoadingValueStates());
-  }
-  List listOfDiseaseValue=[];
-    void AddDiseaseValue(value){
-    listOfDiseaseValue.add(value.toString());
-    emit(LoadingValueStates());
-  }
 
-
-  List listOfVaccineNameValue=[];
-  List listOfVaccineTypeValue=[];
-  List listOfVaccineLocationValue=[];
-  List listOfVaccineDateValue=[];
-  void AddVaccineValue({name,type,location,date}){
-    listOfVaccineNameValue.add(name.toString());
-    listOfVaccineTypeValue.add(type.toString());
-    listOfVaccineLocationValue.add(location.toString());
-    listOfVaccineDateValue.add(date.toString());
-    emit(LoadingValueStates());
-  }
-  var measurementController1= TextEditingController();
-  var measurementController2= TextEditingController();
-  List<String> types = ['Random','Fasting','HbA1c'];
-  String? selectedType;
-  var datePressureController= TextEditingController();
-
-
-  var vaccineNameController= TextEditingController();
-  var typeController= TextEditingController();
-  var locationController= TextEditingController();
-  var dateVaccineController= TextEditingController();
-  var vaccineImageController= TextEditingController();
-
-  var labTestNameController= TextEditingController();
-  var labTestTypeController= TextEditingController();
-  var labTestLocationController= TextEditingController();
-  var dateLabTestController= TextEditingController();
-  var labTestImageController= TextEditingController();
-
-  var radiologyNameController= TextEditingController();
-  var radiologyTypeController= TextEditingController();
-  var radiologyLocationController= TextEditingController();
-  var dateRadiologyController= TextEditingController();
-  var radiologyImageController= TextEditingController();
-
-
-  var allergyController= TextEditingController();
-  var diseaseFamilyController= TextEditingController();
-  var relationFamilyController= TextEditingController();
   static const TextStyle optionStyle =
   TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
 
@@ -90,10 +39,9 @@ class NetworkCubit extends Cubit<NetworkStates> {
   var editBloodTypeController = TextEditingController();
   var editLocationController = TextEditingController();
 
-  //change password controllers
-  var currentPassword = TextEditingController();
-  var newPassword = TextEditingController();
-  var confirmPassword = TextEditingController();
+
+
+
 int selectedIndex = 0;
   List<BottomNavigationBarItem> navList=[
     const BottomNavigationBarItem(

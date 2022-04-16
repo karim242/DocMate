@@ -1,4 +1,5 @@
 import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
+import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) {
       return NetworkCubit()..getLatestNews();
         }),
+      BlocProvider(create: (context) {
+        return FeatureCubit();
+      }),
         BlocProvider(create: (context) {
           return LoginCubit();
         }),
@@ -101,7 +105,7 @@ class MyApp extends StatelessWidget {
             SurgeryScreen.idSurgery :(context) => const SurgeryScreen(),
             LabTestScreen.idLabTest : (context) => const LabTestScreen(),
             RadiologyScreen.idRadiology :(context) => const RadiologyScreen(),
-            AddLabTestScreen.idAddLabTest :(context) => const AddLabTestScreen(),
+            AddLabTestScreen.idAddLabTest :(context) =>  AddLabTestScreen(),
             AddRadiologyScreen.idAddRadiology :(context)=> const AddRadiologyScreen(),
             EditProfile.editProfileID:(context)=>const EditProfile(),
             ChangePassword.idChangePassword:(context)=> const ChangePassword(),

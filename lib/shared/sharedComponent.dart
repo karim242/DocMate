@@ -305,30 +305,29 @@ Widget TextAndField(
         style: text20ForNameAdd,
       ),
       const SizedBox(height: 5),
-      TextFormField(
-
-          onTap: text == "Date" ? ontap : () {},
-          cursorHeight: 35,
-          controller: controller,
-          cursorColor: Colors.black,
-          validator: (value) {
-            if (value!.isEmpty) {
-              return "please add $text";
-            }
-            return null;
-          },
-          decoration: InputDecoration(
-
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(16.0),),
-            fillColor: Colors.grey[100],
-            filled: true,
-            errorStyle: const TextStyle(height: .8, color: Colors.red),
-
-          )
+      Container(
+        height: 44,
+        child: TextFormField(
+            onTap: text == "Date" ? ontap : () {},
+            cursorHeight: 20,
+            controller: controller,
+            cursorColor: Colors.black,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "please add $text";
+              }
+              return null;
+            },
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(16.0),),
+              fillColor: whiteColor,
+              filled: true,
+              errorStyle: const TextStyle(height: .8, color: Colors.red),
+            )
+        ),
       )
-
     ],
   );
 }
@@ -475,5 +474,55 @@ Container fieldForMeasurement({required controller,}) {
   );
 }
 
+
+class BottomSheet extends StatefulWidget {
+  const BottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<BottomSheet> createState() => _BottomSheetState();
+}
+
+class _BottomSheetState extends State<BottomSheet> {
+  late PickedFile file;
+  final ImagePicker picker = ImagePicker();
+  @override
+  // TODO: implement context
+  BuildContext get context => super.context;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      width: MediaQuery.of(context).size.width,
+      margin: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+      child: Column(
+        children: [
+          const Text('choose profile photo',style: TextStyle(fontSize: 20),),
+          const SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton.icon(onPressed: (){setState(() {
+                takePhoto(ImageSource.camera);
+              });
+
+              }, icon: const Icon(Icons.camera), label: const Text('camera'),),
+              TextButton.icon(onPressed: (){
+                setState(() {
+                  takePhoto(ImageSource.gallery);
+                });
+              }, icon: const Icon(Icons.browse_gallery), label: const Text('gallery'),),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  void takePhoto(ImageSource source)async{
+    final pickedFile = await picker.getImage(source: source);
+    setState(() {
+      file = pickedFile! ;
+    });
+  }
+}
 
 

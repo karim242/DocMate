@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../Blocs/featureBloc/featureStates.dart';
+import '../../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../../constant.dart';
-import '../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../network_helper/cubit/networlStates.dart';
 import '../../../../shared/sharedComponent.dart';
 
 class AddRadiologyScreen extends StatelessWidget {
@@ -13,10 +14,11 @@ class AddRadiologyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          NetworkCubit cubit = NetworkCubit.get(context);
+
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -45,7 +47,9 @@ class AddRadiologyScreen extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    cubit.takePhoto(ImageSource.gallery);
+                                  },
                                 ),
                                 const Text("Upload Image"),
                               ],
@@ -81,25 +85,26 @@ class AddRadiologyScreen extends StatelessWidget {
                           text : "Date",
                           controller: cubit.dateRadiologyController,
                         ),
+                        SizedBox(height: 50,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            defaultBotton(
-                                text: "Save", colour: blueColor,
+                            saveBotton(
+
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
 
                                     cubit.AddVaccineValue(
-                                      name : cubit.vaccineNameController.value.text,
-                                      type : cubit.typeController.value.text,
-                                      location : cubit.locationController.value.text,
-                                      date : cubit.dateVaccineController.value.text,
+                                      name : cubit.radiologyNameController.value.text,
+                                      type : cubit.radiologyTypeController.value.text,
+                                      location : cubit.radiologyLocationController.value.text,
+                                      date : cubit.dateRadiologyController.value.text,
                                     );
                                     Navigator.pop(context);
-                                    cubit.vaccineNameController.clear();
-                                    cubit.typeController.clear();
-                                    cubit.locationController.clear();
-                                    cubit.dateVaccineController.clear();
+                                    cubit.radiologyNameController.clear();
+                                    cubit.radiologyTypeController.clear();
+                                    cubit.radiologyLocationController.clear();
+                                    cubit.dateRadiologyController.clear();
 
                                   }
                                 }
@@ -107,8 +112,7 @@ class AddRadiologyScreen extends StatelessWidget {
                             const SizedBox(
                               width: 16.0,
                             ),
-                            defaultBotton(
-                                text: "Cancel", colour: Colors.grey[100],
+                            cancelBotton(
                                 onpressed: () {
                                   Navigator.pop(context);
                                 })

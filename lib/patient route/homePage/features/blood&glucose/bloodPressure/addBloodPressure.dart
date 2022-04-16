@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../Blocs/featureBloc/featureStates.dart';
+import '../../../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../../../constant.dart';
-import '../../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../../network_helper/cubit/networlStates.dart';
-
 
 class ADDBloodPressureScreen extends StatelessWidget {
   const ADDBloodPressureScreen({Key? key}) : super(key: key);
@@ -15,10 +14,12 @@ class ADDBloodPressureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          NetworkCubit cubit = NetworkCubit.get(context);
+
+          FeatureCubit cubit = FeatureCubit.get(context);
+
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -47,7 +48,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                       Row(
                         children: [
                           fieldForMeasurement(
-                            controller: cubit.measurementController1,
+                            controller: cubit.measurementPressureController1,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -55,7 +56,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                             child: Text("/",style: text20ForNameAdd,),
                           ),
                           fieldForMeasurement(
-                            controller: cubit.measurementController2,
+                            controller: cubit.measurementPressureController2,
                           ),
                         ],
                       ),
@@ -82,8 +83,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          defaultBotton(
-                              text: "Save", colour: blueColor,
+                          saveBotton(
                               onpressed: () {
                                 // if (cubit.formkey.currentState!.validate()) {
                                 //   cubit.AddAllergyValue(
@@ -96,8 +96,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                           const SizedBox(
                             width: 16.0,
                           ),
-                          defaultBotton(
-                              text: "Cancel", colour: Colors.grey[100],
+                         cancelBotton(
                               onpressed: () {
                                 Navigator.pop(context);
                               })

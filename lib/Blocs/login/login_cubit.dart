@@ -11,6 +11,11 @@ class LoginCubit extends Cubit<LoginStates>{
 
   var emailcontroller= TextEditingController();
   var passwordcontroller= TextEditingController();
+  //for change password
+  var newPassword = TextEditingController();
+  var confirmPassword = TextEditingController();
+
+
   var formkey  =GlobalKey<FormState>();
   bool isuser= true;
 

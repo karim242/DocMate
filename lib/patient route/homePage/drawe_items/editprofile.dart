@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../constant.dart';
 import '../../../network_helper/cubit/networkCubit.dart';
 import '../../../network_helper/cubit/networlStates.dart';
 import '../profilePage.dart';
@@ -34,7 +35,8 @@ class _EditProfileState extends State<EditProfile> {
           return SafeArea(
             child: Scaffold(
               appBar: AppBar(
-                title: const Text('Edit Profile',style: TextStyle(fontSize: 20,color: Colors.black),),
+                elevation: 0,
+                title: Text('Edit Profile',style: text20ForNameAdd,),
                 centerTitle: true,
                 backgroundColor: Colors.white,
                 actions: <Widget>[
@@ -69,8 +71,12 @@ class _EditProfileState extends State<EditProfile> {
                                     'https://via.placeholder.com/140x100')
                             ),
                             InkWell(
-                                child: const Text('Change Photo', style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold , color: Color(0xFF01B9C8)),),onTap: (){
-                                  showModalBottomSheet(context: context, builder: ((builder)=> const BottomSheet()));
+                                child:  Text('Change Photo',
+                                  style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold , color:blueColor),),
+                              onTap: (){
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: ((builder)=> const BottomSheet()));
                             },)
                           ],
                         ),
@@ -86,26 +92,24 @@ class _EditProfileState extends State<EditProfile> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               EditProfileTextField(label: 'Name',controller: cubit.editNameController,),
-                              SizedBox(height: 10,),
+                              // SizedBox(height:5),
                               EditProfileTextField(label: 'E-Mail',type: TextInputType.emailAddress,controller: cubit.editEmailController,),
-                              const SizedBox(height: 10,),
+                             // const SizedBox(height: 10,),
                               EditProfileTextField(label: 'Date Of Birth',type: TextInputType.datetime,controller: cubit.editDateOfBirthController,),
-                              const SizedBox(height: 10,),
+                             // const SizedBox(height: 10,),
                               EditProfileTextField(label: 'Height',type: TextInputType.number,controller: cubit.editHeightController,),
-                              const SizedBox(height: 10,),
+                             // const SizedBox(height: 10,),
                               EditProfileTextField(label: 'Weight',type: TextInputType.number,controller: cubit.editWeightController,),
-                              const SizedBox(height: 10,),
+                              //const SizedBox(height: 10,),
                               EditProfileTextField(label: 'Blood Type',controller: cubit.editBloodTypeController,),
-                              const SizedBox(height: 10,),
+                             // const SizedBox(height: 10,),
                               EditProfileTextField(label: 'Location',controller: cubit.editLocationController,),
-                              const SizedBox(height: 10,)
+                             // const SizedBox(height: 10,)
 
                             ],
                           ),
                         ),
                       )
-
-
                     ],
                   ),
                   ]
@@ -129,6 +133,7 @@ class EditProfileTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 44,
       margin: const EdgeInsets.all(15),
       child: TextFormField(
         validator: validator,
@@ -140,21 +145,15 @@ class EditProfileTextField extends StatelessWidget {
             borderSide: BorderSide.none,
 
           ),
-          fillColor: Colors.grey[100],
+          fillColor: whiteColor,
           filled: true,
           errorStyle: const TextStyle(height: .8, color: Colors.red),
           labelText: label,
           labelStyle: const TextStyle(
-              fontSize: 20,
+              fontSize: 18,
               fontWeight: FontWeight.bold,
               color: Colors.black
           ),
-          hintText: label,
-          hintStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-          ),
-
         ),
       ),
     );
@@ -193,7 +192,8 @@ class _BottomSheetState extends State<BottomSheet> {
                 setState(() {
                   takePhoto(ImageSource.gallery);
                 });
-              }, icon: const Icon(Icons.browse_gallery), label: const Text('gallery'),),
+              }, icon: const Icon(Icons.browse_gallery),
+                label: const Text('gallery'),),
             ],
           ),
         ],

@@ -1,6 +1,9 @@
 
+import 'package:docmate/Blocs/featureBloc/featureStates.dart';
+import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../constant.dart';
@@ -9,15 +12,17 @@ import '../../../../network_helper/cubit/networlStates.dart';
 import '../../../../shared/sharedComponent.dart';
 
 class AddLabTestScreen extends StatelessWidget {
-  const AddLabTestScreen({Key? key}) : super(key: key);
+   AddLabTestScreen({Key? key}) : super(key: key);
   static String idAddLabTest = "IdAddLabTestScreen";
+
+
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          NetworkCubit cubit = NetworkCubit.get(context);
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -46,7 +51,11 @@ class AddLabTestScreen extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                   cubit.takePhoto(ImageSource.gallery
+                                   ).then((value) => cubit.labTestImageController=value as TextEditingController);
+
+                                   },
                                 ),
                                 const Text("Upload Image"),
                               ],
@@ -82,25 +91,26 @@ class AddLabTestScreen extends StatelessWidget {
                           text : "Date",
                           controller: cubit.dateLabTestController,
                         ),
+                        SizedBox(height: 50,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            defaultBotton(
-                                text: "Save", colour: blueColor,
+                            saveBotton(
+
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
 
                                     cubit.AddVaccineValue(
-                                      name : cubit.vaccineNameController.value.text,
-                                      type : cubit.typeController.value.text,
-                                      location : cubit.locationController.value.text,
-                                      date : cubit.dateVaccineController.value.text,
+                                      name : cubit.labTestNameController.value.text,
+                                      type : cubit.labTestTypeController.value.text,
+                                      location : cubit.labTestLocationController.value.text,
+                                      date : cubit.dateLabTestController.value.text,
                                     );
                                     Navigator.pop(context);
-                                    cubit.vaccineNameController.clear();
-                                    cubit.typeController.clear();
-                                    cubit.locationController.clear();
-                                    cubit.dateVaccineController.clear();
+                                    cubit.labTestNameController.clear();
+                                    cubit.labTestTypeController.clear();
+                                    cubit.labTestLocationController.clear();
+                                    cubit.dateLabTestController.clear();
 
                                   }
                                 }
@@ -108,8 +118,7 @@ class AddLabTestScreen extends StatelessWidget {
                             const SizedBox(
                               width: 16.0,
                             ),
-                            defaultBotton(
-                                text: "Cancel", colour: Colors.grey[100],
+                            cancelBotton(
                                 onpressed: () {
                                   Navigator.pop(context);
                                 })

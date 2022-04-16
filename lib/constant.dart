@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Color blueColor = const Color(0xff01B9c8);
-Color whiteColor = const Color(0xffFDF8FF);
+Color whiteColor = const Color(0xFFFDF8FF);
 
 TextStyle text15forDateandTime = const
 TextStyle(
@@ -62,26 +62,52 @@ Widget textFieldForm({
   );
 }
 
-Widget defaultBotton({
-  String? text,
+Widget saveBotton({
   double width = 152.0,
-  Color? colour,
   VoidCallback? onpressed,
 }) {
-  return Container(
-    height: 44.0,
-    width: width,
-    // color: Colors.blue,
-    decoration:
-        BoxDecoration(color: colour,
-            borderRadius: BorderRadius.circular(14.0)),
-    child: MaterialButton(
+  return  MaterialButton(
+    color: blueColor,
+      height: 44.0,
+      minWidth: width,
       onPressed: onpressed,
-      child: Text("$text"),
-    ),
+      child: Text("Save",
+      style: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: Colors.white
+      ),
+      ),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(14.0),
+  side: BorderSide.none,
+    )
   );
 }
 
+
+Widget cancelBotton({
+  double width = 152.0,
+  VoidCallback? onpressed,
+}) {
+  return MaterialButton(
+      height: 44.0,
+      minWidth: width,
+      onPressed: onpressed,
+      child:const Text(
+        "Cancel",
+      style: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+        color: Colors.black
+      ),
+      ),
+  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(14.0),
+  side: BorderSide(color: Colors.black)
+  ),
+      );
+}
 Widget defaultBottonTologin(
     {String? text,
     Color? Backgroundcolur,

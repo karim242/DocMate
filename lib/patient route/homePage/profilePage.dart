@@ -106,10 +106,7 @@ class MyInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(title,style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold
-        ),),
+        Text(title,style: text20ForNameAdd),
         const SizedBox(height: 5),
         Container(
           padding: const EdgeInsets.all(10),

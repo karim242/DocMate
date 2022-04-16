@@ -1,10 +1,9 @@
 
+import 'package:docmate/Blocs/featureBloc/featureStates.dart';
+import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../constant.dart';
-import '../../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../../network_helper/cubit/networlStates.dart';
 import '../../../../../shared/sharedComponent.dart';
 
 class ADDAllergyScreen extends StatelessWidget {
@@ -13,11 +12,11 @@ class ADDAllergyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          
-          NetworkCubit cubit = NetworkCubit.get(context);
+
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
@@ -48,8 +47,8 @@ class ADDAllergyScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        defaultBotton(
-                            text: "Save", colour: blueColor,
+                        saveBotton(
+
                             onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.AddAllergyValue(
@@ -62,8 +61,7 @@ class ADDAllergyScreen extends StatelessWidget {
                         const SizedBox(
                           width: 16.0,
                         ),
-                        defaultBotton(
-                            text: "Cancel", colour: Colors.grey[100],
+                        cancelBotton(
                             onpressed: () {
                               Navigator.pop(context);
                             })

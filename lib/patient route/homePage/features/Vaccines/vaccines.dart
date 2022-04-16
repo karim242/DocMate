@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-import '../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../network_helper/cubit/networlStates.dart';
+import '../../../../Blocs/featureBloc/featureStates.dart';
+import '../../../../Blocs/featureBloc/featurecubit.dart';
 import 'addVaccines.dart';
 
 class VaccineScreen extends StatelessWidget {
@@ -13,10 +13,10 @@ class VaccineScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          NetworkCubit cubit = NetworkCubit.get(context);
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
               appBar: themeAppBar(context, value: "Vaccines"),
 

@@ -45,35 +45,21 @@ class MedicalAdvices extends StatelessWidget {
                   child: Column(
                     children: [
                       Expanded(
-                        child: GridView.count(
+                        child: GridView.builder(
                           physics: const BouncingScrollPhysics(),
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 1,
-                          children: [
-                            medicalAdvices(context,
-                               articles: data,
-                                index: 11),
-                            medicalAdvices(context,
-                                index: 12, articles: data),
-                            medicalAdvices(context,
-                                index: 13, articles: data),
-                            medicalAdvices(context,
-                                index: 14, articles: data),
-                            medicalAdvices(context,
-                                index: 15, articles: data),
-                            medicalAdvices(context,
-                                index: 16, articles: data),
-                            medicalAdvices(context,
-                                index: 17, articles: data),
-                            medicalAdvices(context,
-                                index: 18, articles: data),
-                            medicalAdvices(context,
-                                index: 19, articles: data),
-                            medicalAdvices(context,
-                               index: 5, articles: data),
-                          ],
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 1,
+                          ),
+                          itemBuilder: (BuildContext context, int index)
+                          =>   medicalAdvices(context,
+                              articles: data,
+                              index: index
+                          ),
+                          itemCount: 16,
+
                         ),
                       )
                     ],
