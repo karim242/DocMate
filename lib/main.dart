@@ -33,6 +33,7 @@ import 'package:docmate/patient%20route/signUp/confirm4digitScreen.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen2.dart';
 import 'package:docmate/selectUser/selectUser.dart';
+import 'package:docmate/selectUser/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Blocs/cubit/cubit.dart';
@@ -77,7 +78,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home: const SelectPage(),
+          home: const SplashScreen(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),

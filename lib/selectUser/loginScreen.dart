@@ -1,3 +1,5 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:flutter/material.dart';
 import 'package:docmate/constant.dart';
@@ -5,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Blocs/login/login_cubit.dart';
 import '../Blocs/login/login_states.dart';
 import '../doctor route/signUpDoctor1.dart';
-import '../patient route/signUp/signUpScreen2.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -134,15 +135,28 @@ final String value;
                               bottom: MediaQuery.of(context).size.height / 5,
                               top: MediaQuery.of(context).size.height / 200,
                             ),
-                            child: defaultBottonTologin(
-                                text: "Log In",
-                                Backgroundcolur: blueColor,
-                                textColor: whiteColor,
-                                height: MediaQuery.of(context).size.height / 14,
-                                width: MediaQuery.of(context).size.width / 1.5,
-                                onpressed: () {
-                                  if (cubit.formkey.currentState!.validate()) {}
-                                }),
+                            child: ConditionalBuilder(
+                                condition: true,
+                                builder: (context) =>defaultBottonTologin(
+                                    text: "Log In",
+                                    Backgroundcolur: blueColor,
+                                    textColor: whiteColor,
+                                    height: MediaQuery.of(context).size.height / 14,
+                                    width: MediaQuery.of(context).size.width / 1.5,
+                                    onpressed: () {
+                                      if (cubit.formkey.currentState!.validate())
+                                      {
+                                        cubit.patientLogin(
+                                            email: cubit.emailcontroller.text,
+                                            password: cubit.passwordcontroller.text,
+                                        );
+                                      }
+                                      else {print("Errorrrrrrrrr");}
+                                    }),
+                                fallback: (context)=>const Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                            ),
                           ),
                         ],
                       ),

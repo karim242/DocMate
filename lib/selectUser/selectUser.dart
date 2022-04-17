@@ -35,11 +35,11 @@ class SelectUser extends StatelessWidget {
                       Backgroundcolur: whiteColor,
                       textColor: blueColor,
                       onpressed: () {
-                        cubit.changedoctor();
-                         Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                            return LoginScreen(value: "ID",);
-                          },),);
+                        // cubit.changedoctor();
+                        //  Navigator.push(context,
+                        //   MaterialPageRoute(builder: (context) {
+                        //     return LoginScreen(value: "ID",);
+                        //   },),);
                       }
                   ),
                   const SizedBox(height: 24.0),
