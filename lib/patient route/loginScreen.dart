@@ -6,7 +6,9 @@ import 'package:docmate/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Blocs/login/login_cubit.dart';
 import '../Blocs/login/login_states.dart';
+import '../doctor route/doctorHomePage/selectdoctorpage.dart';
 import '../doctor route/signUpDoctor1.dart';
+import 'homePage/selectPage.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -98,7 +100,10 @@ final String value;
                             secure: false,
                             text: value,
                             ontap: () {},
-                            controller: cubit.emailcontroller,
+                            controller:
+                              value=="email"
+                          ? cubit.emailcontroller
+                              : cubit.idController,
                             height: MediaQuery.of(context).size.height / 14,
                             width: MediaQuery.of(context).size.width / 1.16,
                           ),
@@ -145,11 +150,27 @@ final String value;
                                     width: MediaQuery.of(context).size.width / 1.5,
                                     onpressed: () {
                                       if (cubit.formkey.currentState!.validate())
-                                      {
-                                        cubit.patientLogin(
-                                            email: cubit.emailcontroller.text,
-                                            password: cubit.passwordcontroller.text,
-                                        );
+                                        {
+                                          if(cubit.isuser)
+                                          {
+
+                                            Navigator.pushReplacement(
+                                              context,
+                                             MaterialPageRoute(builder: (context) {
+                                          return const DoctorSelectPage();
+                                        },),);
+                                          }
+                                          else{
+                                            cubit.patientLogin();
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(builder: (context) {
+                                                return const SelectPage();
+                                              },),);
+
+                                          }
+                                          print(cubit.emailcontroller.text);
+                                          print(cubit.passwordcontroller.text);
                                       }
                                       else {print("Errorrrrrrrrr");}
                                     }),

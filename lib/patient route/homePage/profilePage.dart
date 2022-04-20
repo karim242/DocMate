@@ -17,7 +17,7 @@ class PatientProfileScreen extends StatelessWidget {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-          // dynamic list= NetworkCubit.get(context).latestNew;
+
           NetworkCubit cubit = NetworkCubit.get(context);
           List<dynamic> data = cubit.latestNew;
           SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -31,9 +31,7 @@ class PatientProfileScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: MediaQuery
-                          .of(context)
-                          .size
-                          .height / 4,
+                          .of(context).size.height / 4,
                       decoration: const BoxDecoration(
                           color: Color(0xFF01B9C8),
                           borderRadius: BorderRadius.vertical(
@@ -57,7 +55,6 @@ class PatientProfileScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     Container(
                       margin: const EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 10),
-
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

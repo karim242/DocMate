@@ -1,20 +1,23 @@
-import 'package:docmate/Blocs/featureBloc/featureStates.dart';
-import 'package:docmate/patient%20route/homePage/features/labtest/labTest.dart';
-import 'package:docmate/patient%20route/homePage/features/medicalHistory/medicalHistory.dart';
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Blocs/featureBloc/featurecubit.dart';
-import '../../constant.dart';
 
-import '../../shared/sharedComponent.dart';
-import 'features/Vaccines/vaccines.dart';
-import 'features/blood&glucose/blood&glucose.dart';
-import 'features/radiology/radiology.dart';
-import 'features/surgery/surgery.dart';
+import '../../../Blocs/featureBloc/featureStates.dart';
+import '../../../Blocs/featureBloc/featurecubit.dart';
+import '../../../constant.dart';
+import '../../../patient route/homePage/features/Vaccines/vaccines.dart';
+import '../../../patient route/homePage/features/blood&glucose/blood&glucose.dart';
+import '../../../patient route/homePage/features/labtest/labTest.dart';
+import '../../../patient route/homePage/features/medicalHistory/medicalHistory.dart';
+import '../../../patient route/homePage/features/radiology/radiology.dart';
+import '../../../patient route/homePage/features/surgery/surgery.dart';
+import '../../../shared/sharedComponent.dart';
 
-class MedicalProfileScreen extends StatelessWidget {
-  const MedicalProfileScreen({Key? key}) : super(key: key);
-  static String medicalProfileID = "IdOfMedicalProfile";
+class DoctorMedicalProfileScreen extends StatelessWidget {
+  const DoctorMedicalProfileScreen({Key? key}) : super(key: key);
+  static String doctorMedicalProfileID = "IdOfMedicalProfile";
 
   @override
   Widget build(BuildContext context) {
@@ -22,21 +25,36 @@ class MedicalProfileScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           return Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              title: Center(
-                child: Text(
-                  "Medical Profile",
-                  style: textTitle22Style,
+
+            body: Column(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery
+                      .of(context).size.height / 3,
+                  decoration:  BoxDecoration(
+                      color: blueColor,
+                      borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(40))
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    //remove const when using api
+                    children:  [
+                      const CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(
+                              'https://via.placeholder.com/140x100')
+                      ),
+                      Text('profile name', style: textTitle22Style),
+                      const Text('email', style:  TextStyle(fontSize: 12),)
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: [
-                  Expanded(
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
                     child: GridView.count(
                       physics: const BouncingScrollPhysics(),
                       crossAxisCount: 2,
@@ -47,9 +65,9 @@ class MedicalProfileScreen extends StatelessWidget {
 
                         FeatureCard(
 
-                          ontap: (){
-                            Navigator.pushNamed(context, MedicalHistoryScreen.idMedicalHistory);
-                          },
+                            ontap: (){
+                              Navigator.pushNamed(context, MedicalHistoryScreen.idMedicalHistory);
+                            },
                             photoIconName: "medical_history",
                             text: "Medical History",
                             color: const Color(0xffDFC8FC)),
@@ -94,8 +112,8 @@ class MedicalProfileScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }

@@ -28,7 +28,7 @@ import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
-import 'package:docmate/patient%20route/selectPage.dart';
+import 'package:docmate/patient%20route/homePage/selectPage.dart';
 import 'package:docmate/patient%20route/signUp/confirm4digitScreen.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen2.dart';
@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) {
       return NetworkCubit()..getLatestNews();
         }),
-      BlocProvider(create: (context) {
+        BlocProvider(create: (context) {
         return FeatureCubit();
       }),
         BlocProvider(create: (context) {

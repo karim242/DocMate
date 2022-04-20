@@ -36,9 +36,9 @@ class DioHelperAPI
       BaseOptions(
           baseUrl: "https://student.valuxapps.com/api/",
           receiveDataWhenStatusError: true,
-        headers: {
-            "Accept":"application/json"
-        }
+       // headers: {
+        //    "Accept":"application/json"
+        //}
       ),
     );
   }
@@ -49,10 +49,9 @@ class DioHelperAPI
         required Map<String,dynamic> data,
       })async {
     return await dioo!.post(
-        url,
-        queryParameters: query,
-        data: data,
-    ) ;
-  }
+      url,
+      data: data
+    );
+        }
 
 }

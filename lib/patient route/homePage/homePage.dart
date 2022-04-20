@@ -134,51 +134,19 @@ class HomePageScreen extends StatelessWidget {
                                     context, MedicalAdvices.medicalAdvicesId);
                               }, sizedWidth: 4),
                           Expanded(
-                            child: GridView.count(
+                            child: GridView.builder(
                               physics: const BouncingScrollPhysics(),
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 1,
-                              children: [
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                  index: 19
-
-                                ),
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                  index: 18
-
-                                ),
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                    index: 12
-                                ),
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                    index: 14
-                                ),
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                    index: 15
-                                ),
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                    index: 16
-                                ),
-                                medicalAdvices(
-                                  context,
-                                  articles: data,
-                                    index: 11
-                                ),
-                              ],
+                              gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
+                                childAspectRatio: 1,
+                              ),
+                              itemBuilder: (BuildContext context, int index) =>
+                                  medicalAdvices(context,
+                                      articles: data, index: index +3),
+                              itemCount: 9,
                             ),
                           )
                         ]),

@@ -9,11 +9,13 @@ import 'package:bloc/bloc.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
-import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../doctor route/doctorHomePage/doctorHomePage.dart';
+import '../../doctor route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
+import '../../doctor route/doctorHomePage/myPatient/myPatients.dart';
 import '../dioHelper.dart';
 
 
@@ -43,22 +45,61 @@ class NetworkCubit extends Cubit<NetworkStates> {
 
 
 int selectedIndex = 0;
-  List<BottomNavigationBarItem> navList=[
+  List<BottomNavigationBarItem> patientNavList=[
     const BottomNavigationBarItem(
-      icon: Icon(
+      activeIcon: Icon(
         Icons.home,
+      ),
+      icon: Icon(
+        Icons.home_outlined,
       ),
       label: 'Home',
     ),
     const BottomNavigationBarItem(
+      activeIcon: Icon(
+        Icons.note_add,
+      ),
       icon: Icon(
         Icons.note_add_outlined,
       ),
       label: 'Medical Profile',
     ),
     const BottomNavigationBarItem(
-      icon:  Icon(
+      activeIcon:  Icon(
         Icons.person_sharp,
+      ),
+      icon:  Icon(
+        Icons.person_outline_rounded,
+      ),
+      label: 'Profile',
+    ),
+  ];
+
+  List<BottomNavigationBarItem> doctorNavList=[
+    const BottomNavigationBarItem(
+        activeIcon: Icon(
+           Icons.home,
+          ),
+      icon: Icon(
+        Icons.home_outlined,
+      ),
+      label: 'Home',
+    ),
+    const BottomNavigationBarItem(
+      activeIcon:  Icon(
+         Icons.groups_rounded,
+          ),
+      icon: Icon(
+        Icons.groups_outlined,
+      ),
+      label: 'My Patients',
+    ),
+    const BottomNavigationBarItem(
+      activeIcon:  Icon(
+        Icons.person_sharp,
+      ),
+      icon:  Icon(
+        Icons.person_outline_rounded,
       ),
       label: 'Profile',
     ),
@@ -67,10 +108,14 @@ int selectedIndex = 0;
     selectedIndex=index;
     emit(ChangeBottomNavState());
   }
-
-  List<Widget> screens=[
-   HomePageScreen(),
+  List<Widget> patientScreens=[
+    HomePageScreen(),
     const MedicalProfileScreen(),
+    const PatientProfileScreen(),
+  ];
+  List<Widget> doctorScreens=[
+    DoctorHomePageScreen(),
+    const MyPatientsPage(),
    const PatientProfileScreen(),
   ];
 
@@ -78,7 +123,8 @@ int selectedIndex = 0;
   void getLatestNews()
   {
     emit(NetworkLoadingStates());
-    DioHelper.getData(url: "v2/top-headlines",
+    DioHelper.getData(
+        url: "v2/top-headlines",
         query: {
           "country":"eg",
           "category":"health",
@@ -89,9 +135,7 @@ int selectedIndex = 0;
     {
       latestNew=value.data["articles"];
       //print(latestNew.toString());
-
         emit(NetworkSuccessStates());
-
     }
     ).catchError((error)
     {
