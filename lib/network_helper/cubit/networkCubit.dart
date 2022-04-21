@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../doctor route/doctorHomePage/doctorHomePage.dart';
+import '../../doctor route/doctorHomePage/doctorProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/myPatients.dart';
 import '../dioHelper.dart';
@@ -116,7 +117,7 @@ int selectedIndex = 0;
   List<Widget> doctorScreens=[
     DoctorHomePageScreen(),
     const MyPatientsPage(),
-   const PatientProfileScreen(),
+   const DoctorProfileScreen(),
   ];
 
   List<dynamic> latestNew=[];

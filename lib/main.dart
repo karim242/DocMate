@@ -1,5 +1,6 @@
 import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
+import 'package:docmate/doctor%20route/doctorHomePage/doctorProfile.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
@@ -111,6 +112,7 @@ class MyApp extends StatelessWidget {
             AddRadiologyScreen.idAddRadiology :(context)=> const AddRadiologyScreen(),
             EditProfile.editProfileID:(context)=>const EditProfile(),
             ChangePassword.idChangePassword:(context)=> const ChangePassword(),
+            DoctorProfileScreen.docProfileID:(context)=> const DoctorProfileScreen(),
 
           }),
     );
