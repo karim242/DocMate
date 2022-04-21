@@ -40,6 +40,7 @@ import 'Blocs/cubit/cubit.dart';
 import 'Blocs/login/login_cubit.dart';
 import 'Blocs/register/register_cubit.dart';
 import 'doctor route/signUpDoctor2.dart';
+import 'doctor route/doctorHomePage/selectdoctorpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home: const SplashScreen(),
+          home:const  DoctorSelectPage(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),

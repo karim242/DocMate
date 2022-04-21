@@ -16,7 +16,7 @@ import '../../shared/sharedComponent.dart';
 class DoctorHomePageScreen extends StatelessWidget {
   DoctorHomePageScreen({Key? key}) : super(key: key);
   static String IdDoctorHome = "IdOfDoctorHomePage";
-
+ var searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
@@ -25,7 +25,8 @@ class DoctorHomePageScreen extends StatelessWidget {
           NetworkCubit cubit = NetworkCubit.get(context);
           List<dynamic> data = cubit.latestNew;
 
-          return Scaffold(
+          return SafeArea(
+              child :Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
@@ -34,14 +35,16 @@ class DoctorHomePageScreen extends StatelessWidget {
                 width: 230,
                 decoration: BoxDecoration(
                   color: whiteColor,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: TextFormField(
+                  controller :searchController,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     suffixIcon: IconButton(
                       icon: Icon(Icons.clear),
                       onPressed: () {
+                     searchController.clear();
                       },
                     ),
                     hintText: "Search",
@@ -192,6 +195,7 @@ class DoctorHomePageScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }),
+              ),
           );
         });
   }
