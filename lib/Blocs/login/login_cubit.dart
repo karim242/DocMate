@@ -28,11 +28,11 @@ class LoginCubit extends Cubit<LoginStates>{
      response= value.data;
      print(response);
       emit(LoginSuccessStates());
-    }).catchError((error)
+    }
+    ).catchError((error)
     {
 
-      print("Error is ==> $error");
-
+      print("Error is ==> $error".toString());
       emit(LoginErrorStates());
     });
   }

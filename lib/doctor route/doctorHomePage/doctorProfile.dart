@@ -24,13 +24,17 @@ class DoctorProfileScreen extends StatelessWidget {
           ));
           return SafeArea(
             child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: blueColor,
+                elevation: 0,
+              ),
               body: ListView(
                   children:[ Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
                         height: MediaQuery
-                            .of(context).size.height / 4,
+                            .of(context).size.height / 5,
                         decoration: const BoxDecoration(
                             color: Color(0xFF01B9C8),
                             borderRadius: BorderRadius.vertical(

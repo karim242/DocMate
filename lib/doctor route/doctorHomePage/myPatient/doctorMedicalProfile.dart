@@ -1,6 +1,7 @@
 
 
 
+import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,15 +41,19 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
 
             body: Column(
               children: [
-                Container(
-                  width: double.infinity,
+                MaterialButton(
+                  color: blueColor,
+                  minWidth: double.infinity,
                   height: MediaQuery
                       .of(context).size.height / 5,
-                  decoration:  BoxDecoration(
-                      color: blueColor,
-                      borderRadius: const BorderRadius.vertical(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
                           bottom: Radius.circular(40))
                   ),
+                  onPressed: () {
+                    Navigator.pushNamed(context,
+                        PatientProfileScreen.profileID);
+                  },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

@@ -20,66 +20,68 @@ class PatientProfileScreen extends StatelessWidget {
 
           NetworkCubit cubit = NetworkCubit.get(context);
           List<dynamic> data = cubit.latestNew;
-          SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-              statusBarColor: Color(0xFF01B9C8)
+          SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
+              statusBarColor: blueColor
           ));
-          return SafeArea(
-            child: Scaffold(
-              body: ListView(
-                children:[ Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      height: MediaQuery
-                          .of(context).size.height / 4,
-                      decoration: const BoxDecoration(
-                          color: Color(0xFF01B9C8),
-                          borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(40))
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        //remove const when using api
-                        children: const [
-                          CircleAvatar(
-                              radius: 30,
-                              backgroundImage: NetworkImage(
-                                  'https://via.placeholder.com/140x100')
-                          ),
-                          Text('profile name', style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                          Text('email', style: TextStyle(fontSize: 12),)
-                        ],
-                      ),
+          return Scaffold(
+            appBar: AppBar(
+              backgroundColor: blueColor,
+              elevation: 0,
+            ),
+            body: ListView(
+              children:[ Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    height: MediaQuery
+                        .of(context).size.height / 5,
+                    decoration:  BoxDecoration(
+                        color: blueColor,
+                        borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(40))
                     ),
-                    const SizedBox(height: 20),
-                    Container(
-                      margin: const EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          MyInfoWidget(title: 'ID', info: 'info'),
-                          SizedBox(height: 10,),
-                          MyInfoWidget(title: 'Date Of Birth', info: 'info',),
-                          SizedBox(height: 10,),
-                          MyInfoWidget(title: 'Height', info: 'info',),
-                          SizedBox(height: 10,),
-                          MyInfoWidget(title: 'Weight', info: 'info',),
-                          SizedBox(height: 10,),
-                          MyInfoWidget(title: 'Blood type', info: 'info',),
-                          SizedBox(height: 10,),
-                          MyInfoWidget(title: 'Location', info: 'info',),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      //remove const when using api
+                      children: const [
+                        CircleAvatar(
+                            radius: 30,
+                            backgroundImage: NetworkImage(
+                                'https://via.placeholder.com/140x100')
+                        ),
+                        Text('profile name', style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                        Text('email', style: TextStyle(fontSize: 12),)
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    margin: const EdgeInsets.only(left: 15,top: 10,right: 15,bottom: 10),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        MyInfoWidget(title: 'ID', info: 'info'),
+                        SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Date Of Birth', info: 'info',),
+                        SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Height', info: 'info',),
+                        SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Weight', info: 'info',),
+                        SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Blood type', info: 'info',),
+                        SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Location', info: 'info',),
 
-                        ],
-                      ),
-                    )
+                      ],
+                    ),
+                  )
 
 
-                  ],
-                ),
-              ]
+                ],
               ),
+            ]
             ),
           );
         });
