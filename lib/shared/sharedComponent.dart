@@ -236,7 +236,7 @@ required VoidCallback ontap,
     minWidth: width,
     height: height,
     onPressed: ontap,
-    elevation: 6,
+    elevation: 5,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     color: color,
     child: Column(

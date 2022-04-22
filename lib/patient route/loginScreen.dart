@@ -100,10 +100,10 @@ final String value;
                             secure: false,
                             text: value,
                             ontap: () {},
-                            controller:
-                              value=="email"
-                          ? cubit.emailcontroller
-                              : cubit.idController,
+                            controller:cubit.emailcontroller,
+                          //     value=="email"
+                          // ? cubit.emailcontroller
+                          //     : cubit.idController,
                             height: MediaQuery.of(context).size.height / 14,
                             width: MediaQuery.of(context).size.width / 1.16,
                           ),
@@ -114,7 +114,7 @@ final String value;
                             secure: true,
                             text: 'Password',
                             ontap: () {},
-                            controller: cubit.passwordcontroller,
+                            controller: cubit.passwordController,
                             height: MediaQuery.of(context).size.height / 14,
                             width: MediaQuery.of(context).size.width / 1.16,
                           ),
@@ -141,7 +141,7 @@ final String value;
                               top: MediaQuery.of(context).size.height / 200,
                             ),
                             child: ConditionalBuilder(
-                                condition: true,
+                                condition: states is! LoadingLoginStates,
                                 builder: (context) =>defaultBottonTologin(
                                     text: "Log In",
                                     Backgroundcolur: blueColor,
@@ -151,26 +151,28 @@ final String value;
                                     onpressed: () {
                                       if (cubit.formkey.currentState!.validate())
                                         {
-                                          if(cubit.isuser)
-                                          {
-
-                                            Navigator.pushReplacement(
-                                              context,
-                                             MaterialPageRoute(builder: (context) {
-                                          return const DoctorSelectPage();
-                                        },),);
-                                          }
-                                          else{
-                                            cubit.patientLogin();
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(builder: (context) {
-                                                return const SelectPage();
-                                              },),);
-
-                                          }
+                                          cubit.patientLogin();
+                                        //   if(cubit.isuser)
+                                        //   {
+                                        //
+                                        //     Navigator.pushReplacement(
+                                        //       context,
+                                        //      MaterialPageRoute(builder: (context) {
+                                        //   return const DoctorSelectPage();
+                                        // },),);
+                                        //   }
+                                        //   else{
+                                        //
+                                        //     Navigator.pushReplacement(
+                                        //       context,
+                                        //       MaterialPageRoute(builder: (context) {
+                                        //         return const SelectPage();
+                                        //       },),);
+                                        //
+                                        //   }
+                                         // print(cubit.idController.text);
                                           print(cubit.emailcontroller.text);
-                                          print(cubit.passwordcontroller.text);
+                                          print(cubit.passwordController.text);
                                       }
                                       else {print("Errorrrrrrrrr");}
                                     }),

@@ -7,28 +7,37 @@ import 'login_states.dart';
 class LoginCubit extends Cubit<LoginStates>{
   LoginCubit() : super(InitLoginStates());
   static LoginCubit get(context)=>BlocProvider.of(context);
+  List<dynamic> response=[];
+
+  var emailcontroller= TextEditingController();
+  var passwordController= TextEditingController();
+  var idController= TextEditingController();
+
 
   void patientLogin()
   {
-    DioHelperAPI.postData(
+    emit(LoadingLoginStates());
+
+     DioHelperAPI.postData(
         url: "login",
         data: {
           "email": emailcontroller.text,
-          "password": passwordcontroller.text,
+          "password": passwordController.text,
         }
     ).then((value) {
-      print(value.data);
+     response= value.data;
+     print(response);
       emit(LoginSuccessStates());
     }).catchError((error)
     {
+
       print("Error is ==> $error");
+
       emit(LoginErrorStates());
     });
   }
 
-  var emailcontroller= TextEditingController();
-  var passwordcontroller= TextEditingController();
-  var idController= TextEditingController();
+
 
   //for change password
   var newPassword = TextEditingController();

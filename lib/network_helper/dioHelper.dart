@@ -30,25 +30,26 @@ import 'package:dio/dio.dart';
 
 class DioHelperAPI
 {
-  static Dio? dioo;
+   static   Dio? dio ;
   static init(){
-    dioo=Dio(
+    dio=Dio(
       BaseOptions(
           baseUrl: "https://student.valuxapps.com/api/",
           receiveDataWhenStatusError: true,
-       // headers: {
-        //    "Accept":"application/json"
-        //}
+       headers: {
+           "Accept":"application/json"
+        }
       ),
     );
   }
-  static Future <Response> postData(
+  static Future<Response> postData(
       {
         required String url,
         Map<String,dynamic>? query,
         required Map<String,dynamic> data,
-      })async {
-    return await dioo!.post(
+      })async
+  {
+    return await dio!.post(
       url,
       data: data
     );

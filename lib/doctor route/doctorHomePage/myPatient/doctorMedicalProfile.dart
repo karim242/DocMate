@@ -16,8 +16,16 @@ import '../../../patient route/homePage/features/surgery/surgery.dart';
 import '../../../shared/sharedComponent.dart';
 
 class DoctorMedicalProfileScreen extends StatelessWidget {
-  const DoctorMedicalProfileScreen({Key? key}) : super(key: key);
-  static String doctorMedicalProfileID = "IdOfMedicalProfile";
+  //static String doctorMedicalProfileID = "IdOfMedicalProfile";
+  String patientId ;
+  String patientName;
+  ImageProvider patientImage;
+
+  DoctorMedicalProfileScreen({Key? key,
+    required this.patientId,
+    required this.patientName,
+    required this.patientImage
+  }) : super(key: key) ;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +33,17 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           return Scaffold(
+            appBar: AppBar(
+              backgroundColor: blueColor,
+              elevation: 0,
+            ),
 
             body: Column(
               children: [
                 Container(
                   width: double.infinity,
                   height: MediaQuery
-                      .of(context).size.height / 3,
+                      .of(context).size.height / 5,
                   decoration:  BoxDecoration(
                       color: blueColor,
                       borderRadius: const BorderRadius.vertical(
@@ -42,19 +54,21 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     //remove const when using api
                     children:  [
-                      const CircleAvatar(
+                       CircleAvatar(
                           radius: 30,
-                          backgroundImage: NetworkImage(
-                              'https://via.placeholder.com/140x100')
+                          backgroundImage: patientImage
                       ),
-                      Text('profile name', style: textTitle22Style),
-                      const Text('email', style:  TextStyle(fontSize: 12),)
+                      Text(patientName,
+                          style: textTitle22Style),
+                       Text(patientId,
+                        style:
+                        const TextStyle(fontSize: 12),)
                     ],
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: const EdgeInsets.all(25.0),
                     child: GridView.count(
                       physics: const BouncingScrollPhysics(),
                       crossAxisCount: 2,
@@ -69,6 +83,7 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                               Navigator.pushNamed(context, MedicalHistoryScreen.idMedicalHistory);
                             },
                             photoIconName: "medical_history",
+                            textSize: 14.5,
                             text: "Medical History",
                             color: const Color(0xffDFC8FC)),
                         FeatureCard(

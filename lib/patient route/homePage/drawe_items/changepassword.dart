@@ -42,7 +42,7 @@ class ChangePassword extends StatelessWidget {
                   children: [
                     EditProfileTextField(
                       label: 'current password',
-                      controller: cubit.passwordcontroller,
+                      controller: cubit.passwordController,
                     ),
                     EditProfileTextField(
                       label: 'new password',

@@ -80,7 +80,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home:const  DoctorSelectPage(),
+          home:SplashScreen(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),

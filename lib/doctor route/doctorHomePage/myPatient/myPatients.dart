@@ -1,4 +1,5 @@
 
+import 'package:docmate/doctor%20route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../constant.dart';
@@ -20,8 +21,13 @@ class MyPatientsPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(13.0),
         child: ListView.builder(
-          itemBuilder: (BuildContext context, int index) => PatientCard(),
-          itemCount: 4,
+          itemBuilder: (BuildContext context, int index) =>
+              PatientCard(
+                patientName: "Karim Halawa",
+                patientId: "325461",
+                patientImage:AssetImage("images/4.png") ,
+              ),
+          itemCount: 1,
           
         ),
       ),
@@ -30,10 +36,16 @@ class MyPatientsPage extends StatelessWidget {
 }
 
 class PatientCard extends StatelessWidget {
-  const PatientCard({
-    Key? key,
-  }) : super(key: key);
 
+  late String patientId ;
+  late String? patientName;
+  late ImageProvider? patientImage;
+
+  PatientCard({Key? key,
+    required this.patientId,
+    required this.patientName,
+    required this.patientImage
+  }) : super(key: key) ;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,9 +54,16 @@ class PatientCard extends StatelessWidget {
         height: 80,
         onPressed: () {
 
+          Navigator.push(context, MaterialPageRoute(
+              builder:(context)=>DoctorMedicalProfileScreen(
+                patientName: patientName!,
+                patientId: patientId,
+                patientImage: patientImage!
+              ) ,
+          ),
+          );
         },
         elevation: 2,
-
         color: whiteColor,
         highlightColor: Colors.grey[200],
         shape: RoundedRectangleBorder(
@@ -62,7 +81,7 @@ class PatientCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Image(
-                  image: AssetImage("images/4.png"),
+                  image: patientImage!,
                   fit: BoxFit.fill,
                 ),
               ),
@@ -72,13 +91,13 @@ class PatientCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Kareem Halawa",style: TextStyle(
+                Text(patientName!,style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: blueColor,
                 ),),
                 SizedBox(height: 5,),
-                Text("123456",style: text15forDateandTime),
+                Text(patientId,style: text15forDateandTime),
               ],
             ),
             Spacer(),
