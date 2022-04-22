@@ -42,6 +42,12 @@ class NetworkCubit extends Cubit<NetworkStates> {
   var editBloodTypeController = TextEditingController();
   var editLocationController = TextEditingController();
 
+  //edit doctor profile text field controllers
+
+  var editDoctorNameController = TextEditingController();
+  var editDoctorLocationController = TextEditingController();
+  var editDoctorMobileController = TextEditingController();
+
 
 
 
