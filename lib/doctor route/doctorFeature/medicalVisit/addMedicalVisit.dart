@@ -1,16 +1,16 @@
 
-import 'package:docmate/Blocs/featureBloc/featureStates.dart';
-import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../constant.dart';
-import '../../../../shared/sharedComponent.dart';
+import '../../../Blocs/featureBloc/featureStates.dart';
+import '../../../Blocs/featureBloc/featurecubit.dart';
+import '../../../constant.dart';
+import '../../../shared/sharedComponent.dart';
 
-class AddLabTestScreen extends StatelessWidget {
-   AddLabTestScreen({Key? key}) : super(key: key);
+class AddMedicalVisits extends StatelessWidget {
+  AddMedicalVisits({Key? key}) : super(key: key);
   static String idAddLabTest = "IdAddLabTestScreen";
 
 
@@ -27,13 +27,13 @@ class AddLabTestScreen extends StatelessWidget {
               elevation: 0,
               title: Center(
                 child: Text(
-                  " Add Lab Test ",
+                  " Add Medical Visit",
                   style: textTitle22Style,
                 ),
               ),
             ),
             body: Form(
-              key: cubit.formkey,
+              //key: cubit.formkey,
               child : SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
@@ -46,14 +46,18 @@ class AddLabTestScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                Text(
+                                  "Prescription",
+                                  style: text20ForNameAdd,
+                                ),
                                 IconButton(
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
                                   onPressed: () {
                                    cubit.takePhoto(ImageSource.gallery
-                                   ).then((value) => cubit.labTestImageController=value as TextEditingController);
-
-                                   },
+                                    ).then((value) =>
+                                     cubit.imageOfPrescription=value as TextEditingController );
+                                  },
                                 ),
                                 const Text("Upload Image"),
                               ],
@@ -62,18 +66,14 @@ class AddLabTestScreen extends StatelessWidget {
                         ) ,
                         TextAndField(
                           ontap: (){},
-                          text : "Name",
-                          controller: cubit.labTestNameController,
+                          text : "Summary",
+                          controller: cubit.summaryController,
                         ),
+
                         TextAndField(
                           ontap: (){},
-                          text : "Type",
-                          controller: cubit.labTestTypeController,
-                        ),
-                        TextAndField(
-                          ontap: (){},
-                          text : "Location",
-                          controller: cubit.labTestLocationController,
+                          text : "Notes",
+                          controller: cubit.notesController,
                         ),
                         TextAndField(
                           ontap: (){
@@ -83,32 +83,32 @@ class AddLabTestScreen extends StatelessWidget {
                               firstDate: DateTime.utc(2020),
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
-                              cubit.dateLabTestController.text=DateFormat.yMd().format(value!);
+                              cubit.medicalVisitDateController.text=DateFormat.yMd().format(value!);
                             });
                           },
                           text : "Date",
-                          controller: cubit.dateLabTestController,
+                          controller: cubit.medicalVisitDateController,
                         ),
-                        SizedBox(height: 50,),
+                        const SizedBox(height: 50,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             saveBotton(
 
                                 onpressed: () {
-                                  if (cubit.formkey.currentState!.validate()) {
-
-                                    cubit.AddVaccineValue(
-                                      name : cubit.labTestNameController.value.text,
-                                      type : cubit.labTestTypeController.value.text,
-                                      location : cubit.labTestLocationController.value.text,
-                                      date : cubit.dateLabTestController.value.text,
+                                  if (cubit.formkey.currentState!.validate())
+                                  {
+                                    cubit.addMedicalVisit(
+                                      image: cubit.imageOfPrescription,
+                                      summary: cubit.summaryController,
+                                      notes: cubit.notesController,
+                                      date: cubit.medicalVisitDateController,
                                     );
                                     Navigator.pop(context);
-                                    cubit.labTestNameController.clear();
-                                    cubit.labTestTypeController.clear();
-                                    cubit.labTestLocationController.clear();
-                                    cubit.dateLabTestController.clear();
+                                    cubit.summaryController.clear();
+                                    cubit.notesController.clear();
+                                    cubit.medicalVisitDateController.clear();
+
 
                                   }
                                 }
@@ -124,8 +124,6 @@ class AddLabTestScreen extends StatelessWidget {
                         )
                       ]
                   ),
-
-
                 ),
               ),
             ),

@@ -42,7 +42,7 @@ class PatientCard extends StatelessWidget {
   late ImageProvider? patientImage;
 
   PatientCard({Key? key,
-    required this.patientId,
+     required this.patientId,
     required this.patientName,
     required this.patientImage
   }) : super(key: key) ;

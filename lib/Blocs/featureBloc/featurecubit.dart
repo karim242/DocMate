@@ -21,7 +21,24 @@ class FeatureCubit extends Cubit<FeatureStates> {
    return  pickedFile! ;
   }
 
+////For Medical Visit
+  var imageOfPrescription=TextEditingController();
+  var summaryController= TextEditingController();
+  var notesController= TextEditingController();
+  var medicalVisitDateController= TextEditingController();
 
+  List listOfSummary=[];
+  List listOfNotes=[];
+  List listOfMedicalVisitDate=[];
+  List<Image> listOfImagePrescription=[];
+  void addMedicalVisit({image,summary,notes,date})
+  {
+    listOfImagePrescription.add(image);
+    listOfSummary.add(summary.toString());
+    listOfNotes.add(notes.toString());
+    listOfMedicalVisitDate.add(date.toString());
+    emit(LoadingValueStates());
+  }
 ////for Vaccine
   var vaccineNameController= TextEditingController();
   var typeController= TextEditingController();
