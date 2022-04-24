@@ -17,7 +17,7 @@ class RadiologyScreen extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
               appBar: themeAppBar(context, value: "Radiology"),
               floatingActionButton:
@@ -28,11 +28,11 @@ class RadiologyScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        vaccineName:"Normal X-ray",
-                        type: " X-rays ",
-                        location: "MU ",
-                        date: "2021-4-28",
-                        vaccineImage: const NetworkImage(
+                        name:cubit.listOfRadiologyName[index],
+                        type: cubit.listOfRadiologyType[index],
+                        location: cubit.listOfRadiologyLocation[index],
+                        date: cubit.listOfRadiologyDate[index],
+                        image: const NetworkImage(
                             "https://encrypted-tbn0.gstatic.com/images?"
                                 "q=tbn:ANd9GcTfMDrgJ0RwpvOOi6b2qxMODpMXHdUOCIdL7g"
                                 "&usqp=CAU"
@@ -43,7 +43,7 @@ class RadiologyScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: 1,
+                  itemCount: cubit.listOfRadiologyName.length,
                 ),
               ));
         });

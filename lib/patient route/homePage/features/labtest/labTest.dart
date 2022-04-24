@@ -20,6 +20,7 @@ class LabTestScreen extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
+          FeatureCubit cubit = FeatureCubit.get(context);
 
           return Scaffold(
               appBar: themeAppBar(context, value: "Lab Test"),
@@ -32,11 +33,11 @@ class LabTestScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        vaccineName:"Sugar",
-                        type: " X-rays ",
-                        location: "MU ",
-                        date: "2021-4-28",
-                        vaccineImage: const NetworkImage(
+                        name:cubit.listOfLabTestName[index],
+                        type: cubit.listOfLabTestType[index],
+                        location: cubit.listOfLabTestLocation[index],
+                        date: cubit.listOfLabTestDate[index],
+                        image: const NetworkImage(
                             "https://encrypted-tbn0.gstatic.com/images?"
                                 "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
                                 "iX8N9HBZYAEPQ&usqp=CAU"
@@ -47,7 +48,7 @@ class LabTestScreen extends StatelessWidget {
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: 1,
+                  itemCount: cubit.listOfLabTestName.length,
                 ),
               ));
         });

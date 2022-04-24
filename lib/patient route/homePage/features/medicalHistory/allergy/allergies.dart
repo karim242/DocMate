@@ -41,7 +41,7 @@ class AllergyScreen extends StatelessWidget {
                               textcolor :blueColor,
                               ontap: () {},
                               photoIconName: "allergy",
-                              text: "* ${cubit.listOfallergyValue[index].toString()}",
+                              text: "* ${cubit.listOfallergyValue[index]}",
                               color: const Color(0xffFDF8FF)
                           );
                         },

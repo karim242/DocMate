@@ -44,7 +44,7 @@ class FamilyHistoryScreen extends StatelessWidget {
                             textcolor :blueColor,
                             ontap: () {},
                             photoIconName: "virus",
-                            text: " ${cubit.listOfDiseaseValue[index].toString().toUpperCase()}",
+                            text: cubit.listOfDiseaseValue[index].toUpperCase(),
                             color: const Color(0xffFDF8FF)
                         );
                       },

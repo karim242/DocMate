@@ -20,7 +20,29 @@ class FeatureCubit extends Cubit<FeatureStates> {
     final pickedFile = await picker.getImage(source: source);
    return  pickedFile! ;
   }
+/////for Dr Surgery
+  var surgeryNameController= TextEditingController();
+  var surgeryTypeController= TextEditingController();
+  var surgeryLocationController= TextEditingController();
+  var dateSurgeryController= TextEditingController();
+  // var surgeryImageController= TextEditingController() ;
+  ImageProvider<Object>? surgeryImage;
 
+  List listOfSurgeryName=[];
+  List listOfSurgeryType=[];
+  List listOfSurgeryLocation=[];
+  List listOfSurgeryDate=[];
+  List<ImageProvider<Object>> listOfSurgeryImage=[];
+  void addSurgeryValue(){
+   // listOfSurgeryImage.add(image);
+    listOfSurgeryName.add(surgeryNameController.value.text,);
+    listOfSurgeryType.add(surgeryTypeController.value.text, );
+listOfSurgeryLocation.add(surgeryLocationController.value.text,);
+    listOfSurgeryDate.add(dateSurgeryController.value.text,);
+    emit(LoadingValueStates());
+  }
+
+//////////////////////////////////////////////////
 ////For Medical Visit
   var imageOfPrescription=TextEditingController();
   var summaryController= TextEditingController();
@@ -31,14 +53,15 @@ class FeatureCubit extends Cubit<FeatureStates> {
   List listOfNotes=[];
   List listOfMedicalVisitDate=[];
   List<Image> listOfImagePrescription=[];
-  void addMedicalVisit({image,summary,notes,date})
+  void addMedicalVisit()
   {
-    listOfImagePrescription.add(image);
-    listOfSummary.add(summary.toString());
-    listOfNotes.add(notes.toString());
-    listOfMedicalVisitDate.add(date.toString());
+  //  listOfImagePrescription.add(imageOfPrescription,);
+              listOfSummary.add(summaryController,);
+                listOfNotes.add(notesController,);
+     listOfMedicalVisitDate.add(medicalVisitDateController,);
     emit(LoadingValueStates());
   }
+  /////////////////////////////////
 ////for Vaccine
   var vaccineNameController= TextEditingController();
   var typeController= TextEditingController();
@@ -50,11 +73,11 @@ class FeatureCubit extends Cubit<FeatureStates> {
   List listOfVaccineTypeValue=[];
   List listOfVaccineLocationValue=[];
   List listOfVaccineDateValue=[];
-  void AddVaccineValue({name,type,location,date}){
-    listOfVaccineNameValue.add(name.toString());
-    listOfVaccineTypeValue.add(type.toString());
-    listOfVaccineLocationValue.add(location.toString());
-    listOfVaccineDateValue.add(date.toString());
+  void AddVaccineValue(){
+        listOfVaccineNameValue.add(vaccineNameController.value.text,);
+        listOfVaccineTypeValue.add(typeController.value.text,);
+    listOfVaccineLocationValue.add(locationController.value.text,);
+        listOfVaccineDateValue.add(dateVaccineController.value.text,);
     emit(LoadingValueStates());
   }
 /////////////////////////////////////////////////////////////////
@@ -62,18 +85,19 @@ class FeatureCubit extends Cubit<FeatureStates> {
   var diseaseFamilyController= TextEditingController();
   var relationFamilyController= TextEditingController();
   List listOfDiseaseValue=[];
-  void AddDiseaseValue(value){
-    listOfDiseaseValue.add(value.toString());
+  void AddDiseaseValue(){
+    listOfDiseaseValue.add(diseaseFamilyController.value.text);
     emit(LoadingValueStates());
   }
   ////////////////////////////////////////
 
   ////for Allergy
   var allergyController= TextEditingController();
-  void AddAllergyValue(value){
-    listOfallergyValue.add(value.toString());
+  List listOfallergyValue=[];
+  void AddAllergyValue(){
+    listOfallergyValue.add(allergyController.value.text);
     emit(LoadingValueStates());
-  }List listOfallergyValue=[];
+  }
 ////////////////////////////////////////////////////////////////
   ////for radiology
   var radiologyNameController= TextEditingController();
@@ -81,6 +105,19 @@ class FeatureCubit extends Cubit<FeatureStates> {
   var radiologyLocationController= TextEditingController();
   var dateRadiologyController= TextEditingController();
   var radiologyImageController= TextEditingController();
+  List listOfRadiologyName=[];
+  List listOfRadiologyType=[];
+  List listOfRadiologyLocation=[];
+  List listOfRadiologyDate=[];
+  //List<ImageProvider<Object>> listOfSurgeryImage=[];
+  void addRadiologyValue(){
+    // listOfSurgeryImage.add(image);
+      listOfRadiologyName.add(radiologyNameController.value.text,);
+      listOfRadiologyType.add(radiologyTypeController.value.text, );
+     listOfRadiologyLocation.add(radiologyLocationController.value.text,);
+      listOfRadiologyDate.add(dateRadiologyController.value.text,);
+    emit(LoadingValueStates());
+  }
   ////////////////////
 ////for labtest
   var labTestNameController= TextEditingController();
@@ -88,18 +125,51 @@ class FeatureCubit extends Cubit<FeatureStates> {
   var labTestLocationController= TextEditingController();
   var dateLabTestController= TextEditingController();
   var labTestImageController= TextEditingController();
+
+  List listOfLabTestName=[];
+  List listOfLabTestType=[];
+  List listOfLabTestLocation=[];
+  List listOfLabTestDate=[];
+  //List<ImageProvider<Object>> listOfSurgeryImage=[];
+  void addLabTestValue(){
+    // listOfSurgeryImage.add(image);
+        listOfLabTestName.add(labTestNameController.value.text,);
+        listOfLabTestType.add(labTestTypeController.value.text,);
+    listOfLabTestLocation.add(labTestLocationController.value.text,);
+        listOfLabTestDate.add(dateLabTestController.value.text,);
+    emit(LoadingValueStates());
+  }
   //========================
 //for blood
-  var measurementPressureController1= TextEditingController();
-  var measurementPressureController2= TextEditingController();
+  /////for glucose
   var measurementGlucoseController= TextEditingController();
   List<String> types = ['Random','Fasting','HbA1c'];
   String? selectedType;
-  var datePressureController= TextEditingController();
   var dateGlucoseController= TextEditingController();
-
-
-
+  List listOfGlucoseMeasure=[];
+  List listOfGlucoseDate=[];
+  List listOfGlucoseType=[];
+  void addGlucoseValue()
+  {
+    listOfGlucoseMeasure.add(measurementGlucoseController.value.text);
+    listOfGlucoseType.add(selectedType.toString());
+    listOfGlucoseDate.add(dateGlucoseController.value.text);
+    emit(LoadingValueStates());
+  }
+ ////for Pressure
+  var measurementPressureController1= TextEditingController();
+  var measurementPressureController2= TextEditingController();
+  var datePressureController= TextEditingController();
+  List listOfPressureMeasure1=[];
+  List listOfPressureMeasure2=[];
+  List listOfPressureDate=[];
+  void addPressureValue()
+  {
+    listOfPressureMeasure1.add(measurementPressureController1.value.text);
+    listOfPressureMeasure2.add(measurementPressureController2.value.text);
+    listOfPressureDate.add(datePressureController.value.text);
+    emit(LoadingValueStates());
+  }
 
 
 

@@ -42,7 +42,7 @@ class ADDAllergyScreen extends StatelessWidget {
                     ),
 
                      SizedBox(
-                      height: MediaQuery.of(context).size.height/1.8,
+                      height: MediaQuery.of(context).size.height/1.6,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -51,8 +51,7 @@ class ADDAllergyScreen extends StatelessWidget {
 
                             onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
-                                cubit.AddAllergyValue(
-                                    cubit.allergyController.value.text);
+                                cubit.AddAllergyValue();
                                 Navigator.pop(context);
                                 cubit.allergyController.clear();
                               }

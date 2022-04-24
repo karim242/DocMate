@@ -28,57 +28,72 @@ class BloodPressureScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount: 2,
-                itemBuilder: (context, index)
-                => Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 3,),
-                    Row(
-                      children: [
-                        line(context),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "2021-10-16",style:text15forDateandTime
-                          ),
-                        ),
-                        line(context),
-
-                      ],
+                itemCount: cubit.listOfPressureMeasure1.length,
+                itemBuilder: (context, index) =>
+                    pressureWidget(context,
+                        measure1: cubit.listOfPressureMeasure1[index],
+                        measure2: cubit.listOfPressureMeasure2[index],
+                        date: cubit.listOfPressureDate[index]
                     ),
-                    const SizedBox(height: 5,),
-                    MaterialButton(
-                      minWidth: 160,
-                      height: 100,
-                      onPressed: (){},
-                      elevation: 6,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      color: whiteColor,
-                      child: Column(
-                          children: [
-                            Text("85/130",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  color: blueColor
-                              ),),
-                            const SizedBox(height: 5,),
 
-                          ]
 
-                      ),
-                    ),
-                  ]
               ),
-
-
-            ),
             ),
           );
         }
     );
   }
 }
+
+Widget pressureWidget(BuildContext context,{
+  required String measure1,
+  required String measure2,
+  required String date,
+
+}) {
+    return Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 3,),
+                  Row(
+                    children: [
+                      line(context),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                            date,
+                            style:text15forDateandTime
+                        ),
+                      ),
+                      line(context),
+
+                    ],
+                  ),
+                  const SizedBox(height: 5,),
+                  MaterialButton(
+                    minWidth: 160,
+                    height: 100,
+                    onPressed: (){},
+                    elevation: 6,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    color: whiteColor,
+                    child: Column(
+                        children: [
+                          Text("$measure1/$measure2",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                color: blueColor
+                            ),),
+                          const SizedBox(height: 5,),
+
+                        ]
+
+                    ),
+                  ),
+                ]
+            );
+  }
+
 

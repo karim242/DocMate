@@ -3,21 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../Blocs/featureBloc/featureStates.dart';
-import '../../../../Blocs/featureBloc/featurecubit.dart';
-import '../../../../constant.dart';
-import '../../../../shared/sharedComponent.dart';
+import '../../../Blocs/featureBloc/featureStates.dart';
+import '../../../Blocs/featureBloc/featurecubit.dart';
+import '../../../constant.dart';
+import '../../../shared/sharedComponent.dart';
 
-class AddRadiologyScreen extends StatelessWidget {
-  const AddRadiologyScreen({Key? key}) : super(key: key);
-  static String idAddRadiology = "IdAddRadiologyScreen";
+class AddSurgeryScreen extends StatelessWidget {
+  const AddSurgeryScreen({Key? key}) : super(key: key);
+  static String idAddSurgery = "IdSurgeryScreen";
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: AppBar(
@@ -25,14 +24,14 @@ class AddRadiologyScreen extends StatelessWidget {
               elevation: 0,
               title: Center(
                 child: Text(
-                  " Add Radiology ",
+                  " Add Surgery ",
                   style: textTitle22Style,
                 ),
               ),
             ),
             body: Form(
               key: cubit.formkey,
-              child : SingleChildScrollView(
+              child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
@@ -48,75 +47,69 @@ class AddRadiologyScreen extends StatelessWidget {
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
                                   onPressed: () {
-                                    cubit.takePhoto(ImageSource.gallery);
+                                    cubit.takePhoto(ImageSource.gallery).then(
+                                        (value) =>
+                                            cubit.surgeryImage = value as ImageProvider<Object>?  );
                                   },
                                 ),
                                 const Text("Upload Image"),
                               ],
                             ),
                           ),
-                        ) ,
-                        TextAndField(
-                          ontap: (){},
-                          text : "Name",
-                          controller: cubit.radiologyNameController,
                         ),
                         TextAndField(
-                          ontap: (){},
-                          text : "Type",
-                          controller: cubit.radiologyTypeController,
+                          ontap: () {},
+                          text: "Name",
+                          controller: cubit.surgeryNameController,
                         ),
                         TextAndField(
-                          ontap: (){},
-                          text : "Location",
-                          controller: cubit.radiologyLocationController,
+                          ontap: () {},
+                          text: "Type",
+                          controller: cubit.surgeryTypeController,
                         ),
                         TextAndField(
-                          ontap: (){
+                          ontap: () {},
+                          text: "Location",
+                          controller: cubit.surgeryLocationController,
+                        ),
+                        TextAndField(
+                          ontap: () {
                             showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime.utc(2020),
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
-                              cubit.dateRadiologyController.text=DateFormat.yMd().format(value!);
+                              cubit.dateSurgeryController.text =
+                                  DateFormat.yMd().format(value!);
                             });
                           },
-                          text : "Date",
-                          controller: cubit.dateRadiologyController,
+                          text: "Date",
+                          controller: cubit.dateSurgeryController,
                         ),
                         gap4,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            saveBotton(
-
-                                onpressed: () {
-                                  if (cubit.formkey.currentState!.validate()) {
-
-                                    cubit.addRadiologyValue();
-                                    Navigator.pop(context);
-                                    cubit.radiologyNameController.clear();
-                                    cubit.radiologyTypeController.clear();
-                                    cubit.radiologyLocationController.clear();
-                                    cubit.dateRadiologyController.clear();
-
-                                  }
-                                }
-                            ),
+                            saveBotton(onpressed: () {
+                              if (cubit.formkey.currentState!.validate()) {
+                                cubit.addSurgeryValue();
+                                Navigator.pop(context);
+                                cubit.surgeryNameController.clear();
+                                cubit.surgeryTypeController.clear();
+                                cubit.surgeryLocationController.clear();
+                                cubit.dateSurgeryController.clear();
+                              }
+                            }),
                             const SizedBox(
                               width: 16.0,
                             ),
-                            cancelBotton(
-                                onpressed: () {
-                                  Navigator.pop(context);
-                                })
+                            cancelBotton(onpressed: () {
+                              Navigator.pop(context);
+                            })
                           ],
                         )
-                      ]
-                  ),
-
-
+                      ]),
                 ),
               ),
             ),

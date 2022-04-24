@@ -1,6 +1,8 @@
 
 
 
+import 'package:docmate/doctor%20route/doctorFeature/medicalVisit/addMedicalVisit.dart';
+import 'package:docmate/doctor%20route/doctorFeature/medicalVisit/medicalVisit.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,19 +15,19 @@ import '../../../patient route/homePage/features/blood&glucose/blood&glucose.dar
 import '../../../patient route/homePage/features/labtest/labTest.dart';
 import '../../../patient route/homePage/features/medicalHistory/medicalHistory.dart';
 import '../../../patient route/homePage/features/radiology/radiology.dart';
-import '../../../patient route/homePage/features/surgery/surgery.dart';
 import '../../../shared/sharedComponent.dart';
+import '../../doctorFeature/surgery/surgery.dart';
 
 class DoctorMedicalProfileScreen extends StatelessWidget {
   //static String doctorMedicalProfileID = "IdOfMedicalProfile";
   String patientId ;
-  String patientName;
-  ImageProvider patientImage;
+  String pName;
+ ImageProvider patientImage;
 
   DoctorMedicalProfileScreen({Key? key,
     required this.patientId,
-    required this.patientName,
-    required this.patientImage
+    required this.pName,
+   required this.patientImage
   }) : super(key: key) ;
 
   @override
@@ -63,7 +65,7 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                           radius: 30,
                           backgroundImage: patientImage
                       ),
-                      Text(patientName,
+                      Text(pName,
                           style: textTitle22Style),
                        Text(patientId,
                         style:
@@ -92,7 +94,10 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             text: "Medical History",
                             color: const Color(0xffDFC8FC)),
                         FeatureCard(
-                            ontap: (){},
+                            ontap: (){
+                              Navigator.pushNamed(context,
+                                  DrMedicalVisit.idDrMedicalVisit);
+                            },
                             photoIconName: "medical_Visit",
                             text: "Medical Visit",
                             color: const Color(0xffFFCCA0)),
@@ -125,7 +130,9 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             color: const Color(0xffFFB5B5)),
                         FeatureCard(
                             ontap: (){
-                              Navigator.pushNamed(context, SurgeryScreen.idSurgery );
+                              Navigator.pushNamed(context,
+                                  DoctorSurgeryScreen.idDoctorSurgery
+                              );
                             },
                             photoIconName: "surgery",
                             text: "Surgery", color: const Color(0xffBAFFB5)),

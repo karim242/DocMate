@@ -56,9 +56,9 @@ class PatientCard extends StatelessWidget {
 
           Navigator.push(context, MaterialPageRoute(
               builder:(context)=>DoctorMedicalProfileScreen(
-                patientName: patientName!,
+                pName: patientName!,
                 patientId: patientId,
-                patientImage: patientImage!
+               patientImage: patientImage!
               ) ,
           ),
           );

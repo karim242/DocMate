@@ -10,8 +10,8 @@ import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
 
 class AddMedicalVisits extends StatelessWidget {
-  AddMedicalVisits({Key? key}) : super(key: key);
-  static String idAddLabTest = "IdAddLabTestScreen";
+  const AddMedicalVisits({Key? key}) : super(key: key);
+  static String idAddMedicalVisit = "idAddMedicalVisit";
 
 
 
@@ -33,23 +33,25 @@ class AddMedicalVisits extends StatelessWidget {
               ),
             ),
             body: Form(
-              //key: cubit.formkey,
+              key: cubit.formkey,
               child : SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+
                       children: [
+                        Text(
+                          "Prescription",
+                          style: text20ForNameAdd,
+                        ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(35, 24, 35, 24),
                           child: Center(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                             crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  "Prescription",
-                                  style: text20ForNameAdd,
-                                ),
                                 IconButton(
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
@@ -69,7 +71,7 @@ class AddMedicalVisits extends StatelessWidget {
                           text : "Summary",
                           controller: cubit.summaryController,
                         ),
-
+////Still don't put Active Sub
                         TextAndField(
                           ontap: (){},
                           text : "Notes",
@@ -98,12 +100,7 @@ class AddMedicalVisits extends StatelessWidget {
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate())
                                   {
-                                    cubit.addMedicalVisit(
-                                      image: cubit.imageOfPrescription,
-                                      summary: cubit.summaryController,
-                                      notes: cubit.notesController,
-                                      date: cubit.medicalVisitDateController,
-                                    );
+                                    cubit.addMedicalVisit();
                                     Navigator.pop(context);
                                     cubit.summaryController.clear();
                                     cubit.notesController.clear();

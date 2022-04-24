@@ -19,7 +19,7 @@ class GlucoseScreen extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: themeAppBar(context, value: " Glucose"),
             floatingActionButton: buildFloatingActionButton(
@@ -28,53 +28,12 @@ class GlucoseScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount: 2,
+                itemCount: cubit.listOfGlucoseMeasure.length,
                 itemBuilder: (context, index)
-                => Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 3,),
-                      Row(
-                        children: [
-                          line(context),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "2021-10-16",style:text15forDateandTime
-                            ),
-                          ),
-                          line(context),
-
-                        ],
-                      ),
-                      const SizedBox(height: 5,),
-                      MaterialButton(
-                        minWidth: 160,
-                        height: 100,
-                        onPressed: (){},
-                        elevation: 6,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        color: whiteColor,
-                        child: Column(
-                            children: [
-                              Text(" 85 ",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    color: blueColor
-                                ),),
-                              const SizedBox(height: 5,),
-                              Text(
-                                  "Type: Random",
-                                  style: text15forDateandTime
-                              ),
-                              const SizedBox(height: 5,),
-                            ]
-
-                        ),
-                      ),
-                    ]
+                => glucoseWidget(context,
+                    date: cubit.listOfGlucoseDate[index],
+                    measure: cubit.listOfGlucoseMeasure[index],
+                    type: cubit.listOfGlucoseType[index],
                 ),
 
 
@@ -84,4 +43,63 @@ class GlucoseScreen extends StatelessWidget {
         }
     );
   }
+
+
+}
+
+Widget glucoseWidget(context,
+{
+required String measure,
+required String date,
+  required String type,
+})
+{
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 3,),
+          Row(
+            children: [
+              line(context),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                    date,
+                    style:text15forDateandTime
+                ),
+              ),
+              line(context),
+
+            ],
+          ),
+          const SizedBox(height: 5,),
+          MaterialButton(
+            minWidth: 160,
+            height: 100,
+            onPressed: (){},
+            elevation: 6,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+            color: whiteColor,
+            child: Column(
+                children: [
+                  Text(
+                    measure.toString(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: blueColor
+                    ),),
+                  const SizedBox(height: 5,),
+                  Text(
+                      "Type: $type",
+                      style: text15forDateandTime
+                  ),
+                  const SizedBox(height: 5,),
+                ]
+
+            ),
+          ),
+        ]
+    );
 }

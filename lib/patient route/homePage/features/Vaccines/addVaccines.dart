@@ -86,7 +86,7 @@ class AddVaccineScreen extends StatelessWidget {
                         text : "Date",
                         controller: cubit.dateVaccineController,
                       ),
-                      SizedBox(height: 50,),
+                      SizedBox(height: 70,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -95,12 +95,7 @@ class AddVaccineScreen extends StatelessWidget {
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
 
-                                  cubit.AddVaccineValue(
-                                    name : cubit.vaccineNameController.value.text,
-                                    type : cubit.typeController.value.text,
-                                    location : cubit.locationController.value.text,
-                                    date : cubit.dateVaccineController.value.text,
-                                  );
+                                  cubit.AddVaccineValue();
                                   Navigator.pop(context);
                                   cubit.vaccineNameController.clear();
                                   cubit.typeController.clear();

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 Color blueColor = const Color(0xff01B9c8);
 Color whiteColor = const Color(0xFFFDF8FF);
 
+SizedBox gap4 =  const SizedBox(height: 70,);
 TextStyle text15forDateandTime = const
 TextStyle(
     fontSize: 15,
@@ -71,9 +72,10 @@ Widget saveBotton({
       height: 44.0,
       minWidth: width,
       onPressed: onpressed,
-      child: Text("Save",
+      child: const Text(
+        "Save",
       style: TextStyle(
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: FontWeight.w500,
         color: Colors.white
       ),
@@ -94,17 +96,17 @@ Widget cancelBotton({
       height: 44.0,
       minWidth: width,
       onPressed: onpressed,
-      child:const Text(
+      child: Text(
         "Cancel",
       style: TextStyle(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.w500,
-        color: Colors.black
+        color: Colors.grey[600]
       ),
       ),
   shape: RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(14.0),
-  side: BorderSide(color: Colors.black)
+  side: BorderSide(color: Colors.grey)
   ),
       );
 }

@@ -40,6 +40,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Blocs/cubit/cubit.dart';
 import 'Blocs/login/login_cubit.dart';
 import 'Blocs/register/register_cubit.dart';
+import 'doctor route/doctorFeature/medicalVisit/addMedicalVisit.dart';
+import 'doctor route/doctorFeature/medicalVisit/medicalVisit.dart';
+import 'doctor route/doctorFeature/surgery/addSurgery.dart';
+import 'doctor route/doctorFeature/surgery/surgery.dart';
 import 'doctor route/signUpDoctor2.dart';
 import 'doctor route/doctorHomePage/selectdoctorpage.dart';
 
@@ -113,6 +117,10 @@ class MyApp extends StatelessWidget {
             EditProfile.editProfileID:(context)=>const EditProfile(),
             ChangePassword.idChangePassword:(context)=> const ChangePassword(),
             DoctorProfileScreen.docProfileID:(context)=> const DoctorProfileScreen(),
+            DrMedicalVisit.idDrMedicalVisit :(context) =>const DrMedicalVisit(),
+            AddMedicalVisits.idAddMedicalVisit :(context)=> const AddMedicalVisits(),
+            DoctorSurgeryScreen.idDoctorSurgery :(context)=>  const DoctorSurgeryScreen(),
+            AddSurgeryScreen.idAddSurgery : (context)=> AddSurgeryScreen()
 
           }),
     );

@@ -1,14 +1,15 @@
-import 'package:docmate/Blocs/featureBloc/featureStates.dart';
-import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
+
+import 'package:docmate/doctor%20route/doctorFeature/surgery/addSurgery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../Blocs/featureBloc/featureStates.dart';
+import '../../../Blocs/featureBloc/featurecubit.dart';
+import '../../../shared/sharedComponent.dart';
 
-import '../../../../shared/sharedComponent.dart';
-
-class SurgeryScreen extends StatelessWidget {
-  const SurgeryScreen({Key? key}) : super(key: key);
-  static String idSurgery = "IdSurgeryScreen";
+class DoctorSurgeryScreen extends StatelessWidget {
+  const DoctorSurgeryScreen({Key? key}) : super(key: key);
+  static String idDoctorSurgery = "IdDrSurgeryScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,9 @@ class SurgeryScreen extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
               appBar: themeAppBar(context, value: "Surgery"),
+              floatingActionButton: buildFloatingActionButton(context,
+              routeName:AddSurgeryScreen.idAddSurgery),
+
               body: Padding(
                 padding: const EdgeInsets.all(18.0),
                 child: ListView.separated(
@@ -35,11 +39,11 @@ class SurgeryScreen extends StatelessWidget {
                                 "pathology-An-example-deidentified-to.png"),
                       ),
                   separatorBuilder: (context, index) =>
-                      Container(
+                      const SizedBox(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: 1,
+                  itemCount: cubit.listOfSurgeryName.length,
                 ),
               ));
         });

@@ -89,7 +89,7 @@ class AddLabTestScreen extends StatelessWidget {
                           text : "Date",
                           controller: cubit.dateLabTestController,
                         ),
-                        SizedBox(height: 50,),
+                        gap4,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -98,12 +98,7 @@ class AddLabTestScreen extends StatelessWidget {
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
 
-                                    cubit.AddVaccineValue(
-                                      name : cubit.labTestNameController.value.text,
-                                      type : cubit.labTestTypeController.value.text,
-                                      location : cubit.labTestLocationController.value.text,
-                                      date : cubit.dateLabTestController.value.text,
-                                    );
+                                    cubit.addLabTestValue();
                                     Navigator.pop(context);
                                     cubit.labTestNameController.clear();
                                     cubit.labTestTypeController.clear();

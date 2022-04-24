@@ -47,7 +47,7 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                     ),
 
                     SizedBox(
-                      height: MediaQuery.of(context).size.height/2.5
+                      height: MediaQuery.of(context).size.height/2
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +56,7 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
 
                             onpressed: () {
                               if(cubit.formkey.currentState!.validate()){
-                              cubit.AddDiseaseValue(cubit.diseaseFamilyController.value.text);
+                              cubit.AddDiseaseValue();
                               Navigator.pop(context);
                               cubit.diseaseFamilyController.clear();
                               }

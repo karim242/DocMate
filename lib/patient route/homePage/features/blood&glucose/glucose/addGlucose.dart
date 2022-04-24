@@ -86,25 +86,25 @@ class ADDGlucoseScreen extends StatelessWidget {
                               firstDate: DateTime.utc(2020),
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
-                              cubit.datePressureController.text=
+                              cubit.dateGlucoseController.text=
                                   DateFormat.yMd().format(value!);
                             });
                           }
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height/3.3,
+                        height: MediaQuery.of(context).size.height/2.8,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           saveBotton(
                               onpressed: () {
-                                // if (cubit.formkey.currentState!.validate()) {
-                                //   cubit.AddAllergyValue(
-                                //       cubit.allergyController.value.text);
-                                //   Navigator.pop(context);
-                                //   cubit.allergyController.clear();
-                                // }
+                                if (cubit.formkey.currentState!.validate()) {
+                                  cubit.addGlucoseValue();
+                                   Navigator.pop(context);
+                                cubit.measurementGlucoseController.clear();
+                                cubit.dateGlucoseController.clear();
+                                }
                               }
                           ),
                           const SizedBox(

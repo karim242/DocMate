@@ -334,11 +334,12 @@ Widget TextAndField(
 
 Widget ThemeCard(context,
     {
-      required String vaccineName,
+      required String name,
       required String type,
       required String location,
       required String date,
-      required ImageProvider vaccineImage}) {
+      required ImageProvider<Object> image})
+{
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Container(
@@ -358,7 +359,7 @@ Widget ThemeCard(context,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                vaccineName,
+                name,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -409,7 +410,7 @@ flex: 2
                 borderRadius: BorderRadius.circular(16.0),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: vaccineImage,
+                  image: image,
                 ),
               ),
             ),
@@ -450,8 +451,10 @@ Widget line(context) {
 
 Container fieldForMeasurement({required controller,}) {
   return Container(
-    width: 48,height: 44,
+
+    width: 60,height: 50,
     child: TextFormField(
+
       cursorHeight: 20,
       controller: controller,
       cursorColor: Colors.black,

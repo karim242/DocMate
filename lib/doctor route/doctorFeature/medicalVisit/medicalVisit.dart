@@ -8,10 +8,11 @@ import '../../../Blocs/featureBloc/featureStates.dart';
 import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
+import 'addMedicalVisit.dart';
 
-class LabTestScreen extends StatelessWidget {
-  const LabTestScreen({Key? key}) : super(key: key);
-  static String idLabTest = "IdLabTestScreen";
+class DrMedicalVisit extends StatelessWidget {
+  const DrMedicalVisit({Key? key}) : super(key: key);
+  static String idDrMedicalVisit = "idDrMedicalVisit";
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +23,10 @@ class LabTestScreen extends StatelessWidget {
               appBar: themeAppBar(context, value: "Medical Visit"),
               floatingActionButton:
               buildFloatingActionButton(context,
-                  routeName: ""
+                  routeName: AddMedicalVisits.idAddMedicalVisit,
               ),
               body: Padding(
-                padding: const EdgeInsets.all(18.0),
+                padding: const EdgeInsets.all(13.0),
                 child: ListView.builder(
                     itemBuilder: (context, index) => MedicalVisitCard(
                         patientData:"2022/10/10" ,

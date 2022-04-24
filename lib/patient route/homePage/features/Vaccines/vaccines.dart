@@ -30,16 +30,11 @@ class VaccineScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                          vaccineName:
-                          " ${cubit.listOfVaccineNameValue[index].toString()}",
-                          type: " ${cubit.listOfVaccineTypeValue[index]
-                              .toString()}",
-                          location:
-                          " ${cubit.listOfVaccineLocationValue[index]
-                              .toString()}",
-                          date: " ${cubit.listOfVaccineDateValue[index]
-                              .toString()}",
-                          vaccineImage: const NetworkImage(
+                          name: cubit.listOfVaccineNameValue[index],
+                          type: cubit.listOfVaccineTypeValue[index],
+                          location: cubit.listOfVaccineLocationValue[index],
+                          date: cubit.listOfVaccineDateValue[index],
+                          image: const NetworkImage(
                               "https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg")),
                   separatorBuilder: (context, index) =>
                       Container(

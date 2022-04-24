@@ -25,7 +25,7 @@ class ShowMedicalVisits extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          return Scaffold();
+          return Scaffold( );
         }
     );
   }

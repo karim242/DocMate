@@ -78,19 +78,21 @@ class ADDBloodPressureScreen extends StatelessWidget {
                           }
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height/2.5,
+                        height: MediaQuery.of(context).size.height/2.1,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           saveBotton(
                               onpressed: () {
-                                // if (cubit.formkey.currentState!.validate()) {
-                                //   cubit.AddAllergyValue(
-                                //       cubit.allergyController.value.text);
-                                //   Navigator.pop(context);
-                                //   cubit.allergyController.clear();
-                                // }
+                                if (cubit.formkey.currentState!.validate()) {
+                                cubit.addPressureValue();
+                                  Navigator.pop(context);
+                                  cubit.measurementPressureController1.clear();
+                                cubit.measurementPressureController2.clear();
+                                cubit.datePressureController.clear();
+
+                                }
                               }
                           ),
                           const SizedBox(
