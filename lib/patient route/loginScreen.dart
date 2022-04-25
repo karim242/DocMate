@@ -27,10 +27,10 @@ final String value;
                 {
                   print(states.loginModel.message);
                   CacheHelper.saveData(key: "token", value: states.loginModel.token,
-                  ).then((value) => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context)=>const SelectPage()),),
+                  ).then((value)
+                  =>navigateAndFinish(context,
+                      const SelectPage(),
+                  ),
                   );
                    showToast(
                    msg: states.loginModel.message,
@@ -44,6 +44,13 @@ final String value;
                       states: ToastStates.ERROR
                   );
                 }
+            }
+          if(states is LoginErrorStates)
+            {
+              showToast(
+                  msg: "Login credentials are invalid",
+                  states: ToastStates.ERROR,
+              );
             }
         },
         builder: (context, states) {

@@ -10,76 +10,64 @@ import 'package:image_picker/image_picker.dart';
 
 import '../patient route/homePage/descriptionApi.dart';
 
-
-MaterialButton latestNewsSilder(context, articles,{required int index}) {
-
-    return MaterialButton(
-      elevation: 1,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      onPressed: () {
-        Navigator.push(context ,
-          MaterialPageRoute(builder: (context) =>DescriptionScreen(index)),);
-      },
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width / 1.25,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 4,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage('${articles[index]['urlToImage']}')),
-              borderRadius: BorderRadius.circular(16.0),
-            ),
+MaterialButton latestNewsSilder(context, articles, {required int index}) {
+  return MaterialButton(
+    elevation: 1,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    onPressed: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DescriptionScreen(index)),
+      );
+    },
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width / 1.25,
+          height: MediaQuery.of(context).size.height / 4,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                image: NetworkImage('${articles[index]['urlToImage']}')),
+            borderRadius: BorderRadius.circular(16.0),
           ),
-          Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width / 1.2,
-            height: MediaQuery
-                .of(context)
-                .size
-                .height / 16,
-            child: Center(
-              child: Text(
-                '${articles[index]['title']}',
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  backgroundColor: whiteColor,
-                ),
+        ),
+        Container(
+          width: MediaQuery.of(context).size.width / 1.2,
+          height: MediaQuery.of(context).size.height / 16,
+          child: Center(
+            child: Text(
+              '${articles[index]['title']}',
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                backgroundColor: whiteColor,
               ),
             ),
-          )
-        ],
-      ),
-    );
-  }
-
+          ),
+        )
+      ],
+    ),
+  );
+}
 
 MaterialButton medicalAdvices(
   context, {
   required dynamic articles,
-      required int index,
-
+  required int index,
 }) {
   return MaterialButton(
     elevation: 1,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     onPressed: () {
-      Navigator.push(context ,
-        MaterialPageRoute(builder: (context) =>DescriptionScreen(index)),);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => DescriptionScreen(index)),
+      );
     },
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,88 +139,89 @@ Widget titleAndSeeAll(
   );
 }
 
-CarouselSlider carouselSlider(context, articles,) {
+CarouselSlider carouselSlider(
+  context,
+  articles,
+) {
   return CarouselSlider.builder(
-      itemCount: 8,
-      itemBuilder: (BuildContext context, int index, int realIndex) {
-        return
-          ListView(
-              children: [
-               MaterialButton(
-                  onPressed: () {
-                    Navigator.push(context ,
-                      MaterialPageRoute(builder: (context) =>DescriptionScreen(index)),);
-                  },
-                  child: Container(
-
-                    width: MediaQuery.of(context).size.width / 1.1,
-                    height: MediaQuery.of(context).size.height /4.6,
-                    decoration: BoxDecoration(
-
-                      image: DecorationImage(
-
-                          fit: BoxFit.cover,
-                          image: NetworkImage('${articles[index]['urlToImage']}')),
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                  ),
-                ),
-                Text(
-                      '${articles[index]['title']}',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        backgroundColor: whiteColor,
-                      ),
-                    ),
-                 // ),//
-
-              ],
-          // ),
-
-           );
-      },
-      options: CarouselOptions(
-
-          height: MediaQuery.of(context).size.height / 4,
-          enlargeCenterPage: true,
-          autoPlay: false,
-          ),);
+    itemCount: 8,
+    itemBuilder: (BuildContext context, int index, int realIndex) {
+      return ListView(
+        children: [
+          MaterialButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => DescriptionScreen(index)),
+              );
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width / 1.1,
+              height: MediaQuery.of(context).size.height / 4.6,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage('${articles[index]['urlToImage']}')),
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+            ),
+          ),
+          Text(
+            '${articles[index]['title']}',
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              backgroundColor: whiteColor,
+            ),
+          ),
+          // ),//
+        ],
+        // ),
+      );
+    },
+    options: CarouselOptions(
+      height: MediaQuery.of(context).size.height / 4,
+      enlargeCenterPage: true,
+      autoPlay: false,
+    ),
+  );
 }
 
-
-ListTile TitleInDrawer(
-    {
-      required IconData icons,
-      required String text,
-      required VoidCallback ontap,
-    }
-    ) {
+ListTile TitleInDrawer({
+  required IconData icons,
+  required String text,
+  required VoidCallback ontap,
+}) {
   return ListTile(
-    leading:  Icon(icons,size: 32,),
-    title:  Text(text,
-      style: const TextStyle(fontSize: 18,
-          fontWeight: FontWeight.w500,),),
+    leading: Icon(
+      icons,
+      size: 32,
+    ),
+    title: Text(
+      text,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
     onTap: ontap,
   );
 }
 
-
-MaterialButton FeatureCard({
-  required String text,
-  required Color color,
-  required var photoIconName,
-required VoidCallback ontap,
-   double width=50,
-   double height=60,
-  double textSize = 16,
-  double icoWidth=70,
-  double iconHeight=70,
-  Color textcolor= Colors.white
-
-}) {
+MaterialButton FeatureCard(
+    {required String text,
+    required Color color,
+    required var photoIconName,
+    required VoidCallback ontap,
+    double width = 50,
+    double height = 60,
+    double textSize = 16,
+    double icoWidth = 70,
+    double iconHeight = 70,
+    Color textcolor = Colors.white}) {
   return MaterialButton(
     minWidth: width,
     height: height,
@@ -256,10 +245,10 @@ required VoidCallback ontap,
         ),
         Text(
           text,
-           maxLines: 1,
-          style:   TextStyle(
-              fontSize: textSize,
-              color : textcolor,
+          maxLines: 1,
+          style: TextStyle(
+            fontSize: textSize,
+            color: textcolor,
             fontWeight: FontWeight.bold,
           ),
         )
@@ -268,9 +257,7 @@ required VoidCallback ontap,
   );
 }
 
-
-AppBar themeAppBar(context,{required String value})
-{
+AppBar themeAppBar(context, {required String value}) {
   return AppBar(
     backgroundColor: Colors.white,
     elevation: 0,
@@ -290,13 +277,11 @@ AppBar themeAppBar(context,{required String value})
   );
 }
 
-Widget TextAndField(
-    {
-      required String text,
-      required controller,
-     required VoidCallback ontap,
-    }
-    ) {
+Widget TextAndField({
+  required String text,
+  required controller,
+  required VoidCallback ontap,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     mainAxisAlignment: MainAxisAlignment.start,
@@ -321,37 +306,33 @@ Widget TextAndField(
             },
             decoration: InputDecoration(
               border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(16.0),),
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
               fillColor: whiteColor,
               filled: true,
               errorStyle: const TextStyle(height: .8, color: Colors.red),
-            )
-        ),
+            )),
       )
     ],
   );
 }
 
 Widget ThemeCard(context,
-    {
-      required String name,
-      required String type,
-      required String location,
-      required String date,
-      required ImageProvider<Object> image})
-{
+    {required String name,
+    required String type,
+    required String location,
+    required String date,
+    required ImageProvider<Object> image}) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Container(
       padding: const EdgeInsets.all(5),
       height: 150,
-
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.circular(20),
       ),
-
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -401,10 +382,12 @@ Widget ThemeCard(context,
               )
             ],
           ),
-          SizedBox(width: 40,),
+          SizedBox(
+            width: 40,
+          ),
           Expanded(
-flex: 2
-            ,            child: Container(
+            flex: 2,
+            child: Container(
               width: 120,
               height: 150,
               decoration: BoxDecoration(
@@ -422,10 +405,8 @@ flex: 2
   );
 }
 
-
-FloatingActionButton buildFloatingActionButton(
-    context,{required String routeName})
-{
+FloatingActionButton buildFloatingActionButton(context,
+    {required String routeName}) {
   return FloatingActionButton(
     onPressed: () {
       Navigator.pushNamed(context, routeName);
@@ -442,20 +423,17 @@ Widget line(context) {
   return Container(
     color: Colors.grey,
     height: 1,
-    width: MediaQuery
-        .of(context)
-        .size
-        .width / 3.1,
+    width: MediaQuery.of(context).size.width / 3.1,
   );
 }
 
-
-Container fieldForMeasurement({required controller,}) {
+Container fieldForMeasurement({
+  required controller,
+}) {
   return Container(
-
-    width: 60,height: 50,
+    width: 60,
+    height: 50,
     child: TextFormField(
-
       cursorHeight: 20,
       controller: controller,
       cursorColor: Colors.black,
@@ -466,18 +444,17 @@ Container fieldForMeasurement({required controller,}) {
         return null;
       },
       decoration: InputDecoration(
-
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(16.0),),
+          borderRadius: BorderRadius.circular(16.0),
+        ),
         fillColor: Colors.grey[100],
         filled: true,
         errorStyle: const TextStyle(height: .8, color: Colors.red),
-      )
-      ,),
+      ),
+    ),
   );
 }
-
 
 class BottomSheet extends StatefulWidget {
   const BottomSheet({Key? key}) : super(key: key);
@@ -497,63 +474,86 @@ class _BottomSheetState extends State<BottomSheet> {
     return Container(
       height: 100,
       width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
       child: Column(
         children: [
-          const Text('choose profile photo',style: TextStyle(fontSize: 20),),
-          const SizedBox(height: 20,),
+          const Text(
+            'choose profile photo',
+            style: TextStyle(fontSize: 20),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton.icon(onPressed: (){setState(() {
-                takePhoto(ImageSource.camera);
-              });
-
-              }, icon: const Icon(Icons.camera), label: const Text('camera'),),
-              TextButton.icon(onPressed: (){
-                setState(() {
-                  takePhoto(ImageSource.gallery);
-                });
-              }, icon: const Icon(Icons.browse_gallery), label: const Text('gallery'),),
+              TextButton.icon(
+                onPressed: () {
+                  setState(() {
+                    takePhoto(ImageSource.camera);
+                  });
+                },
+                icon: const Icon(Icons.camera),
+                label: const Text('camera'),
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  setState(() {
+                    takePhoto(ImageSource.gallery);
+                  });
+                },
+                icon: const Icon(Icons.browse_gallery),
+                label: const Text('gallery'),
+              ),
             ],
           ),
         ],
       ),
     );
   }
-  void takePhoto(ImageSource source)async{
+
+  void takePhoto(ImageSource source) async {
     final pickedFile = await picker.getImage(source: source);
     setState(() {
-      file = pickedFile! ;
+      file = pickedFile!;
     });
   }
 }
 
-void showToast({
-  required String msg,
-  required ToastStates states
-})=>
+void showToast({required String msg, required ToastStates states}) =>
     Fluttertoast.showToast(
-    msg:msg ,
-    toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 5,
-    backgroundColor: chooseToastColor(states),
-    textColor: Colors.white,
-    fontSize: 16.0
-);
-enum ToastStates {SUCCESS,ERROR}
-Color chooseToastColor (ToastStates states)
-{
+        msg: msg,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: chooseToastColor(states),
+        textColor: Colors.white,
+        fontSize: 16.0);
+enum ToastStates { SUCCESS, ERROR }
+Color chooseToastColor(ToastStates states) {
   Color color;
-  switch(states )
-  {
+  switch (states) {
     case ToastStates.SUCCESS:
-      color= Colors.green;
-    break;
+      color = Colors.green;
+      break;
     case ToastStates.ERROR:
-      color= Colors.red;
+      color = Colors.red;
       break;
   }
   return color;
 }
+
+void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(
+      builder: (context) => widget,
+    ),
+    (Route<dynamic> route) => false);
+
+
+void navigateTo(context, widget) => Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ),
+    );

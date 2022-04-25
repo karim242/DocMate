@@ -1,8 +1,10 @@
 
+import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../models/featureModels.dart';
 import 'featureStates.dart';
 
 class FeatureCubit extends Cubit<FeatureStates> {
@@ -157,20 +159,46 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     emit(LoadingValueStates());
   }
  ////for Pressure
-  var measurementPressureController1= TextEditingController();
-  var measurementPressureController2= TextEditingController();
+  var systolicPressureController= TextEditingController();
+  var diastolicPressureController= TextEditingController();
   var datePressureController= TextEditingController();
   List listOfPressureMeasure1=[];
   List listOfPressureMeasure2=[];
   List listOfPressureDate=[];
   void addPressureValue()
   {
-    listOfPressureMeasure1.add(measurementPressureController1.value.text);
-    listOfPressureMeasure2.add(measurementPressureController2.value.text);
+    listOfPressureMeasure1.add(systolicPressureController.value.text);
+    listOfPressureMeasure2.add(diastolicPressureController.value.text);
     listOfPressureDate.add(datePressureController.value.text);
     emit(LoadingValueStates());
   }
+  late FeaturePressureModel featurePressureModel;
+  void PressureAPI()
+  {
+    emit(LoadingValueStates());
 
+    DioHelperAPI.postData(
+        url: "patient/pressure",
+        data: {
+
+        "systolic_pressure":systolicPressureController.text ,
+        "diastolic_pressure": diastolicPressureController.text,
+        "time": "12:00",
+        "date": datePressureController.text,
+        }
+    ).then((value) {
+       featurePressureModel=FeaturePressureModel.fromJson(value.data);
+    print(featurePressureModel.diastolicPressure);
+    print(featurePressureModel.date);
+    print(featurePressureModel.systolicPressure);
+      emit(FeatureSuccessStates(featurePressureModel));
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+     emit(FeatureErrorStates(error));
+    });
+  }
 
 
 }

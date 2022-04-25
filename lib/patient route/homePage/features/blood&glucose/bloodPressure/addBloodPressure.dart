@@ -15,7 +15,23 @@ class ADDBloodPressureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
-        listener: (context, states) {},
+        listener: (context, states) {
+          if(states is FeatureSuccessStates)
+            {
+              showToast(
+                  msg:"Done",
+                  states: ToastStates.SUCCESS
+              );
+
+            }
+          if(states is FeatureErrorStates)
+            {
+              showToast(
+                  msg:"wrong",
+                  states: ToastStates.ERROR
+              );
+            }
+        },
         builder: (context, states) {
 
           FeatureCubit cubit = FeatureCubit.get(context);
@@ -48,7 +64,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                       Row(
                         children: [
                           fieldForMeasurement(
-                            controller: cubit.measurementPressureController1,
+                            controller: cubit.systolicPressureController,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -56,7 +72,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                             child: Text("/",style: text20ForNameAdd,),
                           ),
                           fieldForMeasurement(
-                            controller: cubit.measurementPressureController2,
+                            controller: cubit.diastolicPressureController,
                           ),
                         ],
                       ),
@@ -86,11 +102,14 @@ class ADDBloodPressureScreen extends StatelessWidget {
                           saveBotton(
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
-                                cubit.addPressureValue();
-                                  Navigator.pop(context);
-                                  cubit.measurementPressureController1.clear();
-                                cubit.measurementPressureController2.clear();
-                                cubit.datePressureController.clear();
+                                  cubit.PressureAPI();
+                                  if(states is! FeatureSuccessStates) {
+                                    cubit.addPressureValue();
+                                    Navigator.pop(context);
+                                    cubit.systolicPressureController.clear();
+                                    cubit.diastolicPressureController.clear();
+                                    cubit.datePressureController.clear();
+                                  }
 
                                 }
                               }

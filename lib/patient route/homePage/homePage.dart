@@ -112,9 +112,7 @@ class HomePageScreen extends StatelessWidget {
                         ).then((value) {
                           if(value)
                             {
-                              Navigator.pushReplacement(context,
-                                  MaterialPageRoute(
-                                      builder: (context)=>const SplashScreen(),),);
+                              navigateAndFinish(context,const SplashScreen(),);
                             }
                         });
                       },

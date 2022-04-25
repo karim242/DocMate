@@ -94,7 +94,7 @@ class SignUpPatientScreen extends StatelessWidget {
                                 secure:false,
                                 text: 'Name',
                                 ontap: () {},
-                                controller: cubit.Namecontroller,
+                                controller: cubit.nameController,
                                 height: MediaQuery.of(context).size.height / 14,
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
@@ -103,7 +103,7 @@ class SignUpPatientScreen extends StatelessWidget {
                                 secure: false,
                                 text: 'E-mail',
                                 ontap: () {},
-                                controller: cubit.emailregistercontroller,
+                                controller: cubit.emailRegisterController,
                                 height: MediaQuery.of(context).size.height / 14,
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
@@ -112,7 +112,7 @@ class SignUpPatientScreen extends StatelessWidget {
                                 secure: true,
                                 text: 'Password',
                                 ontap: () {},
-                                controller: cubit.passwordregistercontroller,
+                                controller: cubit.passwordRegisterController,
                                 height: MediaQuery.of(context).size.height / 14,
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
@@ -130,7 +130,7 @@ class SignUpPatientScreen extends StatelessWidget {
                                 secure: false,
                                 text: 'Phone number',
                                 ontap: () {},
-                                controller: cubit.phonecontroller,
+                                controller: cubit.phoneController,
                                 height: MediaQuery.of(context).size.height / 14,
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
@@ -148,8 +148,9 @@ class SignUpPatientScreen extends StatelessWidget {
                                     onpressed: () {
                                       if (cubit.formkey1.currentState!.validate())
                                       {
-                                        if(cubit.passwordregistercontroller.value==cubit.passwordconfirmcontroller.value)
+                                        if(cubit.passwordRegisterController.value==cubit.passwordconfirmcontroller.value)
                                           {
+
                                             Navigator.pushNamed(context,SignUpPatientScreen2.id2);
                                           }
                                         else

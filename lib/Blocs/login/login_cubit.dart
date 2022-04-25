@@ -1,7 +1,7 @@
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../models/patientLogin.dart';
+import '../../models/patientModel.dart';
 import 'login_states.dart';
 
 
@@ -24,7 +24,7 @@ class LoginCubit extends Cubit<LoginStates>{
         url: "patient/login",
         data: {
           "email": emailcontroller.text,
-          "password": passwordController.text,
+          "password": "${passwordController.text}",
         }
     ).then((value) {
        patientLoginModel=PatientLoginModel.fromJson(value.data);
@@ -36,9 +36,10 @@ class LoginCubit extends Cubit<LoginStates>{
     ).catchError((error)
     {
       print("Error is ==> $error".toString());
-      emit(LoginErrorStates());
+      emit(LoginErrorStates(error));
     });
   }
+
 
 
 

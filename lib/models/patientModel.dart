@@ -10,3 +10,11 @@ class PatientLoginModel
     token = json["token"]??null;
   }
 }
+class PatientRegisterModel
+{
+  late String message;
+  PatientRegisterModel.fromJson(Map<String,dynamic>json)
+  {
+    message = json["message"];
+  }
+}
