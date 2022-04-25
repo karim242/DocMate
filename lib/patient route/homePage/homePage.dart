@@ -3,9 +3,11 @@ import 'package:docmate/patient%20route/homePage/drawe_items/changepassword.dart
 import 'package:docmate/patient%20route/homePage/drawe_items/editprofile.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/latestNews.dart';
 import 'package:docmate/patient%20route/homePage/seeAll/medicalAdvices.dart';
+import 'package:docmate/selectUser/splashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../constant.dart';
+import '../../network_helper/cachehelper/cacheHelper.dart';
 import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 import '../../shared/sharedComponent.dart';
@@ -105,7 +107,17 @@ class HomePageScreen extends StatelessWidget {
                     TitleInDrawer(
                       icons: Icons.reply_sharp ,
                       text: "Log Out",
-                      ontap: () {},
+                      ontap: () {
+                        CacheHelper.removeData(key: "token",
+                        ).then((value) {
+                          if(value)
+                            {
+                              Navigator.pushReplacement(context,
+                                  MaterialPageRoute(
+                                      builder: (context)=>const SplashScreen(),),);
+                            }
+                        });
+                      },
                     ),
                   ],
                 ),

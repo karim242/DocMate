@@ -1,6 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/network_helper/cachehelper/cacheHelper.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
+import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
 import 'package:docmate/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +11,7 @@ import '../Blocs/login/login_states.dart';
 import '../doctor route/doctorHomePage/selectdoctorpage.dart';
 import '../doctor route/signUpDoctor1.dart';
 import 'homePage/selectPage.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatelessWidget {
 LoginScreen({required this.value});
@@ -18,7 +20,32 @@ final String value;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
-        listener: (context, states) {},
+        listener: (context, states) {
+          if(states is LoginSuccessStates)
+            {
+              if(states.loginModel.status)
+                {
+                  print(states.loginModel.message);
+                  CacheHelper.saveData(key: "token", value: states.loginModel.token,
+                  ).then((value) => Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context)=>const SelectPage()),),
+                  );
+                   showToast(
+                   msg: states.loginModel.message,
+                   states: ToastStates.SUCCESS
+               );
+                }else
+                {
+                  print(states.loginModel.message);
+                  showToast(
+                      msg: states.loginModel.message,
+                      states: ToastStates.ERROR
+                  );
+                }
+            }
+        },
         builder: (context, states) {
           var cubit = LoginCubit.get(context);
           return Scaffold(

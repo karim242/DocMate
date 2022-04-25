@@ -34,7 +34,7 @@ class DioHelperAPI
   static init(){
     dio=Dio(
       BaseOptions(
-          baseUrl: "https://student.valuxapps.com/api/",
+          baseUrl: "http://docmate.herokuapp.com/api/",
           receiveDataWhenStatusError: true,
        headers: {
            "Accept":"application/json"
@@ -46,7 +46,7 @@ class DioHelperAPI
       {
         required String url,
         Map<String,dynamic>? query,
-        required Map<String,dynamic> data,
+        required  Map<String, dynamic> data,
       })async
   {
     return await dio!.post(

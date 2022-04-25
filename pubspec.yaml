@@ -46,6 +46,8 @@ dependencies:
   flutter_svg: ^1.0.3
   intl: ^0.17.0
   image_picker: ^0.8.4+11
+  fluttertoast: ^8.0.9
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:

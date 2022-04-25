@@ -45,13 +45,16 @@ import 'doctor route/doctorFeature/medicalVisit/medicalVisit.dart';
 import 'doctor route/doctorFeature/surgery/addSurgery.dart';
 import 'doctor route/doctorFeature/surgery/surgery.dart';
 import 'doctor route/signUpDoctor2.dart';
-import 'doctor route/doctorHomePage/selectdoctorpage.dart';
+import 'network_helper/cachehelper/cacheHelper.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
-
+  DioHelperAPI.init();
   DioHelper.init();
+  await CacheHelper.init();
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -84,7 +87,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home:const  DoctorSelectPage(),
+          home:const SplashScreen(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),

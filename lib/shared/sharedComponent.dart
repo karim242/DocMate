@@ -4,6 +4,7 @@ import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../constant.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -528,4 +529,31 @@ class _BottomSheetState extends State<BottomSheet> {
   }
 }
 
-
+void showToast({
+  required String msg,
+  required ToastStates states
+})=>
+    Fluttertoast.showToast(
+    msg:msg ,
+    toastLength: Toast.LENGTH_LONG,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 5,
+    backgroundColor: chooseToastColor(states),
+    textColor: Colors.white,
+    fontSize: 16.0
+);
+enum ToastStates {SUCCESS,ERROR}
+Color chooseToastColor (ToastStates states)
+{
+  Color color;
+  switch(states )
+  {
+    case ToastStates.SUCCESS:
+      color= Colors.green;
+    break;
+    case ToastStates.ERROR:
+      color= Colors.red;
+      break;
+  }
+  return color;
+}
