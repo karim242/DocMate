@@ -84,6 +84,9 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   var notesController= TextEditingController();
   var medicalVisitDateController= TextEditingController();
 
+  //active substance controller
+  var activeSubstanceController = TextEditingController();
+
   List listOfSummary=[];
   List listOfNotes=[];
   List listOfMedicalVisitDate=[];

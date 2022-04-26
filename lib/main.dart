@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home: ShowMedicalVisits(),
+          home: AddMedicalVisits(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),
@@ -124,7 +124,7 @@ class MyApp extends StatelessWidget {
             ChangePassword.idChangePassword:(context)=> const ChangePassword(),
             DoctorProfileScreen.docProfileID:(context)=> const DoctorProfileScreen(),
             DrMedicalVisit.idDrMedicalVisit :(context) =>const DrMedicalVisit(),
-            AddMedicalVisits.idAddMedicalVisit :(context)=> const AddMedicalVisits(),
+            AddMedicalVisits.idAddMedicalVisit :(context)=>  AddMedicalVisits(),
             DoctorSurgeryScreen.idDoctorSurgery :(context)=>  const DoctorSurgeryScreen(),
             AddSurgeryScreen.idAddSurgery : (context)=> AddSurgeryScreen()
 

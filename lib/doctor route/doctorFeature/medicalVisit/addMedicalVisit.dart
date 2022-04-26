@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,10 +8,21 @@ import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
 
-class AddMedicalVisits extends StatelessWidget {
-  const AddMedicalVisits({Key? key}) : super(key: key);
+class AddMedicalVisits extends StatefulWidget {
   static String idAddMedicalVisit = "idAddMedicalVisit";
 
+  @override
+  State<AddMedicalVisits> createState() => _AddMedicalVisitsState();
+}
+
+class _AddMedicalVisitsState extends State<AddMedicalVisits> {
+  int textFieldNUm = 0;
+  List<Widget> _textFieldList = [];
+  void _addTextField(TextEditingController controller){
+    setState(() {
+      _textFieldList.add(_textField(controller: controller));
+    });
+  }
 
 
   @override
@@ -20,7 +30,9 @@ class AddMedicalVisits extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
+
           FeatureCubit cubit = FeatureCubit.get(context);
+
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -34,12 +46,11 @@ class AddMedicalVisits extends StatelessWidget {
             ),
             body: Form(
               key: cubit.formkey,
-              child : SingleChildScrollView(
+              child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
                         Text(
                           "Prescription",
@@ -50,81 +61,129 @@ class AddMedicalVisits extends StatelessWidget {
                           child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
-                             crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
                                   onPressed: () {
-                                   cubit.takePhoto(ImageSource.gallery
-                                    ).then((value) =>
-                                     cubit.imageOfPrescription=value as TextEditingController );
+                                    cubit.takePhoto(ImageSource.gallery).then(
+                                        (value) => cubit.imageOfPrescription =
+                                            value as TextEditingController);
                                   },
                                 ),
                                 const Text("Upload Image"),
                               ],
                             ),
                           ),
-                        ) ,
+                        ),
                         TextAndField(
-                          ontap: (){},
-                          text : "Summary",
+                          ontap: () {},
+                          text: "Summary",
                           controller: cubit.summaryController,
                         ),
+
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('active subtance',style: text20ForNameAdd,),
+                            IconButton(onPressed: (){
+                              _addTextField(cubit.activeSubstanceController);
+                            }, icon: Icon(Icons.add),
+                            )
+                          ],
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: _textFieldList.length,
+                            itemBuilder: (context, index) {
+                          return _textFieldList[index];
+                        }),
 ////Still don't put Active Sub
                         TextAndField(
-                          ontap: (){},
-                          text : "Notes",
+                          ontap: () {},
+                          text: "Notes",
                           controller: cubit.notesController,
                         ),
                         TextAndField(
-                          ontap: (){
+                          ontap: () {
                             showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime.utc(2020),
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
-                              cubit.medicalVisitDateController.text=DateFormat.yMd().format(value!);
+                              cubit.medicalVisitDateController.text =
+                                  DateFormat.yMd().format(value!);
                             });
                           },
-                          text : "Date",
+                          text: "Date",
                           controller: cubit.medicalVisitDateController,
                         ),
-                        const SizedBox(height: 50,),
+                        const SizedBox(
+                          height: 50,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            saveBotton(
-
-                                onpressed: () {
-                                  if (cubit.formkey.currentState!.validate())
-                                  {
-                                    cubit.addMedicalVisit();
-                                    Navigator.pop(context);
-                                    cubit.summaryController.clear();
-                                    cubit.notesController.clear();
-                                    cubit.medicalVisitDateController.clear();
-
-
-                                  }
-                                }
-                            ),
+                            saveBotton(onpressed: () {
+                              if (cubit.formkey.currentState!.validate()) {
+                                cubit.addMedicalVisit();
+                                Navigator.pop(context);
+                                cubit.summaryController.clear();
+                                cubit.notesController.clear();
+                                cubit.medicalVisitDateController.clear();
+                              }
+                            }),
                             const SizedBox(
                               width: 16.0,
                             ),
-                            cancelBotton(
-                                onpressed: () {
-                                  Navigator.pop(context);
-                                })
+                            cancelBotton(onpressed: () {
+                              Navigator.pop(context);
+                            })
                           ],
                         )
-                      ]
-                  ),
+                      ]),
                 ),
               ),
             ),
           );
         });
+
+
   }
+  Widget _textField({
+  required TextEditingController controller,
+}){
+
+    return Container(
+
+      child: Expanded(
+        child: TextFormField(
+            onTap:() {},
+            cursorHeight: 20,
+            controller: controller,
+            cursorColor: Colors.black,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "please add active substance";
+              }
+              return null;
+            },
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              fillColor: whiteColor,
+              filled: true,
+              errorStyle: const TextStyle(height: .8, color: Colors.red),
+            )),
+      ),
+    );
+  }
+
+
 }
