@@ -56,6 +56,7 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
 
                             onpressed: () {
                               if(cubit.formkey.currentState!.validate()){
+                              cubit.postFamilyAPI();
                               cubit.AddDiseaseValue();
                               Navigator.pop(context);
                               cubit.diseaseFamilyController.clear();

@@ -1,3 +1,4 @@
+import 'package:docmate/constant.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,7 @@ class LoginCubit extends Cubit<LoginStates>{
 
      DioHelperAPI.postData(
         url: "patient/login",
+
         data: {
           "email": emailcontroller.text,
           "password": "${passwordController.text}",
@@ -30,6 +32,7 @@ class LoginCubit extends Cubit<LoginStates>{
        patientLoginModel=PatientLoginModel.fromJson(value.data);
        print(patientLoginModel.status);
        print(patientLoginModel.message);
+       print(token);
        print(patientLoginModel.token);
        emit(LoginSuccessStates(patientLoginModel));
     }

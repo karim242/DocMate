@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+String token='';
 Color blueColor = const Color(0xff01B9c8);
 Color whiteColor = const Color(0xFFFDF8FF);
 

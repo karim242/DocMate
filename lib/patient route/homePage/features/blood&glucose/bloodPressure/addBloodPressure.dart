@@ -89,7 +89,7 @@ class ADDBloodPressureScreen extends StatelessWidget {
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
                               cubit.datePressureController.text=
-                                  DateFormat.yMd().format(value!);
+                                  DateFormat('yyyy-MM-dd').format(value!);
                             });
                           }
                       ),
@@ -102,8 +102,8 @@ class ADDBloodPressureScreen extends StatelessWidget {
                           saveBotton(
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
-                                  cubit.PressureAPI();
-                                  if(states is! FeatureSuccessStates) {
+                                  cubit.PostPressureAPI();
+                                  if(states is FeatureSuccessStates) {
                                     cubit.addPressureValue();
                                     Navigator.pop(context);
                                     cubit.systolicPressureController.clear();

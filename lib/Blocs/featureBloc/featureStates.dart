@@ -5,9 +5,10 @@ class InitStates extends FeatureStates{}
 class LoadingValueStates extends FeatureStates{}
 
 class FeatureSuccessStates extends FeatureStates{
-  final FeaturePressureModel featurePressureModel;
+   //FeaturePressureModel featurePressureModel;
+   // FeaturePressureGetModel featurePressureGetModel;
 
-  FeatureSuccessStates(this.featurePressureModel);
+ // FeatureSuccessStates(this.featurePressureModel, );
 
 }
 class FeatureErrorStates extends FeatureStates{

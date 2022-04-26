@@ -2,6 +2,7 @@ import 'package:docmate/Blocs/register/register_states.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../constant.dart';
 import '../../models/patientModel.dart';
 import '../../network_helper/dioHelper.dart';
 
@@ -46,6 +47,7 @@ class RegisterPatientCubit extends Cubit<RegisterStates>{
 
     DioHelperAPI.postData(
         url: "patient/register",
+        token: token,
         data: {
           "name":nameController.text.toString(),
           "email":emailRegisterController.text.toString(),

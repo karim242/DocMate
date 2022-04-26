@@ -36,9 +36,7 @@ class DioHelperAPI
       BaseOptions(
           baseUrl: "http://docmate.herokuapp.com/api/",
           receiveDataWhenStatusError: true,
-       headers: {
-           "Accept":"application/json"
-        }
+
       ),
     );
   }
@@ -47,12 +45,32 @@ class DioHelperAPI
         required String url,
         Map<String,dynamic>? query,
         required  Map<String, dynamic> data,
-      })async
-  {
+        String? token ,
+      })async{
+   dio?.options.headers = {
+     "Accept":"application/json",
+     'auth-token': token,
+   };
     return await dio!.post(
       url,
       data: data
     );
         }
+
+
+   static Future<Response> getData({
+     required String url,
+     Map<String, dynamic>? query,
+     String? token,
+   }) async {
+     dio?.options.headers = {
+       "Accept":"application/json",
+       'auth-token': token,
+     };
+     return await dio!.get(
+       url,
+       queryParameters: query,
+     );
+   }
 
 }

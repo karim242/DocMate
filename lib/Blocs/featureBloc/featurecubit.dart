@@ -1,14 +1,17 @@
 
+import 'package:docmate/constant.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../models/featureModels.dart';
+import '../../models/featureModels.dart';
 import 'featureStates.dart';
 
 class FeatureCubit extends Cubit<FeatureStates> {
   FeatureCubit() : super(InitStates());
+
 
   static FeatureCubit get(context){
     return BlocProvider.of(context);
@@ -44,6 +47,36 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     emit(LoadingValueStates());
   }
 
+  late SurgeryModel surgeryModel;
+  void surgeryAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/lab",
+        token:token,
+        data: {
+          "name":surgeryNameController.text,
+          "date":dateSurgeryController.text,
+          "location":surgeryLocationController.text,
+          "type":surgeryTypeController.text,
+          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+        }
+    ).then((value) {
+      surgeryModel = SurgeryModel.fromJson(value.data);
+      print(surgeryModel.data.id);
+      print(surgeryModel.data.name);
+      print(surgeryModel.data.type);
+      print(surgeryModel.data.date);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
 //////////////////////////////////////////////////
 ////For Medical Visit
   var imageOfPrescription=TextEditingController();
@@ -66,8 +99,8 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   /////////////////////////////////
 ////for Vaccine
   var vaccineNameController= TextEditingController();
-  var typeController= TextEditingController();
-  var locationController= TextEditingController();
+  var vaccineTypeController= TextEditingController();
+  var vaccineLocationController= TextEditingController();
   var dateVaccineController= TextEditingController();
   var vaccineImageController= TextEditingController();
 
@@ -77,11 +110,43 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   List listOfVaccineDateValue=[];
   void AddVaccineValue(){
         listOfVaccineNameValue.add(vaccineNameController.value.text,);
-        listOfVaccineTypeValue.add(typeController.value.text,);
-    listOfVaccineLocationValue.add(locationController.value.text,);
+        listOfVaccineTypeValue.add(vaccineTypeController.value.text,);
+        listOfVaccineLocationValue.add(vaccineLocationController.value.text,);
         listOfVaccineDateValue.add(dateVaccineController.value.text,);
     emit(LoadingValueStates());
   }
+  late VaccineModel vaccineModel;
+  void vaccineAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/vaccine",
+        token:token,
+        data: {
+          "name":vaccineNameController.text,
+          "date":dateVaccineController.text,
+          "location":vaccineLocationController.text,
+          "type":vaccineTypeController.text,
+          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+    }
+    ).then((value) {
+      vaccineModel = VaccineModel.fromJson(value.data);
+      print(vaccineModel.data.id);
+      print(vaccineModel.data.name);
+      print(vaccineModel.data.type);
+      print(vaccineModel.data.date);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
+
 /////////////////////////////////////////////////////////////////
 ////for disease
   var diseaseFamilyController= TextEditingController();
@@ -90,6 +155,34 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   void AddDiseaseValue(){
     listOfDiseaseValue.add(diseaseFamilyController.value.text);
     emit(LoadingValueStates());
+  }
+
+  late FamilyHistoryModel familyHistoryModel;
+  void postFamilyAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/family_history",
+        token:token,
+        data: {
+          "disease":diseaseFamilyController.text,
+          "realation":relationFamilyController.text
+
+        }
+    ).then((value) {
+      familyHistoryModel = FamilyHistoryModel.fromJson(value.data);
+      print(familyHistoryModel.data.id);
+      print(familyHistoryModel.data.disease);
+      print(familyHistoryModel.data.relation);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
   }
   ////////////////////////////////////////
 
@@ -100,6 +193,32 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     listOfallergyValue.add(allergyController.value.text);
     emit(LoadingValueStates());
   }
+
+
+  late AllergyModel allergyModel;
+  void postAllergyAPI({String? allergy})
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/allergy",
+        token:token,
+        data: {
+          "name":allergy
+        }
+    ).then((value) {
+      allergyModel = AllergyModel.fromJson(value.data);
+      print(allergyModel.data.allergy);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
 ////////////////////////////////////////////////////////////////
   ////for radiology
   var radiologyNameController= TextEditingController();
@@ -119,6 +238,36 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
      listOfRadiologyLocation.add(radiologyLocationController.value.text,);
       listOfRadiologyDate.add(dateRadiologyController.value.text,);
     emit(LoadingValueStates());
+  }
+
+  late RadiologyModel radiologyModel;
+  void radiologyAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/radiology",
+        token:token,
+        data: {
+          "name":radiologyNameController.text,
+          "date":dateRadiologyController.text,
+          "location":radiologyLocationController.text,
+          "type":radiologyTypeController.text,
+          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+        }
+    ).then((value) {
+      radiologyModel = RadiologyModel.fromJson(value.data);
+      print(radiologyModel.data.id);
+      print(radiologyModel.data.name);
+      print(radiologyModel.data.type);
+      print(radiologyModel.data.date);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
   }
   ////////////////////
 ////for labtest
@@ -141,6 +290,37 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
         listOfLabTestDate.add(dateLabTestController.value.text,);
     emit(LoadingValueStates());
   }
+
+  late LabTestModel labTestModel;
+  void labTestAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/lab",
+        token:token,
+        data: {
+          "name":labTestNameController.text,
+          "date":dateLabTestController.text,
+          "location":labTestLocationController.text,
+          "type":labTestTypeController.text,
+          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+        }
+    ).then((value) {
+      labTestModel = LabTestModel.fromJson(value.data);
+      print(labTestModel.data.id);
+      print(labTestModel.data.name);
+      print(labTestModel.data.type);
+      print(labTestModel.data.date);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
   //========================
 //for blood
   /////for glucose
@@ -158,6 +338,39 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     listOfGlucoseDate.add(dateGlucoseController.value.text);
     emit(LoadingValueStates());
   }
+
+  late GlucoseModel glucoseModel;
+  void postGlucoseAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/glucos",
+        token:token,
+        data: {
+          "glucos_result":measurementGlucoseController.text,
+          "glucos_type":selectedType,
+          "time":"12:00",
+          "date":dateGlucoseController.text
+        }
+    ).then((value) {
+      glucoseModel = GlucoseModel.fromJson(value.data);
+      print(glucoseModel.data.id);
+      print(glucoseModel.data.glucoseResult);
+      print(glucoseModel.data.glucoseType);
+      print(glucoseModel.data.date);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
+
+
  ////for Pressure
   var systolicPressureController= TextEditingController();
   var diastolicPressureController= TextEditingController();
@@ -172,13 +385,14 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     listOfPressureDate.add(datePressureController.value.text);
     emit(LoadingValueStates());
   }
-  late FeaturePressureModel featurePressureModel;
-  void PressureAPI()
+  late FeaturePressurePostModel featurePressurePostModel;
+  void PostPressureAPI()
   {
     emit(LoadingValueStates());
 
     DioHelperAPI.postData(
         url: "patient/pressure",
+        token:token,
         data: {
 
         "systolic_pressure":systolicPressureController.text ,
@@ -187,11 +401,11 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
         "date": datePressureController.text,
         }
     ).then((value) {
-       featurePressureModel=FeaturePressureModel.fromJson(value.data);
-    print(featurePressureModel.diastolicPressure);
-    print(featurePressureModel.date);
-    print(featurePressureModel.systolicPressure);
-      emit(FeatureSuccessStates(featurePressureModel));
+       featurePressurePostModel=FeaturePressurePostModel.fromJson(value.data);
+    print(featurePressurePostModel.data.diastolicPressure);
+    print(featurePressurePostModel.data.date);
+    print(featurePressurePostModel.data.systolicPressure);
+      emit(FeatureSuccessStates());
     }
     ).catchError((error)
     {
@@ -199,6 +413,26 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
      emit(FeatureErrorStates(error));
     });
   }
+ late FeaturePressureGetModel featurePressureGetModel;
+  void getPressureAPI()
+  {
+    emit(LoadingValueStates());
 
+    DioHelperAPI.getData(
+        url: "patient/pressure",
+        token:token,
 
+    ).then((value) {
+      featurePressureGetModel=FeaturePressureGetModel.fromJson(value.data);
+      print(featurePressureGetModel.data[0].systolicPressure);
+      print(featurePressureGetModel.data[0].date);
+      print(featurePressureGetModel.data[0].systolicPressure);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
 }

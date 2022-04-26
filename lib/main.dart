@@ -40,6 +40,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Blocs/cubit/cubit.dart';
 import 'Blocs/login/login_cubit.dart';
 import 'Blocs/register/register_cubit.dart';
+import 'constant.dart';
 import 'doctor route/doctorFeature/medicalVisit/addMedicalVisit.dart';
 import 'doctor route/doctorFeature/medicalVisit/medicalVisit.dart';
 import 'doctor route/doctorFeature/surgery/addSurgery.dart';
@@ -52,6 +53,7 @@ Future<void> main() async {
   DioHelperAPI.init();
   DioHelper.init();
   await CacheHelper.init();
+  token=CacheHelper.getData(key: "token");
 }
 
 

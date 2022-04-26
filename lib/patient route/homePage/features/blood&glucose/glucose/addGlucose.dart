@@ -87,7 +87,7 @@ class ADDGlucoseScreen extends StatelessWidget {
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
                               cubit.dateGlucoseController.text=
-                                  DateFormat.yMd().format(value!);
+                                  DateFormat('yyyy-MM-dd').format(value!);
                             });
                           }
                       ),
@@ -100,6 +100,7 @@ class ADDGlucoseScreen extends StatelessWidget {
                           saveBotton(
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
+                                  cubit.postGlucoseAPI();
                                   cubit.addGlucoseValue();
                                    Navigator.pop(context);
                                 cubit.measurementGlucoseController.clear();

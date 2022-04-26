@@ -65,12 +65,12 @@ class AddVaccineScreen extends StatelessWidget {
                       TextAndField(
                         ontap: (){},
                         text : "Type",
-                        controller: cubit.typeController,
+                        controller: cubit.vaccineTypeController,
                       ),
                       TextAndField(
                         ontap: (){},
                         text : "Location",
-                        controller: cubit.locationController,
+                        controller: cubit.vaccineLocationController,
                       ),
                       TextAndField(
                         ontap: (){
@@ -80,7 +80,7 @@ class AddVaccineScreen extends StatelessWidget {
                             firstDate: DateTime.utc(2020),
                             lastDate: DateTime.utc(2025),
                           ).then((value) {
-                            cubit.dateVaccineController.text=DateFormat.yMd().format(value!);
+                            cubit.dateVaccineController.text=DateFormat('yyyy-MM-dd').format(value!);
                           });
                         },
                         text : "Date",
@@ -94,12 +94,12 @@ class AddVaccineScreen extends StatelessWidget {
 
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
-
+                                  cubit.vaccineAPI();
                                   cubit.AddVaccineValue();
                                   Navigator.pop(context);
                                   cubit.vaccineNameController.clear();
-                                  cubit.typeController.clear();
-                                  cubit.locationController.clear();
+                                  cubit.vaccineTypeController.clear();
+                                  cubit.vaccineLocationController.clear();
                                   cubit.dateVaccineController.clear();
 
                                 }
