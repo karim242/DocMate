@@ -1,5 +1,6 @@
 import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
+import 'package:docmate/doctor%20route/doctorFeature/medicalVisit/showMedicalVisit.dart';
 import 'package:docmate/doctor%20route/doctorHomePage/doctorProfile.dart';
 import 'package:docmate/doctor%20route/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
@@ -89,7 +90,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'MplUSRounded1c',
           ),
           debugShowCheckedModeBanner: false,
-          home:const SplashScreen(),
+          home: ShowMedicalVisits(),
           routes: {
             SelectUser.id: (context) => const SelectUser(),
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),
