@@ -16,13 +16,21 @@ class AddMedicalVisits extends StatefulWidget {
 }
 
 class _AddMedicalVisitsState extends State<AddMedicalVisits> {
-  int textFieldNUm = 0;
   List<Widget> _textFieldList = [];
-  void _addTextField(TextEditingController controller){
+  List _textFieldControllers = [];
+
+  void _addTextField(){
     setState(() {
-      _textFieldList.add(_textField(controller: controller));
+      _textFieldControllers.add(TextEditingController());
+      for (var controller in _textFieldControllers) {
+        var indx = 0;
+        _textFieldList.insert(indx,_textField(controller: controller));
+        indx=indx+1;
+      }
+
     });
   }
+
 
 
   @override
@@ -37,7 +45,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
-              title: Center(
+              title:  Center(
                 child: Text(
                   " Add Medical Visit",
                   style: textTitle22Style,
@@ -90,14 +98,14 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                           children: [
                             Text('active subtance',style: text20ForNameAdd,),
                             IconButton(onPressed: (){
-                              _addTextField(cubit.activeSubstanceController);
+                              _addTextField();
                             }, icon: Icon(Icons.add),
                             )
                           ],
                         ),
                         ListView.builder(
                           shrinkWrap: true,
-                          itemCount: _textFieldList.length,
+                          itemCount: _textFieldControllers.length,
                             itemBuilder: (context, index) {
                           return _textFieldList[index];
                         }),
@@ -135,6 +143,10 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                                 cubit.summaryController.clear();
                                 cubit.notesController.clear();
                                 cubit.medicalVisitDateController.clear();
+                                for(TextEditingController controller in _textFieldControllers){
+                                  controller.clear();
+                                }
+
                               }
                             }),
                             const SizedBox(
