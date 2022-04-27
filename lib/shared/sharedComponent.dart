@@ -323,7 +323,8 @@ Widget ThemeCard(context,
     required String type,
     required String location,
     required String date,
-    required ImageProvider<Object> image}) {
+   // required String image
+    }) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Container(
@@ -394,7 +395,13 @@ Widget ThemeCard(context,
                 borderRadius: BorderRadius.circular(16.0),
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: image,
+                  image: const NetworkImage(
+                      "https://www.researchgate."
+                          "net/profile/Sylvia-Asa/publication/319357366/"
+                          "figure/fig2/AS:613886776573952@1523373421045/"
+                          "The-consolidated-theranostic-report-surgical-"
+                          "pathology-An-example-deidentified-to.png"),
+
                 ),
               ),
             ),

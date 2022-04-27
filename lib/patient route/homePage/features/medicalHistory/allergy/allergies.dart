@@ -16,6 +16,7 @@ class AllergyScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List <dynamic> allergyData = cubit.allergyData;
           return Scaffold(
               appBar: themeAppBar(context,value: "Allergies"),
 
@@ -35,13 +36,15 @@ class AllergyScreen extends StatelessWidget {
                           crossAxisSpacing:10.0,
                           mainAxisSpacing: 10.0
                         ),
-                        itemCount:cubit.listOfallergyValue.length ,
+                        itemCount:allergyData.length ,
                         itemBuilder: (context, int index){
                           return  FeatureCard(
                               textcolor :blueColor,
-                              ontap: () {},
+                              ontap: () {
+
+                              },
                               photoIconName: "allergy",
-                              text: "* ${cubit.listOfallergyValue[index]}",
+                              text: "* ${allergyData[index]["allergy"]}",
                               color: const Color(0xffFDF8FF)
                           );
                         },

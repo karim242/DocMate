@@ -17,7 +17,7 @@ class MedicalHistoryScreen extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar:themeAppBar(context, value:" Medical History"),
             body: Padding(
@@ -34,6 +34,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                         iconHeight: 100,
                         ontap: () {
                           Navigator.pushNamed(context,FamilyHistoryScreen.idFamilyHistory);
+                          cubit.getFamilyHistoryAPI();
                         },
                         color: const Color(0xffDFC8FC),
                         text: "Family History",
@@ -49,6 +50,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                         iconHeight: 100,
                         ontap: () {
                           Navigator.pushNamed(context, AllergyScreen.idAllergyScreen);
+                          cubit.getAllergyAPI();
                         },
                         color: const Color(0xffFFCCA0),
                         text: "Allergies",

@@ -101,7 +101,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                             itemBuilder: (context, index) {
                           return _textFieldList[index];
                         }),
-////Still don't put Active Sub
+   ////Still don't put Active Sub
                         TextAndField(
                           ontap: () {},
                           text: "Notes",
@@ -130,7 +130,6 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                           children: [
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
-                                cubit.addMedicalVisit();
                                 Navigator.pop(context);
                                 cubit.summaryController.clear();
                                 cubit.notesController.clear();

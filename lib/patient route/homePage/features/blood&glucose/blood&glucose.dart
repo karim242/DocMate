@@ -15,7 +15,7 @@ class BloodGlucoseScreen extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar:themeAppBar(context, value:" Blood & Glucose"),
             body: Padding(
@@ -33,6 +33,7 @@ class BloodGlucoseScreen extends StatelessWidget {
                         ontap: () {
                           Navigator.pushNamed(
                               context,BloodPressureScreen.idBloodPressure);
+                          cubit.getPressureAPI();
                         },
                         color: const Color(0xff7C8F9A),
                         text: "Blood pressure",
@@ -48,6 +49,7 @@ class BloodGlucoseScreen extends StatelessWidget {
                         iconHeight: 100,
                         ontap: () {
                           Navigator.pushNamed(context, GlucoseScreen.idGlucose);
+                         cubit.getGlucoseAPI();
                         },
                         color: const Color(0xff276497),
                         text: "Glucose",

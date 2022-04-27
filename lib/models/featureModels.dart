@@ -1,7 +1,10 @@
-class FeaturePressurePostModel
+import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
+
+class PressureModel
 {
   late PressureData data;
-  FeaturePressurePostModel.fromJson(Map<String,dynamic>json)
+  PressureModel.fromJson(Map<String,dynamic>json)
   {
   data = (json['data'] != null ? PressureData.fromJson(json['data']) : null)!;
   }
@@ -21,31 +24,7 @@ class PressureData {
     date = json["date"];
   }
 }
-class FeaturePressureGetModel
-{
-  List<DataModel> data=[];
-  FeaturePressureGetModel.fromJson(Map<String,dynamic> json)
-  {
-    json["data"].forEach((element) {
-      data.add(DataModel.fromJson(element));
-    });
-  }
-}
-class DataModel
-{
-  late int id;
-  late String systolicPressure;
-  late String diastolicPressure;
-  late String date;
 
-  DataModel.fromJson(Map<String,dynamic> json)
-  {
-    id=json['id'];
-    systolicPressure = json["systolic_pressure"];
-    diastolicPressure = json["diastolic_pressure"];
-    date = json["date"];
-  }
-}
 ////for Allergy
 
 class AllergyModel
@@ -215,6 +194,7 @@ class SurgeryData {
   late String date;
   late String location;
   late String type;
+  late PickedFile image;
 ////still image
 
 
@@ -225,5 +205,6 @@ class SurgeryData {
     location = json["location"];
     type = json ["type"];
     date = json["date"];
+    image= json["image"];
   }
 }

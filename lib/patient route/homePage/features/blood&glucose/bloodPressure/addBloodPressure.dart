@@ -103,13 +103,13 @@ class ADDBloodPressureScreen extends StatelessWidget {
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
                                   cubit.PostPressureAPI();
-                                  if(states is FeatureSuccessStates) {
-                                    cubit.addPressureValue();
+                                    cubit.getPressureAPI();
                                     Navigator.pop(context);
                                     cubit.systolicPressureController.clear();
                                     cubit.diastolicPressureController.clear();
                                     cubit.datePressureController.clear();
-                                  }
+
+
 
                                 }
                               }

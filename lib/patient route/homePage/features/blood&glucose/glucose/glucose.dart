@@ -20,6 +20,7 @@ class GlucoseScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List <dynamic> glucoseData=cubit.glucoseData;
           return Scaffold(
             appBar: themeAppBar(context, value: " Glucose"),
             floatingActionButton: buildFloatingActionButton(
@@ -28,12 +29,13 @@ class GlucoseScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount: cubit.listOfGlucoseMeasure.length,
+                itemCount:3,
+                //glucoseData.length,
                 itemBuilder: (context, index)
                 => glucoseWidget(context,
-                    date: cubit.listOfGlucoseDate[index],
-                    measure: cubit.listOfGlucoseMeasure[index],
-                    type: cubit.listOfGlucoseType[index],
+                    date: glucoseData[index]["data"],
+                 measure: glucoseData[index]["glucos_result"],
+                    type: glucoseData[index]["glucos_type"],
                 ),
 
 
@@ -49,8 +51,8 @@ class GlucoseScreen extends StatelessWidget {
 
 Widget glucoseWidget(context,
 {
-required String measure,
-required String date,
+required int measure,
+required Null date,
   required String type,
 })
 {
@@ -65,7 +67,7 @@ required String date,
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    date,
+                    date.toString(),
                     style:text15forDateandTime
                 ),
               ),

@@ -31,21 +31,9 @@ class FeatureCubit extends Cubit<FeatureStates> {
   var surgeryLocationController= TextEditingController();
   var dateSurgeryController= TextEditingController();
   // var surgeryImageController= TextEditingController() ;
-  ImageProvider<Object>? surgeryImage;
+late PickedFile surgeryImage;
 
-  List listOfSurgeryName=[];
-  List listOfSurgeryType=[];
-  List listOfSurgeryLocation=[];
-  List listOfSurgeryDate=[];
-  List<ImageProvider<Object>> listOfSurgeryImage=[];
-  void addSurgeryValue(){
-   // listOfSurgeryImage.add(image);
-    listOfSurgeryName.add(surgeryNameController.value.text,);
-    listOfSurgeryType.add(surgeryTypeController.value.text, );
-listOfSurgeryLocation.add(surgeryLocationController.value.text,);
-    listOfSurgeryDate.add(dateSurgeryController.value.text,);
-    emit(LoadingValueStates());
-  }
+
 
   late SurgeryModel surgeryModel;
   void surgeryAPI()
@@ -60,7 +48,7 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
           "date":dateSurgeryController.text,
           "location":surgeryLocationController.text,
           "type":surgeryTypeController.text,
-          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+          "image":surgeryImage
         }
     ).then((value) {
       surgeryModel = SurgeryModel.fromJson(value.data);
@@ -68,6 +56,28 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
       print(surgeryModel.data.name);
       print(surgeryModel.data.type);
       print(surgeryModel.data.date);
+      print(surgeryModel.data.image);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+  List <dynamic> surgeryData=[];
+  void getSurgeryAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/surgery/",
+      token:token,
+
+    ).then((value) {
+      surgeryData = value.data["data"];
+      print(surgeryData);
+
       emit(FeatureSuccessStates());
     }
     ).catchError((error)
@@ -87,18 +97,7 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   //active substance controller
   var activeSubstanceController = TextEditingController();
 
-  List listOfSummary=[];
-  List listOfNotes=[];
-  List listOfMedicalVisitDate=[];
-  List<Image> listOfImagePrescription=[];
-  void addMedicalVisit()
-  {
-  //  listOfImagePrescription.add(imageOfPrescription,);
-              listOfSummary.add(summaryController,);
-                listOfNotes.add(notesController,);
-     listOfMedicalVisitDate.add(medicalVisitDateController,);
-    emit(LoadingValueStates());
-  }
+
   /////////////////////////////////
 ////for Vaccine
   var vaccineNameController= TextEditingController();
@@ -107,17 +106,6 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   var dateVaccineController= TextEditingController();
   var vaccineImageController= TextEditingController();
 
-  List listOfVaccineNameValue=[];
-  List listOfVaccineTypeValue=[];
-  List listOfVaccineLocationValue=[];
-  List listOfVaccineDateValue=[];
-  void AddVaccineValue(){
-        listOfVaccineNameValue.add(vaccineNameController.value.text,);
-        listOfVaccineTypeValue.add(vaccineTypeController.value.text,);
-        listOfVaccineLocationValue.add(vaccineLocationController.value.text,);
-        listOfVaccineDateValue.add(dateVaccineController.value.text,);
-    emit(LoadingValueStates());
-  }
   late VaccineModel vaccineModel;
   void vaccineAPI()
   {
@@ -131,7 +119,7 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
           "date":dateVaccineController.text,
           "location":vaccineLocationController.text,
           "type":vaccineTypeController.text,
-          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+          "image":""
     }
     ).then((value) {
       vaccineModel = VaccineModel.fromJson(value.data);
@@ -139,6 +127,28 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
       print(vaccineModel.data.name);
       print(vaccineModel.data.type);
       print(vaccineModel.data.date);
+     // print(vaccineModel.data);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+  List <dynamic> vaccineData=[];
+  void getVaccineAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/vaccine/",
+      token:token,
+
+    ).then((value) {
+      vaccineData = value.data["data"];
+      print(vaccineData);
 
       emit(FeatureSuccessStates());
     }
@@ -149,16 +159,11 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     });
   }
 
-
 /////////////////////////////////////////////////////////////////
 ////for disease
   var diseaseFamilyController= TextEditingController();
   var relationFamilyController= TextEditingController();
-  List listOfDiseaseValue=[];
-  void AddDiseaseValue(){
-    listOfDiseaseValue.add(diseaseFamilyController.value.text);
-    emit(LoadingValueStates());
-  }
+
 
   late FamilyHistoryModel familyHistoryModel;
   void postFamilyAPI()
@@ -187,17 +192,33 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
       emit(FeatureErrorStates(error));
     });
   }
+
+  List <dynamic> familyHistoryData=[];
+  void getFamilyHistoryAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/family_history/",
+      token:token,
+
+    ).then((value) {
+      familyHistoryData = value.data["data"];
+      print(familyHistoryData);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
   ////////////////////////////////////////
 
   ////for Allergy
   var allergyController= TextEditingController();
-  List listOfallergyValue=[];
-  void AddAllergyValue(){
-    listOfallergyValue.add(allergyController.value.text);
-    emit(LoadingValueStates());
-  }
-
-
   late AllergyModel allergyModel;
   void postAllergyAPI({String? allergy})
   {
@@ -221,6 +242,27 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
       emit(FeatureErrorStates(error));
     });
   }
+  List <dynamic> allergyData=[];
+  void getAllergyAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/allergy/",
+      token:token,
+
+    ).then((value) {
+      allergyData = value.data["data"];
+      print(allergyData);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
 
 ////////////////////////////////////////////////////////////////
   ////for radiology
@@ -229,19 +271,6 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   var radiologyLocationController= TextEditingController();
   var dateRadiologyController= TextEditingController();
   var radiologyImageController= TextEditingController();
-  List listOfRadiologyName=[];
-  List listOfRadiologyType=[];
-  List listOfRadiologyLocation=[];
-  List listOfRadiologyDate=[];
-  //List<ImageProvider<Object>> listOfSurgeryImage=[];
-  void addRadiologyValue(){
-    // listOfSurgeryImage.add(image);
-      listOfRadiologyName.add(radiologyNameController.value.text,);
-      listOfRadiologyType.add(radiologyTypeController.value.text, );
-     listOfRadiologyLocation.add(radiologyLocationController.value.text,);
-      listOfRadiologyDate.add(dateRadiologyController.value.text,);
-    emit(LoadingValueStates());
-  }
 
   late RadiologyModel radiologyModel;
   void radiologyAPI()
@@ -272,6 +301,28 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
       emit(FeatureErrorStates(error));
     });
   }
+
+  List <dynamic> radiologyData=[];
+  void getRadiologyAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/radiology/",
+      token:token,
+
+    ).then((value) {
+      radiologyData = value.data["data"];
+      print(radiologyData);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
   ////////////////////
 ////for labtest
   var labTestNameController= TextEditingController();
@@ -279,20 +330,6 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   var labTestLocationController= TextEditingController();
   var dateLabTestController= TextEditingController();
   var labTestImageController= TextEditingController();
-
-  List listOfLabTestName=[];
-  List listOfLabTestType=[];
-  List listOfLabTestLocation=[];
-  List listOfLabTestDate=[];
-  //List<ImageProvider<Object>> listOfSurgeryImage=[];
-  void addLabTestValue(){
-    // listOfSurgeryImage.add(image);
-        listOfLabTestName.add(labTestNameController.value.text,);
-        listOfLabTestType.add(labTestTypeController.value.text,);
-    listOfLabTestLocation.add(labTestLocationController.value.text,);
-        listOfLabTestDate.add(dateLabTestController.value.text,);
-    emit(LoadingValueStates());
-  }
 
   late LabTestModel labTestModel;
   void labTestAPI()
@@ -324,6 +361,32 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     });
   }
 
+  List <dynamic> labTestData=[];
+  void getLabTestAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/lab/",
+      token:token,
+
+    ).then((value) {
+      labTestData = value.data["data"];
+      print(labTestData);
+     // print(labTestData[0]["name"].runtimeType,);
+     // print(labTestData[0]["type"].runtimeType,);
+     // print(labTestData[0]["location"].runtimeType,);
+     print(labTestData[0]["date"].runtimeType,);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
   //========================
 //for blood
   /////for glucose
@@ -331,17 +394,6 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
   List<String> types = ['Random','Fasting','HbA1c'];
   String? selectedType;
   var dateGlucoseController= TextEditingController();
-  List listOfGlucoseMeasure=[];
-  List listOfGlucoseDate=[];
-  List listOfGlucoseType=[];
-  void addGlucoseValue()
-  {
-    listOfGlucoseMeasure.add(measurementGlucoseController.value.text);
-    listOfGlucoseType.add(selectedType.toString());
-    listOfGlucoseDate.add(dateGlucoseController.value.text);
-    emit(LoadingValueStates());
-  }
-
   late GlucoseModel glucoseModel;
   void postGlucoseAPI()
   {
@@ -372,23 +424,39 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
     });
   }
 
+  List <dynamic> glucoseData=[];
+  void getGlucoseAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/glucos/",
+      token:token,
+
+    ).then((value) {
+      glucoseData = value.data["data"];
+      print(glucoseData);
+     print( glucoseData[0]["data"].runtimeType);
+     print( glucoseData[0]["glucos_result"].runtimeType);
+     print( glucoseData[0]["glucos_type"].runtimeType);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
 
 
  ////for Pressure
   var systolicPressureController= TextEditingController();
   var diastolicPressureController= TextEditingController();
   var datePressureController= TextEditingController();
-  List listOfPressureMeasure1=[];
-  List listOfPressureMeasure2=[];
-  List listOfPressureDate=[];
-  void addPressureValue()
-  {
-    listOfPressureMeasure1.add(systolicPressureController.value.text);
-    listOfPressureMeasure2.add(diastolicPressureController.value.text);
-    listOfPressureDate.add(datePressureController.value.text);
-    emit(LoadingValueStates());
-  }
-  late FeaturePressurePostModel featurePressurePostModel;
+
+  late PressureModel pressureModel;
   void PostPressureAPI()
   {
     emit(LoadingValueStates());
@@ -404,10 +472,10 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
         "date": datePressureController.text,
         }
     ).then((value) {
-       featurePressurePostModel=FeaturePressurePostModel.fromJson(value.data);
-    print(featurePressurePostModel.data.diastolicPressure);
-    print(featurePressurePostModel.data.date);
-    print(featurePressurePostModel.data.systolicPressure);
+      pressureModel=PressureModel.fromJson(value.data);
+    //print(featurePressurePostModel.data.diastolicPressure);
+    //print(featurePressurePostModel.data.date);
+    //print(featurePressurePostModel.data.systolicPressure);
       emit(FeatureSuccessStates());
     }
     ).catchError((error)
@@ -416,20 +484,23 @@ listOfSurgeryLocation.add(surgeryLocationController.value.text,);
      emit(FeatureErrorStates(error));
     });
   }
- late FeaturePressureGetModel featurePressureGetModel;
+
+
+List <dynamic> pressureData=[];
   void getPressureAPI()
   {
     emit(LoadingValueStates());
 
     DioHelperAPI.getData(
-        url: "patient/pressure",
+        url: "patient/pressure/",
         token:token,
 
     ).then((value) {
-      featurePressureGetModel=FeaturePressureGetModel.fromJson(value.data);
-      print(featurePressureGetModel.data[0].systolicPressure);
-      print(featurePressureGetModel.data[0].date);
-      print(featurePressureGetModel.data[0].systolicPressure);
+      pressureData = value.data["data"];
+      // print(pressureData[0]["id"]);
+      // print(pressureData[0]["systolic_pressure"].runtimeType);
+      // print(pressureData[0]["diastolic_pressure"].runtimeType);
+      // print(pressureData[0]["date"].runtimeType);
       emit(FeatureSuccessStates());
     }
     ).catchError((error)

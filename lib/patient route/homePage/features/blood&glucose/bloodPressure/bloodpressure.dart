@@ -16,9 +16,13 @@ class BloodPressureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
-        listener: (context, states) {},
+        listener: (context, states) {
+
+
+        },
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List<dynamic> pressureData = cubit.pressureData;
 
           return Scaffold(
             appBar: themeAppBar(context, value: "Blood Pressure"),
@@ -28,12 +32,12 @@ class BloodPressureScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount: cubit.listOfPressureMeasure1.length,
+                itemCount: pressureData.length,
                 itemBuilder: (context, index) =>
                     pressureWidget(context,
-                        measure1: cubit.listOfPressureMeasure1[index],
-                        measure2: cubit.listOfPressureMeasure2[index],
-                        date: cubit.listOfPressureDate[index]
+                        measure1: pressureData[index]["systolic_pressure"],
+                        measure2: pressureData[index]["diastolic_pressure"],
+                        date: pressureData[index]["date"],
                     ),
 
 
@@ -46,8 +50,8 @@ class BloodPressureScreen extends StatelessWidget {
 }
 
 Widget pressureWidget(BuildContext context,{
-  required String measure1,
-  required String measure2,
+  required int measure1,
+  required int measure2,
   required String date,
 
 }) {
@@ -80,7 +84,7 @@ Widget pressureWidget(BuildContext context,{
                     color: whiteColor,
                     child: Column(
                         children: [
-                          Text("$measure1/$measure2",
+                          Text("${measure1.toString()}/${measure2.toString()}",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,

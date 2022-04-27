@@ -21,6 +21,7 @@ class LabTestScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List <dynamic> labTestData = cubit.labTestData;
 
           return Scaffold(
               appBar: themeAppBar(context, value: "Lab Test"),
@@ -33,22 +34,22 @@ class LabTestScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        name:cubit.listOfLabTestName[index],
-                        type: cubit.listOfLabTestType[index],
-                        location: cubit.listOfLabTestLocation[index],
-                        date: cubit.listOfLabTestDate[index],
-                        image: const NetworkImage(
-                            "https://encrypted-tbn0.gstatic.com/images?"
-                                "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
-                                "iX8N9HBZYAEPQ&usqp=CAU"
-                        ),
+                         name:labTestData[index]["name"],
+                         type:labTestData[index]["type"],
+                     location:labTestData[index]["location"],
+                        date: labTestData[index]["date"],
+                        // image: const NetworkImage(
+                        //     "https://encrypted-tbn0.gstatic.com/images?"
+                        //         "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
+                        //         "iX8N9HBZYAEPQ&usqp=CAU"
+                        // ),
                       ),
                   separatorBuilder: (context, index) =>
                       Container(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: cubit.listOfLabTestName.length,
+                  itemCount: labTestData.length,
                 ),
               ));
         });
