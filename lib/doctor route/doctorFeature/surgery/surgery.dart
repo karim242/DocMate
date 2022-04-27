@@ -17,6 +17,8 @@ class DoctorSurgeryScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List<dynamic> surgeryData= cubit.surgeryData;
+
           return Scaffold(
               appBar: themeAppBar(context, value: "Surgery"),
               floatingActionButton: buildFloatingActionButton(context,
@@ -27,23 +29,17 @@ class DoctorSurgeryScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        name:cubit.listOfSurgeryName[index],
-                        type: cubit.listOfSurgeryType[index],
-                        location: cubit.listOfSurgeryLocation[index],
-                        date: cubit.listOfSurgeryDate[index],
-                        image: const NetworkImage(
-                            "https://www.researchgate."
-                                "net/profile/Sylvia-Asa/publication/319357366/"
-                                "figure/fig2/AS:613886776573952@1523373421045/"
-                                "The-consolidated-theranostic-report-surgical-"
-                                "pathology-An-example-deidentified-to.png"),
+                        name:surgeryData[index]["name"],
+                        type:surgeryData[index]["type"],
+                        location:surgeryData[index]["location"],
+                        date:surgeryData[index]["date"],
                       ),
                   separatorBuilder: (context, index) =>
                       const SizedBox(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: cubit.listOfSurgeryName.length,
+                  itemCount:surgeryData.length,
                 ),
               ));
         });

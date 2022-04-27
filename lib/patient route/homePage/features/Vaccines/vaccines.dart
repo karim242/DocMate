@@ -17,6 +17,7 @@ class VaccineScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List<dynamic> vaccineData=cubit.vaccineData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Vaccines"),
 
@@ -30,18 +31,18 @@ class VaccineScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                          name: cubit.listOfVaccineNameValue[index],
-                          type: cubit.listOfVaccineTypeValue[index],
-                          location: cubit.listOfVaccineLocationValue[index],
-                          date: cubit.listOfVaccineDateValue[index],
-                          image: const NetworkImage(
-                              "https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg")),
+                          name: vaccineData[index]["name"],
+                          type: vaccineData[index]["type"],
+                      location: vaccineData[index]["location"],
+                          date: vaccineData[index]["date"],
+                         // image: vaccineData[index]["image"],
+                      ),
                   separatorBuilder: (context, index) =>
                       Container(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: cubit.listOfVaccineNameValue.length,
+                  itemCount: vaccineData.length,
                 ),
               ));
         });

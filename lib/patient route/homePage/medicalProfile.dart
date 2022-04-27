@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Blocs/featureBloc/featurecubit.dart';
 import '../../constant.dart';
 
+import '../../doctor route/doctorFeature/surgery/surgery.dart';
 import '../../shared/sharedComponent.dart';
 import 'features/Vaccines/vaccines.dart';
 import 'features/blood&glucose/blood&glucose.dart';
@@ -21,6 +22,8 @@ class MedicalProfileScreen extends StatelessWidget {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
+          FeatureCubit cubit = FeatureCubit.get(context);
+
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -62,18 +65,21 @@ class MedicalProfileScreen extends StatelessWidget {
                             ontap: (){
                               Navigator.pushNamed(
                                   context, VaccineScreen.idVaccine);
+                              cubit.getVaccineAPI();
                             },
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
                         FeatureCard(
                             ontap: (){
                               Navigator.pushNamed(context, RadiologyScreen.idRadiology);
+                              cubit.getRadiologyAPI();
                             },
                             photoIconName: "radiology",
                             text: "Radiology", color: const Color(0xffADFFDF)),
                         FeatureCard(
                             ontap: (){
                               Navigator.pushNamed(context, LabTestScreen.idLabTest);
+                              cubit.getLabTestAPI();
                             },
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
@@ -87,7 +93,8 @@ class MedicalProfileScreen extends StatelessWidget {
                             color: const Color(0xffFFB5B5)),
                         FeatureCard(
                             ontap: (){
-                              Navigator.pushNamed(context, SurgeryScreen.idSurgery );
+                              Navigator.pushNamed(context, DoctorSurgeryScreen.idDoctorSurgery );
+                              cubit.getSurgeryAPI();
                             },
                             photoIconName: "surgery",
                             text: "Surgery", color: const Color(0xffBAFFB5)),

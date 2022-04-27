@@ -49,7 +49,7 @@ class AddSurgeryScreen extends StatelessWidget {
                                   onPressed: () {
                                     cubit.takePhoto(ImageSource.gallery).then(
                                         (value) =>
-                                            cubit.surgeryImage = value as ImageProvider<Object>?  );
+                                            cubit.surgeryImage = value as PickedFile );
                                   },
                                 ),
                                 const Text("Upload Image"),
@@ -81,7 +81,7 @@ class AddSurgeryScreen extends StatelessWidget {
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
                               cubit.dateSurgeryController.text =
-                                  DateFormat.yMd().format(value!);
+                                  DateFormat('yyyy-MM-dd').format(value!);
                             });
                           },
                           text: "Date",
@@ -94,7 +94,7 @@ class AddSurgeryScreen extends StatelessWidget {
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.surgeryAPI();
-                                cubit.addSurgeryValue();
+                                cubit.getSurgeryAPI();
                                 Navigator.pop(context);
                                 cubit.surgeryNameController.clear();
                                 cubit.surgeryTypeController.clear();

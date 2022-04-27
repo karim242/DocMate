@@ -83,7 +83,7 @@ class AddLabTestScreen extends StatelessWidget {
                               firstDate: DateTime.utc(2020),
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
-                              cubit.dateLabTestController.text=DateFormat.yMd().format(value!);
+                              cubit.dateLabTestController.text=DateFormat('yyyy-MM-dd').format(value!);
                             });
                           },
                           text : "Date",
@@ -97,8 +97,8 @@ class AddLabTestScreen extends StatelessWidget {
 
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
-
-                                    cubit.addLabTestValue();
+                                    cubit.labTestAPI();
+                                    cubit.getLabTestAPI();
                                     Navigator.pop(context);
                                     cubit.labTestNameController.clear();
                                     cubit.labTestTypeController.clear();

@@ -79,7 +79,8 @@ class AddRadiologyScreen extends StatelessWidget {
                               firstDate: DateTime.utc(2020),
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
-                              cubit.dateRadiologyController.text=DateFormat.yMd().format(value!);
+                              cubit.dateRadiologyController.text=
+                                  DateFormat('yyyy-MM-dd').format(value!);
                             });
                           },
                           text : "Date",
@@ -94,7 +95,8 @@ class AddRadiologyScreen extends StatelessWidget {
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
                                     cubit.radiologyAPI();
-                                    cubit.addRadiologyValue();
+                                    cubit.getRadiologyAPI();
+
                                     Navigator.pop(context);
                                     cubit.radiologyNameController.clear();
                                     cubit.radiologyTypeController.clear();

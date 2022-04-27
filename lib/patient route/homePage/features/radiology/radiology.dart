@@ -18,6 +18,7 @@ class RadiologyScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List<dynamic> radiologyData =cubit.radiologyData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Radiology"),
               floatingActionButton:
@@ -28,22 +29,18 @@ class RadiologyScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        name:cubit.listOfRadiologyName[index],
-                        type: cubit.listOfRadiologyType[index],
-                        location: cubit.listOfRadiologyLocation[index],
-                        date: cubit.listOfRadiologyDate[index],
-                        image: const NetworkImage(
-                            "https://encrypted-tbn0.gstatic.com/images?"
-                                "q=tbn:ANd9GcTfMDrgJ0RwpvOOi6b2qxMODpMXHdUOCIdL7g"
-                                "&usqp=CAU"
-                        ),
+                         name:radiologyData[index]["name"],
+                        type: radiologyData[index]["type"],
+                     location:radiologyData[index]["location"],
+                        date: radiologyData[index]["date"],
+
                       ),
                   separatorBuilder: (context, index) =>
                       Container(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: cubit.listOfRadiologyName.length,
+                  itemCount: radiologyData.length,
                 ),
               ));
         });

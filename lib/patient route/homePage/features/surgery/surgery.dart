@@ -8,7 +8,7 @@ import '../../../../shared/sharedComponent.dart';
 
 class SurgeryScreen extends StatelessWidget {
   const SurgeryScreen({Key? key}) : super(key: key);
-  static String idSurgery = "IdSurgeryScreen";
+  static String idSurgery = "IdPaSurgeryScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +16,7 @@ class SurgeryScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List<dynamic> surgeryData= cubit.surgeryData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Surgery"),
               body: Padding(
@@ -23,23 +24,19 @@ class SurgeryScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        name:cubit.listOfSurgeryName[index],
-                        type: cubit.listOfSurgeryType[index],
-                        location: cubit.listOfSurgeryLocation[index],
-                        date: cubit.listOfSurgeryDate[index],
-                        image: const NetworkImage(
-                            "https://www.researchgate."
-                                "net/profile/Sylvia-Asa/publication/319357366/"
-                                "figure/fig2/AS:613886776573952@1523373421045/"
-                                "The-consolidated-theranostic-report-surgical-"
-                                "pathology-An-example-deidentified-to.png"),
+                        name:surgeryData[index]["name"],
+                        type:surgeryData[index]["type"],
+                    location:surgeryData[index]["location"],
+                        date:surgeryData[index]["date"],
+                       // image:
+
                       ),
                   separatorBuilder: (context, index) =>
                       Container(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount: 1,
+                  itemCount: surgeryData.length,
                 ),
               ));
         });

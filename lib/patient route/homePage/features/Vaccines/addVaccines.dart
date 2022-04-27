@@ -95,7 +95,8 @@ class AddVaccineScreen extends StatelessWidget {
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
                                   cubit.vaccineAPI();
-                                  cubit.AddVaccineValue();
+                                  cubit.getVaccineAPI();
+
                                   Navigator.pop(context);
                                   cubit.vaccineNameController.clear();
                                   cubit.vaccineTypeController.clear();
