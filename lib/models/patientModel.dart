@@ -18,3 +18,13 @@ class PatientRegisterModel
     message = json["message"];
   }
 }
+
+
+class PatientChangePasswordModel
+{
+  late String success;
+  PatientChangePasswordModel.fromJson(Map<String,dynamic>json)
+  {
+    success = json["success"];
+  }
+}

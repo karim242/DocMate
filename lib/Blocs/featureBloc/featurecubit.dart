@@ -205,7 +205,7 @@ late PickedFile surgeryImage;
 
     ).then((value) {
       familyHistoryData = value.data["data"];
-      print(familyHistoryData[0]);
+      print(familyHistoryData);
 
       emit(FeatureSuccessStates());
     }
@@ -345,14 +345,14 @@ late PickedFile surgeryImage;
           "date":dateLabTestController.text,
           "location":labTestLocationController.text,
           "type":labTestTypeController.text,
-          //"image":"https://cdn.elwatannews.com/watan/840x473/21118977271634976070.jpg".toString()
+          // "image":,
         }
     ).then((value) {
       labTestModel = LabTestModel.fromJson(value.data);
-      print(labTestModel.data.id);
-      print(labTestModel.data.name);
-      print(labTestModel.data.type);
-      print(labTestModel.data.date);
+      // print(labTestModel.data.id);
+      // print(labTestModel.data.name);
+      // print(labTestModel.data.type);
+      // print(labTestModel.data.date);
       emit(FeatureSuccessStates());
     }
     ).catchError((error)
@@ -368,16 +368,16 @@ late PickedFile surgeryImage;
     emit(LoadingValueStates());
 
     DioHelperAPI.getData(
-      url: "patient/lab/",
+      url: "patient/lab",
       token:token,
 
     ).then((value) {
       labTestData = value.data["data"];
-      print(labTestData[0]);
+      print(labTestData);
      // print(labTestData[0]["name"].runtimeType,);
      // print(labTestData[0]["type"].runtimeType,);
      // print(labTestData[0]["location"].runtimeType,);
-     print(labTestData[3]["date"].runtimeType,);
+    // print(labTestData[3]["date"].runtimeType,);
 
       emit(FeatureSuccessStates());
     }
@@ -437,9 +437,9 @@ late PickedFile surgeryImage;
     ).then((value) {
       glucoseData = value.data["data"];
       print(glucoseData);
-     print( glucoseData[0]["date"].runtimeType);
-     print( glucoseData[0]["glucos_result"].runtimeType);
-     print( glucoseData[0]["glucos_type"].runtimeType);
+     // print( glucoseData[0]["date"].runtimeType);
+     // print( glucoseData[0]["glucos_result"].runtimeType);
+     // print( glucoseData[0]["glucos_type"].runtimeType);
 
       emit(FeatureSuccessStates());
     }
@@ -487,7 +487,7 @@ late PickedFile surgeryImage;
     });
   }
 
-  late PatientLoginModel patientLoginModel;
+
 List <dynamic> pressureData=[];
   void getPressureAPI()
   {
@@ -499,9 +499,8 @@ List <dynamic> pressureData=[];
 
     ).then((value) {
       pressureData = value.data["data"];
-      print(patientLoginModel.token);
-      print(token);
-      // print(pressureData[0]["id"]);
+
+     print(pressureData);
       // print(pressureData[0]["systolic_pressure"].runtimeType);
       // print(pressureData[0]["diastolic_pressure"].runtimeType);
       // print(pressureData[0]["date"].runtimeType);

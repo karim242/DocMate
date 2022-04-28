@@ -38,7 +38,7 @@ class SignUpScreenDoctor1 extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 15,
                     ),
                     Expanded(
-                      flex: 3,
+                      flex: 4,
                       child: SingleChildScrollView(
                         child: Container(
                           decoration: const BoxDecoration(
@@ -120,15 +120,15 @@ class SignUpScreenDoctor1 extends StatelessWidget {
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
                               SizedBox(height: MediaQuery.of(context).size.height / 35,),
-                              textFieldForm(
-                                secure: false,
-                                text: 'Clinic Address',
-                                ontap: () {},
-                                controller: cubit.clinicAddressController,
-                                height: MediaQuery.of(context).size.height / 14,
-                                width: MediaQuery.of(context).size.width / 1.16,
-                              ),
-                              SizedBox(height: MediaQuery.of(context).size.height / 35,),
+                              // textFieldForm(
+                              //   secure: false,
+                              //   text: 'Clinic Address',
+                              //   ontap: () {},
+                              //   controller: cubit.clinicAddressController,
+                              //   height: MediaQuery.of(context).size.height / 14,
+                              //   width: MediaQuery.of(context).size.width / 1.16,
+                              // ),
+                              // SizedBox(height: MediaQuery.of(context).size.height / 35,),
                               textFieldForm(
                                 secure: false,
                                 text: 'Phone number',
@@ -140,7 +140,7 @@ class SignUpScreenDoctor1 extends StatelessWidget {
                               Padding(
                                 padding: EdgeInsets.only(
                                   bottom: MediaQuery.of(context).size.height / 20,
-                                  top: MediaQuery.of(context).size.height / 100,
+                                  top: MediaQuery.of(context).size.height / 20,
                                 ),
                                 child: defaultBottonTologin(
                                   text: "Next",

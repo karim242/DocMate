@@ -14,8 +14,12 @@ class LoginCubit extends Cubit<LoginStates>{
 
   var emailController= TextEditingController();
   var patientPasswordController= TextEditingController();
+  var newPatientPassword = TextEditingController();
   var idController= TextEditingController();
   var doctorPasswordController= TextEditingController();
+  var newDoctorPassword = TextEditingController();
+  var confirmPassword = TextEditingController();
+
 
 /////////////////////
  late PatientLoginModel patientLoginModel;
@@ -33,11 +37,11 @@ class LoginCubit extends Cubit<LoginStates>{
         }
     ).then((value) {
        patientLoginModel=PatientLoginModel.fromJson(value.data);
-       print(patientLoginModel.status);
-       print(patientLoginModel.message);
-       print(token);
+       //print(patientLoginModel.status);
+       //print(patientLoginModel.message);
+      print(token);
        print(patientLoginModel.token);
-       patientLoginModel.token =token;
+       token =patientLoginModel.token ;
        print(token);
        emit(PatientLoginSuccessStates(patientLoginModel));
     }
@@ -48,6 +52,31 @@ class LoginCubit extends Cubit<LoginStates>{
     });
   }
 
+  late PatientChangePasswordModel passwordModel;
+  void changePatientPassword()
+  {
+    emit(LoadingLoginStates());
+
+    DioHelperAPI.postData(
+        url: "patient/profile/change_password",
+        token: token,
+        data: {
+          "oldpassword": patientPasswordController.text,
+          "password": newPatientPassword.text,
+        }
+    ).then((value) {
+      passwordModel=PatientChangePasswordModel.fromJson(value.data);
+
+      print(passwordModel);
+
+      emit(ChangePatientPassword(passwordModel));
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error".toString());
+      emit(LoginErrorStates(error));
+    });
+  }
 
   late DoctorLoginModel doctorLoginModel;
   void doctorLogin()
@@ -56,8 +85,6 @@ class LoginCubit extends Cubit<LoginStates>{
 
     DioHelperAPI.postData(
         url: "doctor/login",
-
-
         data: {
           "email": idController.text,
           "password": doctorPasswordController.text,
@@ -66,10 +93,10 @@ class LoginCubit extends Cubit<LoginStates>{
       doctorLoginModel=DoctorLoginModel.fromJson(value.data);
       print(doctorLoginModel.status);
       print(doctorLoginModel.message);
-      print(token);
-      print(doctorLoginModel.token);
-     // doctorLoginModel.token =token;
-      print(token);
+      // print(token);
+      // print(doctorLoginModel.token);
+      token=doctorLoginModel.token ;
+     // print(token);
       emit(DoctorLoginSuccessStates(doctorLoginModel));
     }
     ).catchError((error)
@@ -80,9 +107,37 @@ class LoginCubit extends Cubit<LoginStates>{
   }
 
 
-  //for change password
-  var newPassword = TextEditingController();
-  var confirmPassword = TextEditingController();
+
+  late DoctorChangePasswordModel doctorPasswordModel;
+  void changeDoctorPassword()
+  {
+    emit(LoadingLoginStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/profile/change_password",
+        token: token,
+        data: {
+          "oldpassword": patientPasswordController.text,
+          "password": newDoctorPassword.text,
+        }
+    ).then((value) {
+      doctorPasswordModel=DoctorChangePasswordModel.fromJson(value.data);
+
+      print(doctorPasswordModel);
+
+      emit(ChangeDoctorPassword(doctorPasswordModel));
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error".toString());
+      emit(LoginErrorStates(error));
+    });
+  }
+
+  // for Patient change password
+
+
+
   ///
   var formkey  =GlobalKey<FormState>();
   bool isuser= true;

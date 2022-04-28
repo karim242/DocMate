@@ -29,7 +29,7 @@ class GlucoseScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount:3,
+                itemCount:glucoseData.length,
                 //glucoseData.length,
                 itemBuilder: (context, index)
                 => glucoseWidget(context,

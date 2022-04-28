@@ -20,17 +20,23 @@ class PatientLoginScreen extends StatelessWidget {
             {
               if(states.loginModel.status)
                 {
-                  print(states.loginModel.message);
+                 //  print(states.loginModel.message);
+                 // token = states.loginModel.token;
+                 // print(token);
+
                   CacheHelper.saveData(key: "token", value: states.loginModel.token,
+
                   ).then((value)
                   =>navigateAndFinish(context,
-                      const SelectPage(),
-                  ),
+                      const SelectPage(), ),
+
                   );
                    showToast(
                    msg: states.loginModel.message,
                    states: ToastStates.SUCCESS
                );
+                  print(states.loginModel.token);
+                  print(token);
                 }
               else
                 {

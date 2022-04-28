@@ -47,12 +47,14 @@ class DoctorRegisterCubit extends Cubit<DoctorRegisterStates>{
         url: "doctor/register",
         token: token,
         data: {
-          "name":doctorNameController.text,
-          "email":doctorEmailRegisterController.text,
-          "password":doctorPasswordRegisterController.text,
-          "phone":doctorPhoneController.text,
-          "department":specializationController
-          //"union_id":weightController.text,
+          "name":doctorNameController.text.toString(),
+          "email":doctorEmailRegisterController.text.toString(),
+          "password":doctorPasswordRegisterController.text.toString(),
+          "union_id":doctorIdController.text.toString(),
+          "photo":null,
+          "department":specializationController.text.toString(),
+
+
 
         }
     ).then((value) {

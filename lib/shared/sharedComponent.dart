@@ -383,7 +383,7 @@ Widget ThemeCard(context,
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 40,
           ),
           Expanded(

@@ -74,7 +74,7 @@ class HomePageScreen extends StatelessWidget {
                             const Divider(color: Colors.grey,),
                             TextButton(
                               onPressed: (){
-                                Navigator.pushNamed(context, ChangePassword.idChangePassword);
+                                navigateTo(context, const ChangePatientsPassword());
                               },
                               child: const Text('Change password',style: TextStyle(color: Colors.black,
                                   fontSize: 16),),

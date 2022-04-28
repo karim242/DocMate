@@ -1,26 +1,26 @@
-import 'package:docmate/Blocs/login/login_cubit.dart';
-import 'package:docmate/Blocs/login/login_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../Blocs/login/login_cubit.dart';
+import '../../../Blocs/login/login_states.dart';
 import '../../../constant.dart';
+import '../../../patient route/homePage/drawe_items/editprofile.dart';
 import '../../../shared/sharedComponent.dart';
-import 'editprofile.dart';
 
-class ChangePatientsPassword extends StatelessWidget {
-  const ChangePatientsPassword({Key? key}) : super(key: key);
+class ChangeDoctorsPassword extends StatelessWidget {
+  const ChangeDoctorsPassword({Key? key}) : super(key: key);
   static String idPatChangePassword = "IdPaChangePassword";
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, states) {
-          if(states is ChangePatientPassword)
-          {
-            showToast(
-                msg: states.patientPasswordModel.success,
-                states: ToastStates.SUCCESS
-            );
+          if(states is ChangeDoctorPassword)
+           {
+             showToast(
+               msg: states.doctorPasswordModel.success,
+                 states: ToastStates.SUCCESS
+          );
           }
 
         },
@@ -40,7 +40,7 @@ class ChangePatientsPassword extends StatelessWidget {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      cubit.changePatientPassword();
+                      cubit.changeDoctorPassword();
                     },
                     child: const Text(
                       "Save",
@@ -56,12 +56,12 @@ class ChangePatientsPassword extends StatelessWidget {
                     EditProfileTextField(
                       secure: true,
                       label: 'current password',
-                      controller: cubit.patientPasswordController,
+                      controller: cubit.doctorPasswordController,
                     ),
                     EditProfileTextField(
                       secure: true,
                       label: 'new password',
-                      controller: cubit.newPatientPassword,
+                      controller: cubit.newDoctorPassword,
                       validator: (value) {
                         // if (value.isEmpty) {
                         //   return "Please Re-Enter New Password";

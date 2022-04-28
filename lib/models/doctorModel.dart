@@ -18,3 +18,13 @@ class DoctorLoginModel
     token = json["token"];
   }
 }
+
+
+class DoctorChangePasswordModel
+{
+  late String success;
+  DoctorChangePasswordModel.fromJson(Map<String,dynamic>json)
+  {
+    success = json["success"];
+  }
+}

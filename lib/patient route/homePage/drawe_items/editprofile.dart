@@ -91,19 +91,19 @@ class _EditProfileState extends State<EditProfile> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              EditProfileTextField(label: 'Name',controller: cubit.editNameController,),
+                              EditProfileTextField(label: 'Name',controller: cubit.editNameController,secure: false,),
                               // SizedBox(height:5),
-                              EditProfileTextField(label: 'E-Mail',type: TextInputType.emailAddress,controller: cubit.editEmailController,),
+                              EditProfileTextField(label: 'E-Mail',type: TextInputType.emailAddress,controller: cubit.editEmailController,secure: false,),
                              // const SizedBox(height: 10,),
-                              EditProfileTextField(label: 'Date Of Birth',type: TextInputType.datetime,controller: cubit.editDateOfBirthController,),
+                              EditProfileTextField(label: 'Date Of Birth',type: TextInputType.datetime,controller: cubit.editDateOfBirthController,secure: false,),
                              // const SizedBox(height: 10,),
-                              EditProfileTextField(label: 'Height',type: TextInputType.number,controller: cubit.editHeightController,),
+                              EditProfileTextField(label: 'Height',type: TextInputType.number,controller: cubit.editHeightController,secure: false,),
                              // const SizedBox(height: 10,),
-                              EditProfileTextField(label: 'Weight',type: TextInputType.number,controller: cubit.editWeightController,),
+                              EditProfileTextField(label: 'Weight',type: TextInputType.number,controller: cubit.editWeightController,secure: false,),
                               //const SizedBox(height: 10,),
-                              EditProfileTextField(label: 'Blood Type',controller: cubit.editBloodTypeController,),
+                              EditProfileTextField(label: 'Blood Type',controller: cubit.editBloodTypeController,secure: false,),
                              // const SizedBox(height: 10,),
-                              EditProfileTextField(label: 'Location',controller: cubit.editLocationController,),
+                              EditProfileTextField(label: 'Location',controller: cubit.editLocationController,secure: false,),
                              // const SizedBox(height: 10,)
 
                             ],
@@ -124,12 +124,16 @@ class _EditProfileState extends State<EditProfile> {
 }
 
 class EditProfileTextField extends StatelessWidget {
-  const EditProfileTextField({Key? key,required this.label , this.type,this.controller,this.validator}) : super(key: key);
+   EditProfileTextField({
+    Key? key,required this.label ,
+    this.type,this.controller
+    ,this.validator,  required this.secure
+  });
   final String label;
   final TextInputType? type;
   final controller;
   final validator;
-
+    bool  secure= false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -139,10 +143,12 @@ class EditProfileTextField extends StatelessWidget {
         validator: validator,
         controller: controller,
         keyboardType: type,
+        obscureText:secure,
         decoration: InputDecoration(
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(25)),
             borderSide: BorderSide.none,
+
 
           ),
           fillColor: whiteColor,

@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant.dart';
+import '../../network_helper/cachehelper/cacheHelper.dart';
 import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 import '../../patient route/homePage/drawe_items/changepassword.dart';
 import '../../patient route/homePage/drawe_items/editprofile.dart';
 import '../../patient route/homePage/seeAll/latestNews.dart';
 import '../../patient route/homePage/seeAll/medicalAdvices.dart';
+import '../../selectUser/splashScreen.dart';
 import '../../shared/sharedComponent.dart';
+import 'doctor_drawe_items/docChangePassword.dart';
 
 class DoctorHomePageScreen extends StatelessWidget {
   DoctorHomePageScreen({Key? key}) : super(key: key);
@@ -98,8 +101,8 @@ class DoctorHomePageScreen extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, ChangePassword.idChangePassword);
+
+                            navigateTo(context, const ChangeDoctorsPassword());
                             },
                             child: const Text(
                               'Change password',
@@ -140,7 +143,15 @@ class DoctorHomePageScreen extends StatelessWidget {
                   TitleInDrawer(
                     icons: Icons.reply_sharp,
                     text: "Log Out",
-                    ontap: () {},
+                    ontap: () {
+                      CacheHelper.removeData(key: "token",
+                    ).then((value) {
+                      if(value)
+                      {
+                        navigateAndFinish(context,const SplashScreen(),);
+                      }
+                    });
+                      },
                   ),
                 ],
               ),

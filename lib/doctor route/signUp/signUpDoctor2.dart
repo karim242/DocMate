@@ -5,6 +5,8 @@ import '../../Blocs/doctor_register/doctorRegisterCubit.dart';
 import '../../Blocs/doctor_register/doctorRegisterStates.dart';
 
 import '../../constant.dart';
+import '../../shared/sharedComponent.dart';
+import '../doctorHomePage/selectdoctorpage.dart';
 
 class SignUpScreenDoctor2 extends StatelessWidget {
   static String doctorId2="SignUpScreenDoctor2";
@@ -15,7 +17,24 @@ class SignUpScreenDoctor2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorRegisterCubit, DoctorRegisterStates>(
         listener: (context, states) {
-          print("$states : SignupDoctor2");
+          if(states is RegisterSuccessStates)
+          {
+            print(states.registerModel.message);
+            showToast(
+                msg: states.registerModel.message,
+                states: ToastStates.SUCCESS
+            );
+            navigateAndFinish(context,const DoctorSelectPage(),);
+          }
+          if(states is RegisterErrorStates)
+          {
+            showToast(
+                msg: "The password must be at least 6 characters.",
+                states: ToastStates.ERROR
+            );
+
+          }
+
         },
         builder: (context, states) {
           var cubit = DoctorRegisterCubit.get(context);
@@ -39,7 +58,7 @@ class SignUpScreenDoctor2 extends StatelessWidget {
                       height: MediaQuery.of(context).size.height / 15,
                     ),
                     Expanded(
-                      flex: 3,
+                      flex: 4,
                       child: SingleChildScrollView(
                         child: Container(
                           decoration: const BoxDecoration(
