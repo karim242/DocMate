@@ -2,7 +2,7 @@ import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:docmate/doctor%20route/doctorFeature/medicalVisit/showMedicalVisit.dart';
 import 'package:docmate/doctor%20route/doctorHomePage/doctorProfile.dart';
-import 'package:docmate/doctor%20route/signUpDoctor1.dart';
+import 'package:docmate/doctor%20route/signUp/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:docmate/patient%20route/homePage/descriptionApi.dart';
@@ -46,7 +46,7 @@ import 'doctor route/doctorFeature/medicalVisit/addMedicalVisit.dart';
 import 'doctor route/doctorFeature/medicalVisit/medicalVisit.dart';
 import 'doctor route/doctorFeature/surgery/addSurgery.dart';
 import 'doctor route/doctorFeature/surgery/surgery.dart';
-import 'doctor route/signUpDoctor2.dart';
+import 'doctor route/signUp/signUpDoctor2.dart';
 import 'network_helper/cachehelper/cacheHelper.dart';
 
 Future<void> main() async {

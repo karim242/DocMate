@@ -1,6 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:docmate/network_helper/cachehelper/cacheHelper.dart';
-import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/signUp/signUpScreen1.dart';
 import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
@@ -8,20 +7,16 @@ import 'package:docmate/constant.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Blocs/login/login_cubit.dart';
 import '../Blocs/login/login_states.dart';
-import '../doctor route/doctorHomePage/selectdoctorpage.dart';
-import '../doctor route/signUpDoctor1.dart';
+import '../doctor route/signUp/signUpDoctor1.dart';
 import 'homePage/selectPage.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
-class LoginScreen extends StatelessWidget {
-LoginScreen({required this.value});
-final String value;
-  
+class PatientLoginScreen extends StatelessWidget {
+  const PatientLoginScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, states) {
-          if(states is LoginSuccessStates)
+          if(states is PatientLoginSuccessStates)
             {
               if(states.loginModel.status)
                 {
@@ -36,7 +31,8 @@ final String value;
                    msg: states.loginModel.message,
                    states: ToastStates.SUCCESS
                );
-                }else
+                }
+              else
                 {
                   print(states.loginModel.message);
                   showToast(
@@ -45,7 +41,7 @@ final String value;
                   );
                 }
             }
-          if(states is LoginErrorStates)
+          else
             {
               showToast(
                   msg: "Login credentials are invalid",
@@ -72,7 +68,7 @@ final String value;
                   height: MediaQuery.of(context).size.height / 15,
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 5,
                   child: Container(
                     decoration: const BoxDecoration(
                       color: Color(0xffFFFFFF),
@@ -108,15 +104,7 @@ final String value;
                                       MediaQuery.of(context).size.width / 10),
                               MaterialButton(
                                 onPressed: () {
-                                  if(cubit.isuser) {
-                                    Navigator.pushNamed(
-                                        context, SignUpScreenDoctor1.doctorId1);
-                                  }
-                                 else
-                                    {
-                                      Navigator.pushNamed(
-                                          context,SignUpPatientScreen.id1);
-                                    }
+                                  navigateTo(context, const SignUpPatientScreen());
                                 },
                                 child: Text(
                                   "Sign up",
@@ -132,12 +120,10 @@ final String value;
                               height: MediaQuery.of(context).size.height / 20),
                           textFieldForm(
                             secure: false,
-                            text: value,
+                            text: "E-mail",
                             ontap: () {},
-                            controller:cubit.emailcontroller,
-                          //     value=="email"
-                          // ? cubit.emailcontroller
-                          //     : cubit.idController,
+                            controller:cubit.emailController,
+
                             height: MediaQuery.of(context).size.height / 14,
                             width: MediaQuery.of(context).size.width / 1.16,
                           ),
@@ -148,7 +134,7 @@ final String value;
                             secure: true,
                             text: 'Password',
                             ontap: () {},
-                            controller: cubit.passwordController,
+                            controller: cubit.patientPasswordController,
                             height: MediaQuery.of(context).size.height / 14,
                             width: MediaQuery.of(context).size.width / 1.16,
                           ),
@@ -205,8 +191,8 @@ final String value;
                                         //
                                         //   }
                                          // print(cubit.idController.text);
-                                          print(cubit.emailcontroller.text);
-                                          print(cubit.passwordController.text);
+                                          print(cubit.emailController.text);
+                                          print(cubit.patientPasswordController.text);
                                       }
                                       else {print("Errorrrrrrrrr");}
                                     }),

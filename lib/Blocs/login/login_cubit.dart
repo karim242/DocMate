@@ -2,6 +2,7 @@ import 'package:docmate/constant.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../models/doctorModel.dart';
 import '../../models/patientModel.dart';
 import 'login_states.dart';
 
@@ -11,9 +12,10 @@ class LoginCubit extends Cubit<LoginStates>{
   static LoginCubit get(context)=>BlocProvider.of(context);
   List<dynamic> response=[];
 
-  var emailcontroller= TextEditingController();
-  var passwordController= TextEditingController();
+  var emailController= TextEditingController();
+  var patientPasswordController= TextEditingController();
   var idController= TextEditingController();
+  var doctorPasswordController= TextEditingController();
 
 /////////////////////
  late PatientLoginModel patientLoginModel;
@@ -24,9 +26,10 @@ class LoginCubit extends Cubit<LoginStates>{
      DioHelperAPI.postData(
         url: "patient/login",
 
+
         data: {
-          "email": emailcontroller.text,
-          "password": "${passwordController.text}",
+          "email": emailController.text,
+          "password": "${patientPasswordController.text}",
         }
     ).then((value) {
        patientLoginModel=PatientLoginModel.fromJson(value.data);
@@ -34,7 +37,9 @@ class LoginCubit extends Cubit<LoginStates>{
        print(patientLoginModel.message);
        print(token);
        print(patientLoginModel.token);
-       emit(LoginSuccessStates(patientLoginModel));
+       patientLoginModel.token =token;
+       print(token);
+       emit(PatientLoginSuccessStates(patientLoginModel));
     }
     ).catchError((error)
     {
@@ -44,6 +49,35 @@ class LoginCubit extends Cubit<LoginStates>{
   }
 
 
+  late DoctorLoginModel doctorLoginModel;
+  void doctorLogin()
+  {
+    emit(LoadingLoginStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/login",
+
+
+        data: {
+          "email": idController.text,
+          "password": doctorPasswordController.text,
+        }
+    ).then((value) {
+      doctorLoginModel=DoctorLoginModel.fromJson(value.data);
+      print(doctorLoginModel.status);
+      print(doctorLoginModel.message);
+      print(token);
+      print(doctorLoginModel.token);
+     // doctorLoginModel.token =token;
+      print(token);
+      emit(DoctorLoginSuccessStates(doctorLoginModel));
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error".toString());
+      emit(LoginErrorStates(error));
+    });
+  }
 
 
   //for change password

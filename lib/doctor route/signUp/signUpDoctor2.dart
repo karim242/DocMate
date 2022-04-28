@@ -1,21 +1,22 @@
- import 'package:docmate/doctor%20route/signUpDoctor2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Blocs/doctor_register/doctorRegisterCubit.dart';
-import '../Blocs/doctor_register/doctorRegisterStates.dart';
+import '../../Blocs/doctor_register/doctorRegisterCubit.dart';
+import '../../Blocs/doctor_register/doctorRegisterStates.dart';
 
-import '../constant.dart';
+import '../../constant.dart';
 
-class SignUpScreenDoctor1 extends StatelessWidget {
-  static String doctorId1="SignUpScreenDoctor1";
+class SignUpScreenDoctor2 extends StatelessWidget {
+  static String doctorId2="SignUpScreenDoctor2";
 
-  const SignUpScreenDoctor1({Key? key}) : super(key: key);
+  const SignUpScreenDoctor2({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DoctorRegisterCubit, DoctorRegisterStates>(
-        listener: (context, states) {},
+        listener: (context, states) {
+          print("$states : SignupDoctor2");
+        },
         builder: (context, states) {
           var cubit = DoctorRegisterCubit.get(context);
           return Scaffold(
@@ -25,7 +26,7 @@ class SignUpScreenDoctor1 extends StatelessWidget {
             ),
             backgroundColor: blueColor,
             body: Form(
-              key: cubit.doctorformkey1,
+              key: cubit.doctorformkey2,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
@@ -60,6 +61,7 @@ class SignUpScreenDoctor1 extends StatelessWidget {
                                 child: Row(children: [
                                   MaterialButton(
                                     onPressed: () {
+                                      Navigator.pop(context);
                                     },
                                     child: Text(
                                       "Log in",
@@ -88,71 +90,57 @@ class SignUpScreenDoctor1 extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  indicatorOn()
+                                  indicatorOff(),
+                                  SizedBox(width: MediaQuery.of(context).size.width/20,),
+                                  indicatorOn(),
                                 ],
                               ),
                               SizedBox(height: MediaQuery.of(context).size.height / 55,),
                               textFieldForm(
                                 secure:false,
-                                text: 'Name',
+                                text: 'E-mail',
                                 ontap: () {},
-                                controller: cubit.DNamecontroller,
+                                controller: cubit.doctorEmailRegisterController,
                                 height: MediaQuery.of(context).size.height / 14,
                                 width: MediaQuery.of(context).size.width / 1.16,
                               ),
                               SizedBox(height: MediaQuery.of(context).size.height / 35,),
+                              textFieldForm(
+                                secure:true,
+                                text: 'Password',
+                                ontap: () {},
+                                controller: cubit.doctorPasswordRegisterController,
+                                height: MediaQuery.of(context).size.height / 14,
+                                width: MediaQuery.of(context).size.width / 1.16,
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height / 35,),
+                              textFieldForm(
+                                secure: true,
+                                text: 'Confirm Password',
+                                ontap: () {},
+                                controller: cubit.doctorPasswordConfirmController,
+                                height: MediaQuery.of(context).size.height / 14,
+                                width: MediaQuery.of(context).size.width / 1.16,
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height / 8,),
 
-                              textFieldForm(
-                                secure:false,
-                                text: 'ID',
-                                ontap: () {},
-                                controller: cubit.Idcontroller,
-                                height: MediaQuery.of(context).size.height / 14,
-                                width: MediaQuery.of(context).size.width / 1.16,
-                              ),
-                              SizedBox(height: MediaQuery.of(context).size.height / 35,),
-                              textFieldForm(
-                                secure: false,
-                                text: 'Specialization',
-                                ontap: () {},
-                                controller: cubit.Specializationcontroller,
-                                height: MediaQuery.of(context).size.height / 14,
-                                width: MediaQuery.of(context).size.width / 1.16,
-                              ),
-                              SizedBox(height: MediaQuery.of(context).size.height / 35,),
-                              textFieldForm(
-                                secure: false,
-                                text: 'Clinic Address',
-                                ontap: () {},
-                                controller: cubit.clinicadresscontroller,
-                                height: MediaQuery.of(context).size.height / 14,
-                                width: MediaQuery.of(context).size.width / 1.16,
-                              ),
-                              SizedBox(height: MediaQuery.of(context).size.height / 35,),
-                              textFieldForm(
-                                secure: false,
-                                text: 'Phone numder',
-                                ontap: () {},
-                                controller: cubit.Dphonecontroller,
-                                height: MediaQuery.of(context).size.height / 14,
-                                width: MediaQuery.of(context).size.width / 1.16,
-                              ),
                               Padding(
                                 padding: EdgeInsets.only(
                                   bottom: MediaQuery.of(context).size.height / 20,
                                   top: MediaQuery.of(context).size.height / 100,
                                 ),
                                 child: defaultBottonTologin(
-                                  text: "Next",
+                                  text: "Sign Up",
                                   Backgroundcolur: blueColor,
                                   textColor: whiteColor,
                                   height: MediaQuery.of(context).size.height / 14,
                                   width: MediaQuery.of(context).size.width / 1.5,
                                   onpressed: () {
-                                    if (cubit.doctorformkey1.currentState!.validate())
-                                   {
-                                     Navigator.pushNamed(context, SignUpScreenDoctor2.doctorId2);
-                                   }
+                                    if (cubit.doctorformkey2.currentState!.validate())
+                                    {
+                                      cubit.doctorRegister();
+
+                                    }
                                   },
                                 ),
                               ),

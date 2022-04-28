@@ -226,7 +226,7 @@ MaterialButton FeatureCard(
     minWidth: width,
     height: height,
     onPressed: ontap,
-    elevation: 5,
+    elevation: 3,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
     color: color,
     child: Column(

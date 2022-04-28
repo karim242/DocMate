@@ -1,5 +1,6 @@
 
 import 'package:docmate/constant.dart';
+import 'package:docmate/models/patientModel.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -204,7 +205,7 @@ late PickedFile surgeryImage;
 
     ).then((value) {
       familyHistoryData = value.data["data"];
-      print(familyHistoryData);
+      print(familyHistoryData[0]);
 
       emit(FeatureSuccessStates());
     }
@@ -372,11 +373,11 @@ late PickedFile surgeryImage;
 
     ).then((value) {
       labTestData = value.data["data"];
-      print(labTestData);
+      print(labTestData[0]);
      // print(labTestData[0]["name"].runtimeType,);
      // print(labTestData[0]["type"].runtimeType,);
      // print(labTestData[0]["location"].runtimeType,);
-     print(labTestData[0]["date"].runtimeType,);
+     print(labTestData[3]["date"].runtimeType,);
 
       emit(FeatureSuccessStates());
     }
@@ -436,7 +437,7 @@ late PickedFile surgeryImage;
     ).then((value) {
       glucoseData = value.data["data"];
       print(glucoseData);
-     print( glucoseData[0]["data"].runtimeType);
+     print( glucoseData[0]["date"].runtimeType);
      print( glucoseData[0]["glucos_result"].runtimeType);
      print( glucoseData[0]["glucos_type"].runtimeType);
 
@@ -473,6 +474,7 @@ late PickedFile surgeryImage;
         }
     ).then((value) {
       pressureModel=PressureModel.fromJson(value.data);
+
     //print(featurePressurePostModel.data.diastolicPressure);
     //print(featurePressurePostModel.data.date);
     //print(featurePressurePostModel.data.systolicPressure);
@@ -485,7 +487,7 @@ late PickedFile surgeryImage;
     });
   }
 
-
+  late PatientLoginModel patientLoginModel;
 List <dynamic> pressureData=[];
   void getPressureAPI()
   {
@@ -497,6 +499,8 @@ List <dynamic> pressureData=[];
 
     ).then((value) {
       pressureData = value.data["data"];
+      print(patientLoginModel.token);
+      print(token);
       // print(pressureData[0]["id"]);
       // print(pressureData[0]["systolic_pressure"].runtimeType);
       // print(pressureData[0]["diastolic_pressure"].runtimeType);

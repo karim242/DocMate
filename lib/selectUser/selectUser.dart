@@ -1,9 +1,11 @@
 import 'package:docmate/Blocs/login/login_cubit.dart';
 import 'package:docmate/Blocs/login/login_states.dart';
 import 'package:docmate/patient%20route/loginScreen.dart';
+import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../constant.dart';
+import '../doctor route/login/doctorLogin.dart';
 import '../patient route/loginScreen.dart';
 
 class SelectUser extends StatelessWidget {
@@ -36,10 +38,7 @@ class SelectUser extends StatelessWidget {
                       textColor: blueColor,
                       onpressed: () {
                         cubit.changedoctor();
-                          Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                            return LoginScreen(value: "ID",);
-                          },),);
+                        navigateTo(context, const DoctorLoginScreen());
                       }
                   ),
                   const SizedBox(height: 24.0),
@@ -53,10 +52,8 @@ class SelectUser extends StatelessWidget {
                       textColor: blueColor,
                       onpressed: () {
                         cubit.changepatient();
-                          Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                              return LoginScreen(value: "E-mail",);
-                            },),);
+                          navigateTo(context,const PatientLoginScreen());
+
                       }
                   ),
                 ],

@@ -36,16 +36,17 @@ class FamilyHistoryScreen extends StatelessWidget {
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 1.04,
-                          crossAxisSpacing:10.0,
-                          mainAxisSpacing: 10.0
+                          crossAxisSpacing:12.0,
+                          mainAxisSpacing: 12.0
                       ),
                       itemCount:familyData.length ,
                       itemBuilder: (context, int index){
-                        return  FeatureCard(
+                        return  labTestCard(
                             textcolor :blueColor,
                             ontap: () {},
                             photoIconName: "virus",
-                            text: familyData[index][""],
+                            disease: familyData[index]["disease"],
+                            relation:familyData[index]["realation"],
                             color: const Color(0xffFDF8FF)
                         );
                       },
@@ -55,4 +56,57 @@ class FamilyHistoryScreen extends StatelessWidget {
               ));
         });
   }
+}
+MaterialButton labTestCard(
+    {
+      required String disease,
+      required String relation,
+
+      required Color color,
+      required var photoIconName,
+      required VoidCallback ontap,
+      double width = 50,
+      double height = 60,
+      double textSize = 16,
+      double icoWidth = 70,
+      double iconHeight = 70,
+      Color textcolor = Colors.white}) {
+  return MaterialButton(
+    minWidth: width,
+    height: height,
+    onPressed: ontap,
+    elevation: 3,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    color: color,
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 10,
+        ),
+        Image(
+          image: AssetImage('images/$photoIconName.png'),
+          fit: BoxFit.fill,
+          width: icoWidth,
+          height: iconHeight,
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Text(
+          disease,
+          maxLines: 1,
+          style: TextStyle(
+            fontSize: textSize,
+            color: textcolor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+            relation,
+            maxLines: 1,
+            style:text15forDateandTime
+        ),
+      ],
+    ),
+  );
 }

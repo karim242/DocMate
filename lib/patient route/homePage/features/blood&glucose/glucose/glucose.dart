@@ -33,7 +33,7 @@ class GlucoseScreen extends StatelessWidget {
                 //glucoseData.length,
                 itemBuilder: (context, index)
                 => glucoseWidget(context,
-                    date: glucoseData[index]["data"],
+                    date: glucoseData[index]["date"],
                  measure: glucoseData[index]["glucos_result"],
                     type: glucoseData[index]["glucos_type"],
                 ),
@@ -52,7 +52,7 @@ class GlucoseScreen extends StatelessWidget {
 Widget glucoseWidget(context,
 {
 required int measure,
-required Null date,
+required String date,
   required String type,
 })
 {
@@ -80,7 +80,7 @@ required Null date,
             minWidth: 160,
             height: 100,
             onPressed: (){},
-            elevation: 6,
+            elevation: 3,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             color: whiteColor,
             child: Column(

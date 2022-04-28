@@ -33,8 +33,8 @@ class AllergyScreen extends StatelessWidget {
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: 1.04,
-                          crossAxisSpacing:10.0,
-                          mainAxisSpacing: 10.0
+                          crossAxisSpacing:12.0,
+                          mainAxisSpacing: 12.0
                         ),
                         itemCount:allergyData.length ,
                         itemBuilder: (context, int index){
