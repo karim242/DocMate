@@ -33,7 +33,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                         icoWidth: 100,
                         iconHeight: 100,
                         ontap: () {
-                          Navigator.pushNamed(context,FamilyHistoryScreen.idFamilyHistory);
+                          navigateTo(context,const FamilyHistoryScreen());
                           cubit.getFamilyHistoryAPI();
                         },
                         color: const Color(0xffDFC8FC),
@@ -49,8 +49,18 @@ class MedicalHistoryScreen extends StatelessWidget {
                         icoWidth: 100,
                         iconHeight: 100,
                         ontap: () {
-                          Navigator.pushNamed(context, AllergyScreen.idAllergyScreen);
-                          cubit.getAllergyAPI();
+                          navigateTo(context, AllergyScreen());
+
+                          if(cubit.isUser)
+                            {
+                              cubit.getDoctorAllergyAPI();
+                            }
+                          else
+                            {
+                              cubit.getPatientAllergyAPI();
+                            }
+                          ////
+                        ////  cubit.cha
                         },
                         color: const Color(0xffFFCCA0),
                         text: "Allergies",

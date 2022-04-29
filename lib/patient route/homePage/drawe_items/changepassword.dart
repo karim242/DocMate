@@ -41,6 +41,8 @@ class ChangePatientsPassword extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       cubit.changePatientPassword();
+                      Navigator.pop(context);
+
                     },
                     child: const Text(
                       "Save",

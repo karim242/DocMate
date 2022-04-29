@@ -52,7 +52,7 @@ class ADDAllergyScreen extends StatelessWidget {
                             onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.postAllergyAPI(allergy: cubit.allergyController.text);
-                                cubit.getAllergyAPI();
+                                cubit.getPatientAllergyAPI();
 
                                 Navigator.pop(context);
                                 cubit.allergyController.clear();

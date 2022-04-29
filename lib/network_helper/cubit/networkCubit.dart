@@ -13,10 +13,12 @@ import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../constant.dart';
 import '../../doctor route/doctorHomePage/doctorHomePage.dart';
 import '../../doctor route/doctorHomePage/doctorProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/myPatients.dart';
+import '../../models/searchModel.dart';
 import '../dioHelper.dart';
 
 
@@ -151,5 +153,36 @@ int selectedIndex = 0;
 
     });
 
+  }
+
+
+
+
+  ////for search box
+
+  var searchController = TextEditingController();
+  late SearchModel searchModel;
+  void postSearchAPI()
+  {
+    emit(LoadingSearchValueStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/find_patient",
+        token:token,
+        data: {
+          "email":searchController.text,
+        }
+    ).then((value) {
+      searchModel =SearchModel.fromJson(value.data);
+      print(searchModel.data.id);
+      print(searchModel.data.name);
+
+      emit(SearchSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(SearchErrorStates());
+    });
   }
 }

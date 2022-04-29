@@ -36,5 +36,3 @@ class ChangeDoctorPassword extends LoginStates{
 
   ChangeDoctorPassword( this.doctorPasswordModel);
 }
-class ChangePatient extends LoginStates{}
-class ChangeDoctor extends LoginStates{}

@@ -16,3 +16,5 @@ class FeatureErrorStates extends FeatureStates{
 
   FeatureErrorStates(this.error);
 }
+class ChangePatient extends FeatureStates{}
+class ChangeDoctor extends FeatureStates{}

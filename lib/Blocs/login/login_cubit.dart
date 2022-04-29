@@ -86,7 +86,7 @@ class LoginCubit extends Cubit<LoginStates>{
     DioHelperAPI.postData(
         url: "doctor/login",
         data: {
-          "email": idController.text,
+          "union_id": idController.text,
           "password": doctorPasswordController.text,
         }
     ).then((value) {
@@ -117,7 +117,7 @@ class LoginCubit extends Cubit<LoginStates>{
         url: "doctor/profile/change_password",
         token: token,
         data: {
-          "oldpassword": patientPasswordController.text,
+          "oldpassword":doctorPasswordController.text,
           "password": newDoctorPassword.text,
         }
     ).then((value) {
@@ -134,21 +134,12 @@ class LoginCubit extends Cubit<LoginStates>{
     });
   }
 
-  // for Patient change password
+
 
 
 
   ///
   var formkey  =GlobalKey<FormState>();
-  bool isuser= true;
 
-  void changedoctor(){
-    isuser =true;
-    emit(ChangeDoctor());
-  }
-  void changepatient(){
-    isuser =false;
-    emit(ChangePatient());
-  }
 
 }

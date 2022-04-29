@@ -26,6 +26,7 @@ class MyPatientsPage extends StatelessWidget {
                 patientName: "Karim Halawa",
                 patientId: "325461",
                 patientImage:AssetImage("images/4.png") ,
+                onpressd: (){},
               ),
           itemCount: 1,
           
@@ -40,11 +41,13 @@ class PatientCard extends StatelessWidget {
   late String patientId ;
   late String? patientName;
   late ImageProvider? patientImage;
-
+  VoidCallback onpressd;
   PatientCard({Key? key,
      required this.patientId,
     required this.patientName,
-    required this.patientImage
+    required this.patientImage,
+    required this.onpressd
+
   }) : super(key: key) ;
   @override
   Widget build(BuildContext context) {
@@ -52,17 +55,18 @@ class PatientCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
         height: 80,
-        onPressed: () {
+        onPressed: onpressd,
 
-          Navigator.push(context, MaterialPageRoute(
-              builder:(context)=>DoctorMedicalProfileScreen(
-                pName: patientName!,
-                patientId: patientId,
-               patientImage: patientImage!
-              ) ,
-          ),
-          );
-        },
+        //  Navigator.push(context, MaterialPageRoute(
+             // builder:(context)=>
+                  //DoctorMedicalProfileScreen(
+               //  pNapatientIdme: patientName!,
+               //  : patientId,
+               // patientImage: patientImage!
+             // ) ,
+        //   ),
+        //   );
+        // },
         elevation: 2,
         color: whiteColor,
         highlightColor: Colors.grey[200],

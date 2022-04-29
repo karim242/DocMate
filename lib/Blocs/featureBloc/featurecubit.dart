@@ -19,6 +19,22 @@ class FeatureCubit extends Cubit<FeatureStates> {
   }  //object from him self
 
   var formkey  =GlobalKey<FormState>();
+
+  bool isUser= true;
+
+  void changeDoctor(){
+    isUser =true;
+    emit(ChangeDoctor());
+  }
+  void changePatient(){
+    isUser =false;
+    emit(ChangePatient());
+  }
+
+
+
+
+
   //for photo
   late PickedFile file;
   final ImagePicker picker = ImagePicker();
@@ -243,8 +259,9 @@ late PickedFile surgeryImage;
       emit(FeatureErrorStates(error));
     });
   }
-  List <dynamic> allergyData=[];
-  void getAllergyAPI()
+  ////for patient
+  List <dynamic> allergyPatientListData=[];
+  void getPatientAllergyAPI()
   {
     emit(LoadingValueStates());
 
@@ -253,8 +270,8 @@ late PickedFile surgeryImage;
       token:token,
 
     ).then((value) {
-      allergyData = value.data["data"];
-      print(allergyData);
+      allergyPatientListData = value.data["data"];
+      print(allergyPatientListData);
 
       emit(FeatureSuccessStates());
     }
@@ -264,7 +281,28 @@ late PickedFile surgeryImage;
       emit(FeatureErrorStates(error));
     });
   }
+////for Doctor
+  List <dynamic> allergyDoctorListData=[];
+  void getDoctorAllergyAPI()
+  {
+    emit(LoadingValueStates());
 
+    DioHelperAPI.getData(
+      url: "doctor/3/allergy",
+      token:token,
+
+    ).then((value) {
+      allergyDoctorListData = value.data["data"];
+      print(allergyDoctorListData);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
 ////////////////////////////////////////////////////////////////
   ////for radiology
   var radiologyNameController= TextEditingController();

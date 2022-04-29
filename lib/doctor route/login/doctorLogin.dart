@@ -1,4 +1,5 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/doctor%20route/doctorHomePage/selectdoctorpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +25,7 @@ class DoctorLoginScreen extends StatelessWidget {
             CacheHelper.saveData(key: "token", value: states.loginModel.token,
             ).then((value)
             =>navigateAndFinish(context,
-              const SelectPage(),
+              const DoctorSelectPage(),
             ),
             );
             showToast(
@@ -41,13 +42,13 @@ class DoctorLoginScreen extends StatelessWidget {
             );
           }
         }
-        else
-        {
-          showToast(
-            msg: "Login credentials are invalid",
-            states: ToastStates.ERROR,
-          );
-        }
+        // else
+        // {
+        //   showToast(
+        //     msg: "Login credentials are invalid",
+        //     states: ToastStates.ERROR,
+        //   );
+        // }
       },
       builder: (context, states) {
         var cubit = LoginCubit.get(context);
@@ -191,8 +192,11 @@ class DoctorLoginScreen extends StatelessWidget {
                                       //
                                       //   }
                                       // print(cubit.idController.text);
+                                      cubit.doctorLogin();
+
                                       print(cubit.idController.text);
                                       print(cubit.doctorPasswordController.text);
+                                      cubit.doctorPasswordController.clear();
                                     }
                                     else {print("Error");}
                                   }),

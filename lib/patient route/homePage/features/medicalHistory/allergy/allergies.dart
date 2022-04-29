@@ -16,7 +16,7 @@ class AllergyScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List <dynamic> allergyData = cubit.allergyData;
+          List <dynamic> allergyData = cubit.allergyPatientListData;
           return Scaffold(
               appBar: themeAppBar(context,value: "Allergies"),
 

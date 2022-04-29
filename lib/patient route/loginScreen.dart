@@ -47,7 +47,7 @@ class PatientLoginScreen extends StatelessWidget {
                   );
                 }
             }
-          else
+          if(states is LoginErrorStates)
             {
               showToast(
                   msg: "Login credentials are invalid",

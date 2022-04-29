@@ -1,6 +1,7 @@
 // ignore_for_file: dead_code
 
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:docmate/doctor%20route/doctorHomePage/searchBox/searchPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,7 @@ import 'doctor_drawe_items/docChangePassword.dart';
 class DoctorHomePageScreen extends StatelessWidget {
   DoctorHomePageScreen({Key? key}) : super(key: key);
   static String IdDoctorHome = "IdOfDoctorHomePage";
- var searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
@@ -41,13 +42,19 @@ class DoctorHomePageScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: TextFormField(
-                  controller :searchController,
+                  controller :cubit.searchController,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon:IconButton(
+                      icon:  const Icon(Icons.search),
+                    onPressed :(){
+                      cubit.postSearchAPI();
+                      navigateTo(context, const SearchPage());
+                    },),
                     suffixIcon: IconButton(
-                      icon: Icon(Icons.clear),
+                      icon:  const Icon(Icons.clear),
                       onPressed: () {
-                     searchController.clear();
+                     cubit.searchController.clear();
+
                       },
                     ),
                     hintText: "Search",
@@ -103,6 +110,7 @@ class DoctorHomePageScreen extends StatelessWidget {
                             onPressed: () {
 
                             navigateTo(context, const ChangeDoctorsPassword());
+
                             },
                             child: const Text(
                               'Change password',
