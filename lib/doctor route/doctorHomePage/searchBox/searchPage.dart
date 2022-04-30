@@ -33,8 +33,10 @@ class SearchPage extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) =>
                     PatientCard(
-                      patientName: cubit.searchModel.data.name,
-                      patientId: cubit.searchModel.data.id,
+                      patientName: cubit.findPatientList[index]["name"],
+                      //cubit.findPatientModel.data.name,
+                      patientId:cubit.findPatientList[index]["id"],
+                      //cubit.findPatientModel.data.id,
                       patientImage: AssetImage("images/4.png"),
                       onpressd: (){},
                     ),

@@ -161,7 +161,9 @@ int selectedIndex = 0;
   ////for search box
 
   var searchController = TextEditingController();
-  late SearchModel searchModel;
+
+ // late FindPatientModel findPatientModel;
+  List<dynamic> findPatientList=[];
   void postSearchAPI()
   {
     emit(LoadingSearchValueStates());
@@ -173,16 +175,20 @@ int selectedIndex = 0;
           "email":searchController.text,
         }
     ).then((value) {
-      searchModel =SearchModel.fromJson(value.data);
-      print(searchModel.data.id);
-      print(searchModel.data.name);
+      //findPatientModel =FindPatientModel.fromJson(value.data);
+      findPatientList=value.data["data"];
+      print(findPatientList);
+
+
+     // print(findPatientModel.data.runtimeType);
+     // print(findPatientModel.data.name);
 
       emit(SearchSuccessStates());
     }
     ).catchError((error)
     {
       print("Error is ==> $error");
-      emit(SearchErrorStates());
+      emit(SearchErrorStates(error));
     });
   }
 }

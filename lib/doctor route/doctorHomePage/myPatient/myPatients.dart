@@ -24,7 +24,7 @@ class MyPatientsPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) =>
               PatientCard(
                 patientName: "Karim Halawa",
-                patientId: "325461",
+                patientId: 123,
                 patientImage:AssetImage("images/4.png") ,
                 onpressd: (){},
               ),
@@ -38,7 +38,7 @@ class MyPatientsPage extends StatelessWidget {
 
 class PatientCard extends StatelessWidget {
 
-  late String patientId ;
+  late int patientId ;
   late String? patientName;
   late ImageProvider? patientImage;
   VoidCallback onpressd;
@@ -101,7 +101,7 @@ class PatientCard extends StatelessWidget {
                   color: blueColor,
                 ),),
                 SizedBox(height: 5,),
-                Text(patientId,style: text15forDateandTime),
+                Text(patientId.toString(),style: text15forDateandTime),
               ],
             ),
             Spacer(),
