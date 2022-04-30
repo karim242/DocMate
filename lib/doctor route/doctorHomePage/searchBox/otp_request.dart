@@ -8,16 +8,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constant.dart';
 import '../../../network_helper/cubit/networkCubit.dart';
 import '../../../network_helper/cubit/networlStates.dart';
+import '../../../shared/sharedComponent.dart';
 import '../myPatient/myPatients.dart';
 
 class OtpRequest extends StatelessWidget {
   const OtpRequest({Key? key}) : super(key: key);
-  static String idOtpRequest = "IdOfOtpRequest";
+
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
-        listener: (context, states) {},
+        listener: (context, states) {
+          if(states is  OtpReqSuccessStates)
+            {
+              showToast(
+                  msg: states.requestOtpModel.message,
+                  states: ToastStates.SUCCESS
+              );
+              navigateTo(context, const VerifyOtp());
+            }
+        },
         builder: (context, states) {
           NetworkCubit cubit = NetworkCubit.get(context);
 
@@ -68,8 +78,11 @@ class OtpRequest extends StatelessWidget {
                           child: Text("you don't have permission yet to view this profile",style: TextStyle(color: blueColor,fontSize: 22,fontWeight: FontWeight.bold,),textAlign: TextAlign.center,),
                         ),
                         const SizedBox(height: 15,),
-                        MaterialButton(onPressed: (){
-                          cubit.postOtpRequest(context);
+                        MaterialButton(
+                          height: 44,
+                          minWidth: 200,
+                          onPressed: (){
+                          cubit.postOtpRequest();
 
 
                           },child: const Padding(

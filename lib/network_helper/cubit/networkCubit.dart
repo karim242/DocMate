@@ -196,7 +196,7 @@ int selectedIndex = 0;
 
 
   late RequestOtpModel requestOtpModel;
-  postOtpRequest(context)
+  void postOtpRequest()
   {
     emit(LoadingSearchValueStates());
 
@@ -207,27 +207,19 @@ int selectedIndex = 0;
           "email":searchController.text,
         }
     ).then((value) {
-
-
       requestOtpModel =RequestOtpModel.fromJson(value.data);
-      const sBar = SnackBar(content: Text('otp sent'),backgroundColor: Color(0xff01B9c8),);
-      ScaffoldMessenger.of(context).showSnackBar(sBar);
-      Navigator.pushNamed(
-          context, VerifyOtp.idOVerifyOtp);
-
-
+      // const sBar = SnackBar(content: Text('otp sent'),backgroundColor: Color(0xff01B9c8),);
+      // ScaffoldMessenger.of(context).showSnackBar(sBar);
+      // Navigator.pushNamed(
+      //     context, VerifyOtp.idOVerifyOtp);
       print(requestOtpModel.message);
       print(requestOtpModel.status);
-      return(requestOtpModel.status);
-
-      emit(SearchSuccessStates());
+      emit(OtpReqSuccessStates(requestOtpModel));
     }
     ).catchError((error)
     {
       print("Error is ==> $error");
       emit(SearchErrorStates(error));
-      const sBar = SnackBar(content: Text('error occurred'),backgroundColor: Color(0xff01B9c8),);
-      ScaffoldMessenger.of(context).showSnackBar(sBar);
     });
   }
 
@@ -239,7 +231,7 @@ int selectedIndex = 0;
   var verifyOtpController = TextEditingController();
 
   late VerifyOtpModel verifyOtpModel;
-  postOtpVerify(context)
+  void postOtpVerify()
   {
     emit(LoadingSearchValueStates());
 
@@ -252,32 +244,27 @@ int selectedIndex = 0;
         }
     ).then((value) {
       verifyOtpModel =VerifyOtpModel.fromJson(value.data);
-
-
       //add navigator here
 
-      if (verifyOtpModel.status == 200 ){
-        const sBar = SnackBar(content: Text('access granted'),backgroundColor: Color(0xff01B9c8),);
-        ScaffoldMessenger.of(context).showSnackBar(sBar);
-      }
-      else{
-        const sBar = SnackBar(content: Text('wrong otp'),backgroundColor: Color(0xff01B9c8),);
-        ScaffoldMessenger.of(context).showSnackBar(sBar);
-      }
-
-
-
+      // if (verifyOtpModel.status == 200 ){
+      //   const sBar = SnackBar(content: Text('access granted'),backgroundColor: Color(0xff01B9c8),);
+      //   ScaffoldMessenger.of(context).showSnackBar(sBar);
+      // }
+      // else{
+      //   const sBar = SnackBar(content: Text('wrong otp'),backgroundColor: Color(0xff01B9c8),);
+      //   ScaffoldMessenger.of(context).showSnackBar(sBar);
+      // }
       print(verifyOtpModel.message);
       print(verifyOtpModel.status);
-      return(requestOtpModel.status);
+      // return(requestOtpModel.status);
 
-      emit(SearchSuccessStates());
+      emit(OtpVerifySuccessStates(verifyOtpModel));
     }
     ).catchError((error)
     {
       print("Error is ==> $error");
-      const sBar = SnackBar(content: Text('wrong otp'),backgroundColor: Color(0xff01B9c8),);
-      ScaffoldMessenger.of(context).showSnackBar(sBar);
+      // const sBar = SnackBar(content: Text('wrong otp'),backgroundColor: Color(0xff01B9c8),);
+      // ScaffoldMessenger.of(context).showSnackBar(sBar);
       emit(SearchErrorStates(error));
     });
   }

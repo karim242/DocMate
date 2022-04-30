@@ -129,7 +129,7 @@ class MyApp extends StatelessWidget {
             AddMedicalVisits.idAddMedicalVisit :(context)=>  AddMedicalVisits(),
             DoctorSurgeryScreen.idDoctorSurgery :(context)=>  const DoctorSurgeryScreen(),
             AddSurgeryScreen.idAddSurgery : (context)=> const AddSurgeryScreen(),
-            OtpRequest.idOtpRequest : (context)=> const OtpRequest(),
+
             VerifyOtp.idOVerifyOtp: (context)=> const VerifyOtp(),
 
 

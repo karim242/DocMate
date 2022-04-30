@@ -27,6 +27,7 @@ class MyPatientsPage extends StatelessWidget {
                 patientName: "Karim Halawa",
                 patientId: 123,
                 patientImage:AssetImage("images/4.png") ,
+                onpressed: (){},
               ),
           itemCount: 1,
           
@@ -41,10 +42,12 @@ class PatientCard extends StatelessWidget {
   late int patientId ;
   late String? patientName;
   late ImageProvider? patientImage;
+  VoidCallback onpressed;
   PatientCard({Key? key,
      required this.patientId,
     required this.patientName,
     required this.patientImage,
+    required this.onpressed,
 
   }) : super(key: key) ;
   @override
@@ -53,9 +56,7 @@ class PatientCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
         height: 80,
-        onPressed: (){
-          Navigator.pushNamed(context, OtpRequest.idOtpRequest);
-        },
+        onPressed:onpressed,
 
         //  Navigator.push(context, MaterialPageRoute(
              // builder:(context)=>

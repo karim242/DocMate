@@ -1,14 +1,10 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:docmate/models/searchModel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constant.dart';
 import '../../../network_helper/cubit/networkCubit.dart';
 import '../../../network_helper/cubit/networlStates.dart';
-import '../../../patient route/homePage/drawe_items/editprofile.dart';
-import '../myPatient/myPatients.dart';
+import '../../../shared/sharedComponent.dart';
 
 class VerifyOtp extends StatelessWidget {
   const VerifyOtp({Key? key}) : super(key: key);
@@ -17,7 +13,16 @@ class VerifyOtp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
-        listener: (context, states) {},
+        listener: (context, states) {
+          if(states is  OtpVerifySuccessStates)
+          {
+            showToast(
+                msg: states.verifyOtpModel.message,
+                states: ToastStates.SUCCESS
+            );
+           // navigateTo(context, ());
+          }
+        },
         builder: (context, states) {
           NetworkCubit cubit = NetworkCubit.get(context);
 
@@ -80,18 +85,21 @@ class VerifyOtp extends StatelessWidget {
                                   errorStyle: const TextStyle(height: .8, color: Colors.red),
                                   labelText: 'enter the otp',
                                   labelStyle: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
                                       color: Colors.black
                                   ),
                                 ),
                               ),
                             ),
 
-                            SizedBox(height: 20,),
+                            const SizedBox(height: 20,),
 
-                            MaterialButton(onPressed: (){
-                             int states = cubit.postOtpVerify(context);
+                            MaterialButton(
+                              height: 44,
+                              minWidth: 150,
+                              onPressed: (){
+                             cubit.postOtpVerify();
 
                             },child: const Padding(
                               padding: EdgeInsets.all(8.0),

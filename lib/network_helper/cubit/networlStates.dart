@@ -1,6 +1,8 @@
 
 import 'package:docmate/models/searchModel.dart';
 
+import '../../models/RequestOtp.dart';
+
 class NetworkStates {}
 class NetworkInitStates extends NetworkStates{}
 class NetworkLoadingStates extends NetworkStates{}
@@ -13,6 +15,16 @@ class SearchSuccessStates extends NetworkStates{
   // final FindPatientModel findPatientModel;
   //
   // SearchSuccessStates(this.findPatientModel);
+}
+class OtpReqSuccessStates extends NetworkStates{
+   final RequestOtpModel requestOtpModel;
+
+   OtpReqSuccessStates(this.requestOtpModel);
+}
+class OtpVerifySuccessStates extends NetworkStates{
+  final VerifyOtpModel verifyOtpModel;
+
+  OtpVerifySuccessStates(this.verifyOtpModel);
 }
 class SearchErrorStates extends NetworkStates{
   final String error;

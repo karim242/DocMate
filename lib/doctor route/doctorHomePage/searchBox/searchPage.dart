@@ -1,5 +1,6 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:docmate/models/searchModel.dart';
+import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +8,7 @@ import '../../../constant.dart';
 import '../../../network_helper/cubit/networkCubit.dart';
 import '../../../network_helper/cubit/networlStates.dart';
 import '../myPatient/myPatients.dart';
+import 'otp_request.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -38,6 +40,9 @@ class SearchPage extends StatelessWidget {
                       patientId:cubit.findPatientList[index]["id"],
                       //cubit.findPatientModel.data.id,
                       patientImage: AssetImage("images/4.png"),
+                      onpressed: (){
+                        navigateTo(context, const OtpRequest());
+                      },
                     ),
                 itemCount: 1,
               ),
