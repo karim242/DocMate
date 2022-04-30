@@ -22,14 +22,14 @@ class FeatureCubit extends Cubit<FeatureStates> {
 
   bool isUser= true;
 
-  void changeDoctor(){
+  /*void changeDoctor(){
     isUser =true;
     emit(ChangeDoctor());
   }
   void changePatient(){
     isUser =false;
     emit(ChangePatient());
-  }
+  }*/
 
 
 

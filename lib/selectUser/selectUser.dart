@@ -39,7 +39,7 @@ class SelectUser extends StatelessWidget {
                       Backgroundcolur: whiteColor,
                       textColor: blueColor,
                       onpressed: () {
-                        cubit.changeDoctor();
+                        //cubit.changeDoctor();
                         navigateTo(context, const DoctorLoginScreen());
                       }
                   ),
@@ -53,7 +53,7 @@ class SelectUser extends StatelessWidget {
                       Backgroundcolur: whiteColor,
                       textColor: blueColor,
                       onpressed: () {
-                      cubit.changePatient();
+                      //cubit.changePatient();
                           navigateTo(context,const PatientLoginScreen());
 
                       }

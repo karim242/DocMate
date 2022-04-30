@@ -38,7 +38,6 @@ class SearchPage extends StatelessWidget {
                       patientId:cubit.findPatientList[index]["id"],
                       //cubit.findPatientModel.data.id,
                       patientImage: AssetImage("images/4.png"),
-                      onpressd: (){},
                     ),
                 itemCount: 1,
               ),

@@ -1,5 +1,6 @@
 
 import 'package:docmate/doctor%20route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
+import 'package:docmate/doctor%20route/doctorHomePage/searchBox/otp_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../constant.dart';
@@ -26,7 +27,6 @@ class MyPatientsPage extends StatelessWidget {
                 patientName: "Karim Halawa",
                 patientId: 123,
                 patientImage:AssetImage("images/4.png") ,
-                onpressd: (){},
               ),
           itemCount: 1,
           
@@ -41,12 +41,10 @@ class PatientCard extends StatelessWidget {
   late int patientId ;
   late String? patientName;
   late ImageProvider? patientImage;
-  VoidCallback onpressd;
   PatientCard({Key? key,
      required this.patientId,
     required this.patientName,
     required this.patientImage,
-    required this.onpressd
 
   }) : super(key: key) ;
   @override
@@ -55,7 +53,9 @@ class PatientCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
         height: 80,
-        onPressed: onpressd,
+        onPressed: (){
+          Navigator.pushNamed(context, OtpRequest.idOtpRequest);
+        },
 
         //  Navigator.push(context, MaterialPageRoute(
              // builder:(context)=>

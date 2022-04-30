@@ -6,6 +6,7 @@
 //
 
 import 'package:bloc/bloc.dart';
+import 'package:docmate/models/RequestOtp.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
@@ -191,4 +192,69 @@ int selectedIndex = 0;
       emit(SearchErrorStates(error));
     });
   }
+
+
+  late RequestOtpModel requestOtpModel;
+  postOtpRequest()
+  {
+    emit(LoadingSearchValueStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/request_otp",
+        token:token,
+        data: {
+          "email":searchController.text,
+        }
+    ).then((value) {
+      requestOtpModel =RequestOtpModel.fromJson(value.data);
+
+      print(requestOtpModel.message);
+      print(requestOtpModel.status);
+      return(requestOtpModel.status);
+
+      emit(SearchSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(SearchErrorStates(error));
+    });
+  }
+
+
+
+
+  //verify otp
+
+  var verifyOtpController = TextEditingController();
+
+  late VerifyOtpModel verifyOtpModel;
+  postOtpVerify()
+  {
+    emit(LoadingSearchValueStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/verify_otp",
+        token:token,
+        data: {
+          "email":searchController.text,
+          "otp":verifyOtpController.text,
+        }
+    ).then((value) {
+      verifyOtpModel =VerifyOtpModel.fromJson(value.data);
+
+      print(verifyOtpModel.message);
+      print(verifyOtpModel.status);
+      return(requestOtpModel.status);
+
+      emit(SearchSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(SearchErrorStates(error));
+    });
+  }
 }
+
+

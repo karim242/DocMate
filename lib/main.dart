@@ -2,6 +2,8 @@ import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:docmate/doctor%20route/doctorFeature/medicalVisit/showMedicalVisit.dart';
 import 'package:docmate/doctor%20route/doctorHomePage/doctorProfile.dart';
+import 'package:docmate/doctor%20route/doctorHomePage/searchBox/otp_request.dart';
+import 'package:docmate/doctor%20route/doctorHomePage/searchBox/verifyotp.dart';
 import 'package:docmate/doctor%20route/signUp/signUpDoctor1.dart';
 import 'package:docmate/network_helper/cubit/networkCubit.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
@@ -126,7 +128,10 @@ class MyApp extends StatelessWidget {
             DrMedicalVisit.idDrMedicalVisit :(context) =>const DrMedicalVisit(),
             AddMedicalVisits.idAddMedicalVisit :(context)=>  AddMedicalVisits(),
             DoctorSurgeryScreen.idDoctorSurgery :(context)=>  const DoctorSurgeryScreen(),
-            AddSurgeryScreen.idAddSurgery : (context)=> AddSurgeryScreen()
+            AddSurgeryScreen.idAddSurgery : (context)=> const AddSurgeryScreen(),
+            OtpRequest.idOtpRequest : (context)=> const OtpRequest(),
+            VerifyOtp.idOVerifyOtp: (context)=> const VerifyOtp(),
+
 
           }),
     );
