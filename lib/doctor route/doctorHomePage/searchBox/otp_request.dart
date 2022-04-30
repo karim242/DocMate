@@ -69,8 +69,7 @@ class OtpRequest extends StatelessWidget {
                         ),
                         const SizedBox(height: 15,),
                         MaterialButton(onPressed: (){
-                          cubit.postOtpRequest();
-                          Navigator.pushNamed(context, VerifyOtp.idOVerifyOtp);
+                          cubit.postOtpRequest(context);
 
 
                           },child: const Padding(

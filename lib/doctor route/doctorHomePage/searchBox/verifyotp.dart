@@ -91,8 +91,7 @@ class VerifyOtp extends StatelessWidget {
                             SizedBox(height: 20,),
 
                             MaterialButton(onPressed: (){
-                              cubit.postOtpVerify();
-
+                             int states = cubit.postOtpVerify(context);
 
                             },child: const Padding(
                               padding: EdgeInsets.all(8.0),
