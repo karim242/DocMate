@@ -95,7 +95,7 @@ class VerifyOtp extends StatelessWidget {
 
                             },child: const Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text('Request',style: TextStyle(fontSize: 22,color: Colors.white),),
+                              child: Text('confirm',style: TextStyle(fontSize: 22,color: Colors.white),),
                             ),color: blueColor,shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),),
                           ],
