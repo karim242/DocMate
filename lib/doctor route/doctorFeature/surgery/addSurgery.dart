@@ -94,7 +94,7 @@ class AddSurgeryScreen extends StatelessWidget {
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.surgeryAPI();
-                                cubit.getSurgeryAPI();
+                                cubit.getSurgeryPatientAPI();
                                 Navigator.pop(context);
                                 cubit.surgeryNameController.clear();
                                 cubit.surgeryTypeController.clear();

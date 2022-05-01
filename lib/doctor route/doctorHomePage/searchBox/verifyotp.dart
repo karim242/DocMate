@@ -5,6 +5,7 @@ import '../../../constant.dart';
 import '../../../network_helper/cubit/networkCubit.dart';
 import '../../../network_helper/cubit/networlStates.dart';
 import '../../../shared/sharedComponent.dart';
+import '../myPatient/doctorMedicalProfile.dart';
 
 class VerifyOtp extends StatelessWidget {
   const VerifyOtp({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class VerifyOtp extends StatelessWidget {
                 msg: states.verifyOtpModel.message,
                 states: ToastStates.SUCCESS
             );
-           // navigateTo(context, ());
+           // navigateTo(context, DoctorMedicalProfileScreen(cu,));
           }
         },
         builder: (context, states) {
@@ -58,19 +59,15 @@ class VerifyOtp extends StatelessWidget {
                             ],
                           ),
                         ),
-
                         const SizedBox(height: 40),
-
-
-
-
                         Column(
                           children: [
                             Text("you don't have permission yet to view this profile",style: TextStyle(color: blueColor,fontSize: 22,fontWeight: FontWeight.bold,),textAlign: TextAlign.center,),
                             const SizedBox(height: 40),
 
                             Container(
-                              width: MediaQuery.of(context).size.width/2,
+                              height: 70,
+                              width: MediaQuery.of(context).size.width/1.8,
                               child: TextFormField(
                                 maxLength: 4,
                                 keyboardType: TextInputType.number,
@@ -83,7 +80,7 @@ class VerifyOtp extends StatelessWidget {
                                   fillColor: whiteColor,
                                   filled: true,
                                   errorStyle: const TextStyle(height: .8, color: Colors.red),
-                                  labelText: 'enter the otp',
+                                  labelText: '  Enter the number',
                                   labelStyle: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
@@ -93,13 +90,13 @@ class VerifyOtp extends StatelessWidget {
                               ),
                             ),
 
-                            const SizedBox(height: 20,),
+                            const SizedBox(height: 10,),
 
                             MaterialButton(
                               height: 44,
-                              minWidth: 150,
+                              minWidth: 180,
                               onPressed: (){
-                             cubit.postOtpVerify();
+                             cubit.postOtpVerify(context);
 
                             },child: const Padding(
                               padding: EdgeInsets.all(8.0),

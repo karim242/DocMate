@@ -5,6 +5,7 @@
 // apiKey=6b2ca68a49124812826713ba28b669e
 //
 
+
 import 'package:bloc/bloc.dart';
 import 'package:docmate/models/RequestOtp.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
@@ -19,8 +20,7 @@ import '../../doctor route/doctorHomePage/doctorHomePage.dart';
 import '../../doctor route/doctorHomePage/doctorProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/myPatients.dart';
-import '../../doctor route/doctorHomePage/searchBox/verifyotp.dart';
-import '../../models/searchModel.dart';
+import '../../shared/sharedComponent.dart';
 import '../dioHelper.dart';
 
 
@@ -180,6 +180,7 @@ int selectedIndex = 0;
       //findPatientModel =FindPatientModel.fromJson(value.data);
       findPatientList=value.data["data"];
       print(findPatientList);
+      patientId=findPatientList[0]["id"];
 
 
      // print(findPatientModel.data.runtimeType);
@@ -231,7 +232,7 @@ int selectedIndex = 0;
   var verifyOtpController = TextEditingController();
 
   late VerifyOtpModel verifyOtpModel;
-  void postOtpVerify()
+  void postOtpVerify(context)
   {
     emit(LoadingSearchValueStates());
 
@@ -246,14 +247,20 @@ int selectedIndex = 0;
       verifyOtpModel =VerifyOtpModel.fromJson(value.data);
       //add navigator here
 
-      // if (verifyOtpModel.status == 200 ){
+      if (verifyOtpModel.status == 200 ){
+        navigateAndFinish(context, DoctorMedicalProfileScreen(
+          patientId: findPatientList[0]["id"],
+          pName:  findPatientList[0]["name"],
+        //  patientImage:
+              ));
       //   const sBar = SnackBar(content: Text('access granted'),backgroundColor: Color(0xff01B9c8),);
       //   ScaffoldMessenger.of(context).showSnackBar(sBar);
       // }
       // else{
       //   const sBar = SnackBar(content: Text('wrong otp'),backgroundColor: Color(0xff01B9c8),);
       //   ScaffoldMessenger.of(context).showSnackBar(sBar);
-      // }
+
+       }
       print(verifyOtpModel.message);
       print(verifyOtpModel.status);
       // return(requestOtpModel.status);

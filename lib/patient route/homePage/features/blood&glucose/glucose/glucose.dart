@@ -20,7 +20,8 @@ class GlucoseScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List <dynamic> glucoseData=cubit.glucoseData;
+          List <dynamic> glucosePatientData=cubit.glucosePatientData;
+          List <dynamic> glucoseDoctorData=cubit.glucoseDoctorData;
           return Scaffold(
             appBar: themeAppBar(context, value: " Glucose"),
             floatingActionButton: buildFloatingActionButton(
@@ -29,15 +30,14 @@ class GlucoseScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount:glucoseData.length,
-                //glucoseData.length,
+              itemCount:cubit.isUser?glucoseDoctorData.length:glucosePatientData.length,
+                //glucosePatientData.length,
                 itemBuilder: (context, index)
                 => glucoseWidget(context,
-                    date: glucoseData[index]["date"],
-                 measure: glucoseData[index]["glucos_result"],
-                    type: glucoseData[index]["glucos_type"],
+                  date: cubit.isUser?glucoseDoctorData[index]["date"]:glucosePatientData[index]["date"],
+                  measure: cubit.isUser?glucoseDoctorData[index]["glucos_result"]:glucosePatientData[index]["glucos_result"],
+                  type:cubit.isUser?glucoseDoctorData[index]["glucos_type"]: glucosePatientData[index]["glucos_type"],
                 ),
-
 
               ),
             ),

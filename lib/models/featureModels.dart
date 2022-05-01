@@ -208,3 +208,31 @@ class SurgeryData {
     image= json["image"];
   }
 }
+// class SurgeryDoModel
+// {
+//   late SurgeryDoData data;
+//   SurgeryDoModel.fromJson(Map<String,dynamic>json)
+//   {
+//     data = (json['data'] != null ? SurgeryDoData.fromJson(json['data']) : null)!;
+//   }
+// }
+// class SurgeryDoData {
+//   late int id;
+//   late String name;
+//   late String date;
+//   late String location;
+//   late String type;
+//   late PickedFile image;
+// ////still image
+//
+//
+//   SurgeryDoData.fromJson(Map<String, dynamic>json)
+//   {
+//     id = json["id"];
+//     name = json["name"];
+//     location = json["location"];
+//     type = json ["type"];
+//     date = json["date"];
+//     image= json["image"];
+//   }
+// }

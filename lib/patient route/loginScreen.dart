@@ -68,8 +68,7 @@ class PatientLoginScreen extends StatelessWidget {
               child: Column(children: [
                 Expanded(
                   flex: 1,
-                  child: logoImage(),
-                ),
+                  child: logoImage(),),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 15,
                 ),
@@ -80,8 +79,7 @@ class PatientLoginScreen extends StatelessWidget {
                       color: Color(0xffFFFFFF),
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(84.0),
-                          topRight: Radius.circular(84.0)),
-                    ),
+                          topRight: Radius.circular(84.0)),),
                     child: SingleChildScrollView(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -91,9 +89,9 @@ class PatientLoginScreen extends StatelessWidget {
                               left: MediaQuery.of(context).size.width / 6,
                               top: MediaQuery.of(context).size.height / 60,
                               bottom: MediaQuery.of(context).size.height / 25,
-                              right: MediaQuery.of(context).size.width / 6,
-                            ),
-                            child: Row(children: [
+                              right: MediaQuery.of(context).size.width / 6,),
+                            child: Row(
+                                children: [
                               MaterialButton(
                                 onPressed: () {},
                                 child: Text(
@@ -129,7 +127,6 @@ class PatientLoginScreen extends StatelessWidget {
                             text: "E-mail",
                             ontap: () {},
                             controller:cubit.emailController,
-
                             height: MediaQuery.of(context).size.height / 14,
                             width: MediaQuery.of(context).size.width / 1.16,
                           ),
@@ -147,8 +144,8 @@ class PatientLoginScreen extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.only(
                               left: MediaQuery.of(context).size.width / 1.8,
-                              bottom: 0.0,
-                              top: 0.0,
+                             // bottom: 0.0,
+                             //  top: 0.0,
                             ),
                             child: MaterialButton(
                               child: const Text(

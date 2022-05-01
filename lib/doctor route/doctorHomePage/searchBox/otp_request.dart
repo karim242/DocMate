@@ -59,7 +59,11 @@ class OtpRequest extends StatelessWidget {
                                 backgroundImage: NetworkImage(
                                     'https://via.placeholder.com/140x100')
                             ),
-                            Text(cubit.findPatientList[0]["name"], style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.white),),
+                            Text(cubit.findPatientList[0]["name"],
+                              style: const TextStyle(fontSize: 22,fontWeight:
+                              FontWeight.bold,color: Colors.white),),
+                            Text(cubit.findPatientList[0]["id"].toString(),
+                            style: const TextStyle(fontSize: 18,color: Colors.white),),
                           ],
                         ),
                       ),

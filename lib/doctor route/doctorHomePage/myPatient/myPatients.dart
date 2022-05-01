@@ -3,36 +3,47 @@ import 'package:docmate/doctor%20route/doctorHomePage/myPatient/doctorMedicalPro
 import 'package:docmate/doctor%20route/doctorHomePage/searchBox/otp_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constant.dart';
+import '../../../network_helper/cubit/networkCubit.dart';
+import '../../../network_helper/cubit/networlStates.dart';
 
 class MyPatientsPage extends StatelessWidget {
   const MyPatientsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        title: Text(
-          "My Patients",
-          style: textTitle22Style,
+    return BlocConsumer<NetworkCubit, NetworkStates>(
+        listener: (context, states){},
+        builder: (context, states) {
+      NetworkCubit cubit = NetworkCubit.get(context);
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          title: Text(
+            "My Patients",
+            style: textTitle22Style,
+          ),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(13.0),
-        child: ListView.builder(
-          itemBuilder: (BuildContext context, int index) =>
-              PatientCard(
-                patientName: "Karim Halawa",
-                patientId: 123,
-                patientImage:AssetImage("images/4.png") ,
-                onpressed: (){},
-              ),
-          itemCount: 1,
-          
+        body: Padding(
+          padding: const EdgeInsets.all(13.0),
+          child: ListView.builder(
+            itemBuilder: (BuildContext context, int index) =>
+                PatientCard(
+                  patientName: cubit.findPatientList[0]["name"],
+                  patientId: cubit.findPatientList[0]["id"],
+                  patientImage: AssetImage("images/4.png"),
+                  onpressed: () {
+
+                  },
+                ),
+            itemCount: 1,
+
+          ),
         ),
-      ),
+      );
+    }
     );
   }
 }

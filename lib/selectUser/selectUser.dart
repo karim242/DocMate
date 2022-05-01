@@ -1,6 +1,4 @@
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
-import 'package:docmate/Blocs/login/login_cubit.dart';
-import 'package:docmate/Blocs/login/login_states.dart';
 import 'package:docmate/patient%20route/loginScreen.dart';
 import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +10,6 @@ import '../patient route/loginScreen.dart';
 
 class SelectUser extends StatelessWidget {
   const SelectUser({Key? key}) : super(key: key);
-  static String id = 'SelectUser';
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -31,31 +27,24 @@ class SelectUser extends StatelessWidget {
                   SizedBox(height: MediaQuery
                       .of(context).size.height / 20),
                   defaultBottonTologin(
-                      height: MediaQuery
-                          .of(context).size.height / 14,
-                      width: MediaQuery
-                          .of(context).size.width / 1.4,
+                      height: MediaQuery.of(context).size.height / 14,
+                      width: MediaQuery.of(context).size.width / 1.4,
                       text: "Doctor",
                       Backgroundcolur: whiteColor,
                       textColor: blueColor,
                       onpressed: () {
-                        //cubit.changeDoctor();
-                        navigateTo(context, const DoctorLoginScreen());
-                      }
-                  ),
+                       cubit.changeDoctor();
+                        navigateTo(context, const DoctorLoginScreen());}),
                   const SizedBox(height: 24.0),
                   defaultBottonTologin(
-                      height: MediaQuery
-                          .of(context).size.height / 14,
-                      width: MediaQuery
-                          .of(context).size.width / 1.4,
+                      height: MediaQuery.of(context).size.height / 14,
+                      width: MediaQuery.of(context).size.width / 1.4,
                       text: "Patient",
                       Backgroundcolur: whiteColor,
                       textColor: blueColor,
                       onpressed: () {
-                      //cubit.changePatient();
+                      cubit.changePatient();
                           navigateTo(context,const PatientLoginScreen());
-
                       }
                   ),
                 ],

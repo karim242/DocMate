@@ -102,7 +102,7 @@ class ADDGlucoseScreen extends StatelessWidget {
                                 if (cubit.formkey.currentState!.validate()) {
 
                                   cubit.postGlucoseAPI();
-                                  cubit.getGlucoseAPI();
+                                  cubit.getPatientGlucoseAPI();
 
                                    Navigator.pop(context);
                                 cubit.measurementGlucoseController.clear();

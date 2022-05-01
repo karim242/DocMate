@@ -95,7 +95,7 @@ class AddRadiologyScreen extends StatelessWidget {
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
                                     cubit.radiologyAPI();
-                                    cubit.getRadiologyAPI();
+                                    cubit.getRadiologyPatientAPI();
 
                                     Navigator.pop(context);
                                     cubit.radiologyNameController.clear();

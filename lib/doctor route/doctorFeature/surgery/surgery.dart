@@ -17,8 +17,8 @@ class DoctorSurgeryScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List<dynamic> surgeryData= cubit.surgeryData;
-
+          List<dynamic> surgeryPatientData= cubit.surgeryPatientData;
+          List<dynamic> surgeryDoctorData= cubit.surgeryDoctorData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Surgery"),
               floatingActionButton: buildFloatingActionButton(context,
@@ -29,17 +29,17 @@ class DoctorSurgeryScreen extends StatelessWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) =>
                       ThemeCard(context,
-                        name:surgeryData[index]["name"],
-                        type:surgeryData[index]["type"],
-                        location:surgeryData[index]["location"],
-                        date:surgeryData[index]["date"],
+                        name:cubit.isUser?surgeryDoctorData[index]["name"]:surgeryPatientData[index]["name"],
+                        type:cubit.isUser?surgeryDoctorData[index]["type"]:surgeryPatientData[index]["type"],
+                    location:cubit.isUser?surgeryDoctorData[index]["location"]:surgeryPatientData[index]["location"],
+                        date:cubit.isUser?surgeryDoctorData[index]["date"]:surgeryPatientData[index]["date"],
                       ),
                   separatorBuilder: (context, index) =>
                       const SizedBox(
                         width: double.infinity,
                         height: 5,
                       ),
-                  itemCount:surgeryData.length,
+                  itemCount:cubit.isUser?surgeryDoctorData.length:surgeryPatientData.length,
                 ),
               ));
         });

@@ -16,13 +16,11 @@ class BloodPressureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
-        listener: (context, states) {
-
-
-        },
+        listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List<dynamic> pressureData = cubit.pressureData;
+          List<dynamic> pressurePatientData = cubit.pressurePatientData;
+          List<dynamic> pressureDoctorData = cubit.pressureDoctorData;
 
           return Scaffold(
             appBar: themeAppBar(context, value: "Blood Pressure"),
@@ -32,12 +30,21 @@ class BloodPressureScreen extends StatelessWidget {
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount: pressureData.length,
+                itemCount: cubit.isUser?pressureDoctorData.length:pressurePatientData.length,
                 itemBuilder: (context, index) =>
                     pressureWidget(context,
-                        measure1: pressureData[index]["systolic_pressure"],
-                        measure2: pressureData[index]["diastolic_pressure"],
-                        date: pressureData[index]["date"],
+                        measure1:
+                        cubit.isUser
+                            ?pressureDoctorData[index]["systolic_pressure"]
+                            :pressurePatientData[index]["systolic_pressure"],
+                        measure2:
+                        cubit.isUser
+                            ?pressureDoctorData[index]["diastolic_pressure"]
+                            : pressurePatientData[index]["diastolic_pressure"],
+                        date:
+                        cubit.isUser
+                            ?pressureDoctorData[index]["date"]
+                            :pressurePatientData[index]["date"],
                     ),
 
 

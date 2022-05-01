@@ -8,21 +8,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Blocs/featureBloc/featureStates.dart';
 import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
-
 class ShowMedicalVisits extends StatelessWidget {
   late String? doctorName;
   late ImageProvider? doctorImage;
-
   // Doctor Name&photo to show in appBar
    ShowMedicalVisits({
     Key? key,
       this.doctorName,
       this.doctorImage,
-
   }) : super(key: key);
-  static String idShowMedicalVisit = "IdShowMedicalVisitScreen";
-
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -31,16 +25,13 @@ class ShowMedicalVisits extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              
               leading: GestureDetector(
                 child: Icon(Icons.arrow_back_ios,color: Colors.black,),
                 onTap: (){
                   Navigator.pop(context);
                 },
               ),
-
               backgroundColor: Colors.white,
-
               title: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -76,8 +67,7 @@ class ShowMedicalVisits extends StatelessWidget {
 
                   ],
                 ),
-              ),
-            ),
+              ),),
             body: Padding(
               padding: const EdgeInsets.all(10.0),
               child: SingleChildScrollView(
@@ -86,7 +76,6 @@ class ShowMedicalVisits extends StatelessWidget {
                   children: [
                     Text('Summary',style: textTitle22Style,),
                      Card(
-
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)
                       ),

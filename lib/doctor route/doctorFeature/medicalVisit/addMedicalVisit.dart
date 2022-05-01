@@ -10,15 +10,12 @@ import '../../../shared/sharedComponent.dart';
 
 class AddMedicalVisits extends StatefulWidget {
   static String idAddMedicalVisit = "idAddMedicalVisit";
-
   @override
   State<AddMedicalVisits> createState() => _AddMedicalVisitsState();
 }
-
 class _AddMedicalVisitsState extends State<AddMedicalVisits> {
   List<Widget> _textFieldList = [];
   List _textFieldControllers = [];
-
   void _addTextField(){
     setState(() {
       _textFieldControllers.add(TextEditingController());
@@ -30,17 +27,12 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
 
     });
   }
-
-
-
-  @override
+    @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
           FeatureCubit cubit = FeatureCubit.get(context);
-
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -52,20 +44,16 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                 ),
               ),
             ),
-            body: Form(
-              key: cubit.formkey,
+            body: Form(key: cubit.formkey,
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Prescription",
-                          style: text20ForNameAdd,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(35, 24, 35, 24),
+                        Text("Prescription",
+                          style: text20ForNameAdd,),
+                        Padding(padding: const EdgeInsets.fromLTRB(35, 24, 35, 24),
                           child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -90,7 +78,6 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                           text: "Summary",
                           controller: cubit.summaryController,
                         ),
-
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

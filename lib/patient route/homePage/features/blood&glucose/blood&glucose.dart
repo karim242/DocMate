@@ -1,5 +1,6 @@
 import 'package:docmate/Blocs/featureBloc/featureStates.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
+import 'package:docmate/constant.dart';
 import 'package:docmate/patient%20route/homePage/features/blood&glucose/glucose/glucose.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,9 +32,17 @@ class BloodGlucoseScreen extends StatelessWidget {
                         icoWidth: 100,
                         iconHeight: 100,
                         ontap: () {
-                          Navigator.pushNamed(
-                              context,BloodPressureScreen.idBloodPressure);
-                          cubit.getPressureAPI();
+                         navigateTo(
+                              context,const BloodPressureScreen());
+                         if(cubit.isUser)
+                         {//doctor
+                           cubit.getDoctorPressureAPI(patientId);
+                         }
+                         else
+                         {//patient
+                           cubit.getPatientPressureAPI();
+
+                         }
                         },
                         color: const Color(0xff7C8F9A),
                         text: "Blood pressure",
@@ -48,9 +57,16 @@ class BloodGlucoseScreen extends StatelessWidget {
                         icoWidth: 100,
                         iconHeight: 100,
                         ontap: () {
-                          Navigator.pushNamed(context, GlucoseScreen.idGlucose);
-                         cubit.getGlucoseAPI();
-                        },
+                         navigateTo(context, const GlucoseScreen());
+                         if(cubit.isUser)
+                           {//doctor
+                             cubit.getDoctorGlucoseAPI(patientId);
+                           }
+                         else
+                         {//patient
+                           cubit.getPatientGlucoseAPI();
+                         }
+                         },
                         color: const Color(0xff276497),
                         text: "Glucose",
                         photoIconName: "Glucose"),

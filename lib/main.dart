@@ -95,7 +95,7 @@ class MyApp extends StatelessWidget {
           home: const SplashScreen(),
           //AddMedicalVisits(),
           routes: {
-            SelectUser.id: (context) => const SelectUser(),
+
             SignUpPatientScreen.id1: (context) => const SignUpPatientScreen(),
             SignUpPatientScreen2.id2: (context) => const SignUpPatientScreen2(),
             SignUpScreenDoctor1.doctorId1: (context) => const SignUpScreenDoctor1(),
@@ -106,12 +106,11 @@ class MyApp extends StatelessWidget {
             MedicalAdvices.medicalAdvicesId : (context) =>  const MedicalAdvices(),
             MedicalProfileScreen.medicalProfileID : (context) => const MedicalProfileScreen(),
             PatientProfileScreen.profileID: (context)=> const PatientProfileScreen(),
-            MedicalHistoryScreen.idMedicalHistory : (context)=> const MedicalHistoryScreen(),
+
             FamilyHistoryScreen.idFamilyHistory : (context)=> const FamilyHistoryScreen(),
             AllergyScreen.idAllergyScreen : (context)=>  AllergyScreen(),
             ADDAllergyScreen.idADDAllergy : (context)=> const ADDAllergyScreen(),
             ADDFamilyHistoryScreen.idADDFamilyHistory : (context)=>const ADDFamilyHistoryScreen(),
-            VaccineScreen.idVaccine : (context)=>const VaccineScreen(),
             AddVaccineScreen.idAddVaccine :(context)=>const AddVaccineScreen(),
             BloodGlucoseScreen.idBloodGlucose : (context)=>const BloodGlucoseScreen(),
             BloodPressureScreen.idBloodPressure : (context)=>const BloodPressureScreen(),
@@ -119,8 +118,6 @@ class MyApp extends StatelessWidget {
             GlucoseScreen.idGlucose :(context) => const GlucoseScreen(),
             ADDGlucoseScreen.idADDGlucose : (context)=>const ADDGlucoseScreen(),
             SurgeryScreen.idSurgery :(context) => const SurgeryScreen(),
-            LabTestScreen.idLabTest : (context) => const LabTestScreen(),
-            RadiologyScreen.idRadiology :(context) => const RadiologyScreen(),
             AddLabTestScreen.idAddLabTest :(context) =>  AddLabTestScreen(),
             AddRadiologyScreen.idAddRadiology :(context)=> const AddRadiologyScreen(),
             EditProfile.editProfileID:(context)=>const EditProfile(),

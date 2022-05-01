@@ -5,36 +5,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Blocs/featureBloc/featurecubit.dart';
 import '../../constant.dart';
-
 import '../../doctor route/doctorFeature/surgery/surgery.dart';
 import '../../shared/sharedComponent.dart';
 import 'features/Vaccines/vaccines.dart';
 import 'features/blood&glucose/blood&glucose.dart';
 import 'features/radiology/radiology.dart';
 import 'features/surgery/surgery.dart';
-
 class MedicalProfileScreen extends StatelessWidget {
   const MedicalProfileScreen({Key? key}) : super(key: key);
   static String medicalProfileID = "IdOfMedicalProfile";
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-
-          return Scaffold(
-            appBar: AppBar(
+          return Scaffold(appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
               title: Center(
                 child: Text(
                   "Medical Profile",
-                  style: textTitle22Style,
-                ),
-              ),
-            ),
+                  style: textTitle22Style,),),),
             body: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
@@ -47,12 +39,8 @@ class MedicalProfileScreen extends StatelessWidget {
                       mainAxisSpacing: 20,
                       childAspectRatio: 1.04,
                       children: [
-
                         FeatureCard(
-
-                          ontap: (){
-                            Navigator.pushNamed(context, MedicalHistoryScreen.idMedicalHistory);
-                          },
+                            ontap: (){navigateTo(context, const MedicalHistoryScreen());},
                             photoIconName: "medical_history",
                             text: "Medical History",
                             color: const Color(0xffDFC8FC)),
@@ -62,40 +50,28 @@ class MedicalProfileScreen extends StatelessWidget {
                             text: "Medical Visit",
                             color: const Color(0xffFFCCA0)),
                         FeatureCard(
-                            ontap: (){
-                              Navigator.pushNamed(
-                                  context, VaccineScreen.idVaccine);
-                              cubit.getVaccineAPI();
-                            },
+                            ontap: (){navigateTo( context, const VaccineScreen());
+                            cubit.getVaccinePatientAPI();},
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
                         FeatureCard(
-                            ontap: (){
-                              Navigator.pushNamed(context, RadiologyScreen.idRadiology);
-                              cubit.getRadiologyAPI();
-                            },
+                            ontap: (){navigateTo(context, const RadiologyScreen());
+                            cubit.getRadiologyPatientAPI();},
                             photoIconName: "radiology",
                             text: "Radiology", color: const Color(0xffADFFDF)),
                         FeatureCard(
-                            ontap: (){
-                              Navigator.pushNamed(context, LabTestScreen.idLabTest);
-                              cubit.getLabTestAPI();
-                            },
+                            ontap: (){navigateTo(context, const LabTestScreen());
+                            cubit.getLabTestPatientAPI();},
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(
-                            ontap: (){
-                              Navigator.pushNamed(
-                                  context, BloodGlucoseScreen.idBloodGlucose);
-                            },
+                            ontap: (){navigateTo(context, const BloodGlucoseScreen());},
                             photoIconName: "4",
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),
                         FeatureCard(
-                            ontap: (){
-                              Navigator.pushNamed(context, DoctorSurgeryScreen.idDoctorSurgery );
-                              cubit.getSurgeryAPI();
-                            },
+                            ontap: (){navigateTo(context, const SurgeryScreen() );
+                            cubit.getSurgeryPatientAPI();},
                             photoIconName: "surgery",
                             text: "Surgery", color: const Color(0xffBAFFB5)),
                       ],
@@ -106,7 +82,6 @@ class MedicalProfileScreen extends StatelessWidget {
             ),
           );
         }
-
     );
   }
 }

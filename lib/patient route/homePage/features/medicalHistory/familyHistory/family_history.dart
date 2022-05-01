@@ -17,7 +17,8 @@ class FamilyHistoryScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List<dynamic> familyData= cubit.familyHistoryData;
+          List<dynamic> familyPatientData= cubit.familyHistoryPatientData;
+          List<dynamic> familyDoctorData= cubit.familyHistoryDoctorListData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Family History"),
 
@@ -39,14 +40,14 @@ class FamilyHistoryScreen extends StatelessWidget {
                           crossAxisSpacing:12.0,
                           mainAxisSpacing: 12.0
                       ),
-                      itemCount:familyData.length ,
+                      itemCount:cubit.isUser?familyDoctorData.length:familyPatientData.length ,
                       itemBuilder: (context, int index){
                         return  labTestCard(
                             textcolor :blueColor,
                             ontap: () {},
                             photoIconName: "virus",
-                            disease: familyData[index]["disease"],
-                            relation:familyData[index]["realation"],
+                            disease:cubit.isUser?familyDoctorData[index]["disease"]:familyPatientData[index]["disease"],
+                            relation:cubit.isUser?familyDoctorData[index]["realation"]:familyPatientData[index]["realation"],
                             color: const Color(0xffFDF8FF)
                         );
                       },

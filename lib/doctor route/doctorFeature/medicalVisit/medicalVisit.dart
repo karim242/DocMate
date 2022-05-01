@@ -1,19 +1,14 @@
-
 import 'package:docmate/doctor%20route/doctorFeature/medicalVisit/showMedicalVisit.dart';
-import 'package:docmate/doctor%20route/doctorHomePage/myPatient/myPatients.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../Blocs/featureBloc/featureStates.dart';
 import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
 import 'addMedicalVisit.dart';
-
 class DrMedicalVisit extends StatelessWidget {
   const DrMedicalVisit({Key? key}) : super(key: key);
   static String idDrMedicalVisit = "idDrMedicalVisit";
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -55,40 +50,25 @@ class DrMedicalVisit extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: MaterialButton(
-        height: 80,
+      child: MaterialButton(height: 80,
         onPressed: () {
-          Navigator.push(context,
-            MaterialPageRoute(builder
-                : (context)=>ShowMedicalVisits(
-              doctorName: doctorName,
-              doctorImage: doctorImage,),
-            ),
-          );
-        },
-        elevation: 2,
-        color: whiteColor,
+          navigateTo(context, ShowMedicalVisits(
+            doctorName: doctorName,
+            doctorImage: doctorImage,));},
+        elevation: 2, color: whiteColor,
         highlightColor: Colors.grey[200],
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
+          borderRadius: BorderRadius.circular(16),),
         child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Container(
-                height: 60,
-                width: 60,
+            Padding(padding: const EdgeInsets.all(5.0),
+              child: Container(height: 60, width: 60,
                 decoration: BoxDecoration(
                   color: Colors.grey[500],
-                  borderRadius: BorderRadius.circular(16),
-                ),
+                  borderRadius: BorderRadius.circular(16),),
                 child: Image(
                   image: doctorImage!,
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
+                  fit: BoxFit.fill,),),),
             const SizedBox(width: 10,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -97,12 +77,9 @@ class DrMedicalVisit extends StatelessWidget {
                 Text(doctorName!,style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
-                  color: blueColor,
-                ),),
+                  color: blueColor,),),
                 const SizedBox(height: 5,),
-                Text("Date: $patientData",style: text15forDateandTime),
-              ],
-            ),
+                Text("Date: $patientData",style: text15forDateandTime),],),
             const Spacer(),
             const Icon(Icons.arrow_forward_ios)
           ],

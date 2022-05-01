@@ -98,7 +98,7 @@ class AddLabTestScreen extends StatelessWidget {
                                 onpressed: () {
                                   if (cubit.formkey.currentState!.validate()) {
                                     cubit.labTestAPI();
-                                    cubit.getLabTestAPI();
+                                    cubit.getLabTestPatientAPI();
                                     Navigator.pop(context);
                                     cubit.labTestNameController.clear();
                                     cubit.labTestTypeController.clear();

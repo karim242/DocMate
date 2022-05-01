@@ -1,17 +1,13 @@
 import 'package:docmate/Blocs/featureBloc/featureStates.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
+import 'package:docmate/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../network_helper/cubit/networkCubit.dart';
-import '../../../../network_helper/cubit/networlStates.dart';
 import '../../../../shared/sharedComponent.dart';
 import 'allergy/allergies.dart';
 import 'familyHistory/family_history.dart';
-
 class MedicalHistoryScreen extends StatelessWidget {
   const MedicalHistoryScreen({Key? key}) : super(key: key);
-  static String idMedicalHistory = "IdMedicalHistory";
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -20,22 +16,25 @@ class MedicalHistoryScreen extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar:themeAppBar(context, value:" Medical History"),
-            body: Padding(
-              padding: const EdgeInsets.all(32.0),
+            body: Padding(padding: const EdgeInsets.all(32.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     FeatureCard(
-                        width: 320,
-                        height: 240,
-                        textSize: 20,
-                        icoWidth: 100,
-                        iconHeight: 100,
+                        width: 320, height: 240,
+                        textSize: 20, icoWidth: 100, iconHeight: 100,
                         ontap: () {
                           navigateTo(context,const FamilyHistoryScreen());
-                          cubit.getFamilyHistoryAPI();
-                        },
+                          if(cubit.isUser)
+                          {//doctor
+                            cubit.getDoctorFamilyHistoryAPI(patientId);
+                          }
+                          else
+                          {//patient
+                            cubit.getFamilyHistoryAPI();
+                          }
+                          },
                         color: const Color(0xffDFC8FC),
                         text: "Family History",
                         photoIconName: "family"),
@@ -43,29 +42,20 @@ class MedicalHistoryScreen extends StatelessWidget {
                       height: 40,
                     ),
                     FeatureCard(
-                        width: 320,
-                        height: 240,
-                        textSize: 20,
-                        icoWidth: 100,
-                        iconHeight: 100,
-                        ontap: () {
-                          navigateTo(context, AllergyScreen());
-
-                          if(cubit.isUser)
-                            {
-                              cubit.getDoctorAllergyAPI();
+                        width: 320, height: 240,
+                        textSize: 20, icoWidth: 100, iconHeight: 100,
+                        ontap: () {navigateTo(context, AllergyScreen());
+                          if(cubit.isUser) {
+                            //user ==true =>doctor
+                              cubit.getDoctorAllergyAPI(patientId);
                             }
-                          else
-                            {
+                          else {
+                            //user ==false =>patient
                               cubit.getPatientAllergyAPI();
-                            }
-                          ////
-                        ////  cubit.cha
-                        },
+                            }},
                         color: const Color(0xffFFCCA0),
                         text: "Allergies",
                         photoIconName: "allergies"),
-
 
                   ]),
             ),

@@ -16,7 +16,7 @@ class SurgeryScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List<dynamic> surgeryData= cubit.surgeryData;
+          List<dynamic> surgeryData= cubit.surgeryPatientData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Surgery"),
               body: Padding(
