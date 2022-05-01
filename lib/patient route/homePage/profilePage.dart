@@ -1,5 +1,7 @@
 
 
+import 'package:docmate/Blocs/register/register_cubit.dart';
+import 'package:docmate/Blocs/register/register_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,12 +16,11 @@ class PatientProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
+    return BlocConsumer<RegisterPatientCubit,RegisterStates>(
         listener: (context, states) {},
         builder: (context, states) {
 
-          NetworkCubit cubit = NetworkCubit.get(context);
-          List<dynamic> data = cubit.latestNew;
+          RegisterPatientCubit cubit = RegisterPatientCubit.get(context);
           SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
               statusBarColor: blueColor
           ));
@@ -37,21 +38,21 @@ class PatientProfileScreen extends StatelessWidget {
                         .of(context).size.height / 5,
                     decoration:  BoxDecoration(
                         color: blueColor,
-                        borderRadius: BorderRadius.vertical(
+                        borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(40))
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       //remove const when using api
-                      children: const [
-                        CircleAvatar(
+                      children: [
+                        const CircleAvatar(
                             radius: 30,
                             backgroundImage: NetworkImage(
                                 'https://via.placeholder.com/140x100')
                         ),
-                        Text('profile name', style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                        Text('email', style: TextStyle(fontSize: 12),)
+                        Text(cubit.nameController.value.text, style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                        Text(cubit.emailRegisterController.value.text, style: const TextStyle(fontSize: 12),)
                       ],
                     ),
                   ),
@@ -61,18 +62,18 @@ class PatientProfileScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        MyInfoWidget(title: 'ID', info: 'info'),
-                        SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Date Of Birth', info: 'info',),
-                        SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Height', info: 'info',),
-                        SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Weight', info: 'info',),
-                        SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Blood type', info: 'info',),
-                        SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Location', info: 'info',),
+                      children:  [
+                        MyInfoWidget(title: 'phone', info: cubit.phoneController.value.text),
+                        const SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Date Of Birth', info: cubit.dateOfBirthController.value.text,),
+                        const SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Height', info: cubit.heightController.value.text,),
+                        const SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Weight', info: cubit.weightController.value.text,),
+                        const SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Blood type', info: cubit.bloodTypeController.value.text,),
+                        const SizedBox(height: 10,),
+                        MyInfoWidget(title: 'Location', info: cubit.addressController.value.text,),
 
                       ],
                     ),
