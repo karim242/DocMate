@@ -32,6 +32,7 @@ class DoctorLoginScreen extends StatelessWidget {
                 msg: states.loginModel.message,
                 states: ToastStates.SUCCESS
             );
+
           }
           else
           {

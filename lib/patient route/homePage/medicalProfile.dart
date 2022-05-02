@@ -40,7 +40,7 @@ class MedicalProfileScreen extends StatelessWidget {
                       childAspectRatio: 1.04,
                       children: [
                         FeatureCard(
-                            ontap: (){navigateTo(context, const MedicalHistoryScreen());},
+                            ontap: (){navigateTo(context,  MedicalHistoryScreen(index: 1,));},
                             photoIconName: "medical_history",
                             text: "Medical History",
                             color: const Color(0xffDFC8FC)),
@@ -50,7 +50,7 @@ class MedicalProfileScreen extends StatelessWidget {
                             text: "Medical Visit",
                             color: const Color(0xffFFCCA0)),
                         FeatureCard(
-                            ontap: (){navigateTo( context, const VaccineScreen());
+                            ontap: (){navigateTo( context,  VaccineScreen());
                             cubit.getVaccinePatientAPI();},
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
@@ -65,7 +65,7 @@ class MedicalProfileScreen extends StatelessWidget {
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(
-                            ontap: (){navigateTo(context, const BloodGlucoseScreen());},
+                            ontap: (){navigateTo(context,  BloodGlucoseScreen(index: 1,));},
                             photoIconName: "4",
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),

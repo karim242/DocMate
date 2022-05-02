@@ -7,7 +7,8 @@ import '../../../../shared/sharedComponent.dart';
 import 'allergy/allergies.dart';
 import 'familyHistory/family_history.dart';
 class MedicalHistoryScreen extends StatelessWidget {
-  const MedicalHistoryScreen({Key? key}) : super(key: key);
+    int index;
+   MedicalHistoryScreen({required this.index,Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -28,7 +29,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                           navigateTo(context,const FamilyHistoryScreen());
                           if(cubit.isUser)
                           {//doctor
-                            cubit.getDoctorFamilyHistoryAPI(patientId);
+                            cubit.getDoctorFamilyHistoryAPI(patientId,index);
                           }
                           else
                           {//patient
@@ -47,7 +48,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                         ontap: () {navigateTo(context, AllergyScreen());
                           if(cubit.isUser) {
                             //user ==true =>doctor
-                              cubit.getDoctorAllergyAPI(patientId);
+                              cubit.getDoctorAllergyAPI(patientId,index);
                             }
                           else {
                             //user ==false =>patient

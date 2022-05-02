@@ -1,22 +1,27 @@
 
+import 'package:docmate/Blocs/login/login_states.dart';
 import 'package:docmate/doctor%20route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
 import 'package:docmate/doctor%20route/doctorHomePage/searchBox/otp_request.dart';
+import 'package:docmate/shared/sharedComponent.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../Blocs/login/login_cubit.dart';
 import '../../../constant.dart';
-import '../../../network_helper/cubit/networkCubit.dart';
-import '../../../network_helper/cubit/networlStates.dart';
+
 
 class MyPatientsPage extends StatelessWidget {
   const MyPatientsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NetworkCubit, NetworkStates>(
-        listener: (context, states){},
+    return BlocConsumer<LoginCubit, LoginStates>(
+        listener: (context, states){
+         // if()
+        },
         builder: (context, states) {
-      NetworkCubit cubit = NetworkCubit.get(context);
+          LoginCubit cubit = LoginCubit.get(context);
+      List<dynamic> myPatientList=cubit.myPatientList;
       return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -31,14 +36,20 @@ class MyPatientsPage extends StatelessWidget {
           child: ListView.builder(
             itemBuilder: (BuildContext context, int index) =>
                 PatientCard(
-                  patientName: cubit.findPatientList[0]["name"],
-                  patientId: cubit.findPatientList[0]["id"],
+                  patientName: myPatientList[index]["name"],
+                  patientId: myPatientList[index]["id"],
                   patientImage: AssetImage("images/4.png"),
                   onpressed: () {
+                   navigateTo(context, DoctorMedicalProfileScreen(
+                        patientId: myPatientList[index]["id"],
+                        pName:  myPatientList[index]["name"],
+                       index:index,
 
+                   ),
+                   );
                   },
                 ),
-            itemCount: 1,
+            itemCount: myPatientList.length,
 
           ),
         ),

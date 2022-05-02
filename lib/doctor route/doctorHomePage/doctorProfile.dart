@@ -65,7 +65,7 @@ class DoctorProfileScreen extends StatelessWidget {
                           children:  [
                             MyInfoWidget(title: 'Specialization', info: cubit.specializationController.value.text),
                             SizedBox(height: 10,),
-                            MyInfoWidget(title: 'ID', info: cubit.doctorIdController,),
+                            MyInfoWidget(title: 'ID', info: cubit.doctorIdController.text,),
                             SizedBox(height: 10,),
 
                           ],

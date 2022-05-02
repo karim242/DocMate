@@ -96,6 +96,7 @@ class LoginCubit extends Cubit<LoginStates>{
       // print(token);
       // print(doctorLoginModel.token);
       token=doctorLoginModel.token ;
+      getDoctorPatientsAPI();
      // print(token);
       emit(DoctorLoginSuccessStates(doctorLoginModel));
     }
@@ -141,5 +142,31 @@ class LoginCubit extends Cubit<LoginStates>{
   ///
   var formkey  =GlobalKey<FormState>();
 
+
+
+  List<dynamic> myPatientList=[];
+  void getDoctorPatientsAPI()
+  {
+    emit(LoadingDoctorPatientStates());
+
+    DioHelperAPI.getData(
+      url: "doctor/my_patient",
+      token:token,
+      // data: {}
+    ).then((value) {
+      myPatientList=value.data["data"];
+      print(myPatientList);
+      patientId=myPatientList[0]["id"];
+      print(patientId);
+      print(myPatientList[0]);
+      print(myPatientList[1]);
+      emit(SuccessDoctorPatientStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(ErrorDoctorPatientStates());
+    });
+  }
 
 }

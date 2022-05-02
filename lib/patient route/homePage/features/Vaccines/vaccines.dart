@@ -7,7 +7,7 @@ import '../../../../Blocs/featureBloc/featureStates.dart';
 import '../../../../Blocs/featureBloc/featurecubit.dart';
 import 'addVaccines.dart';
 class VaccineScreen extends StatelessWidget {
-  const VaccineScreen({Key? key}) : super(key: key);
+     const VaccineScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(

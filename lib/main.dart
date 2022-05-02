@@ -112,7 +112,6 @@ class MyApp extends StatelessWidget {
             ADDAllergyScreen.idADDAllergy : (context)=> const ADDAllergyScreen(),
             ADDFamilyHistoryScreen.idADDFamilyHistory : (context)=>const ADDFamilyHistoryScreen(),
             AddVaccineScreen.idAddVaccine :(context)=>const AddVaccineScreen(),
-            BloodGlucoseScreen.idBloodGlucose : (context)=>const BloodGlucoseScreen(),
             BloodPressureScreen.idBloodPressure : (context)=>const BloodPressureScreen(),
             ADDBloodPressureScreen.idADDBloodPressure :(context) => const ADDBloodPressureScreen(),
             GlucoseScreen.idGlucose :(context) => const GlucoseScreen(),

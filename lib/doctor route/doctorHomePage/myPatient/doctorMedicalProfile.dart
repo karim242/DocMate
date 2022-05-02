@@ -19,13 +19,15 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
   //static String doctorMedicalProfileID = "IdOfMedicalProfile";
   int patientId ;
   String pName;
+ late int index;
 // ImageProvider patientImage;
 
-  DoctorMedicalProfileScreen({Key? key,
+  DoctorMedicalProfileScreen(  {Key? key,
     required this.patientId,
     required this.pName,
+    required this.index
   // required this.patientImage
-  }) : super(key: key) ;
+  })  ;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,6 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                 icon: const Icon(Icons.arrow_back),
               ),
             ),
-
             body: Column(
               children: [
                 MaterialButton(
@@ -92,7 +93,7 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                         FeatureCard(
 
                             ontap: (){
-                              navigateTo(context, const MedicalHistoryScreen());
+                              navigateTo(context,  MedicalHistoryScreen(index:index));
                             },
                             photoIconName: "medical_history",
                             textSize: 14.5,
@@ -104,32 +105,32 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             text: "Medical Visit",
                             color: const Color(0xffFFCCA0)),
                         FeatureCard(
-                            ontap: (){navigateTo(context, const VaccineScreen());
-                              cubit.getVaccineDoctorAPI(patientId);
+                            ontap: (){navigateTo(context,  const VaccineScreen());
+                              cubit.getVaccineDoctorAPI(patientId,index);
                               },
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
                         FeatureCard(
                             ontap: (){navigateTo(context, const RadiologyScreen());
-                              cubit.getRadiologyDoctorAPI(patientId);
+                              cubit.getRadiologyDoctorAPI(patientId,index);
                               },
                             photoIconName: "radiology",
                             text: "Radiology", color: const Color(0xffADFFDF)),
                         FeatureCard(
                             ontap: (){navigateTo(context, const LabTestScreen());
-                              cubit.getLabTestDoctorAPI(patientId);
+                              cubit.getLabTestDoctorAPI(patientId,index);
                               },
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(
-                            ontap: (){navigateTo(context, const BloodGlucoseScreen());},
+                            ontap: (){navigateTo(context,  BloodGlucoseScreen(index: index,));},
                             photoIconName: "4",
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),
                         FeatureCard(
                             ontap: (){
                               navigateTo(context, const DoctorSurgeryScreen());
-                              cubit.getSurgeryDoctorAPI(patientId);
+                              cubit.getSurgeryDoctorAPI(patientId,index);
                               },
                             photoIconName: "surgery",
                             text: "Surgery", color: const Color(0xffBAFFB5)),

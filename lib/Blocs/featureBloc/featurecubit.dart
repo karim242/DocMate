@@ -104,7 +104,7 @@ late PickedFile surgeryImage;
     });
   }
   List<dynamic>surgeryDoctorData=[];
-  void getSurgeryDoctorAPI(int id)
+  void getSurgeryDoctorAPI(int id, int index)
   {
     emit(LoadingValueStates());
 
@@ -115,6 +115,9 @@ late PickedFile surgeryImage;
     ).then((value) {
       surgeryDoctorData = value.data["data"];
       print(surgeryDoctorData[1]);
+      patientId=surgeryDoctorData[index]["id"];
+      print(surgeryDoctorData[index]["id"]);
+
       //print(labTestDoctorData[0]["name"].runtimeType,);
       // print(labTestDoctorData[0]["type"].runtimeType,);
       // print(labTestDoctorData[0]["location"].runtimeType,);
@@ -192,7 +195,7 @@ late PickedFile surgeryImage;
     });
   }
    List <dynamic> vaccineDoctorData=[];
-  void getVaccineDoctorAPI(int id)
+  void getVaccineDoctorAPI(int id, int index)
   {
     emit(LoadingValueStates());
 
@@ -203,6 +206,8 @@ late PickedFile surgeryImage;
     ).then((value) {
       vaccineDoctorData = value.data["data"];
       print(vaccineDoctorData);
+      patientId=vaccineDoctorData[index]["id"];
+      print(vaccineDoctorData[index]["id"]);
       //print(labTestDoctorData[0]["name"].runtimeType,);
       // print(labTestDoctorData[0]["type"].runtimeType,);
       // print(labTestDoctorData[0]["location"].runtimeType,);
@@ -270,7 +275,7 @@ late PickedFile surgeryImage;
     });
   }
   List <dynamic> familyHistoryDoctorListData=[];
-  void getDoctorFamilyHistoryAPI(int id)
+  void getDoctorFamilyHistoryAPI(int id, int index)
   {
     emit(LoadingValueStates());
 
@@ -280,7 +285,10 @@ late PickedFile surgeryImage;
 
     ).then((value) {
       familyHistoryDoctorListData = value.data["data"];
+      patientId=familyHistoryDoctorListData[index]["id"];
+      print(familyHistoryDoctorListData[index]["id"]);
       print(familyHistoryDoctorListData);
+
 
       emit(FeatureSuccessStates());
     }
@@ -294,8 +302,8 @@ late PickedFile surgeryImage;
 
   ////for Allergy
   var allergyController= TextEditingController();
-  late AllergyModel allergyModel;
-  void postAllergyAPI({String? allergy})
+  late AllergyPatientModel allergyModel;
+  void postAllergyAPI()
   {
     emit(LoadingValueStates());
 
@@ -303,10 +311,33 @@ late PickedFile surgeryImage;
         url: "patient/allergy",
         token:token,
         data: {
-          "name":allergy
+          "name":allergyController.text
         }
     ).then((value) {
-      allergyModel = AllergyModel.fromJson(value.data);
+      allergyModel = AllergyPatientModel.fromJson(value.data);
+      print(allergyModel.data.allergy);
+
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+  late AllergyDoctorModel allergyDoctorModel;
+  void postAllergyDoctorAPI(int id )
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/$id/allergy",
+        token:token,
+        data: {
+          "name":allergyController.text
+        }
+    ).then((value) {
+      allergyDoctorModel = AllergyDoctorModel.fromJson(value.data);
       print(allergyModel.data.allergy);
 
       emit(FeatureSuccessStates());
@@ -341,7 +372,7 @@ late PickedFile surgeryImage;
   }
 //// get for Doctor
   List <dynamic> allergyDoctorListData=[];
-  void getDoctorAllergyAPI(int id)
+  void getDoctorAllergyAPI(int id, int index)
   {
     emit(LoadingValueStates());
 
@@ -352,6 +383,8 @@ late PickedFile surgeryImage;
     ).then((value) {
       allergyDoctorListData = value.data["data"];
       print(allergyDoctorListData[0]["allergy"]);
+      patientId=allergyDoctorListData[index]["id"];
+
 
       emit(FeatureSuccessStates());
     }
@@ -398,7 +431,6 @@ late PickedFile surgeryImage;
       emit(FeatureErrorStates(error));
     });
   }
-
   List <dynamic> radiologyPatientData=[];
   void getRadiologyPatientAPI()
   {
@@ -422,7 +454,7 @@ late PickedFile surgeryImage;
   }
   //for get  doctor
   List <dynamic> radiologyDoctorData=[];
-  void getRadiologyDoctorAPI(int id)
+  void getRadiologyDoctorAPI(int id, int index)
   {
     emit(LoadingValueStates());
 
@@ -433,6 +465,8 @@ late PickedFile surgeryImage;
     ).then((value) {
       radiologyDoctorData = value.data["data"];
       print(radiologyDoctorData);
+      patientId=radiologyDoctorData[index]["id"];
+      print(radiologyDoctorData[index]["id"]);
       //print(labTestDoctorData[0]["name"].runtimeType,);
       // print(labTestDoctorData[0]["type"].runtimeType,);
       // print(labTestDoctorData[0]["location"].runtimeType,);
@@ -453,7 +487,6 @@ late PickedFile surgeryImage;
   var labTestLocationController= TextEditingController();
   var dateLabTestController= TextEditingController();
   var labTestImageController= TextEditingController();
-
   late LabTestModel labTestModel;
   void labTestAPI()
   {
@@ -510,7 +543,7 @@ late PickedFile surgeryImage;
     });
   }
   List <dynamic> labTestDoctorData=[];
-  void getLabTestDoctorAPI(int id)
+  void getLabTestDoctorAPI(int id,int index)
   {
     emit(LoadingValueStates());
 
@@ -521,6 +554,8 @@ late PickedFile surgeryImage;
     ).then((value) {
       labTestDoctorData = value.data["data"];
       print(labTestDoctorData);
+      patientId=labTestDoctorData[index]["id"];
+      print(labTestDoctorData[index]["id"]);
        //print(labTestDoctorData[0]["name"].runtimeType,);
       // print(labTestDoctorData[0]["type"].runtimeType,);
       // print(labTestDoctorData[0]["location"].runtimeType,);
@@ -599,7 +634,7 @@ late PickedFile surgeryImage;
 
 //for get doctor
   List <dynamic> glucoseDoctorData=[];
-  void getDoctorGlucoseAPI(int id)
+  void getDoctorGlucoseAPI(int id,int index)
   {
     emit(LoadingValueStates());
 
@@ -609,6 +644,8 @@ late PickedFile surgeryImage;
 
     ).then((value) {
       glucoseDoctorData = value.data["data"];
+      patientId=glucoseDoctorData[index]["id"];
+      print(glucoseDoctorData[index]["id"]);
       print(glucoseDoctorData);
       // print( glucoseData[0]["date"].runtimeType);
       // print( glucoseData[0]["glucos_result"].runtimeType);
@@ -685,7 +722,7 @@ List <dynamic> pressurePatientData=[];
   }
   //fo get doctor
   List <dynamic>  pressureDoctorData=[];
-  void getDoctorPressureAPI(int id)
+  void getDoctorPressureAPI(int id,int index)
   {
     emit(LoadingValueStates());
 
@@ -696,6 +733,8 @@ List <dynamic> pressurePatientData=[];
     ).then((value) {
       pressureDoctorData = value.data["data"];
       print(pressureDoctorData);
+      patientId=pressureDoctorData[index]["id"];
+      print(pressureDoctorData[index]["id"]);
       // print( glucoseData[0]["date"].runtimeType);
       // print( glucoseData[0]["glucos_result"].runtimeType);
       // print( glucoseData[0]["glucos_type"].runtimeType);

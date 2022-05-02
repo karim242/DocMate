@@ -181,11 +181,8 @@ int selectedIndex = 0;
       findPatientList=value.data["data"];
       print(findPatientList);
       patientId=findPatientList[0]["id"];
-
-
      // print(findPatientModel.data.runtimeType);
      // print(findPatientModel.data.name);
-
       emit(SearchSuccessStates());
     }
     ).catchError((error)
@@ -194,6 +191,31 @@ int selectedIndex = 0;
       emit(SearchErrorStates(error));
     });
   }
+
+  // List<dynamic> myPatientList=[];
+  // void getDoctorPatientsAPI()
+  // {
+  //   emit(LoadingSearchValueStates());
+  //
+  //   DioHelperAPI.getData(
+  //       url: "doctor/find_patient",
+  //       token:token,
+  //       // data: {}
+  //   ).then((value) {
+  //     myPatientList=value.data["data"];
+  //     print(myPatientList);
+  //     //patientId=findPatientList[0]["id"];
+  //     print(myPatientList[0]);
+  //      print(myPatientList[1]);
+  //     emit(SearchSuccessStates());
+  //   }
+  //   ).catchError((error)
+  //   {
+  //     print("Error is ==> $error");
+  //     emit(SearchErrorStates(error));
+  //   });
+  // }
+
 
 
   late RequestOtpModel requestOtpModel;
@@ -205,7 +227,7 @@ int selectedIndex = 0;
         url: "doctor/request_otp",
         token:token,
         data: {
-          "email":searchController.text,
+
         }
     ).then((value) {
       requestOtpModel =RequestOtpModel.fromJson(value.data);
@@ -251,6 +273,8 @@ int selectedIndex = 0;
         navigateAndFinish(context, DoctorMedicalProfileScreen(
           patientId: findPatientList[0]["id"],
           pName:  findPatientList[0]["name"],
+        index: 0,
+
         //  patientImage:
               ));
       //   const sBar = SnackBar(content: Text('access granted'),backgroundColor: Color(0xff01B9c8),);
