@@ -747,4 +747,28 @@ List <dynamic> pressurePatientData=[];
       emit(FeatureErrorStates(error));
     });
   }
+
+
+  ////for Prescription
+//// get patient
+  List <dynamic> prescriptionPatientData=[];
+  void getPrescriptionPatientAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.getData(
+      url: "patient/prescription",
+      token:token,
+
+    ).then((value) {
+      prescriptionPatientData = value.data["data"];
+      print(prescriptionPatientData);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
 }

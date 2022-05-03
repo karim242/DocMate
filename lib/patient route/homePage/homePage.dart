@@ -33,7 +33,7 @@ class HomePageScreen extends StatelessWidget {
                 backgroundColor: Colors.white,
                 elevation: 0,
                 title: Text(
-                  "Welcome, Karim",
+                  "Welcome, ${cubit.patientInfoData.values.elementAt(1)}",
                   style: textTitle22Style,
                 ),
                 leading: Builder(

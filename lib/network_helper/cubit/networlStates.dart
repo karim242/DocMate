@@ -34,3 +34,6 @@ class SearchErrorStates extends NetworkStates{
 }
 class ClearSearchStates extends NetworkStates{}
 
+class LoadingPatientProfileStates extends NetworkStates{}
+class PatientProfileSuccessStates extends NetworkStates{}
+class PatientProfileErrorStates extends NetworkStates{}

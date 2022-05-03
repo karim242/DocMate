@@ -59,8 +59,8 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                           bottom: Radius.circular(40))
                   ),
                   onPressed: () {
-                  navigateTo(context,
-                        const PatientProfileScreen());
+
+                  navigateTo(context, const PatientProfileScreen());
                   },
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

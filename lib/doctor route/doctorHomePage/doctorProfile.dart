@@ -5,8 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant.dart';
-import '../../network_helper/cubit/networkCubit.dart';
-import '../../network_helper/cubit/networlStates.dart';
 import '../../patient route/homePage/profilePage.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
@@ -51,8 +49,8 @@ class DoctorProfileScreen extends StatelessWidget {
                                 backgroundImage: NetworkImage(
                                     'https://via.placeholder.com/140x100')
                             ),
-                            Text(cubit.doctorNameController.value.text, style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                            Text(cubit.doctorEmailRegisterController.value.text, style: TextStyle(fontSize: 12),)
+                            Text(cubit.doctorNameController.value.text, style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                            Text(cubit.doctorEmailRegisterController.value.text, style: const TextStyle(fontSize: 12),)
                           ],
                         ),
                       ),
@@ -64,9 +62,9 @@ class DoctorProfileScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children:  [
                             MyInfoWidget(title: 'Specialization', info: cubit.specializationController.value.text),
-                            SizedBox(height: 10,),
+                            const SizedBox(height: 10,),
                             MyInfoWidget(title: 'ID', info: cubit.doctorIdController.text,),
-                            SizedBox(height: 10,),
+                            const SizedBox(height: 10,),
 
                           ],
                         ),

@@ -7,23 +7,27 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant.dart';
+import '../../models/patientModel.dart';
 import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 
 class PatientProfileScreen extends StatelessWidget {
   const PatientProfileScreen({Key? key}) : super(key: key);
-  static String profileID = "IDPatientProfile";
+
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<RegisterPatientCubit,RegisterStates>(
+    return BlocConsumer<NetworkCubit,NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
 
-          RegisterPatientCubit cubit = RegisterPatientCubit.get(context);
+          NetworkCubit cubit = NetworkCubit.get(context);
+         Map<String,dynamic>patientProfileData=cubit.patientInfoData;
+
           SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
               statusBarColor: blueColor
           ));
+        //  late PatientProfileModel patientProfileModel=cubit.patientProfileModel;
           return Scaffold(
             appBar: AppBar(
               backgroundColor: blueColor,
@@ -51,8 +55,8 @@ class PatientProfileScreen extends StatelessWidget {
                             backgroundImage: NetworkImage(
                                 'https://via.placeholder.com/140x100')
                         ),
-                        Text(cubit.nameController.value.text, style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                        Text(cubit.emailRegisterController.value.text, style: const TextStyle(fontSize: 12),)
+                        Text( patientProfileData.values.elementAt(1),style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                        Text(patientProfileData.values.elementAt(2), style: const TextStyle(fontSize: 12),)
                       ],
                     ),
                   ),
@@ -63,17 +67,17 @@ class PatientProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children:  [
-                        MyInfoWidget(title: 'phone', info: cubit.phoneController.value.text),
+                        MyInfoWidget(title: 'phone', info: patientProfileData.values.elementAt(4)),
                         const SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Date Of Birth', info: cubit.dateOfBirthController.value.text,),
+                        MyInfoWidget(title: 'Date Of Birth', info: patientProfileData.values.elementAt(3),),
                         const SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Height', info: cubit.heightController.value.text,),
+                        MyInfoWidget(title: 'Height', info: patientProfileData.values.elementAt(8).toString(),),
                         const SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Weight', info: cubit.weightController.value.text,),
+                        MyInfoWidget(title: 'Weight', info:patientProfileData.values.elementAt(7).toString()),
                         const SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Blood type', info: cubit.bloodTypeController.value.text,),
+                        MyInfoWidget(title: 'Blood type', info: patientProfileData.values.elementAt(6)),
                         const SizedBox(height: 10,),
-                        MyInfoWidget(title: 'Location', info: cubit.addressController.value.text,),
+                        //MyInfoWidget(title: 'Location', info: cubit.addressController.value.text,),
 
                       ],
                     ),
@@ -106,12 +110,12 @@ class MyInfoWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(title,style: text20ForNameAdd),
+        Text(title.toString(),style: text20ForNameAdd),
         const SizedBox(height: 5),
         Container(
           padding: const EdgeInsets.all(10),
 
-            child:Text(info,style: const TextStyle(
+            child:Text(info.toString(),style: const TextStyle(
               fontSize: 18
             ),) ,
 

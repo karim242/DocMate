@@ -146,6 +146,7 @@ int selectedIndex = 0;
     {
       latestNew=value.data["articles"];
       //print(latestNew.toString());
+      getPatientInFo();
         emit(NetworkSuccessStates());
     }
     ).catchError((error)
@@ -157,7 +158,32 @@ int selectedIndex = 0;
 
   }
 
+  Map<String, dynamic>patientInfoData={};
+  void getPatientInFo()
+  {
+    emit(LoadingPatientProfileStates());
 
+    DioHelperAPI.getData(
+      url: "patient/profile",
+      token: token,
+
+    ).then((value) {
+
+      patientInfoData=value.data["data"];
+      print(patientInfoData.values.elementAt(1));
+      //  print(patientProfileModel.data.id);
+      //  print(patientProfileModel.data.name);
+      //  print(patientProfileModel.data.date);
+      //  print(patientProfileModel.data.height);
+      //  print(patientProfileModel.data.weight);
+      emit(PatientProfileSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is --==> $error".toString());
+      emit(PatientProfileErrorStates());
+    });
+  }
 
 
   ////for search box

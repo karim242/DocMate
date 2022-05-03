@@ -27,15 +27,28 @@ class PressureData {
 
 ////for Allergy
 ////for patient
-class AllergyPatientModel
-{
-late AllergyPatientData data;
-AllergyPatientModel.fromJson(Map<String,dynamic>json)
-{
-  data = (json['data'] != null ? AllergyPatientData.fromJson(json['data']) : null)!;
+class AllergyPatientModel {
+  late AllergyPatientData data;
 
+  AllergyPatientModel.fromJson(Map<String, dynamic>json)
+  {
+    data =
+    (json['data'] != null ? AllergyPatientData.fromJson(json['data']) : null)!;
+  }
+}
+class AllergyPatientData {
+late int id;
+late String allergy;
+
+AllergyPatientData.fromJson(Map<String, dynamic>json)
+{
+id = json["id"];
+allergy = json["allergy"];
 }
 }
+
+
+
 /////for Doctor
 class AllergyDoctorData {
   late int id;
@@ -56,16 +69,7 @@ class AllergyDoctorModel
 
   }
 }
-class AllergyPatientData {
-  late int id;
-  late String allergy;
 
-  AllergyPatientData.fromJson(Map<String, dynamic>json)
-  {
-    id = json["id"];
-    allergy = json["allergy"];
-  }
-}
 
 ////for Family History
 ////fo

@@ -105,7 +105,6 @@ class MyApp extends StatelessWidget {
             LatestNews.latestNewsID : (context) =>  const LatestNews(),
             MedicalAdvices.medicalAdvicesId : (context) =>  const MedicalAdvices(),
             MedicalProfileScreen.medicalProfileID : (context) => const MedicalProfileScreen(),
-            PatientProfileScreen.profileID: (context)=> const PatientProfileScreen(),
 
             FamilyHistoryScreen.idFamilyHistory : (context)=> const FamilyHistoryScreen(),
             AllergyScreen.idAllergyScreen : (context)=>  AllergyScreen(),

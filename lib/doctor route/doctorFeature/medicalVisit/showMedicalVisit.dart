@@ -25,8 +25,9 @@ class ShowMedicalVisits extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
             appBar: AppBar(
+              elevation: 0,
               leading: GestureDetector(
-                child: Icon(Icons.arrow_back_ios,color: Colors.black,),
+                child: const Icon(Icons.arrow_back_ios,color: Colors.black,),
                 onTap: (){
                   Navigator.pop(context);
                 },
@@ -45,7 +46,7 @@ class ShowMedicalVisits extends StatelessWidget {
                     ),
 
 
-                    SizedBox(width: 10,),
+                    const SizedBox(width: 10,),
 
                     //set doctor name here
                     Column(
