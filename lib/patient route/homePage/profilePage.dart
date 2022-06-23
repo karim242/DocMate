@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant.dart';
-import '../../models/patientModel.dart';
 import '../../network_helper/cubit/networkCubit.dart';
 import '../../network_helper/cubit/networlStates.dart';
 

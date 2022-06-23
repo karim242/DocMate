@@ -137,7 +137,8 @@ int selectedIndex = 0;
     DioHelper.getData(
         url: "v2/top-headlines",
         query: {
-          "country":"eg",
+          //want to make it dynamic
+          "country":"au",
           "category":"health",
           "apiKey":"6b2ca68a49124812826713ba28b669e9",
 
