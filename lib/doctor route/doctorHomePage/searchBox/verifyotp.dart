@@ -5,7 +5,7 @@ import '../../../constant.dart';
 import '../../../network_helper/cubit/networkCubit.dart';
 import '../../../network_helper/cubit/networlStates.dart';
 import '../../../shared/sharedComponent.dart';
-import '../myPatient/doctorMedicalProfile.dart';
+
 
 class VerifyOtp extends StatelessWidget {
   const VerifyOtp({Key? key}) : super(key: key);

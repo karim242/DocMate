@@ -16,6 +16,7 @@ import '../../patient route/homePage/seeAll/medicalAdvices.dart';
 import '../../selectUser/splashScreen.dart';
 import '../../shared/sharedComponent.dart';
 import 'doctor_drawe_items/docChangePassword.dart';
+import 'doctor_drawe_items/editdoctorprofile.dart';
 
 class DoctorHomePageScreen extends StatelessWidget {
   DoctorHomePageScreen({Key? key}) : super(key: key);
@@ -94,8 +95,8 @@ class DoctorHomePageScreen extends StatelessWidget {
                         children: [
                           TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, EditProfile.editProfileID);
+
+                              navigateTo(context, const EditDoctorProfile());
                             },
                             child: const Text(
                               'Edit Profile',

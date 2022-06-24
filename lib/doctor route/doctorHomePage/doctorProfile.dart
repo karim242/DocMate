@@ -1,10 +1,11 @@
-import 'package:docmate/Blocs/doctor_register/doctorRegisterCubit.dart';
-import 'package:docmate/Blocs/doctor_register/doctorRegisterStates.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../constant.dart';
+import '../../network_helper/cubit/networkCubit.dart';
+import '../../network_helper/cubit/networlStates.dart';
 import '../../patient route/homePage/profilePage.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
@@ -13,13 +14,14 @@ class DoctorProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DoctorRegisterCubit, DoctorRegisterStates>(
+    return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
 
-          DoctorRegisterCubit cubit = DoctorRegisterCubit.get(context);
-          SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-              statusBarColor: Color(0xFF01B9C8)
+          NetworkCubit cubit = NetworkCubit.get(context);
+          Map<String,dynamic>doctorProfileData=cubit.doctorInfoData;
+          SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
+              statusBarColor: blueColor
           ));
           return SafeArea(
             child: Scaffold(
@@ -42,15 +44,25 @@ class DoctorProfileScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          //remove const when using api
+
                           children:  [
-                            const CircleAvatar(
-                                radius: 30,
-                                backgroundImage: NetworkImage(
-                                    'https://via.placeholder.com/140x100')
+                            cubit.doctorProfileImage == null
+                                ? const CircleAvatar(
+                                  radius: 40,
+                                   backgroundImage: NetworkImage(
+                                    'https://via.placeholder.com/150x100'))
+                               : CircleAvatar(
+                                  radius: 40,
+                                 backgroundImage:
+                                  FileImage(cubit.doctorProfileImage!),
                             ),
-                            Text(cubit.doctorNameController.value.text, style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                            Text(cubit.doctorEmailRegisterController.value.text, style: const TextStyle(fontSize: 12),)
+
+
+
+
+
+                            Text(doctorProfileData.values.elementAt(1), style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                            Text(doctorProfileData.values.elementAt(2), style: const TextStyle(fontSize: 12),)
                           ],
                         ),
                       ),
@@ -61,10 +73,11 @@ class DoctorProfileScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children:  [
-                            MyInfoWidget(title: 'Specialization', info: cubit.specializationController.value.text),
+                            MyInfoWidget(title: 'ID', info:doctorProfileData.values.elementAt(3),),
                             const SizedBox(height: 10,),
-                            MyInfoWidget(title: 'ID', info: cubit.doctorIdController.text,),
+                            MyInfoWidget(title: 'Specialization', info: doctorProfileData.values.elementAt(5)),
                             const SizedBox(height: 10,),
+
 
                           ],
                         ),

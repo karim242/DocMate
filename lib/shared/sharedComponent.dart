@@ -162,13 +162,13 @@ CarouselSlider carouselSlider(
               decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage('${articles[index]['urlToImage']}')),
+                    image: NetworkImage('${articles[index+1]['urlToImage']}')),
                 borderRadius: BorderRadius.circular(16.0),
               ),
             ),
           ),
           Text(
-            '${articles[index]['title']}',
+            '${articles[index+1]['title']}',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: TextStyle(
@@ -323,7 +323,7 @@ Widget ThemeCard(context,
     required String type,
     required String location,
     required String date,
-   // required String image
+    //required FileImage image
     }) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
@@ -463,69 +463,7 @@ Container fieldForMeasurement({
   );
 }
 
-class BottomSheet extends StatefulWidget {
-  const BottomSheet({Key? key}) : super(key: key);
 
-  @override
-  State<BottomSheet> createState() => _BottomSheetState();
-}
-
-class _BottomSheetState extends State<BottomSheet> {
-  late PickedFile file;
-  final ImagePicker picker = ImagePicker();
-  @override
-  // TODO: implement context
-  BuildContext get context => super.context;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: MediaQuery.of(context).size.width,
-      margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      child: Column(
-        children: [
-          const Text(
-            'choose profile photo',
-            style: TextStyle(fontSize: 20),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton.icon(
-                onPressed: () {
-                  setState(() {
-                    takePhoto(ImageSource.camera);
-                  });
-                },
-                icon: const Icon(Icons.camera),
-                label: const Text('camera'),
-              ),
-              TextButton.icon(
-                onPressed: () {
-                  setState(() {
-                    takePhoto(ImageSource.gallery);
-                  });
-                },
-                icon: const Icon(Icons.browse_gallery),
-                label: const Text('gallery'),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  void takePhoto(ImageSource source) async {
-    final pickedFile = await picker.getImage(source: source);
-    setState(() {
-      file = pickedFile!;
-    });
-  }
-}
 
 void showToast({required String msg, required ToastStates states}) =>
     Fluttertoast.showToast(
@@ -564,3 +502,50 @@ void navigateTo(context, widget) => Navigator.push(
         builder: (context) => widget,
       ),
     );
+
+
+Widget ImageProfileBottomSheet(var cubit , bool user){
+  return Container(
+    height: 100,
+    width: 300,
+    margin: const EdgeInsets.symmetric(
+        vertical: 20, horizontal: 20),
+    child: Column(
+      children: [
+        const Text(
+          'choose profile photo',
+          style: TextStyle(fontSize: 20),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment:
+          MainAxisAlignment.center,
+          children: [
+            TextButton.icon(
+            onPressed: () {
+               user==true
+                   ? cubit.getImage(ImageSource.camera)
+                   :cubit.getDoctorImage(ImageSource.camera);
+              },
+              icon: const Icon(Icons.camera),
+              label: const Text('camera'),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                user==true
+                    ? cubit.getImage(ImageSource.gallery)
+                    :cubit.getDoctorImage(ImageSource.gallery);
+
+              },
+              icon: const Icon(
+                  Icons.browse_gallery),
+              label: const Text('gallery'),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}

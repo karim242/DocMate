@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:docmate/doctor%20route/doctorFeature/surgery/addSurgery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +35,7 @@ class DoctorSurgeryScreen extends StatelessWidget {
                         type:cubit.isUser?surgeryDoctorData[index]["type"]:surgeryPatientData[index]["type"],
                     location:cubit.isUser?surgeryDoctorData[index]["location"]:surgeryPatientData[index]["location"],
                         date:cubit.isUser?surgeryDoctorData[index]["date"]:surgeryPatientData[index]["date"],
+                       // image: FileImage(),
                       ),
                   separatorBuilder: (context, index) =>
                       const SizedBox(

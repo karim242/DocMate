@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:docmate/constant.dart';
 import 'package:docmate/models/patientModel.dart';
 import 'package:docmate/network_helper/dioHelper.dart';
@@ -36,12 +38,32 @@ class FeatureCubit extends Cubit<FeatureStates> {
 
 
   //for photo
+//   File? profileImage;
+//   Future <void>getImage()async{
+//     final pickedFile = await ImagePicker.platform.pickImage(source: ImageSource.gallery);
+//     if(pickedFile !=null)
+//     {
+//       profileImage=File(pickedFile.path);
+//       emit(GetProfileImageSuccessStates());
+//     }
+//     else
+//       {
+//         print("nothing selected");
+//         emit(GetProfileImageErrorStates());
+//       }
+// }
+  //////////
+  //for image old code
   late PickedFile file;
   final ImagePicker picker = ImagePicker();
   Future<PickedFile> takePhoto(ImageSource source)async{
     final pickedFile = await picker.getImage(source: source);
    return  pickedFile! ;
   }
+
+
+
+
 /////for Dr Surgery
   var surgeryNameController= TextEditingController();
   var surgeryTypeController= TextEditingController();

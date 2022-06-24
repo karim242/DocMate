@@ -20,7 +20,7 @@ class DoctorSelectPage extends StatelessWidget {
             body: ConditionalBuilder(
               condition: states is! NetworkLoadingStates,
               builder: (BuildContext context) {
-                return cubit.doctorScreens[cubit.selectedIndex];
+                return cubit.doctorScreens[cubit.doctorSelectedIndex];
               },
               fallback: (BuildContext context) {
                 return const Center(
@@ -31,10 +31,10 @@ class DoctorSelectPage extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
                 selectedItemColor: blueColor,
               iconSize: 38,
-                currentIndex: cubit.selectedIndex,
+                currentIndex: cubit.doctorSelectedIndex,
                 items: cubit.doctorNavList,
                 onTap: (index) {
-                  cubit.changenav(index);
+                  cubit.changeDoctornav(index);
                 }),
           );
         });

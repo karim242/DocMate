@@ -55,6 +55,7 @@ Future<void> main() async {
   runApp(const MyApp());
   DioHelperAPI.init();
   DioHelper.init();
+
   await CacheHelper.init();
   token=CacheHelper.getData(key: "token");
 }
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
             MedicalProfileScreen.medicalProfileID : (context) => const MedicalProfileScreen(),
 
             FamilyHistoryScreen.idFamilyHistory : (context)=> const FamilyHistoryScreen(),
-            AllergyScreen.idAllergyScreen : (context)=>  AllergyScreen(),
+
             ADDAllergyScreen.idADDAllergy : (context)=> const ADDAllergyScreen(),
             ADDFamilyHistoryScreen.idADDFamilyHistory : (context)=>const ADDFamilyHistoryScreen(),
             AddVaccineScreen.idAddVaccine :(context)=>const AddVaccineScreen(),
@@ -118,8 +119,8 @@ class MyApp extends StatelessWidget {
             SurgeryScreen.idSurgery :(context) => const SurgeryScreen(),
             AddLabTestScreen.idAddLabTest :(context) =>  AddLabTestScreen(),
             AddRadiologyScreen.idAddRadiology :(context)=> const AddRadiologyScreen(),
-            EditProfile.editProfileID:(context)=>const EditProfile(),
-//            DoctorProfileScreen.docProfileID:(context)=> const DoctorProfileScreen(),
+
+//
             DrMedicalVisit.idDrMedicalVisit :(context) =>const DrMedicalVisit(),
             AddMedicalVisits.idAddMedicalVisit :(context)=>  AddMedicalVisits(),
             DoctorSurgeryScreen.idDoctorSurgery :(context)=>  const DoctorSurgeryScreen(),

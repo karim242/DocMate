@@ -22,6 +22,11 @@ class OtpReqSuccessStates extends NetworkStates{
 
    OtpReqSuccessStates(this.requestOtpModel);
 }
+class OtpReqErrorStates extends NetworkStates{
+  final RequestOtpModel errorRequestOtpModel;
+
+  OtpReqErrorStates(this.errorRequestOtpModel);
+}
 class OtpVerifySuccessStates extends NetworkStates{
   final VerifyOtpModel verifyOtpModel;
 
@@ -37,3 +42,15 @@ class ClearSearchStates extends NetworkStates{}
 class LoadingPatientProfileStates extends NetworkStates{}
 class PatientProfileSuccessStates extends NetworkStates{}
 class PatientProfileErrorStates extends NetworkStates{}
+
+
+class LoadingDoctorProfileStates extends NetworkStates{}
+class PatientDoctorSuccessStates extends NetworkStates{}
+class PatientDoctorErrorStates extends NetworkStates{}
+
+class EditSuccessStates extends NetworkStates{}
+class EditErrorStates extends NetworkStates{
+  final String error;
+
+  EditErrorStates(this.error);
+}

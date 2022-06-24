@@ -21,7 +21,7 @@ class DescriptionScreen extends StatelessWidget {
           // dynamic list= NetworkCubit.get(context).latestNew;
           NetworkCubit cubit = NetworkCubit.get(context);
           List<dynamic> data = cubit.latestNew;
-          cubit.patientScreens[cubit.selectedIndex];
+          //cubit.patientScreens[cubit.patientSelectedIndex];
           return SafeArea(
             child: Scaffold(
               body: ConditionalBuilder(

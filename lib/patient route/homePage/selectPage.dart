@@ -19,7 +19,7 @@ class SelectPage extends StatelessWidget {
             body: ConditionalBuilder(
               condition: states is! NetworkLoadingStates,
               builder: (BuildContext context) {
-                return cubit.patientScreens[cubit.selectedIndex];
+                return cubit.patientScreens[cubit.patientSelectedIndex];
               },
               fallback: (BuildContext context) {
                 return const Center(
@@ -30,10 +30,10 @@ class SelectPage extends StatelessWidget {
             bottomNavigationBar: BottomNavigationBar(
                 selectedItemColor: blueColor,
               iconSize: 38,
-                currentIndex: cubit.selectedIndex,
+                currentIndex: cubit.patientSelectedIndex,
                 items: cubit.patientNavList,
                 onTap: (index) {
-                  cubit.changenav(index);
+                  cubit.changePatientnav(index);
                 }),
           );
         });

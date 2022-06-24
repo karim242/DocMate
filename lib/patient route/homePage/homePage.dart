@@ -66,7 +66,7 @@ class HomePageScreen extends StatelessWidget {
                           children: [
                             TextButton(
                               onPressed: (){
-                                Navigator.pushNamed(context, EditProfile.editProfileID);
+                                navigateTo(context, EditProfile());
                               },
                               child: const Text('Edit Profile',style: TextStyle(color: Colors.black,
                                   fontSize: 16),),
@@ -155,7 +155,7 @@ class HomePageScreen extends StatelessWidget {
                               ),
                               itemBuilder: (BuildContext context, int index) =>
                                   medicalAdvices(context,
-                                      articles: data, index: index +3),
+                                      articles: data, index: index +8),
                               itemCount: 9,
                             ),
                           )

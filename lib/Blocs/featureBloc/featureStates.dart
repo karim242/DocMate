@@ -9,7 +9,6 @@ class FeatureSuccessStates extends FeatureStates{
    // FeaturePressureGetModel featurePressureGetModel;
 
  // FeatureSuccessStates(this.featurePressureModel, );
-
 }
 class FeatureErrorStates extends FeatureStates{
   final String error;
@@ -18,3 +17,6 @@ class FeatureErrorStates extends FeatureStates{
 }
 class ChangePatient extends FeatureStates{}
 class ChangeDoctor extends FeatureStates{}
+
+class GetProfileImageSuccessStates extends FeatureStates{}
+class GetProfileImageErrorStates extends FeatureStates{}

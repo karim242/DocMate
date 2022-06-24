@@ -6,6 +6,9 @@
 //
 
 
+
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:docmate/models/RequestOtp.dart';
 import 'package:docmate/network_helper/cubit/networlStates.dart';
@@ -14,12 +17,15 @@ import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constant.dart';
 import '../../doctor route/doctorHomePage/doctorHomePage.dart';
 import '../../doctor route/doctorHomePage/doctorProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/doctorMedicalProfile.dart';
 import '../../doctor route/doctorHomePage/myPatient/myPatients.dart';
+import '../../doctor route/doctorHomePage/searchBox/verifyotp.dart';
+import '../../models/editModel.dart';
 import '../../shared/sharedComponent.dart';
 import '../dioHelper.dart';
 
@@ -37,6 +43,38 @@ class NetworkCubit extends Cubit<NetworkStates> {
   TextStyle(fontSize: 8, fontWeight: FontWeight.w100);
 
 
+  File? patientProfileImage;
+  Future <void>getImage(ImageSource source)async{
+    final pickedFile = await ImagePicker.platform.pickImage(source: source);
+    if(pickedFile !=null)
+    {
+      patientProfileImage=File(pickedFile.path);
+      print(pickedFile.path);
+     //emit(GetProfileImageSuccessStates());
+    }
+    else
+    {
+      print("nothing selected");
+      //emit(GetProfileImageErrorStates());
+    }
+  }
+  File? doctorProfileImage;
+  Future <void>getDoctorImage(ImageSource source)async{
+    final pickedFile = await ImagePicker.platform.pickImage(source: source);
+    if(pickedFile !=null)
+    {
+      doctorProfileImage=File(pickedFile.path);
+      print(pickedFile.path);
+      //emit(GetProfileImageSuccessStates());
+    }
+    else
+    {
+      print("nothing selected");
+      //emit(GetProfileImageErrorStates());
+    }
+  }
+
+
   //Edit Profile Text Field Controller
   var editNameController = TextEditingController();
   var editEmailController = TextEditingController();
@@ -47,15 +85,16 @@ class NetworkCubit extends Cubit<NetworkStates> {
   var editLocationController = TextEditingController();
 
   //edit doctor profile text field controllers
-
+  var editDoctorIDController = TextEditingController();
   var editDoctorNameController = TextEditingController();
-  var editDoctorLocationController = TextEditingController();
-  var editDoctorMobileController = TextEditingController();
+  var editDoctorEmailController = TextEditingController();
+  var editDoctorDepartmentController = TextEditingController();
 
 
 
 
-int selectedIndex = 0;
+int patientSelectedIndex = 0;
+  int doctorSelectedIndex = 0;
   List<BottomNavigationBarItem> patientNavList=[
     const BottomNavigationBarItem(
       activeIcon: Icon(
@@ -115,8 +154,13 @@ int selectedIndex = 0;
       label: 'Profile',
     ),
   ];
-  void changenav(index){
-    selectedIndex=index;
+  void changePatientnav(index) {
+    patientSelectedIndex = index;
+    emit(ChangeBottomNavState());
+
+  }
+  void changeDoctornav(index) {
+    doctorSelectedIndex = index;
     emit(ChangeBottomNavState());
   }
   List<Widget> patientScreens=[
@@ -148,6 +192,7 @@ int selectedIndex = 0;
       latestNew=value.data["articles"];
       //print(latestNew.toString());
       getPatientInFo();
+      getDoctorInFo();
         emit(NetworkSuccessStates());
     }
     ).catchError((error)
@@ -158,9 +203,9 @@ int selectedIndex = 0;
     });
 
   }
-
+////getPatientInFo
   Map<String, dynamic>patientInfoData={};
-  void getPatientInFo()
+ void getPatientInFo()
   {
     emit(LoadingPatientProfileStates());
 
@@ -186,6 +231,33 @@ int selectedIndex = 0;
     });
   }
 
+////getDoctorInFo
+  Map<String, dynamic>doctorInfoData={};
+ void getDoctorInFo()
+  {
+    emit(LoadingDoctorProfileStates());
+
+    DioHelperAPI.getData(
+      url: "doctor/profile",
+      token: token,
+
+    ).then((value) {
+
+      doctorInfoData=value.data["data"];
+      print(doctorInfoData.values.elementAt(1));
+      //  print(patientProfileModel.data.id);
+      //  print(patientProfileModel.data.name);
+      //  print(patientProfileModel.data.date);
+      //  print(patientProfileModel.data.height);
+      //  print(patientProfileModel.data.weight);
+      emit(PatientProfileSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is --==> $error".toString());
+      emit(PatientProfileErrorStates());
+    });
+  }
 
   ////for search box
 
@@ -246,7 +318,7 @@ int selectedIndex = 0;
 
 
   late RequestOtpModel requestOtpModel;
-  void postOtpRequest()
+  void postOtpRequest(context)
   {
     emit(LoadingSearchValueStates());
 
@@ -258,18 +330,18 @@ int selectedIndex = 0;
         }
     ).then((value) {
       requestOtpModel =RequestOtpModel.fromJson(value.data);
-      // const sBar = SnackBar(content: Text('otp sent'),backgroundColor: Color(0xff01B9c8),);
-      // ScaffoldMessenger.of(context).showSnackBar(sBar);
-      // Navigator.pushNamed(
+      //  const sBar = SnackBar(content: Text('otp sent'),backgroundColor: Color(0xff01B9c8),);
+      //  ScaffoldMessenger.of(context).showSnackBar(sBar);
+      //  Navigator.pushNamed(
       //     context, VerifyOtp.idOVerifyOtp);
-      print(requestOtpModel.message);
-      print(requestOtpModel.status);
+      // print(requestOtpModel.message);
+      // print(requestOtpModel.status);
       emit(OtpReqSuccessStates(requestOtpModel));
     }
     ).catchError((error)
     {
       print("Error is ==> $error");
-      emit(SearchErrorStates(error));
+      emit(OtpReqErrorStates(error));
     });
   }
 
@@ -324,6 +396,69 @@ int selectedIndex = 0;
       // const sBar = SnackBar(content: Text('wrong otp'),backgroundColor: Color(0xff01B9c8),);
       // ScaffoldMessenger.of(context).showSnackBar(sBar);
       emit(SearchErrorStates(error));
+    });
+  }
+
+
+
+
+
+
+  //API for  update Doc profile
+ late EditDocModel editDocModel;
+  void editDocProfileAPI()
+  {
+    emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "doctor/profile/update",
+        token:token,
+        data: {
+          "email":editDoctorEmailController.text,
+          "name":editDoctorNameController.text,
+          "union_id":editDoctorIDController.text,
+          "department":editDoctorDepartmentController.text,
+          "photo":doctorProfileImage?.absolute
+        }
+    ).then((value) {
+       editDocModel = EditDocModel.fromJson(value.data);
+       print(editDocModel.data.name);
+       print("Success");
+      emit(EditSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(EditErrorStates(error));
+    });
+  }
+
+  void editPatientProfileAPI()
+  {
+   // emit(LoadingValueStates());
+
+    DioHelperAPI.postData(
+        url: "patient/profile/update",
+        token:token,
+        data: {
+          "email":editEmailController.text,
+          "name":editNameController.text,
+          "date":editDateOfBirthController.text,
+          "weight":editWeightController.text,
+          "height":editHeightController.text,
+          "photo":patientProfileImage,
+          "blood_type":editBloodTypeController.text,
+        }
+    ).then((value) {
+      // editDocModel = EditDocModel.fromJson(value.data);
+      // print(editDocModel.data.name);
+      print("Success");
+      emit(EditSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(EditErrorStates(error));
     });
   }
 }

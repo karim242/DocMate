@@ -19,14 +19,19 @@ class OtpRequest extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {
-          if(states is  OtpReqSuccessStates)
-            {
+          if (states is OtpReqSuccessStates) {
+            states.requestOtpModel.message == "invalid"
+                ? {showToast(
+                msg: states.requestOtpModel.message,
+                states: ToastStates.SUCCESS),
+              navigateTo(context, const VerifyOtp())}
+                : {
               showToast(
-                  msg: states.requestOtpModel.message,
-                  states: ToastStates.SUCCESS
-              );
-              navigateTo(context, const VerifyOtp());
-            }
+                  msg: "Something is wrong",
+                  states: ToastStates.ERROR
+              )
+            };
+          }
         },
         builder: (context, states) {
           NetworkCubit cubit = NetworkCubit.get(context);
@@ -86,9 +91,7 @@ class OtpRequest extends StatelessWidget {
                           height: 44,
                           minWidth: 200,
                           onPressed: (){
-                          cubit.postOtpRequest();
-
-
+                          cubit.postOtpRequest(context);
                           },child: const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text('Request',style: TextStyle(fontSize: 22,color: Colors.white),),

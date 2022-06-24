@@ -9,7 +9,7 @@ import 'addAllergy.dart';
 
 class AllergyScreen extends StatelessWidget {
    AllergyScreen({Key? key}) : super(key: key);
-  static String idAllergyScreen = "IDAllergyScreen";
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(

@@ -49,11 +49,18 @@ class PatientProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       //remove const when using api
                       children: [
-                        const CircleAvatar(
-                            radius: 30,
+                        cubit.patientProfileImage == null
+                            ? const CircleAvatar(
+                            radius: 40,
                             backgroundImage: NetworkImage(
                                 'https://via.placeholder.com/140x100')
-                        ),
+
+                        )
+                            : CircleAvatar(
+                            radius: 40,
+                            backgroundImage:
+                            FileImage(cubit.patientProfileImage!)),
+
                         Text( patientProfileData.values.elementAt(1),style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                         Text(patientProfileData.values.elementAt(2), style: const TextStyle(fontSize: 12),)
                       ],

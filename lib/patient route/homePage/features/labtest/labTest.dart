@@ -28,11 +28,7 @@ class LabTestScreen extends StatelessWidget {
                          type:cubit.isUser?labTestDoctorData[index]["type"]:labTestPatientData[index]["type"],
                      location:cubit.isUser?labTestDoctorData[index]["location"]:labTestPatientData[index]["location"],
                        date:  cubit.isUser?labTestDoctorData[index]["date"]:labTestPatientData[index]["date"],
-                        // image: const NetworkImage(
-                        //     "https://encrypted-tbn0.gstatic.com/images?"
-                        //         "q=tbn:ANd9GcSMIjtLGdKhn6rI-5J738fL-"
-                        //         "iX8N9HBZYAEPQ&usqp=CAU"
-                        // ),
+                      // image: cubit.profileImage
                       ),
                   separatorBuilder: (context, index) =>
                       Container(

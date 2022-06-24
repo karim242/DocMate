@@ -83,7 +83,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text('active subtance',style: text20ForNameAdd,),
+                            Text('active substance',style: text20ForNameAdd,),
                             IconButton(onPressed: (){
                               _addTextField();
                             }, icon: Icon(Icons.add),
