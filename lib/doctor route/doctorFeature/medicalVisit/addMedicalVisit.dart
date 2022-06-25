@@ -9,6 +9,7 @@ import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
 
 class AddMedicalVisits extends StatefulWidget {
+
   static String idAddMedicalVisit = "idAddMedicalVisit";
   @override
   State<AddMedicalVisits> createState() => _AddMedicalVisitsState();
@@ -125,6 +126,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                           children: [
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
+                                cubit.docMedicalVisitModelAPI(patientId);
                                 Navigator.pop(context);
                                 cubit.summaryController.clear();
                                 cubit.notesController.clear();

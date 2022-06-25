@@ -100,7 +100,9 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             text: "Medical History",
                             color: const Color(0xffDFC8FC)),
                         FeatureCard(
-                            ontap: (){navigateTo(context, const DrMedicalVisit());},
+                            ontap: (){
+                              navigateTo(context,  DrMedicalVisit());
+                              },
                             photoIconName: "medical_Visit",
                             text: "Medical Visit",
                             color: const Color(0xffFFCCA0)),

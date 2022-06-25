@@ -121,7 +121,7 @@ class MyApp extends StatelessWidget {
             AddRadiologyScreen.idAddRadiology :(context)=> const AddRadiologyScreen(),
 
 //
-            DrMedicalVisit.idDrMedicalVisit :(context) =>const DrMedicalVisit(),
+            DrMedicalVisit.idDrMedicalVisit :(context) => DrMedicalVisit(),
             AddMedicalVisits.idAddMedicalVisit :(context)=>  AddMedicalVisits(),
             DoctorSurgeryScreen.idDoctorSurgery :(context)=>  const DoctorSurgeryScreen(),
             AddSurgeryScreen.idAddSurgery : (context)=> const AddSurgeryScreen(),

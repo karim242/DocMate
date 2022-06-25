@@ -153,6 +153,28 @@ late PickedFile surgeryImage;
       emit(FeatureErrorStates(error));
     });
   }
+  ////////////////////////////////////////////////////
+  // for prescription id
+   List prescriptionIdData=[];
+  late int prescriptionID ;
+  void getPrescriptionIDAPI(int patientId)
+  {emit(LoadingValueStates());
+  DioHelperAPI.getData(
+    url: "doctor/$patientId/prescription/",
+    token:token,
+  ).then((value) {
+    prescriptionIdData = value.data["data"];
+    prescriptionID=prescriptionIdData[0]["id"];
+    print(prescriptionID);
+    emit(FeatureSuccessStates());}
+  ).catchError((error)
+  {
+    print("Error is ==> $error");
+    emit(FeatureErrorStates(error));
+  });
+  }
+
+
 
 //////////////////////////////////////////////////
 ////For Medical Visit
@@ -160,6 +182,36 @@ late PickedFile surgeryImage;
   var summaryController= TextEditingController();
   var notesController= TextEditingController();
   var medicalVisitDateController= TextEditingController();
+
+
+
+  late DocMedicalVisitModel docMedicalVisitModel;
+  //var docMedicalVisit=[];
+  void  docMedicalVisitModelAPI(int id)
+  {
+    emit(LoadingValueStates());
+    DioHelperAPI.postData(
+        url: "doctor/$id/prescription/$prescriptionID",
+        token:token,
+        data: {
+          //"Prescription_photo":imageOfPrescription.value,
+          "summary":summaryController.text,
+          "notes":notesController.text,
+          "date":medicalVisitDateController.text,
+        }
+    ).then((value) {
+      //docMedicalVisit = value.data['data'];
+      //print(docMedicalVisit);
+      docMedicalVisitModel = DocMedicalVisitModel.fromJson(value.data);
+      //print(docMedicalVisitModel.data.id);
+      //print(docMedicalVisitModel.data.date);
+      emit(FeatureSuccessStates());}
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
 
   //active substance controller
   var activeSubstanceController = TextEditingController();

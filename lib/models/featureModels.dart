@@ -148,6 +148,38 @@ class VaccineData {
   }
 }
 
+////for medical visit for doctor
+class DocMedicalVisitModel{
+  late MedicalVisitData data;
+  DocMedicalVisitModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? MedicalVisitData.fromJson(json['data']) : null)!;
+  }
+
+
+}
+
+class MedicalVisitData {
+  late int id;
+  late String notes;
+  late String date;
+  late String summary;
+  late String medicine;
+  late var prescriptionPhoto;
+
+  MedicalVisitData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    prescriptionPhoto = json["Prescription_photo"];
+    notes = json["notes"];
+    summary = json["summary"];
+    medicine = json ["medicine"];
+    date = json["date"];
+  }
+
+}
+
+
 /////for radiology
 class RadiologyModel
 {

@@ -8,18 +8,20 @@ import '../../../shared/sharedComponent.dart';
 import 'addMedicalVisit.dart';
 
 class DrMedicalVisit extends StatelessWidget {
-  const DrMedicalVisit({Key? key}) : super(key: key);
   static String idDrMedicalVisit = "idDrMedicalVisit";
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
         listener: (context, states) {},
         builder: (context, states) {
+          FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
               appBar: themeAppBar(context, value: "Medical Visit"),
-              floatingActionButton: buildFloatingActionButton(
-                context,
-                routeName: AddMedicalVisits.idAddMedicalVisit,
+              floatingActionButton: FloatingActionButton(onPressed: () {
+                cubit.getPrescriptionIDAPI(patientId);
+                navigateTo(context,  AddMedicalVisits());
+              },
+
               ),
               body: Padding(
                 padding: const EdgeInsets.all(13.0),
