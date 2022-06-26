@@ -8,8 +8,8 @@ import '../../../../shared/sharedComponent.dart';
 import 'bloodPressure/bloodpressure.dart';
 
 class BloodGlucoseScreen extends StatelessWidget {
-  int index;
-   BloodGlucoseScreen({required this.index,Key? key}) : super(key: key);
+
+   BloodGlucoseScreen({Key? key}) : super(key: key);
   static String idBloodGlucose = "idBloodGlucose";
 
   @override
@@ -37,7 +37,7 @@ class BloodGlucoseScreen extends StatelessWidget {
                               context,const BloodPressureScreen());
                          if(cubit.isUser)
                          {//doctor
-                           cubit.getDoctorPressureAPI(patientId,index);
+                           cubit.getDoctorPressureAPI(patientId);
                          }
                          else
                          {//patient
@@ -61,7 +61,7 @@ class BloodGlucoseScreen extends StatelessWidget {
                          navigateTo(context, const GlucoseScreen());
                          if(cubit.isUser)
                            {//doctor
-                             cubit.getDoctorGlucoseAPI(patientId,index);
+                             cubit.getDoctorGlucoseAPI(patientId,);
                            }
                          else
                          {//patient

@@ -20,9 +20,11 @@ class PatientMedicalVisit extends StatelessWidget {
                 padding: const EdgeInsets.all(13.0),
                 child: ListView.builder(
                   itemBuilder: (context, index) => MedicalVisitCard(
+                    ontap: (){},
                       patientData:prescriptionData[index]["date"] ,
                       doctorName: prescriptionData[index]["name"],
-                      doctorImage: const AssetImage("images/4.png")),
+                      doctorImage: const AssetImage("images/4.png")
+                  ),
                   itemCount: prescriptionData.length,
                 )
                 ,

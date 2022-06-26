@@ -244,7 +244,9 @@ int patientSelectedIndex = 0;
     ).then((value) {
 
       doctorInfoData=value.data["data"];
-      print(doctorInfoData.values.elementAt(1));
+
+      doctorName=doctorInfoData.values.elementAt(1);
+      print(doctorName);
       //  print(patientProfileModel.data.id);
       //  print(patientProfileModel.data.name);
       //  print(patientProfileModel.data.date);

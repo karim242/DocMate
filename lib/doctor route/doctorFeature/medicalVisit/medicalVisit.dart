@@ -27,10 +27,13 @@ class DrMedicalVisit extends StatelessWidget {
                 padding: const EdgeInsets.all(13.0),
                 child: ListView.builder(
                   itemBuilder: (context, index) => MedicalVisitCard(
-                      patientData: "2022/10/10",
-                      doctorName: "Dr/ Omar Mohammed",
-                      doctorImage: const AssetImage("images/4.png")),
-                  itemCount: 2,
+                    ontap: (){cubit.getAllPrescriptionAPI(patientId);},
+                      patientData: "2022/6/10",
+                      doctorName: "Dr/$doctorName",
+                      doctorImage: const  NetworkImage(
+                      'https://encrypted-tbn2.gstatic.com/'
+                          'images?q=tbn:ANd9GcSQntRPY-paKdW16dfSuNGw-aXz6t3fWCm3KlEMwM5YO7BbXge_')),
+                  itemCount: 1,
                 ),
               ));
         });
@@ -40,10 +43,12 @@ class DrMedicalVisit extends StatelessWidget {
 class MedicalVisitCard extends StatelessWidget {
   late String patientData;
   late String? doctorName;
+  Function ontap;
   late ImageProvider? doctorImage;
 
   MedicalVisitCard({
     Key? key,
+    required this.ontap,
     required this.patientData,
     required this.doctorName,
     required this.doctorImage,
@@ -55,6 +60,7 @@ class MedicalVisitCard extends StatelessWidget {
       child: MaterialButton(
         height: 80,
         onPressed: () {
+     ontap;
           navigateTo(context, ShowMedicalVisits(
                 doctorName: doctorName,
                 doctorImage: doctorImage,
@@ -76,11 +82,11 @@ class MedicalVisitCard extends StatelessWidget {
                 width: 60,
                 decoration: BoxDecoration(
                   color: Colors.grey[500],
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(14),
                 ),
-                child: Image(
-                  image: doctorImage!,
-                  fit: BoxFit.fill,
+                child: CircleAvatar(
+                  backgroundImage: doctorImage!,
+                  radius: 60,
                 ),
               ),
             ),

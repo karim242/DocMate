@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-
+//for patient
 class PressureModel
 {
   late PressureData data;
@@ -24,6 +24,31 @@ class PressureData {
     date = json["date"];
   }
 }
+////for Doctor
+class PressureDoctorModel
+{
+  late PressureDoctorData data;
+  PressureDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? PressureDoctorData.fromJson(json['data']) : null)!;
+  }
+}
+class PressureDoctorData {
+  late int id;
+  late String systolicPressure;
+  late String diastolicPressure;
+  late String date;
+
+  PressureDoctorData.fromJson(Map<String,dynamic>json)
+  {
+    id = json["id"];
+    systolicPressure = json["systolic_pressure"];
+    diastolicPressure = json["diastolic_pressure"];
+    //time =json["time"];
+    date = json["date"];
+  }
+}
+
 
 ////for Allergy
 ////for patient
@@ -48,8 +73,16 @@ allergy = json["allergy"];
 }
 
 
-
 /////for Doctor
+class AllergyDoctorModel
+{
+  late AllergyDoctorData data;
+  AllergyDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? AllergyDoctorData.fromJson(json['data']) : null)!;
+
+  }
+}
 class AllergyDoctorData {
   late int id;
   late String allergy;
@@ -60,19 +93,11 @@ class AllergyDoctorData {
     allergy = json["allergy"];
   }
 }
-class AllergyDoctorModel
-{
-  late AllergyDoctorData data;
-  AllergyDoctorModel.fromJson(Map<String,dynamic>json)
-  {
-    data = (json['data'] != null ? AllergyDoctorData.fromJson(json['data']) : null)!;
 
-  }
-}
 
 
 ////for Family History
-////fo
+////for patient
 class FamilyHistoryModel
 {
   late FamilyHistoryData data;
@@ -95,8 +120,34 @@ class FamilyHistoryData {
   }
 }
 
+/////for Doctor
+class FamilyHistoryDocModel
+{
+  late FamilyHistoryDocData data;
+  FamilyHistoryDocModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? FamilyHistoryDocData.fromJson(json['data']) : null)!;
+
+  }
+}
+class FamilyHistoryDocData {
+  late int id;
+  late String disease;
+  late String relation;
+
+  FamilyHistoryDocData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    disease = json["disease"];
+    relation = json["realation"];
+  }
+}
+
+
+
 
 ////for glucose
+//for patient
 class GlucoseModel
 {
   late GlucoseData data;
@@ -120,8 +171,34 @@ class GlucoseData {
     date = json["date"];
   }
 }
+////for Doctor
+class GlucoseDoctorModel
+{
+  late GlucoseDoctorData data;
+  GlucoseDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? GlucoseDoctorData.fromJson(json['data']) : null)!;
 
-////for vaccine
+  }
+}
+class GlucoseDoctorData {
+  late int id;
+  late String glucoseResult;
+  late String glucoseType;
+  late String date;
+
+  GlucoseDoctorData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    glucoseResult = json["glucos_result"];
+    glucoseType = json["glucos_type"];
+    date = json["date"];
+  }
+}
+
+
+////////////////////////////for vaccine
+////for patient
 class VaccineModel
 {
   late VaccineData data;
@@ -148,6 +225,35 @@ class VaccineData {
   }
 }
 
+
+////for Doctor
+class VaccineDoctorModel
+{
+  late VaccineDoctorData data;
+  VaccineDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? VaccineDoctorData.fromJson(json['data']) : null)!;
+  }
+}
+class VaccineDoctorData {
+  late int id;
+  late String name;
+  late String date;
+  late String location;
+  late String type;
+////still image
+
+  VaccineDoctorData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    name = json["name"];
+    location = json["location"];
+    type = json ["type"];
+    date = json["date"];
+  }
+}
+///////////////////////////////////////////////
+
 ////for medical visit for doctor
 class DocMedicalVisitModel{
   late MedicalVisitData data;
@@ -155,22 +261,19 @@ class DocMedicalVisitModel{
   {
     data = (json['data'] != null ? MedicalVisitData.fromJson(json['data']) : null)!;
   }
-
-
 }
-
 class MedicalVisitData {
   late int id;
   late String notes;
   late String date;
   late String summary;
   late String medicine;
-  late var prescriptionPhoto;
+ // late var prescriptionPhoto;
 
   MedicalVisitData.fromJson(Map<String, dynamic>json)
   {
     id = json["id"];
-    prescriptionPhoto = json["Prescription_photo"];
+   // prescriptionPhoto = json["Prescription_photo"];
     notes = json["notes"];
     summary = json["summary"];
     medicine = json ["medicine"];
@@ -181,6 +284,7 @@ class MedicalVisitData {
 
 
 /////for radiology
+////for patient
 class RadiologyModel
 {
   late RadiologyData data;
@@ -207,8 +311,36 @@ class RadiologyData {
     date = json["date"];
   }
 }
+////for Doctor
+class RadiologyDoctorModel
+{
+  late RadiologyDoctorData data;
+  RadiologyDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? RadiologyDoctorData.fromJson(json['data']) : null)!;
+  }
+}
+class RadiologyDoctorData {
+  late int id;
+  late String name;
+  late String date;
+  late String location;
+  late String type;
+////still image
+
+
+  RadiologyDoctorData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    name = json["name"];
+    location = json["location"];
+    type = json ["type"];
+    date = json["date"];
+  }
+}
 
 ////for labTest
+//for patient
 class LabTestModel
 {
   late LabTestData data;
@@ -235,8 +367,35 @@ class LabTestData {
     date = json["date"];
   }
 }
+////for Doctor
+class LabTestDoctorModel
+{
+  late LabTestDoctorData data;
+  LabTestDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? LabTestDoctorData.fromJson(json['data']) : null)!;
+  }
+}
+class LabTestDoctorData {
+  late int id;
+  late String name;
+  late String date;
+  late String location;
+  late String type;
+////still image
+
+  LabTestDoctorData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    name = json["name"];
+    location = json["location"];
+    type = json ["type"];
+    date = json["date"];
+  }
+}
 
 ////for Surgery
+////for patient
 class SurgeryModel
 {
   late SurgeryData data;
@@ -251,10 +410,8 @@ class SurgeryData {
   late String date;
   late String location;
   late String type;
-  late PickedFile image;
+  //late PickedFile image;
 ////still image
-
-
   SurgeryData.fromJson(Map<String, dynamic>json)
   {
     id = json["id"];
@@ -262,34 +419,33 @@ class SurgeryData {
     location = json["location"];
     type = json ["type"];
     date = json["date"];
-    image= json["image"];
+    //image= json["image"];
   }
 }
-// class SurgeryDoModel
-// {
-//   late SurgeryDoData data;
-//   SurgeryDoModel.fromJson(Map<String,dynamic>json)
-//   {
-//     data = (json['data'] != null ? SurgeryDoData.fromJson(json['data']) : null)!;
-//   }
-// }
-// class SurgeryDoData {
-//   late int id;
-//   late String name;
-//   late String date;
-//   late String location;
-//   late String type;
-//   late PickedFile image;
-// ////still image
-//
-//
-//   SurgeryDoData.fromJson(Map<String, dynamic>json)
-//   {
-//     id = json["id"];
-//     name = json["name"];
-//     location = json["location"];
-//     type = json ["type"];
-//     date = json["date"];
-//     image= json["image"];
-//   }
-// }
+////for Doctor
+class SurgeryDoctorModel
+{
+  late SurgeryDoctorData data;
+  SurgeryDoctorModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? SurgeryDoctorData.fromJson(json['data']) : null)!;
+  }
+}
+class SurgeryDoctorData {
+  late int id;
+  late String name;
+  late String date;
+  late String location;
+  late String type;
+  //late PickedFile image;
+////still image
+  SurgeryDoctorData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    name = json["name"];
+    location = json["location"];
+    type = json ["type"];
+    date = json["date"];
+   // image= json["image"];
+  }
+}

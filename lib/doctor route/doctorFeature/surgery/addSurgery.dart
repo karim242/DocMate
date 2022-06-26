@@ -47,9 +47,9 @@ class AddSurgeryScreen extends StatelessWidget {
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
                                   onPressed: () {
-                                    cubit.takePhoto(ImageSource.gallery).then(
-                                        (value) =>
-                                            cubit.surgeryImage = value as PickedFile );
+                                   // cubit.takePhoto(ImageSource.gallery).then(
+                                       // (value) =>
+                                     //       cubit.surgeryImage = value as PickedFile );
                                   },
                                 ),
                                 const Text("Upload Image"),
@@ -93,8 +93,20 @@ class AddSurgeryScreen extends StatelessWidget {
                           children: [
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
-                                cubit.surgeryAPI();
-                                cubit.getSurgeryPatientAPI();
+                                if (cubit.isUser)
+                                { //doctor
+                                  cubit.surgeryDoctorAPI(patientId);
+                                  print(patientId);
+
+
+                                }
+                                else
+                                {//patient
+                                  cubit.surgeryAPI();
+
+                                }
+
+
                                 Navigator.pop(context);
                                 cubit.surgeryNameController.clear();
                                 cubit.surgeryTypeController.clear();

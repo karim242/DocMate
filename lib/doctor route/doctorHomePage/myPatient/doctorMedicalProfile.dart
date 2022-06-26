@@ -67,10 +67,12 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     //remove const when using api
                     children:  [
-                       CircleAvatar(
+                       const CircleAvatar(
                           radius: 30,
-                         // backgroundImage: patientImage
-                      ),
+                          backgroundImage: NetworkImage(
+                                    'https://www2.deloitte.com/content/dam/Deloitte/xe/Images/promo_images/'
+                                        'profilepictures/Joerg-Meiser.jpg/_jcr_content/renditions/cq5dam.web.250.250.mobile.jpeg')
+                         ),
                       Text(pName,
                           style: textTitle22Style),
                        Text(patientId.toString(),
@@ -108,31 +110,31 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             color: const Color(0xffFFCCA0)),
                         FeatureCard(
                             ontap: (){navigateTo(context,  const VaccineScreen());
-                              cubit.getVaccineDoctorAPI(patientId,index);
+                              cubit.getVaccineDoctorAPI(patientId,);
                               },
                             photoIconName: "vaccine",
                             text: "Vaccines ", color: const Color(0xffBBEAFE)),
                         FeatureCard(
                             ontap: (){navigateTo(context, const RadiologyScreen());
-                              cubit.getRadiologyDoctorAPI(patientId,index);
+                              cubit.getRadiologyDoctorAPI(patientId,);
                               },
                             photoIconName: "radiology",
                             text: "Radiology", color: const Color(0xffADFFDF)),
                         FeatureCard(
                             ontap: (){navigateTo(context, const LabTestScreen());
-                              cubit.getLabTestDoctorAPI(patientId,index);
+                              cubit.getLabTestDoctorAPI(patientId,);
                               },
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(
-                            ontap: (){navigateTo(context,  BloodGlucoseScreen(index: index,));},
+                            ontap: (){navigateTo(context,  BloodGlucoseScreen());},
                             photoIconName: "4",
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),
                         FeatureCard(
                             ontap: (){
                               navigateTo(context, const DoctorSurgeryScreen());
-                              cubit.getSurgeryDoctorAPI(patientId,index);
+                              cubit.getSurgeryDoctorAPI(patientId,);
                               },
                             photoIconName: "surgery",
                             text: "Surgery", color: const Color(0xffBAFFB5)),

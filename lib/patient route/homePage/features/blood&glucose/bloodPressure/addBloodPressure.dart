@@ -102,8 +102,17 @@ class ADDBloodPressureScreen extends StatelessWidget {
                           saveBotton(
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
-                                  cubit.PostPressureAPI();
-                                    cubit.getPatientPressureAPI();
+                                  if (cubit.isUser)
+                                  { //doctor
+                                    cubit.PostPressureDoctorAPI(patientId);
+                                    print(patientId);
+
+                                  }
+                                  else
+                                  {//patient
+                                    cubit.PostPressureAPI();
+                                  }
+
                                     Navigator.pop(context);
                                     cubit.systolicPressureController.clear();
                                     cubit.diastolicPressureController.clear();

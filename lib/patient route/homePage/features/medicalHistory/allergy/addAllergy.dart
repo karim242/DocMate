@@ -54,6 +54,8 @@ class ADDAllergyScreen extends StatelessWidget {
                                 if (cubit.isUser)
                                 { //doctor
                                   cubit.postAllergyDoctorAPI(patientId);
+                                  print(patientId);
+
                                 }
                                 else
                                 {//patient

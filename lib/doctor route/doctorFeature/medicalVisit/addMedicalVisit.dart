@@ -112,7 +112,8 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                               lastDate: DateTime.utc(2025),
                             ).then((value) {
                               cubit.medicalVisitDateController.text =
-                                  DateFormat.yMd().format(value!);
+                                  DateFormat('yyyy-MM-dd').format(value!);
+
                             });
                           },
                           text: "Date",

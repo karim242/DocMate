@@ -29,7 +29,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                           navigateTo(context,const FamilyHistoryScreen());
                           if(cubit.isUser)
                           {//doctor
-                            cubit.getDoctorFamilyHistoryAPI(patientId,index);
+                            cubit.getDoctorFamilyHistoryAPI(patientId);
                           }
                           else
                           {//patient
@@ -48,7 +48,7 @@ class MedicalHistoryScreen extends StatelessWidget {
                         ontap: () {navigateTo(context, AllergyScreen());
                           if(cubit.isUser) {
                             //user ==true =>doctor
-                              cubit.getDoctorAllergyAPI(patientId,index);
+                              cubit.getDoctorAllergyAPI(patientId,);
                             }
                           else {
                             //user ==false =>patient

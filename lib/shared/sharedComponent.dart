@@ -455,7 +455,7 @@ Container fieldForMeasurement({
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(16.0),
         ),
-        fillColor: Colors.grey[100],
+        fillColor: whiteColor,
         filled: true,
         errorStyle: const TextStyle(height: .8, color: Colors.red),
       ),

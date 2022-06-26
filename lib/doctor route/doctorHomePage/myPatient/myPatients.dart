@@ -38,7 +38,9 @@ class MyPatientsPage extends StatelessWidget {
                 PatientCard(
                   patientName: myPatientList[index]["name"],
                   patientId: myPatientList[index]["id"],
-                  patientImage: AssetImage("images/4.png"),
+                  patientImage: const NetworkImage(
+                      'https://www2.deloitte.com/content/dam/Deloitte/xe/Images/promo_images/'
+                          'profilepictures/Joerg-Meiser.jpg/_jcr_content/renditions/cq5dam.web.250.250.mobile.jpeg'),
                   onpressed: () {
                    navigateTo(context, DoctorMedicalProfileScreen(
                         patientId: myPatientList[index]["id"],
@@ -107,13 +109,15 @@ class PatientCard extends StatelessWidget {
                   color: Colors.grey[500],
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Image(
-                  image: patientImage!,
-                  fit: BoxFit.fill,
+                child:CircleAvatar(
+                  radius: 60,
+                  backgroundImage: patientImage!,
+                  //fit: BoxFit.fill,
                 ),
+
               ),
             ),
-            SizedBox(width: 10,),
+            const SizedBox(width: 10,),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,

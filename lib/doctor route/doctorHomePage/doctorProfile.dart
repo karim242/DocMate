@@ -50,7 +50,8 @@ class DoctorProfileScreen extends StatelessWidget {
                                 ? const CircleAvatar(
                                   radius: 40,
                                    backgroundImage: NetworkImage(
-                                    'https://via.placeholder.com/150x100'))
+                                    'https://encrypted-tbn2.gstatic.com/'
+                                        'images?q=tbn:ANd9GcSQntRPY-paKdW16dfSuNGw-aXz6t3fWCm3KlEMwM5YO7BbXge_'))
                                : CircleAvatar(
                                   radius: 40,
                                  backgroundImage:

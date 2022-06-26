@@ -64,7 +64,9 @@ class _EditProfileState extends State<EditDoctorProfile> {
                               ? const CircleAvatar(
                                   radius: 50,
                                   backgroundImage: NetworkImage(
-                                      'https://via.placeholder.com/140x100'))
+                                      'https://www.pennmedicine.org/-/media'
+                                          '/images/miscellaneous/random%20generic%20photos/'
+                                          'young_adult_man_blue_shirt_smiling.ashx?mw=150&mh=140'))
                               : CircleAvatar(
                                   radius: 50,
                                   backgroundImage:

@@ -69,7 +69,7 @@ class MedicalProfileScreen extends StatelessWidget {
                             photoIconName: "labtest",
                             text: "Lab Test", color: const Color(0xffDEE0DF)),
                         FeatureCard(
-                            ontap: (){navigateTo(context,  BloodGlucoseScreen(index: 1,));},
+                            ontap: (){navigateTo(context,  BloodGlucoseScreen());},
                             photoIconName: "4",
                             text: "Blood&Glucose",
                             color: const Color(0xffFFB5B5)),

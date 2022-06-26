@@ -100,13 +100,20 @@ class ADDGlucoseScreen extends StatelessWidget {
                           saveBotton(
                               onpressed: () {
                                 if (cubit.formkey.currentState!.validate()) {
+                                  if (cubit.isUser)
+                                  { //doctor
+                                    cubit.postGlucoseDoctorAPI(patientId);
+                                    print(patientId);
 
-                                  cubit.postGlucoseAPI();
-                                  cubit.getPatientGlucoseAPI();
+                                  }
+                                  else
+                                  {//patient
+                                    cubit.postGlucoseAPI();
+                                  }
 
                                    Navigator.pop(context);
-                                cubit.measurementGlucoseController.clear();
-                                cubit.dateGlucoseController.clear();
+                                  cubit.measurementGlucoseController.clear();
+                                  cubit.dateGlucoseController.clear();
                                 }
                               }
                           ),
