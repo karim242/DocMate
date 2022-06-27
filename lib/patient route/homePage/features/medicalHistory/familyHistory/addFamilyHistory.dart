@@ -5,6 +5,7 @@ import '../../../../../Blocs/featureBloc/featureStates.dart';
 import '../../../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../../../constant.dart';
 import '../../../../../shared/sharedComponent.dart';
+import 'family_history.dart';
 
 class ADDFamilyHistoryScreen extends StatelessWidget {
   const ADDFamilyHistoryScreen({Key? key}) : super(key: key);
@@ -65,8 +66,9 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                                 {//patient
                                   cubit.postFamilyPatientAPI();
                                 }
-                              cubit.getFamilyHistoryAPI();
-                              Navigator.pop(context);
+                             // cubit.getFamilyHistoryAPI();
+                             // cubit.emit(InitStates());
+                                navigateAndReplacment(context,const FamilyHistoryScreen());
                               cubit.diseaseFamilyController.clear();
                               }
                             }

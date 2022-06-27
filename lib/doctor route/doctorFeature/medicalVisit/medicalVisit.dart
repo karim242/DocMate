@@ -15,6 +15,7 @@ class DrMedicalVisit extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
+          List<dynamic> allPrescriptionData= cubit.allPrescriptionData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Medical Visit"),
               floatingActionButton: FloatingActionButton(onPressed: () {
@@ -28,12 +29,12 @@ class DrMedicalVisit extends StatelessWidget {
                 child: ListView.builder(
                   itemBuilder: (context, index) => MedicalVisitCard(
                     ontap: (){cubit.getAllPrescriptionAPI(patientId);},
-                      patientData: "2022/6/10",
-                      doctorName: "Dr/$doctorName",
+                      patientData: allPrescriptionData[index]["date"],
+                      doctorName: "Dr/${allPrescriptionData[index]["doctor_name"]}",
                       doctorImage: const  NetworkImage(
                       'https://encrypted-tbn2.gstatic.com/'
                           'images?q=tbn:ANd9GcSQntRPY-paKdW16dfSuNGw-aXz6t3fWCm3KlEMwM5YO7BbXge_')),
-                  itemCount: 1,
+                  itemCount: allPrescriptionData.length,
                 ),
               ));
         });

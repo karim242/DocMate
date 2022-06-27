@@ -84,7 +84,7 @@ class ShowMedicalVisits extends StatelessWidget {
                         ),
                         child: SizedBox(
                             width:  MediaQuery.of(context).size.width,
-                            child: Text("${allPrescriptionData[1]["summary"]} "),
+                            child: Text("${allPrescriptionData[index]["summary"]} "),
 
                       ),),
 
@@ -132,7 +132,7 @@ class ShowMedicalVisits extends StatelessWidget {
                         ),
                         child: SizedBox(
                             width:  MediaQuery.of(context).size.width,
-                            child: Text('${allPrescriptionData[1]["notes"]}')),
+                            child: Text('${allPrescriptionData[index]["notes"]}')),
 
                       ),
 
@@ -140,7 +140,7 @@ class ShowMedicalVisits extends StatelessWidget {
                   ),
                 ),
 
-                itemCount: 1,
+                itemCount: allPrescriptionData.length,
               ),
             )
 
