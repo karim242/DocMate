@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Blocs/featureBloc/featureStates.dart';
 import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
+import '../../../patient route/homePage/features/medicalVisit/showPatientMV.dart';
 import '../../../shared/sharedComponent.dart';
 import 'addMedicalVisit.dart';
 
@@ -15,25 +16,31 @@ class DrMedicalVisit extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          List<dynamic> allPrescriptionData= cubit.allPrescriptionData;
+          List<dynamic> allPrescriptionData = cubit.allPrescriptionData;
           return Scaffold(
               appBar: themeAppBar(context, value: "Medical Visit"),
-              floatingActionButton: FloatingActionButton(onPressed: () {
-                cubit.getPrescriptionIDAPI(patientId);
-                navigateTo(context,  AddMedicalVisits());
-              },
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  cubit.getPrescriptionIDAPI(patientId);
+                  //cubit.getPrescriptionIDAPI(patientId);
+                  Navigator.pushNamed(context,  AddMedicalVisits.idAddMedicalVisit);
+                },
+                backgroundColor: blueColor,
+                child: Icon(
+                  Icons.add,
+                  color: whiteColor,
+                ),),
 
-              ),
               body: Padding(
                 padding: const EdgeInsets.all(13.0),
                 child: ListView.builder(
                   itemBuilder: (context, index) => MedicalVisitCard(
-                    ontap: (){cubit.getAllPrescriptionAPI(patientId);},
+                    GoTo: ShowMedicalVisits(indexItem: index),
                       patientData: allPrescriptionData[index]["date"],
                       doctorName: "Dr/${allPrescriptionData[index]["doctor_name"]}",
-                      doctorImage: const  NetworkImage(
-                      'https://encrypted-tbn2.gstatic.com/'
-                          'images?q=tbn:ANd9GcSQntRPY-paKdW16dfSuNGw-aXz6t3fWCm3KlEMwM5YO7BbXge_')),
+                      doctorImage: const NetworkImage(
+                          'https://encrypted-tbn2.gstatic.com/'
+                              'images?q=tbn:ANd9GcSQntRPY-paKdW16dfSuNGw-aXz6t3fWCm3KlEMwM5YO7BbXge_')),
                   itemCount: allPrescriptionData.length,
                 ),
               ));
@@ -41,18 +48,21 @@ class DrMedicalVisit extends StatelessWidget {
   }
 }
 
+//late  int doctorIndex ;
 class MedicalVisitCard extends StatelessWidget {
   late String patientData;
   late String? doctorName;
-  Function ontap;
   late ImageProvider? doctorImage;
+  Widget GoTo;
 
   MedicalVisitCard({
     Key? key,
-    required this.ontap,
+
+
     required this.patientData,
     required this.doctorName,
     required this.doctorImage,
+    required this.GoTo,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -61,11 +71,10 @@ class MedicalVisitCard extends StatelessWidget {
       child: MaterialButton(
         height: 80,
         onPressed: () {
-     ontap;
-          navigateTo(context, ShowMedicalVisits(
-                doctorName: doctorName,
-                doctorImage: doctorImage,
-              ),
+
+          navigateTo(
+            context,
+              GoTo
           );
         },
         elevation: 2,

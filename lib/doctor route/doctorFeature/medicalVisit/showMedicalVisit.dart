@@ -8,15 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Blocs/featureBloc/featureStates.dart';
 import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
+import '../../../shared/sharedComponent.dart';
+import '../../doctorHomePage/doctorProfile.dart';
+import 'medicalVisit.dart';
 class ShowMedicalVisits extends StatelessWidget {
-  late String? doctorName;
-  late ImageProvider? doctorImage;
-  // Doctor Name&photo to show in appBar
-   ShowMedicalVisits({
-    Key? key,
-      this.doctorName,
-      this.doctorImage,
-  }) : super(key: key);
+  late int indexItem;
+  ShowMedicalVisits(
+      {Key? key, required this.indexItem,}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -55,10 +54,12 @@ class ShowMedicalVisits extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(doctorName!,style: TextStyle(color: blueColor),),
+                        Text("Dr/ ${allPrescriptionData[indexItem]["doctor_name"]}",
+                          style: TextStyle(color: blueColor),),
                         GestureDetector(
                           onTap: () {
                             // view the doctor who wrote the prescription profile
+                            navigateTo(context,const DoctorProfileScreen());
                           },
                           child: const Text(
                             "view Profile",
@@ -79,12 +80,14 @@ class ShowMedicalVisits extends StatelessWidget {
                     children: [
                       Text('Summary',style: textTitle22Style,),
                       Card(
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
+
+                            borderRadius: BorderRadius.circular(10),
                         ),
                         child: SizedBox(
                             width:  MediaQuery.of(context).size.width,
-                            child: Text("${allPrescriptionData[index]["summary"]} "),
+                            child: Text("${allPrescriptionData[indexItem]["summary"]} "),
 
                       ),),
 
@@ -96,7 +99,8 @@ class ShowMedicalVisits extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         width: MediaQuery.of(context).size.width,
-                        child: Image.network('https://via.placeholder.com/1080x1000'),
+                        child: Image.network('https://miro.medium.com/max/1400/'
+                            '1*5ZySboqmOOrgUYA9qhaS7w.jpeg'),
                       ),
 
                       const SizedBox(height: 15,),
@@ -104,7 +108,7 @@ class ShowMedicalVisits extends StatelessWidget {
 
                       Text('Active Substance',style: textTitle22Style,),
                       Card(
-
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)
                         ),
@@ -126,13 +130,13 @@ class ShowMedicalVisits extends StatelessWidget {
 
                       Text('Notes',style: textTitle22Style,),
                       Card(
-
+                        elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)
                         ),
                         child: SizedBox(
                             width:  MediaQuery.of(context).size.width,
-                            child: Text('${allPrescriptionData[index]["notes"]}')),
+                            child: Text('${allPrescriptionData[indexItem]["notes"]}')),
 
                       ),
 
@@ -140,7 +144,7 @@ class ShowMedicalVisits extends StatelessWidget {
                   ),
                 ),
 
-                itemCount: allPrescriptionData.length,
+                itemCount: 1,
               ),
             )
 

@@ -393,9 +393,9 @@ Widget ThemeCard(context,
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                image: DecorationImage(
+                image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: const NetworkImage(
+                  image: NetworkImage(
                       "https://www.researchgate."
                           "net/profile/Sylvia-Asa/publication/319357366/"
                           "figure/fig2/AS:613886776573952@1523373421045/"
@@ -413,9 +413,10 @@ Widget ThemeCard(context,
 }
 
 FloatingActionButton buildFloatingActionButton(context,
-    {required String routeName}) {
+    {required String routeName,required VoidCallback ontap}) {
   return FloatingActionButton(
     onPressed: () {
+      ontap;
       Navigator.pushNamed(context, routeName);
     },
     backgroundColor: blueColor,

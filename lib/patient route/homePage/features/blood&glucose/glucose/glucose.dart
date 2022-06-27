@@ -26,7 +26,8 @@ class GlucoseScreen extends StatelessWidget {
             appBar: themeAppBar(context, value: " Glucose"),
             floatingActionButton: buildFloatingActionButton(
                 context,
-                routeName: ADDGlucoseScreen.idADDGlucose),
+                routeName: ADDGlucoseScreen.idADDGlucose,
+                ontap: (){}),
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(

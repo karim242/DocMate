@@ -24,7 +24,8 @@ class DoctorSurgeryScreen extends StatelessWidget {
           return Scaffold(
               appBar: themeAppBar(context, value: "Surgery"),
               floatingActionButton: buildFloatingActionButton(context,
-              routeName:AddSurgeryScreen.idAddSurgery),
+              routeName:AddSurgeryScreen.idAddSurgery,
+                  ontap: (){}),
 
               body: Padding(
                 padding: const EdgeInsets.all(18.0),

@@ -103,7 +103,10 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             color: const Color(0xffDFC8FC)),
                         FeatureCard(
                             ontap: (){
+                              //cubit.getPrescriptionIDAPI(patientId);
                               navigateTo(context,  DrMedicalVisit());
+                              cubit.getAllPrescriptionAPI(patientId);
+
                               },
                             photoIconName: "medical_Visit",
                             text: "Medical Visit",

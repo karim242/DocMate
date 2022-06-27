@@ -8,6 +8,7 @@ import '../../../Blocs/featureBloc/featurecubit.dart';
 import '../../../constant.dart';
 import '../../../shared/sharedComponent.dart';
 
+
 class AddMedicalVisits extends StatefulWidget {
 
   static String idAddMedicalVisit = "idAddMedicalVisit";
@@ -128,13 +129,17 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.docMedicalVisitModelAPI(patientId);
-                                Navigator.pop(context);
+                                for(TextEditingController controller in _textFieldControllers) {
+                                  cubit.activeSubstanceAPI(
+                                      patientId, _textFieldControllers[1]);
+                                }
+                               Navigator.pop(context);
                                 cubit.summaryController.clear();
                                 cubit.notesController.clear();
                                 cubit.medicalVisitDateController.clear();
                                 for(TextEditingController controller in _textFieldControllers){
-                                  controller.clear();
-                                }
+                                   controller.clear();
+                              }
 
                               }
                             }),

@@ -19,7 +19,9 @@ class VaccineScreen extends StatelessWidget {
           return Scaffold(
               appBar: themeAppBar(context, value: "Vaccines"),
               floatingActionButton: buildFloatingActionButton(context,
-                  routeName: AddVaccineScreen.idAddVaccine),
+                  routeName: AddVaccineScreen.idAddVaccine,
+                ontap: (){}
+              ),
               body: Padding(padding: const EdgeInsets.all(18.0),
                 child: ListView.separated(
                   itemBuilder: (context, index) =>

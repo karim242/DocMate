@@ -26,7 +26,8 @@ class BloodPressureScreen extends StatelessWidget {
             appBar: themeAppBar(context, value: "Blood Pressure"),
             floatingActionButton: buildFloatingActionButton(
                 context,
-                routeName: ADDBloodPressureScreen.idADDBloodPressure),
+                routeName: ADDBloodPressureScreen.idADDBloodPressure,
+                ontap: (){}),
             body: Padding(
               padding: const EdgeInsets.all(10),
               child: ListView.builder(

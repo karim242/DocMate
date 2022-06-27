@@ -10,7 +10,7 @@ import '../../patient route/homePage/profilePage.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
   const DoctorProfileScreen({Key? key}) : super(key: key);
-  static String docProfileID = "IDDoctorProfile";
+  //static String docProfileID = "IDDoctorProfile";
 
   @override
   Widget build(BuildContext context) {

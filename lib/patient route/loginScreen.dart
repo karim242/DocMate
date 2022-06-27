@@ -38,14 +38,7 @@ class PatientLoginScreen extends StatelessWidget {
                   print(states.loginModel.token);
                   print(token);
                 }
-              else
-                {
-                  print(states.loginModel.message);
-                  showToast(
-                      msg: states.loginModel.message,
-                      states: ToastStates.ERROR
-                  );
-                }
+
             }
           if(states is LoginErrorStates)
             {

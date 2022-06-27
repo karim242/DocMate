@@ -19,7 +19,8 @@ class LabTestScreen extends StatelessWidget {
               appBar: themeAppBar(context, value: "Lab Test"),
               floatingActionButton:
               buildFloatingActionButton(context,
-              routeName:  AddLabTestScreen.idAddLabTest),
+              routeName:  AddLabTestScreen.idAddLabTest,
+                  ontap: (){}),
               body: Padding(padding: const EdgeInsets.all(18.0),
                 child: ListView.separated(
                   itemBuilder: (context, index) =>

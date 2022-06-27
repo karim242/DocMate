@@ -93,7 +93,7 @@ class NetworkCubit extends Cubit<NetworkStates> {
 
 
 
-int patientSelectedIndex = 0;
+int patientSelectedIndex = 1;
   int doctorSelectedIndex = 0;
   List<BottomNavigationBarItem> patientNavList=[
     const BottomNavigationBarItem(

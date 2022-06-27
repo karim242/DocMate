@@ -449,3 +449,21 @@ class SurgeryDoctorData {
    // image= json["image"];
   }
 }
+//for active substance
+class ActiveSubstanceModel{
+  late ActiveSubstanceData data;
+  ActiveSubstanceModel.fromJson(Map<String,dynamic>json)
+  {
+    data = (json['data'] != null ? ActiveSubstanceData.fromJson(json['data']) : null)!;
+  }
+}
+class ActiveSubstanceData {
+  late int id;
+  late String name;
+  ActiveSubstanceData.fromJson(Map<String, dynamic>json)
+  {
+    id = json["id"];
+    name = json["name"];
+  }
+
+}

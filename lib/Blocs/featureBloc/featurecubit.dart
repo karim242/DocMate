@@ -194,13 +194,14 @@ class FeatureCubit extends Cubit<FeatureStates> {
 
 // for prescription id
   List prescriptionIdData=[];
-  late int prescriptionID ;
-  void getPrescriptionIDAPI(int patientId)
-  {emit(LoadingValueStates());
-  DioHelperAPI.getData(
-    url: "doctor/$patientId/prescription/",
+
+  void getPrescriptionIDAPI(int id)
+  {
+    emit(LoadingValueStates());
+    DioHelperAPI.getData(
+    url: "doctor/$id/prescription",
     token:token,
-  ).then((value) {
+    ).then((value) {
     prescriptionIdData = value.data["data"];
     print(prescriptionIdData);
     prescriptionID=prescriptionIdData[0]["id"];
@@ -240,8 +241,30 @@ class FeatureCubit extends Cubit<FeatureStates> {
   }
 
   //active substance controller
-  var activeSubstanceController = TextEditingController();
+ // var activeSubstanceController = TextEditingController();
+ late ActiveSubstanceModel activeSubstanceModel;
+  void activeSubstanceAPI(int id,String textFieldControllers )
+  {
+    emit(LoadingValueStates());
+    DioHelperAPI.postData(
+        url: "doctor/$id/medicine",
+        token:token,
+        data: {
+          "name":textFieldControllers,
+          "pres_id":prescriptionID
+        }
+    ).then((value) {
 
+      activeSubstanceModel = ActiveSubstanceModel.fromJson(value.data);
+      print(activeSubstanceModel.data);
+
+      emit(FeatureSuccessStates());}
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
 
   /////////////////////////////////
 ////for Vaccine
@@ -1036,7 +1059,7 @@ List <dynamic> pressurePatientData=[];
     emit(LoadingValueStates());
 
     DioHelperAPI.getData(
-      url: "patient/prescription",
+      url: "patient/prescription/",
       token:token,
 
     ).then((value) {
@@ -1050,6 +1073,8 @@ List <dynamic> pressurePatientData=[];
       emit(FeatureErrorStates(error));
     });
   }
+
+
   List <dynamic> allPrescriptionData=[];
   void getAllPrescriptionAPI(int id)
   {
@@ -1061,7 +1086,7 @@ List <dynamic> pressurePatientData=[];
 
     ).then((value) {
       allPrescriptionData = value.data["data"];
-      print(allPrescriptionData);
+     // print(allPrescriptionData[1]["doctor_name"]);
       emit(FeatureSuccessStates());
     }
     ).catchError((error)

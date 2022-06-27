@@ -24,7 +24,8 @@ class FamilyHistoryScreen extends StatelessWidget {
 
               floatingActionButton:  buildFloatingActionButton(
                   context,
-                  routeName: ADDFamilyHistoryScreen.idADDFamilyHistory
+                  routeName: ADDFamilyHistoryScreen.idADDFamilyHistory,
+                  ontap: (){}
               ),
               body: Padding(
                 padding: const EdgeInsets.all(18.0),

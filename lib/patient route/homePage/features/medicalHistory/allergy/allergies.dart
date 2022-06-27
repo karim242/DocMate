@@ -24,7 +24,9 @@ class AllergyScreen extends StatelessWidget {
 
               floatingActionButton:  buildFloatingActionButton(
                   context,
-                  routeName:ADDAllergyScreen.idADDAllergy),
+                ontap: (){},
+                  routeName:ADDAllergyScreen.idADDAllergy,
+                  ),
 
               body:  Column(children: [
                   Expanded(

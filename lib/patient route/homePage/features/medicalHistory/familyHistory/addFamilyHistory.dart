@@ -68,7 +68,8 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
                                 }
                              // cubit.getFamilyHistoryAPI();
                              // cubit.emit(InitStates());
-                                navigateAndReplacment(context,const FamilyHistoryScreen());
+                                Navigator.pop(context);
+                               // navigateAndReplacment(context,const FamilyHistoryScreen());
                               cubit.diseaseFamilyController.clear();
                               }
                             }

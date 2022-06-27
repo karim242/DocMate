@@ -1,4 +1,5 @@
 import 'package:docmate/Blocs/featureBloc/featureStates.dart';
+import 'package:docmate/patient%20route/homePage/features/medicalVisit/showPatientMV.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Blocs/featureBloc/featurecubit.dart';
@@ -20,10 +21,12 @@ class PatientMedicalVisit extends StatelessWidget {
                 padding: const EdgeInsets.all(13.0),
                 child: ListView.builder(
                   itemBuilder: (context, index) => MedicalVisitCard(
-                    ontap: (){},
+                      GoTo :ShowPatientMedicalVisits(indexItem: index),
                       patientData:prescriptionData[index]["date"] ,
-                      doctorName: prescriptionData[index]["name"],
-                      doctorImage: const AssetImage("images/4.png")
+                      doctorName: "Dr/${ prescriptionData[index]["doctor_name"]}",
+                      doctorImage: const NetworkImage(
+                          'https://encrypted-tbn2.gstatic.com/'
+                              'images?q=tbn:ANd9GcSQntRPY-paKdW16dfSuNGw-aXz6t3fWCm3KlEMwM5YO7BbXge_')
                   ),
                   itemCount: prescriptionData.length,
                 )

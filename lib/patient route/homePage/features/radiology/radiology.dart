@@ -21,7 +21,9 @@ class RadiologyScreen extends StatelessWidget {
               appBar: themeAppBar(context, value: "Radiology"),
               floatingActionButton:
               buildFloatingActionButton(context,
-              routeName: AddRadiologyScreen.idAddRadiology),
+              routeName: AddRadiologyScreen.idAddRadiology,
+                  ontap: (){}
+              ),
               body: Padding(padding: const EdgeInsets.all(18.0),
                 child: ListView.separated(
                   itemBuilder: (context, index) =>

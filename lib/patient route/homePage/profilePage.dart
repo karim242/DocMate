@@ -52,8 +52,9 @@ class PatientProfileScreen extends StatelessWidget {
                         cubit.patientProfileImage == null
                             ? const CircleAvatar(
                             radius: 40,
-                            backgroundImage: NetworkImage(
-                                'https://via.placeholder.com/140x100')
+                            backgroundImage:  NetworkImage(
+                                'https://www2.deloitte.com/content/dam/Deloitte/xe/Images/promo_images/'
+                                    'profilepictures/Joerg-Meiser.jpg/_jcr_content/renditions/cq5dam.web.250.250.mobile.jpeg'),
 
                         )
                             : CircleAvatar(
