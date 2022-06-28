@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../models/featureModels.dart';
 import '../../models/featureModels.dart';
+import '../../shared/sharedComponent.dart';
 import 'featureStates.dart';
 
 class FeatureCubit extends Cubit<FeatureStates> {
@@ -242,24 +243,37 @@ class FeatureCubit extends Cubit<FeatureStates> {
 
   //active substance controller
  // var activeSubstanceController = TextEditingController();
+
  late ActiveSubstanceModel activeSubstanceModel;
-  void activeSubstanceAPI(int id,String textFieldControllers )
+late bool status;
+
+  void activeSubstanceAPI(context,int id,String textFieldControllers )
   {
     emit(LoadingValueStates());
     DioHelperAPI.postData(
         url: "doctor/$id/medicine",
         token:token,
         data: {
-          "name":textFieldControllers,
+          "name":textFieldControllers.toString(),
           "pres_id":prescriptionID
         }
     ).then((value) {
 
       activeSubstanceModel = ActiveSubstanceModel.fromJson(value.data);
-      print(activeSubstanceModel.data);
+     // print(activeSubstanceModel.data.id);
+      print(activeSubstanceModel.data.status);
+      status=activeSubstanceModel.data.status;
+      status
+          ?{showToast(msg: "sent successfully", states: ToastStates.SUCCESS),
+            Navigator.pop(context),
+            summaryController.clear(),
+            notesController.clear(),
+            medicalVisitDateController.clear(),}
+          :showMyDialog(context) ;
 
-      emit(FeatureSuccessStates());}
-    ).catchError((error)
+      emit(FeatureSuccessStates());
+
+    }).catchError((error)
     {
       print("Error is ==> $error");
       emit(FeatureErrorStates(error));
@@ -772,10 +786,6 @@ late FamilyHistoryDocModel familyHistoryDocModel;
     ).then((value) {
       labTestPatientData = value.data["data"];
       print(labTestPatientData);
-     // print(labTestData[0]["name"].runtimeType,);
-     // print(labTestData[0]["type"].runtimeType,);
-     // print(labTestData[0]["location"].runtimeType,);
-    // print(labTestData[3]["date"].runtimeType,);
 
       emit(FeatureSuccessStates());
     }
@@ -799,10 +809,7 @@ late FamilyHistoryDocModel familyHistoryDocModel;
       labTestDoctorData = value.data["data"];
       print(labTestDoctorData);
 
-      //print(labTestDoctorData[0]["name"].runtimeType,);
-      // print(labTestDoctorData[0]["type"].runtimeType,);
-      // print(labTestDoctorData[0]["location"].runtimeType,);
-      // print(labTestDoctorData[3]["date"].runtimeType,);
+
 
       emit(FeatureSuccessStates());
     }
@@ -869,9 +876,7 @@ late FamilyHistoryDocModel familyHistoryDocModel;
     ).then((value) {
       glucoseDoctorModel = GlucoseDoctorModel.fromJson(value.data);
       print(glucoseDoctorModel.data);
-      // print(glucoseModel.data.glucoseResult);
-      // print(glucoseModel.data.glucoseType);
-      // print(glucoseModel.data.date);
+
 
       emit(FeatureSuccessStates());
     }
@@ -919,9 +924,6 @@ late FamilyHistoryDocModel familyHistoryDocModel;
     ).then((value) {
       glucoseDoctorData = value.data["data"];
       print(glucoseDoctorData);
-      // print( glucoseData[0]["date"].runtimeType);
-      // print( glucoseData[0]["glucos_result"].runtimeType);
-      // print( glucoseData[0]["glucos_type"].runtimeType);
 
       emit(FeatureSuccessStates());
     }
@@ -1010,9 +1012,7 @@ List <dynamic> pressurePatientData=[];
       pressurePatientData = value.data["data"];
 
      print(pressurePatientData);
-      // print(pressureData[0]["systolic_pressure"].runtimeType);
-      // print(pressureData[0]["diastolic_pressure"].runtimeType);
-      // print(pressureData[0]["date"].runtimeType);
+
       emit(FeatureSuccessStates());
     }
     ).catchError((error)
@@ -1036,11 +1036,6 @@ List <dynamic> pressurePatientData=[];
     ).then((value) {
       pressureDoctorData = value.data["data"];
       print(pressureDoctorData);
-
-      // print( glucoseData[0]["date"].runtimeType);
-      // print( glucoseData[0]["glucos_result"].runtimeType);
-      // print( glucoseData[0]["glucos_type"].runtimeType);
-
       emit(FeatureSuccessStates());
     }
     ).catchError((error)
@@ -1086,7 +1081,22 @@ List <dynamic> pressurePatientData=[];
 
     ).then((value) {
       allPrescriptionData = value.data["data"];
+     // print(allPrescriptionData[1]["medicine"]);
      // print(allPrescriptionData[1]["doctor_name"]);
+      emit(FeatureSuccessStates());
+    }
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+  void deletePrescriptionID(int id)
+  {
+    DioHelperAPI.deleteData(
+      url:"doctor/$id/prescription/$prescriptionID",
+      token:token,
+    ).then((value){
       emit(FeatureSuccessStates());
     }
     ).catchError((error)

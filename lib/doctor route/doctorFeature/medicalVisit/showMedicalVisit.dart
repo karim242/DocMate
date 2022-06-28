@@ -115,16 +115,13 @@ class ShowMedicalVisits extends StatelessWidget {
                         child: SizedBox(
                             width:  MediaQuery.of(context).size.width,
 
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-//when using the api use map function with spread operator to create text widget for each active substane
-                                Text('1-fasffasfsfafasfsaf'),
-                                Text('2-fasfasfasffasf')
-                              ],
-                            )),
+                            child:
+                            allPrescriptionData[indexItem]["medicine"] == null
+                             ?const Text("No thing add !")
+                              : Text(allPrescriptionData[indexItem]["medicine"][0]["name"])
 
-                      ),
+                            ),
+                            ),
 
                       const SizedBox(height: 15,),
 

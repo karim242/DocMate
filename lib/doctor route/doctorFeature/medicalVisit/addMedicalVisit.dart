@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +18,7 @@ class AddMedicalVisits extends StatefulWidget {
 }
 class _AddMedicalVisitsState extends State<AddMedicalVisits> {
   List<Widget> _textFieldList = [];
-  List _textFieldControllers = [];
+  List <TextEditingController>_textFieldControllers = [];
   void _addTextField(){
     setState(() {
       _textFieldControllers.add(TextEditingController());
@@ -29,6 +30,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
 
     });
   }
+
     @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -36,6 +38,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
+            backgroundColor:Colors.white ,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
@@ -126,28 +129,43 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.docMedicalVisitModelAPI(patientId);
-                                for(TextEditingController controller in _textFieldControllers) {
-                                  cubit.activeSubstanceAPI(
-                                      patientId, _textFieldControllers[1]);
-                                }
-                               Navigator.pop(context);
-                                cubit.summaryController.clear();
-                                cubit.notesController.clear();
-                                cubit.medicalVisitDateController.clear();
-                                for(TextEditingController controller in _textFieldControllers){
-                                   controller.clear();
-                              }
+                                 print(_textFieldControllers.first.text);
+                               cubit.activeSubstanceAPI(
+                                 context,
+                                   patientId,
+                                   _textFieldControllers.first.text,
+                               );
+                                 showToast(msg: "sent successfully", states: ToastStates.SUCCESS);
+                                    Navigator.pop(context);
+                                    cubit.summaryController.clear();
+                                     cubit.notesController.clear();
+                                      cubit.medicalVisitDateController.clear();
+                                          for(TextEditingController controller in _textFieldControllers){
+                                                   controller.clear();
+                                          };
 
+
+                              // status
+                              //    ?{showToast(msg: "sent successfully", states: ToastStates.SUCCESS),
+                              //    Navigator.pop(context),
+                              //    cubit.summaryController.clear(),
+                              //     cubit.notesController.clear(),
+                              //      cubit.medicalVisitDateController.clear(),
+                              //          for(TextEditingController controller in _textFieldControllers){
+                              //                   controller.clear(),}}
+                              // :showMyDialog(context) ;
                               }
                             }),
                             const SizedBox(
                               width: 16.0,
                             ),
                             cancelBotton(onpressed: () {
-                              Navigator.pop(context);
+                             cubit.deletePrescriptionID(patientId);
+                             Navigator.pop(context);
                             })
                           ],
                         )

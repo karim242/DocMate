@@ -72,6 +72,7 @@ class MedicalVisitCard extends StatelessWidget {
         height: 80,
         onPressed: () {
 
+
           navigateTo(
             context,
               GoTo

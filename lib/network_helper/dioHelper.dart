@@ -42,6 +42,18 @@ class DioHelperAPI {
     };
     return await dio!.post(url, data: data);
   }
+  static Future<Response> deleteData({
+    required String url,
+   // Map<String, dynamic>? query,
+   // required Map<String, dynamic> data,
+    String? token,
+  }) async {
+    dio?.options.headers = {
+      "Accept": "application/json",
+      'auth-token': token,
+    };
+    return await dio!.delete(url);
+  }
 
   static Future<Response> getData({
     required String url,
