@@ -262,14 +262,23 @@ late bool status;
       activeSubstanceModel = ActiveSubstanceModel.fromJson(value.data);
      // print(activeSubstanceModel.data.id);
       print(activeSubstanceModel.data.status);
-      status=activeSubstanceModel.data.status;
-      status
-          ?{showToast(msg: "sent successfully", states: ToastStates.SUCCESS),
-            Navigator.pop(context),
-            summaryController.clear(),
-            notesController.clear(),
-            medicalVisitDateController.clear(),}
-          :showMyDialog(context) ;
+     status =activeSubstanceModel.data.status;
+
+      if( status)
+       {
+         showToast(msg: "sent successfully", states: ToastStates.SUCCESS);
+       Navigator.pop(context);
+       }
+      else{
+      showMyDialog(context);
+      }
+      // status
+      //     ?{showToast(msg: "sent successfully", states: ToastStates.SUCCESS),
+      //       Navigator.pop(context),
+      //       summaryController.clear(),
+      //       notesController.clear(),
+      //       medicalVisitDateController.clear(),}
+      //     :showMyDialog(context) ;
 
       emit(FeatureSuccessStates());
 
@@ -1071,6 +1080,7 @@ List <dynamic> pressurePatientData=[];
 
 
   List <dynamic> allPrescriptionData=[];
+  List <dynamic> medicineData=[];
   void getAllPrescriptionAPI(int id)
   {
     emit(LoadingValueStates());
@@ -1081,6 +1091,7 @@ List <dynamic> pressurePatientData=[];
 
     ).then((value) {
       allPrescriptionData = value.data["data"];
+      medicineData = allPrescriptionData[1]["medicine"];
      // print(allPrescriptionData[1]["medicine"]);
      // print(allPrescriptionData[1]["doctor_name"]);
       emit(FeatureSuccessStates());

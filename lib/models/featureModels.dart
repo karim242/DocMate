@@ -459,15 +459,17 @@ class ActiveSubstanceModel{
 }
 class ActiveSubstanceData {
   late bool status;
-  late int id;
-  late String name;
-  late String  message;
+  //late int id;
+ // late String name;
+ // late String  message;
+ // late String drug;
   ActiveSubstanceData.fromJson(Map<String, dynamic>json)
   {
     status =json["status"];
-    id = json["id"];
-    name = json["name"];
-    message = json["message"];
+   // id = json["id"];
+   // name = json["name"];
+   // message = json["message"];
+    //drug = json["drug"];
   }
 
 }

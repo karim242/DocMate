@@ -118,10 +118,12 @@ class ShowMedicalVisits extends StatelessWidget {
                             child:
                             allPrescriptionData[indexItem]["medicine"] == null
                              ?const Text("No thing add !")
-                              : Text(allPrescriptionData[indexItem]["medicine"][0]["name"])
+                              :
+                            // for(int i = 0 ; i<allPrescriptionData[indexItem]["medicine"].length;i++)
 
-                            ),
-                            ),
+                            Text(allPrescriptionData[indexItem]["medicine"][0]["name"]),
+
+                      ),),
 
                       const SizedBox(height: 15,),
 

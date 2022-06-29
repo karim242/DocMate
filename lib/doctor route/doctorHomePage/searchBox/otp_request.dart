@@ -20,9 +20,9 @@ class OtpRequest extends StatelessWidget {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {
           if (states is OtpReqSuccessStates) {
-            states.requestOtpModel.message == "invalid"
+            states.requestOtpModel.message != "invalid"
                 ? {showToast(
-                msg: states.requestOtpModel.message,
+                msg: "OTP sent successfully",
                 states: ToastStates.SUCCESS),
               navigateTo(context, const VerifyOtp())}
                 : {

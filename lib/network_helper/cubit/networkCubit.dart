@@ -332,6 +332,7 @@ int patientSelectedIndex = 1;
         }
     ).then((value) {
       requestOtpModel =RequestOtpModel.fromJson(value.data);
+      print(requestOtpModel.message);
       //  const sBar = SnackBar(content: Text('otp sent'),backgroundColor: Color(0xff01B9c8),);
       //  ScaffoldMessenger.of(context).showSnackBar(sBar);
       //  Navigator.pushNamed(

@@ -30,7 +30,12 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
 
     });
   }
+  //Future status ( bool status)async {
 
+  //   await status
+  //       ? showToast(msg: "sent successfully", states: ToastStates.SUCCESS)
+  //       : showMyDialog(context);
+  // }
     @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -133,31 +138,36 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                             saveBotton(onpressed: () {
                               if (cubit.formkey.currentState!.validate()) {
                                 cubit.docMedicalVisitModelAPI(patientId);
-                                 print(_textFieldControllers.first.text);
-                               cubit.activeSubstanceAPI(
-                                 context,
-                                   patientId,
-                                   _textFieldControllers.first.text,
-                               );
-                                 showToast(msg: "sent successfully", states: ToastStates.SUCCESS);
-                                    Navigator.pop(context);
-                                    cubit.summaryController.clear();
-                                     cubit.notesController.clear();
-                                      cubit.medicalVisitDateController.clear();
-                                          for(TextEditingController controller in _textFieldControllers){
-                                                   controller.clear();
-                                          };
+                                print(_textFieldControllers.first.text);
 
 
-                              // status
-                              //    ?{showToast(msg: "sent successfully", states: ToastStates.SUCCESS),
-                              //    Navigator.pop(context),
-                              //    cubit.summaryController.clear(),
-                              //     cubit.notesController.clear(),
-                              //      cubit.medicalVisitDateController.clear(),
-                              //          for(TextEditingController controller in _textFieldControllers){
-                              //                   controller.clear(),}}
-                              // :showMyDialog(context) ;
+                                for(int i= 0 ;i<_textFieldControllers.length;i++) {
+
+                                  cubit.activeSubstanceAPI(
+                                    context,
+                                    patientId,
+                                    _textFieldControllers[i].text,
+                                  );
+                                }
+                                // showToast(msg: "sent successfully", states: ToastStates.SUCCESS);
+                                 //    Navigator.pop(context);
+                                 //    cubit.summaryController.clear();
+                                 //     cubit.notesController.clear();
+                                 //      cubit.medicalVisitDateController.clear();
+                                 //          for(TextEditingController controller in _textFieldControllers){
+                                 //                   controller.clear();
+                                 //          };
+
+                               // status( cubit.status);
+                                //  ?showToast(msg: "sent successfully", states: ToastStates.SUCCESS)
+                                // :showMyDialog(context) ;
+
+                             //   Navigator.pop(context);
+                              cubit.summaryController.clear();
+                              cubit.notesController.clear();
+                              cubit.medicalVisitDateController.clear();
+                              for(TextEditingController controller in _textFieldControllers){
+                              controller.clear();}
                               }
                             }),
                             const SizedBox(
