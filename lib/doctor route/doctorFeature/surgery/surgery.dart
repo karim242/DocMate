@@ -22,6 +22,7 @@ class DoctorSurgeryScreen extends StatelessWidget {
           List<dynamic> surgeryPatientData= cubit.surgeryPatientData;
           List<dynamic> surgeryDoctorData= cubit.surgeryDoctorData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Surgery"),
               floatingActionButton: buildFloatingActionButton(context,
               routeName:AddSurgeryScreen.idAddSurgery,
@@ -36,7 +37,12 @@ class DoctorSurgeryScreen extends StatelessWidget {
                         type:cubit.isUser?surgeryDoctorData[index]["type"]:surgeryPatientData[index]["type"],
                     location:cubit.isUser?surgeryDoctorData[index]["location"]:surgeryPatientData[index]["location"],
                         date:cubit.isUser?surgeryDoctorData[index]["date"]:surgeryPatientData[index]["date"],
-                       // image: FileImage(),
+                       image: const NetworkImage(
+                          "https://www.researchgate."
+                              "net/profile/Sylvia-Asa/publication/319357366/"
+                              "figure/fig2/AS:613886776573952@1523373421045/"
+                              "The-consolidated-theranostic-report-surgical-"
+                              "pathology-An-example-deidentified-to.png"),
                       ),
                   separatorBuilder: (context, index) =>
                       const SizedBox(

@@ -16,6 +16,7 @@ class LabTestScreen extends StatelessWidget {
           List <dynamic> labTestDoctorData = cubit.labTestDoctorData;
 
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Lab Test"),
               floatingActionButton:
               buildFloatingActionButton(context,
@@ -29,7 +30,8 @@ class LabTestScreen extends StatelessWidget {
                          type:cubit.isUser?labTestDoctorData[index]["type"]:labTestPatientData[index]["type"],
                      location:cubit.isUser?labTestDoctorData[index]["location"]:labTestPatientData[index]["location"],
                        date:  cubit.isUser?labTestDoctorData[index]["date"]:labTestPatientData[index]["date"],
-                      // image: cubit.profileImage
+                       image:const NetworkImage(
+                              "https://media.istockphoto.com/photos/medical-lab-test-picture-id175257928"),
                       ),
                   separatorBuilder: (context, index) =>
                       Container(

@@ -18,6 +18,7 @@ class ADDFamilyHistoryScreen extends StatelessWidget {
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,

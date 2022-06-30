@@ -20,6 +20,7 @@ class SearchPage extends StatelessWidget {
         builder: (context, states) {
           NetworkCubit cubit = NetworkCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,

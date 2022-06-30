@@ -20,7 +20,9 @@ class MedicalProfileScreen extends StatelessWidget {
         listener: (context, states) {},
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
-          return Scaffold(appBar: AppBar(
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
               title: Center(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:docmate/patient%20route/homePage/homePage.dart';
 import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
 import 'package:docmate/patient%20route/homePage/profilePage.dart';
@@ -45,7 +47,7 @@ MaterialButton latestNewsSilder(context, articles, {required int index}) {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                backgroundColor: whiteColor,
+                //backgroundColor: whiteColor,
               ),
             ),
           ),
@@ -94,7 +96,7 @@ MaterialButton medicalAdvices(
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                backgroundColor: whiteColor,
+                //backgroundColor: whiteColor,
               ),
             ),
           ),
@@ -171,10 +173,10 @@ CarouselSlider carouselSlider(
             '${articles[index+1]['title']}',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
-              backgroundColor: whiteColor,
+              // backgroundColor: whiteColor,
             ),
           ),
           // ),//
@@ -323,7 +325,7 @@ Widget ThemeCard(context,
     required String type,
     required String location,
     required String date,
-    //required FileImage image
+    required NetworkImage image
     }) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
@@ -393,14 +395,15 @@ Widget ThemeCard(context,
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                image: const DecorationImage(
+                image:  DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                      "https://www.researchgate."
-                          "net/profile/Sylvia-Asa/publication/319357366/"
-                          "figure/fig2/AS:613886776573952@1523373421045/"
-                          "The-consolidated-theranostic-report-surgical-"
-                          "pathology-An-example-deidentified-to.png"),
+                  image:image
+                  // NetworkImage(
+                  //     "https://www.researchgate."
+                  //         "net/profile/Sylvia-Asa/publication/319357366/"
+                  //         "figure/fig2/AS:613886776573952@1523373421045/"
+                  //         "The-consolidated-theranostic-report-surgical-"
+                  //         "pathology-An-example-deidentified-to.png"),
 
                 ),
               ),
@@ -576,6 +579,46 @@ Widget ImageProfileBottomSheet(var cubit , bool user){
                     ? cubit.getImage(ImageSource.gallery)
                     :cubit.getDoctorImage(ImageSource.gallery);
 
+              },
+              icon: const Icon(
+                  Icons.browse_gallery),
+              label: const Text('gallery'),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
+}
+Widget uploadImageBottomSheet(var cubit , ){
+  return Container(
+    height: 100,
+    width: 300,
+    margin: const EdgeInsets.symmetric(
+        vertical: 20, horizontal: 20),
+    child: Column(
+      children: [
+        const Text(
+          'choose profile photo',
+          style: TextStyle(fontSize: 20),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment:
+          MainAxisAlignment.center,
+          children: [
+            TextButton.icon(
+              onPressed: () {
+                cubit.getFeatureImage(ImageSource.camera);
+              },
+              icon: const Icon(Icons.camera),
+              label: const Text('camera'),
+            ),
+            TextButton.icon(
+              onPressed: () {
+                   cubit.getFeatureImage(ImageSource.gallery);
               },
               icon: const Icon(
                   Icons.browse_gallery),

@@ -25,6 +25,7 @@ class DoctorProfileScreen extends StatelessWidget {
           ));
           return SafeArea(
             child: Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: blueColor,
                 elevation: 0,

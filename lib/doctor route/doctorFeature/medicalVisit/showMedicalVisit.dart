@@ -24,6 +24,7 @@ class ShowMedicalVisits extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           List<dynamic> allPrescriptionData= cubit.allPrescriptionData;
           return Scaffold(
+              backgroundColor: Colors.white,
             appBar: AppBar(
               elevation: 0,
               leading: GestureDetector(

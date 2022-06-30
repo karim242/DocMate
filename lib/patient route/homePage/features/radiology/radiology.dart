@@ -18,6 +18,7 @@ class RadiologyScreen extends StatelessWidget {
           List<dynamic> radiologyPatientData =cubit.radiologyPatientData;
           List<dynamic> radiologyDoctorData =cubit.radiologyDoctorData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Radiology"),
               floatingActionButton:
               buildFloatingActionButton(context,
@@ -31,7 +32,10 @@ class RadiologyScreen extends StatelessWidget {
                         name:cubit.isUser?radiologyDoctorData[index]["name"]:radiologyPatientData[index]["name"],
                         type:cubit.isUser?radiologyDoctorData[index]["type"]:radiologyPatientData[index]["type"],
                     location:cubit.isUser?radiologyDoctorData[index]["location"]:radiologyPatientData[index]["location"],
-                        date:cubit.isUser?radiologyDoctorData[index]["date"]:radiologyPatientData[index]["date"],),
+                        date:cubit.isUser?radiologyDoctorData[index]["date"]:radiologyPatientData[index]["date"],
+                      image:const NetworkImage("https://media.springernature.com/m685/springer-static/"
+                          "image/art%3A10.1038%2Fs41597-019-0322-0/MediaObjects/41597_2019_322_Fig1_HTML.png")
+                      ),
                   separatorBuilder: (context, index) =>
                       Container(
                         width: double.infinity,

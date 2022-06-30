@@ -20,6 +20,7 @@ class AddRadiologyScreen extends StatelessWidget {
 
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,

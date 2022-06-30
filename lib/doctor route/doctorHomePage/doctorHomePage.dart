@@ -32,6 +32,7 @@ class DoctorHomePageScreen extends StatelessWidget {
 
           return SafeArea(
               child :Scaffold(
+                backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,

@@ -25,6 +25,7 @@ class _EditProfileState extends State<EditDoctorProfile> {
               const SystemUiOverlayStyle(statusBarColor: Colors.white));
           return SafeArea(
             child: Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
                 title: Text(

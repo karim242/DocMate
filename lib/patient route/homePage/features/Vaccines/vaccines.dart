@@ -17,6 +17,7 @@ class VaccineScreen extends StatelessWidget {
           List<dynamic> vaccinePatientData=cubit.vaccinePatientData;
           List<dynamic> vaccineDoctorData=cubit.vaccineDoctorData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Vaccines"),
               floatingActionButton: buildFloatingActionButton(context,
                   routeName: AddVaccineScreen.idAddVaccine,
@@ -29,7 +30,10 @@ class VaccineScreen extends StatelessWidget {
                           name: cubit.isUser?vaccineDoctorData[index]["name"]:vaccinePatientData[index]["name"],
                           type: cubit.isUser?vaccineDoctorData[index]["type"]:vaccinePatientData[index]["type"],
                       location: cubit.isUser?vaccineDoctorData[index]["location"]:vaccinePatientData[index]["location"],
-                          date: cubit.isUser?vaccineDoctorData[index]["date"]:vaccinePatientData[index]["date"],),
+                          date: cubit.isUser?vaccineDoctorData[index]["date"]:vaccinePatientData[index]["date"],
+                        image: NetworkImage("https://watanimg.elwatannews.com/image_archive/original_lower_quality/17161090651611479406.jpg")
+
+                      ),
                   separatorBuilder: (context, index) =>
                       Container(
                         width: double.infinity,

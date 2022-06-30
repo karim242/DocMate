@@ -189,6 +189,7 @@ class PatientLoginScreen extends StatelessWidget {
                                          // print(cubit.idController.text);
                                           print(cubit.emailController.text);
                                           print(cubit.patientPasswordController.text);
+                                          cubit.patientPasswordController.clear();
                                       }
                                       else {print("Errorrrrrrrrr");}
                                     }),

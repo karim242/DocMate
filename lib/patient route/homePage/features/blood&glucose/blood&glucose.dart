@@ -19,6 +19,7 @@ class BloodGlucoseScreen extends StatelessWidget {
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar:themeAppBar(context, value:" Blood & Glucose"),
             body: Padding(
               padding: const EdgeInsets.all(32.0),

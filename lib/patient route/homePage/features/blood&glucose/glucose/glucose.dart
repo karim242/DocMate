@@ -23,6 +23,7 @@ class GlucoseScreen extends StatelessWidget {
           List <dynamic> glucosePatientData=cubit.glucosePatientData;
           List <dynamic> glucoseDoctorData=cubit.glucoseDoctorData;
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: themeAppBar(context, value: " Glucose"),
             floatingActionButton: buildFloatingActionButton(
                 context,

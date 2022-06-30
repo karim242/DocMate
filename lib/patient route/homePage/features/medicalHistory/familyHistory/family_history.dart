@@ -20,6 +20,7 @@ class FamilyHistoryScreen extends StatelessWidget {
           List<dynamic> familyPatientData= cubit.familyHistoryPatientData;
           List<dynamic> familyDoctorData= cubit.familyHistoryDoctorListData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Family History"),
 
               floatingActionButton:  buildFloatingActionButton(
@@ -43,7 +44,7 @@ class FamilyHistoryScreen extends StatelessWidget {
                       ),
                       itemCount:cubit.isUser?familyDoctorData.length:familyPatientData.length ,
                       itemBuilder: (context, int index){
-                        return  labTestCard(
+                        return  familyHistoryCard(
                             textcolor :blueColor,
                             ontap: () {},
                             photoIconName: "virus",
@@ -59,7 +60,7 @@ class FamilyHistoryScreen extends StatelessWidget {
         });
   }
 }
-MaterialButton labTestCard(
+MaterialButton familyHistoryCard(
     {
       required String disease,
       required String relation,

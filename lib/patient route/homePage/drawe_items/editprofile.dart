@@ -30,6 +30,7 @@ class _EditProfileState extends State<EditProfile> {
               const SystemUiOverlayStyle(statusBarColor: Colors.white));
           return SafeArea(
             child: Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
                 title: Text(
@@ -69,7 +70,8 @@ class _EditProfileState extends State<EditProfile> {
                               ? const CircleAvatar(
                                   radius: 50,
                                   backgroundImage: NetworkImage(
-                                      'https://via.placeholder.com/140x100'))
+                                      'https://www2.deloitte.com/content/dam/Deloitte/xe/Images/promo_images/'
+                                          'profilepictures/Joerg-Meiser.jpg/_jcr_content/renditions/cq5dam.web.250.250.mobile.jpeg'))
                               : CircleAvatar(
                                   radius: 50,
                                   backgroundImage:
@@ -93,10 +95,10 @@ class _EditProfileState extends State<EditProfile> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    //const SizedBox(height: 5),
                     Container(
                       margin: const EdgeInsets.only(
-                          left: 15, top: 10, right: 15, bottom: 10),
+                          left: 15, top: 5, right: 15, bottom: 10),
                       child: Form(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

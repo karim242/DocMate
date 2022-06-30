@@ -23,6 +23,7 @@ class LatestNews extends StatelessWidget {
            var cubit = NetworkCubit.get(context);
           dynamic data = cubit.latestNew;
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,

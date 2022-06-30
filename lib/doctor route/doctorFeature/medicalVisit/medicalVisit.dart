@@ -18,6 +18,7 @@ class DrMedicalVisit extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           List<dynamic> allPrescriptionData = cubit.allPrescriptionData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Medical Visit"),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {

@@ -16,6 +16,7 @@ class MedicalHistoryScreen extends StatelessWidget {
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar:themeAppBar(context, value:" Medical History"),
             body: Padding(padding: const EdgeInsets.all(32.0),
               child: Column(

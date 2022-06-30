@@ -58,6 +58,7 @@ class NetworkCubit extends Cubit<NetworkStates> {
       //emit(GetProfileImageErrorStates());
     }
   }
+
   File? doctorProfileImage;
   Future <void>getDoctorImage(ImageSource source)async{
     final pickedFile = await ImagePicker.platform.pickImage(source: source);

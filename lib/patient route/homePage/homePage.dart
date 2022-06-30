@@ -29,6 +29,7 @@ class HomePageScreen extends StatelessWidget {
             List<dynamic> data = cubit.latestNew;
             // cubit.screens[cubit.selectedIndex];
             return Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 backgroundColor: Colors.white,
                 elevation: 0,

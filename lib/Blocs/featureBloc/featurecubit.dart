@@ -721,9 +721,24 @@ late FamilyHistoryDocModel familyHistoryDocModel;
   var labTestTypeController= TextEditingController();
   var labTestLocationController= TextEditingController();
   var dateLabTestController= TextEditingController();
-  var labTestImageController= TextEditingController();
-
+  ////for photo
+  late File labtestImage;
+  Future <void>getFeatureImage(ImageSource source)async{
+    final pickedFile = await ImagePicker.platform.pickImage(source: source);
+    if(pickedFile !=null)
+    {
+      labtestImage=File(pickedFile.path);
+      print(pickedFile.path);
+      //emit(GetProfileImageSuccessStates());
+    }
+    else
+    {
+      print("nothing selected");
+      //emit(GetProfileImageErrorStates());
+    }
+  }
   ////for patient
+
   late LabTestModel labTestModel;
   void labTestAPI()
   {
@@ -737,6 +752,7 @@ late FamilyHistoryDocModel familyHistoryDocModel;
           "date":dateLabTestController.text,
           "location":labTestLocationController.text,
           "type":labTestTypeController.text,
+          "image_result":labtestImage,
           // "image":,
         }
     ).then((value) {
@@ -767,6 +783,7 @@ late FamilyHistoryDocModel familyHistoryDocModel;
           "date":dateLabTestController.text,
           "location":labTestLocationController.text,
           "type":labTestTypeController.text,
+
           // "image":,
         }
     ).then((value) {
@@ -804,6 +821,8 @@ late FamilyHistoryDocModel familyHistoryDocModel;
       emit(FeatureErrorStates(error));
     });
   }
+  ////for photo
+
 
   List <dynamic> labTestDoctorData=[];
   void getLabTestDoctorAPI(int id,)
@@ -851,6 +870,7 @@ late FamilyHistoryDocModel familyHistoryDocModel;
           "glucos_type":selectedType,
           "time":"12:00",
           "date":dateGlucoseController.text
+
         }
     ).then((value) {
       glucoseModel = GlucoseModel.fromJson(value.data);

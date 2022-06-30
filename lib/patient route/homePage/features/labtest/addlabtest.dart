@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:docmate/Blocs/featureBloc/featureStates.dart';
 import 'package:docmate/Blocs/featureBloc/featurecubit.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +15,6 @@ class AddLabTestScreen extends StatelessWidget {
    AddLabTestScreen({Key? key}) : super(key: key);
   static String idAddLabTest = "IdAddLabTestScreen";
 
-
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FeatureCubit, FeatureStates>(
@@ -22,6 +22,7 @@ class AddLabTestScreen extends StatelessWidget {
         builder: (context, states) {
           FeatureCubit cubit = FeatureCubit.get(context);
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
               elevation: 0,
@@ -44,14 +45,17 @@ class AddLabTestScreen extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(35, 24, 35, 24),
                           child: Center(
                             child: Column(
+
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 IconButton(
                                   icon: const Icon(Icons.camera_alt_outlined),
                                   iconSize: 35.0,
                                   onPressed: () {
-                                   cubit.takePhoto(ImageSource.gallery
-                                   ).then((value) => cubit.labTestImageController=value as TextEditingController);
+                                    showModalBottomSheet(
+                                      context: context,
+                                      builder: ((builder) => uploadImageBottomSheet(cubit)),
+                                    );
 
                                    },
                                 ),

@@ -28,6 +28,7 @@ class PatientProfileScreen extends StatelessWidget {
           ));
         //  late PatientProfileModel patientProfileModel=cubit.patientProfileModel;
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: blueColor,
               elevation: 0,

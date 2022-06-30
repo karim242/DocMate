@@ -29,6 +29,7 @@ class ChangePatientsPassword extends StatelessWidget {
 
           return SafeArea(
             child: Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
                 title:  Text(

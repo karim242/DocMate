@@ -23,6 +23,7 @@ class BloodPressureScreen extends StatelessWidget {
           List<dynamic> pressureDoctorData = cubit.pressureDoctorData;
 
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: themeAppBar(context, value: "Blood Pressure"),
             floatingActionButton: buildFloatingActionButton(
                 context,

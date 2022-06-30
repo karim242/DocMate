@@ -21,6 +21,7 @@ class ShowPatientMedicalVisits extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           List<dynamic> prescriptionPatientData= cubit.prescriptionPatientData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
                 leading: GestureDetector(
@@ -104,10 +105,12 @@ class ShowPatientMedicalVisits extends StatelessWidget {
 
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-//when using the api use map function with spread operator to create text widget for each active substane
-                                  Text('1-fasffasfsfafasfsaf'),
-                                  Text('2-fasfasfasffasf')
+                                children: [
+                                  prescriptionPatientData[indexItem]["medicine"] == null
+                                    ?const Text("No Active Substance added !")
+                                    :
+
+                                Text(prescriptionPatientData[indexItem]["medicine"][0]["name"]),
                                 ],
                               )),
 

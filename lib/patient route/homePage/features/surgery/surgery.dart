@@ -18,6 +18,7 @@ class SurgeryScreen extends StatelessWidget {
           FeatureCubit cubit = FeatureCubit.get(context);
           List<dynamic> surgeryData= cubit.surgeryPatientData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Surgery"),
               body: Padding(
                 padding: const EdgeInsets.all(18.0),
@@ -28,7 +29,12 @@ class SurgeryScreen extends StatelessWidget {
                         type:surgeryData[index]["type"],
                     location:surgeryData[index]["location"],
                         date:surgeryData[index]["date"],
-                       // image:
+                 image:const NetworkImage(
+                     "https://www.researchgate."
+                         "net/profile/Sylvia-Asa/publication/319357366/"
+                         "figure/fig2/AS:613886776573952@1523373421045/"
+                         "The-consolidated-theranostic-report-surgical-"
+                         "pathology-An-example-deidentified-to.png"),
 
                       ),
                   separatorBuilder: (context, index) =>

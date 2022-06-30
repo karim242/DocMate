@@ -16,6 +16,7 @@ class PatientMedicalVisit extends StatelessWidget {
           FeatureCubit  cubit = FeatureCubit.get(context);
           List<dynamic> prescriptionData=cubit.prescriptionPatientData;
           return Scaffold(
+              backgroundColor: Colors.white,
               appBar: themeAppBar(context, value: "Medical Visit"),
               body: Padding(
                 padding: const EdgeInsets.all(13.0),
