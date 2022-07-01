@@ -108,23 +108,29 @@ class ShowMedicalVisits extends StatelessWidget {
 
 
                       Text('Active Substance',style: textTitle22Style,),
-                      Card(
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: SizedBox(
-                            width:  MediaQuery.of(context).size.width,
+                      Row(
+                        children: [
+                          Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: SizedBox(
+                                width:  MediaQuery.of(context).size.width/1.5,
 
-                            child:
-                            allPrescriptionData[indexItem]["medicine"] == null
-                             ?const Text("No thing add !")
-                              :
-                            // for(int i = 0 ; i<allPrescriptionData[indexItem]["medicine"].length;i++)
+                                child:
+                                allPrescriptionData[indexItem]["medicine"] == null
+                                 ?const Text("No thing add !")
+                                  :
+                                // for(int i = 0 ; i<allPrescriptionData[indexItem]["medicine"].length;i++)
 
-                            Text(allPrescriptionData[indexItem]["medicine"][0]["name"]),
+                                Text(allPrescriptionData[indexItem]["medicine"][0]["name"]),
 
-                      ),),
+                          ),),
+                         const SizedBox(width: 20,),
+                         switchButton(cubit),
+                        ],
+                      ),
 
                       const SizedBox(height: 15,),
 

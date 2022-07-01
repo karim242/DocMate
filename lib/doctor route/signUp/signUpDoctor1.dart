@@ -60,6 +60,7 @@ class SignUpScreenDoctor1 extends StatelessWidget {
                                 child: Row(children: [
                                   MaterialButton(
                                     onPressed: () {
+                                      Navigator.pop(context);
                                     },
                                     child: Text(
                                       "Log in",

@@ -40,7 +40,9 @@ class SearchPage extends StatelessWidget {
                       //cubit.findPatientModel.data.name,
                       patientId:cubit.findPatientList[index]["id"],
                       //cubit.findPatientModel.data.id,
-                      patientImage: AssetImage("images/4.png"),
+                      patientImage: const NetworkImage(
+                          'https://www2.deloitte.com/content/dam/Deloitte/xe/Images/promo_images/'
+                              'profilepictures/Joerg-Meiser.jpg/_jcr_content/renditions/cq5dam.web.250.250.mobile.jpeg'),
                       onpressed: (){
                         navigateTo(context, const OtpRequest());
                       },

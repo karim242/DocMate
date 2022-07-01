@@ -1,8 +1,3 @@
-import 'dart:io';
-
-import 'package:docmate/patient%20route/homePage/homePage.dart';
-import 'package:docmate/patient%20route/homePage/medicalProfile.dart';
-import 'package:docmate/patient%20route/homePage/profilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -11,6 +6,7 @@ import '../constant.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../patient route/homePage/descriptionApi.dart';
+import 'package:switcher/switcher.dart';
 
 MaterialButton latestNewsSilder(context, articles, {required int index}) {
   return MaterialButton(
@@ -44,7 +40,7 @@ MaterialButton latestNewsSilder(context, articles, {required int index}) {
               '${articles[index]['title']}',
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 //backgroundColor: whiteColor,
@@ -93,7 +89,7 @@ MaterialButton medicalAdvices(
               '${articles[index]['title']}',
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 //backgroundColor: whiteColor,
@@ -164,13 +160,14 @@ CarouselSlider carouselSlider(
               decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage('${articles[index+1]['urlToImage']}')),
+                    image:
+                        NetworkImage('${articles[index + 1]['urlToImage']}')),
                 borderRadius: BorderRadius.circular(16.0),
               ),
             ),
           ),
           Text(
-            '${articles[index+1]['title']}',
+            '${articles[index + 1]['title']}',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: const TextStyle(
@@ -325,8 +322,7 @@ Widget ThemeCard(context,
     required String type,
     required String location,
     required String date,
-    required NetworkImage image
-    }) {
+    required NetworkImage image}) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: Container(
@@ -395,17 +391,15 @@ Widget ThemeCard(context,
               height: 150,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
-                image:  DecorationImage(
-                  fit: BoxFit.cover,
-                  image:image
-                  // NetworkImage(
-                  //     "https://www.researchgate."
-                  //         "net/profile/Sylvia-Asa/publication/319357366/"
-                  //         "figure/fig2/AS:613886776573952@1523373421045/"
-                  //         "The-consolidated-theranostic-report-surgical-"
-                  //         "pathology-An-example-deidentified-to.png"),
+                image: DecorationImage(fit: BoxFit.cover, image: image
+                    // NetworkImage(
+                    //     "https://www.researchgate."
+                    //         "net/profile/Sylvia-Asa/publication/319357366/"
+                    //         "figure/fig2/AS:613886776573952@1523373421045/"
+                    //         "The-consolidated-theranostic-report-surgical-"
+                    //         "pathology-An-example-deidentified-to.png"),
 
-                ),
+                    ),
               ),
             ),
           ),
@@ -416,7 +410,7 @@ Widget ThemeCard(context,
 }
 
 FloatingActionButton buildFloatingActionButton(context,
-    {required String routeName,required VoidCallback ontap}) {
+    {required String routeName, required VoidCallback ontap}) {
   return FloatingActionButton(
     onPressed: () {
       ontap;
@@ -467,23 +461,24 @@ Container fieldForMeasurement({
   );
 }
 
-
-Future<void> showMyDialog(context) async {
+Future<void> showMyDialog(context, String oldActive) async {
   return showDialog<void>(
     context: context,
+
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return AlertDialog(
-        title: const Center(child:Text('Warning!',style:
-        TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.red
-        ),),),
+        title: const Center(
+          child: Text(
+            'Warning!',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.red),
+          ),
+        ),
         content: SingleChildScrollView(
           child: ListBody(
-            children:  const <Widget>[
-              Text('this Active SubStance May be Harmful. '),
+            children: <Widget>[
+              Text('This active substance is incompatible with $oldActive  . '),
             ],
           ),
         ),
@@ -499,7 +494,6 @@ Future<void> showMyDialog(context) async {
     },
   );
 }
-
 
 void showToast({required String msg, required ToastStates states}) =>
     Fluttertoast.showToast(
@@ -531,26 +525,23 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     ),
     (Route<dynamic> route) => false);
 
-
 void navigateTo(context, widget) => Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => widget,
       ),
     );
-void navigateAndReplacment(context,widget)=>Navigator.pushReplacement(
-    context, MaterialPageRoute(
-  builder: (context) => widget,
-      )
-);
+void navigateAndReplacment(context, widget) => Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => widget,
+    ));
 
-
-Widget ImageProfileBottomSheet(var cubit , bool user){
+Widget ImageProfileBottomSheet(var cubit, bool user) {
   return Container(
     height: 100,
     width: 300,
-    margin: const EdgeInsets.symmetric(
-        vertical: 20, horizontal: 20),
+    margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
     child: Column(
       children: [
         const Text(
@@ -561,27 +552,24 @@ Widget ImageProfileBottomSheet(var cubit , bool user){
           height: 20,
         ),
         Row(
-          mainAxisAlignment:
-          MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton.icon(
-            onPressed: () {
-               user==true
-                   ? cubit.getImage(ImageSource.camera)
-                   :cubit.getDoctorImage(ImageSource.camera);
+              onPressed: () {
+                user == true
+                    ? cubit.getImage(ImageSource.camera)
+                    : cubit.getDoctorImage(ImageSource.camera);
               },
               icon: const Icon(Icons.camera),
               label: const Text('camera'),
             ),
             TextButton.icon(
               onPressed: () {
-                user==true
+                user == true
                     ? cubit.getImage(ImageSource.gallery)
-                    :cubit.getDoctorImage(ImageSource.gallery);
-
+                    : cubit.getDoctorImage(ImageSource.gallery);
               },
-              icon: const Icon(
-                  Icons.browse_gallery),
+              icon: const Icon(Icons.browse_gallery),
               label: const Text('gallery'),
             ),
           ],
@@ -590,12 +578,14 @@ Widget ImageProfileBottomSheet(var cubit , bool user){
     ),
   );
 }
-Widget uploadImageBottomSheet(var cubit , ){
+
+Widget uploadImageBottomSheet(
+  var cubit,
+) {
   return Container(
     height: 100,
     width: 300,
-    margin: const EdgeInsets.symmetric(
-        vertical: 20, horizontal: 20),
+    margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
     child: Column(
       children: [
         const Text(
@@ -606,8 +596,7 @@ Widget uploadImageBottomSheet(var cubit , ){
           height: 20,
         ),
         Row(
-          mainAxisAlignment:
-          MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton.icon(
               onPressed: () {
@@ -618,15 +607,47 @@ Widget uploadImageBottomSheet(var cubit , ){
             ),
             TextButton.icon(
               onPressed: () {
-                   cubit.getFeatureImage(ImageSource.gallery);
+                cubit.getFeatureImage(ImageSource.gallery);
               },
-              icon: const Icon(
-                  Icons.browse_gallery),
+              icon: const Icon(Icons.browse_gallery),
               label: const Text('gallery'),
             ),
           ],
         ),
       ],
+    ),
+  );
+}
+
+Widget switchButton(cubit) {
+  return Padding(
+    padding: const EdgeInsets.only(top: 5),
+    child: Switcher(
+      value: false,
+     // size: SwitcherSize.medium,
+      switcherButtonRadius: 50,
+      enabledSwitcherButtonRotate: true,
+
+      iconOff: Icons.lock_open,
+     // iconOn: Icons.lock_open,
+      colorOff: Colors.blueGrey.withOpacity(0.3),
+      colorOn: Colors.blue,
+      onChanged: (bool state) {
+        print(state);
+        if(state)
+          {
+            active = 1;
+           cubit.toActiveOrInActiveAPI(patientId,active);
+
+          }
+        else
+          {
+            active = 0;
+            cubit.toActiveOrInActiveAPI(patientId,active);
+
+          }
+        //
+      },
     ),
   );
 }

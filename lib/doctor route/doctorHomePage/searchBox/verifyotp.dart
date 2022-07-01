@@ -19,7 +19,9 @@ class VerifyOtp extends StatelessWidget {
           {
             showToast(
                 msg: states.verifyOtpModel.message,
-                states: ToastStates.SUCCESS
+                states:  states.verifyOtpModel.message=="Invalid OTP Code"
+                    ?ToastStates.ERROR
+                    : ToastStates.SUCCESS
             );
            // navigateTo(context, DoctorMedicalProfileScreen(cu,));
           }
@@ -54,7 +56,8 @@ class VerifyOtp extends StatelessWidget {
                               const CircleAvatar(
                                   radius: 30,
                                   backgroundImage: NetworkImage(
-                                      'https://via.placeholder.com/140x100')
+                                      'https://www2.deloitte.com/content/dam/Deloitte/xe/Images/promo_images/'
+                                          'profilepictures/Joerg-Meiser.jpg/_jcr_content/renditions/cq5dam.web.250.250.mobile.jpeg'),
                               ),
                               Text(cubit.findPatientList[0]["name"], style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,color: Colors.white),),
                             ],

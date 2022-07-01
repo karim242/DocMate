@@ -10,14 +10,11 @@ import '../../patient route/homePage/profilePage.dart';
 
 class DoctorProfileScreen extends StatelessWidget {
   const DoctorProfileScreen({Key? key}) : super(key: key);
-  //static String docProfileID = "IDDoctorProfile";
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<NetworkCubit, NetworkStates>(
         listener: (context, states) {},
         builder: (context, states) {
-
           NetworkCubit cubit = NetworkCubit.get(context);
           Map<String,dynamic>doctorProfileData=cubit.doctorInfoData;
           SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
@@ -45,7 +42,6 @@ class DoctorProfileScreen extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-
                           children:  [
                             cubit.doctorProfileImage == null
                                 ? const CircleAvatar(
@@ -58,11 +54,6 @@ class DoctorProfileScreen extends StatelessWidget {
                                  backgroundImage:
                                   FileImage(cubit.doctorProfileImage!),
                             ),
-
-
-
-
-
                             Text(doctorProfileData.values.elementAt(1), style: const TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
                             Text(doctorProfileData.values.elementAt(2), style: const TextStyle(fontSize: 12),)
                           ],
@@ -79,13 +70,9 @@ class DoctorProfileScreen extends StatelessWidget {
                             const SizedBox(height: 10,),
                             MyInfoWidget(title: 'Specialization', info: doctorProfileData.values.elementAt(5)),
                             const SizedBox(height: 10,),
-
-
                           ],
                         ),
                       )
-
-
                     ],
                   ),
                   ]

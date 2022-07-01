@@ -241,6 +241,25 @@ class FeatureCubit extends Cubit<FeatureStates> {
     });
   }
 
+  //late DocMedicalVisitModel docMedicalVisitModel;
+  void  toActiveOrInActiveAPI(int id,int activeSub)
+  {
+    emit(LoadingValueStates());
+    DioHelperAPI.postData(
+        url: "doctor/$id/prescription/$prescriptionID",
+        token:token,
+        data: {
+          "active":activeSub,
+        }
+    ).then((value) {
+      emit(ActiveOrInActiveStates());}
+    ).catchError((error)
+    {
+      print("Error is ==> $error");
+      emit(FeatureErrorStates(error));
+    });
+  }
+
   //active substance controller
  // var activeSubstanceController = TextEditingController();
 
@@ -270,7 +289,9 @@ late bool status;
        Navigator.pop(context);
        }
       else{
-      showMyDialog(context);
+      showMyDialog(context,
+         activeSubstanceModel.data.drug
+      );
       }
       // status
       //     ?{showToast(msg: "sent successfully", states: ToastStates.SUCCESS),
@@ -279,9 +300,7 @@ late bool status;
       //       notesController.clear(),
       //       medicalVisitDateController.clear(),}
       //     :showMyDialog(context) ;
-
       emit(FeatureSuccessStates());
-
     }).catchError((error)
     {
       print("Error is ==> $error");

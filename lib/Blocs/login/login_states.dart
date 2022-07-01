@@ -6,7 +6,8 @@ import '../../models/patientModel.dart';
 
 abstract class LoginStates{}
 class InitLoginStates extends LoginStates{}
-class LoadingLoginStates extends LoginStates{}
+class LoadingPatientLoginStates extends LoginStates{}
+class LoadingDoctorLoginStates extends LoginStates{}
 class PatientLoginSuccessStates extends LoginStates{
 final PatientLoginModel loginModel;
 

@@ -12,7 +12,7 @@ import '../../../patient route/homePage/features/medicalHistory/medicalHistory.d
 import '../../../patient route/homePage/features/radiology/radiology.dart';
 import '../../../shared/sharedComponent.dart';
 import '../../doctorFeature/surgery/surgery.dart';
-import '../doctorHomePage.dart';
+
 import '../selectdoctorpage.dart';
 
 class DoctorMedicalProfileScreen extends StatelessWidget {
@@ -103,10 +103,8 @@ class DoctorMedicalProfileScreen extends StatelessWidget {
                             color: const Color(0xffDFC8FC)),
                         FeatureCard(
                             ontap: (){
-
-                              navigateTo(context,  DrMedicalVisit());
                               cubit.getAllPrescriptionAPI(patientId);
-
+                              navigateTo(context,  DrMedicalVisit());
                               },
                             photoIconName: "medical_Visit",
                             text: "Medical Visit",

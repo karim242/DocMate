@@ -462,14 +462,14 @@ class ActiveSubstanceData {
   //late int id;
  // late String name;
  // late String  message;
- // late String drug;
+  late String drug;
   ActiveSubstanceData.fromJson(Map<String, dynamic>json)
   {
     status =json["status"];
    // id = json["id"];
    // name = json["name"];
    // message = json["message"];
-    //drug = json["drug"];
+    drug = json["drug"];
   }
 
 }

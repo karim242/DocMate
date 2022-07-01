@@ -20,3 +20,4 @@ class ChangeDoctor extends FeatureStates{}
 
 class GetProfileImageSuccessStates extends FeatureStates{}
 class GetProfileImageErrorStates extends FeatureStates{}
+class ActiveOrInActiveStates extends FeatureStates{}

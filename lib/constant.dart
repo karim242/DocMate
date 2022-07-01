@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-String token='';
+late String token;
+late int active=0;
 late int patientId;
 late String doctorName;
 late int prescriptionID ;

@@ -25,7 +25,7 @@ class LoginCubit extends Cubit<LoginStates>{
  late PatientLoginModel patientLoginModel;
   void patientLogin()
   {
-    emit(LoadingLoginStates());
+    emit(LoadingPatientLoginStates());
 
      DioHelperAPI.postData(
         url: "patient/login",
@@ -55,7 +55,7 @@ class LoginCubit extends Cubit<LoginStates>{
   late PatientChangePasswordModel passwordModel;
   void changePatientPassword()
   {
-    emit(LoadingLoginStates());
+    emit(LoadingPatientLoginStates());
 
     DioHelperAPI.postData(
         url: "patient/profile/change_password",
@@ -81,7 +81,7 @@ class LoginCubit extends Cubit<LoginStates>{
   late DoctorLoginModel doctorLoginModel;
   void doctorLogin()
   {
-    emit(LoadingLoginStates());
+    emit(LoadingDoctorLoginStates());
 
     DioHelperAPI.postData(
         url: "doctor/login",
@@ -112,7 +112,7 @@ class LoginCubit extends Cubit<LoginStates>{
   late DoctorChangePasswordModel doctorPasswordModel;
   void changeDoctorPassword()
   {
-    emit(LoadingLoginStates());
+    emit(LoadingDoctorLoginStates());
 
     DioHelperAPI.postData(
         url: "doctor/profile/change_password",

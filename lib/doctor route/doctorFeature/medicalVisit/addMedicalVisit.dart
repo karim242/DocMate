@@ -106,7 +106,7 @@ class _AddMedicalVisitsState extends State<AddMedicalVisits> {
                             itemBuilder: (context, index) {
                           return _textFieldList[index];
                         }),
-   ////Still don't put Active Sub
+
                         TextAndField(
                           ontap: () {},
                           text: "Notes",

@@ -163,7 +163,7 @@ class DoctorLoginScreen extends StatelessWidget {
                             top: MediaQuery.of(context).size.height / 200,
                           ),
                           child: ConditionalBuilder(
-                              condition: states is! LoadingLoginStates,
+                              condition: states is! LoadingDoctorLoginStates,
                               builder: (context) =>defaultBottonTologin(
                                   text: "Log In",
                                   Backgroundcolur: blueColor,

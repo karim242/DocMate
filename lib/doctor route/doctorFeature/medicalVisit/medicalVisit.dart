@@ -23,7 +23,7 @@ class DrMedicalVisit extends StatelessWidget {
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
                   cubit.getPrescriptionIDAPI(patientId);
-                  //cubit.getPrescriptionIDAPI(patientId);
+
                   Navigator.pushNamed(context,  AddMedicalVisits.idAddMedicalVisit);
                 },
                 backgroundColor: blueColor,
