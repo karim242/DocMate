@@ -138,17 +138,23 @@ class DoctorHomePageScreen extends StatelessWidget {
                   TitleInDrawer(
                     icons: Icons.phone,
                     text: "Contact",
-                    ontap: () {},
+                    ontap: () {
+                      openBrowserURL(
+                          url: "https://docmate.vercel.app/",
+                          inApp: true
+                      );
+                    },
                   ),
-                  TitleInDrawer(
-                    icons: Icons.local_library,
-                    text: "About Us",
-                    ontap: () {},
-                  ),
+
                   TitleInDrawer(
                     icons: Icons.mobile_screen_share_sharp,
                     text: "Share Our App",
-                    ontap: () {},
+                    ontap: () {
+                      openBrowserURL(
+                          url: "https://docmate.vercel.app/",
+                          inApp: true
+                      );
+                    },
                   ),
                   TitleInDrawer(
                     icons: Icons.reply_sharp,

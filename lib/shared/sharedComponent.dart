@@ -4,7 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../constant.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import '../patient route/homePage/descriptionApi.dart';
 import 'package:switcher/switcher.dart';
 
@@ -650,4 +650,20 @@ Widget switchButton(cubit) {
       },
     ),
   );
+}
+
+Future openBrowserURL({
+  required String url,
+  bool inApp =false,
+})async
+{
+  if(await canLaunch(url))
+    {
+      await launch(url,
+      forceSafariVC: inApp,
+      forceWebView: inApp,
+      enableJavaScript: inApp,
+      );
+
+    }
 }
